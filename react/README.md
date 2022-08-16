@@ -89,7 +89,7 @@ function UserView({ user, className }) {
 How to use components? Like normal tags!
 
 ```jsx
-const user =   {
+const user = {
     name: "diego",
     email: "diego@spiced.com"
 };
@@ -98,7 +98,7 @@ function App() {
     return (
         <div className="App">
             <h1>Welcome to react!</h1>
-            <UserView user={users} className="user-view" />
+            <UserView user={user} className="user-view" />
         </div>        
     )
 }
