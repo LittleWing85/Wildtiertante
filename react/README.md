@@ -1,10 +1,10 @@
-## Lesson
+# React
 
 You can work in a codesandbox (or more!) - they are free and very handy.
 
 Just go here - https://codesandbox.io/s/react-new - sign in via github.
 
-### JSX
+## JSX
 
 JSX is a syntax that allows you to use js and html-like code in the same page. The goal is to have a better developer experience!
 
@@ -53,7 +53,7 @@ function App() {
 }
 ```
 
-### (Functional) Components
+## (Functional) Components
 
 Besides HTML tags, one can define custom components. There are 2 types of components in React: the old **class-based components**, and the more modern (and better) **functional components**.
 
@@ -113,7 +113,7 @@ function UserView({ user, className }) {
 }
 ```
 
-### Handling events
+## Handling events
 
 HTML tags come with `onClick`, `onMouseEnter`, `onMouseLeave` attributes, to which you can assign functions like:
 
