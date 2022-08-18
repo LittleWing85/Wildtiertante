@@ -72,13 +72,12 @@ Uncaught TypeError: numbers.filter is not a function
 
 Fix: wrap your args in `[]`.
 
-When working with nodemon / webpack watchers, those errors will pop-up in the corresponding terminal tabs as well. Since the frontend code is run in the browser as well, the devtools console is an important place to keep our eye on.
+Important: frontend runtime errors are logged in the **browser console**, while backend ones are logged in the **server terminal tab**.
 
-Catching up, check:
+Same applies for your `console.log` statements:
 
-- VSCode eslint messages;
-- Terminal errors;
-- Browser console.
+- server files -> server tab;
+- frontend files -> browser console!
 
 ### Integration errors
 
@@ -130,22 +129,6 @@ fetch('/api/login', {
 ```
 
 Similar considerations apply if you mistype some fields in the sent data, but you would get meaningful messages in the server terminal.
-
-### How should we read the terminal errors?
-
-Since VSCode warnings are appearing in the file itself, you know already where to fix things.
-
-For the terminal messages we make a distinction: 
-
-- messages in the **server terminal** relate to server files (express app, db functions);
-- messages in the **webpack terminal** relate to frontend files (react components in this case).
-
-Both static and runtime errors will appear in the terminals.
-
-Console.log statements on the other hand:
-
-- server files -> server tab;
-- frontend files -> browser console!
 
 ## TL;DR - Full-Stack debugging cheatsheet
 
