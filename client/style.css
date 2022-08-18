@@ -1,3 +1,417 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background-color: ghostwhite;
+    margin: 0;
+    padding: 1rem;
+    font-size: 16px;
+    font-family: "Helvetica Neue", sans-serif;
+}
+
+main {
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    min-width: 768px;
+    margin: 0 auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: dodgerblue;
+}
+
+a:hover {
+    color: blue;
+}
+
+.welcome {
+    padding: 3rem 1rem 1rem 1rem;
+    text-align: center;
+}
+
+.welcome img {
+    max-width: 100%;
+}
+
+.welcome h1 {
+    margin: 0 0 2rem 0;
+}
+
+.form form input {
+    line-height: 2rem;
+    padding: 0 0.5rem;
+}
+
+form button {
+    line-height: 2rem;
+    padding: 0 0.5rem;
+}
+
+.form {
+    margin-bottom: 3rem;
+}
+
+.form.horizontal form {
+    display: flex;
+}
+
+.form input {
+    margin-right: 0.5rem;
+}
+
+.error {
+    color: red;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.app .profile {
+    flex: 1;
+}
+
+.app > header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    color: white;
+    background-color: dodgerblue;
+}
+
+.app > header a {
+    color: white;
+}
+
+.app > header .user {
+    display: flex;
+    align-items: center;
+}
+
+.app > header img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    margin-left: 0.5rem;
+}
+
+.app > header nav a {
+    padding-right: 1rem;
+}
+
+.app footer > div {
+    width: 768px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0;
+}
+
+.app > .container {
+    max-height: calc(100vh - 9.25rem);
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal .modal-content {
+    max-width: 60vw;
+    max-height: 300px;
+    margin: 0 auto;
+    box-shadow: 0px 0px 1rem 0px rgba(0, 0, 0, 0.75);
+    padding: 1rem;
+    background-color: white;
+    position: relative;
+}
+
+.modal .close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    appearance: none;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.profile {
+    display: flex;
+    padding-top: 1rem;
+}
+
+.profile .sidebar {
+    flex-basis: 200px;
+    align-self: start;
+    padding-right: 1rem;
+}
+
+.profile .sidebar img,
+.profile .sidebar button {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.profile-picture {
+    border: 1px solid blue;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.action {
+    line-height: 2rem;
+    background-color: dodgerblue;
+    border-radius: 0.25rem;
+    appearance: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.action:hover {
+    background-color: navy;
+}
+
+.action.mini {
+    line-height: 1.5rem;
+    font-size: 0.75rem;
+}
+
+.find-people {
+    flex: 1;
+}
+
+.find-people ul {
+    list-style: none;
+    margin: 0 0 3rem 0;
+    padding: 0;
+}
+
+.find-people ul li {
+    margin-bottom: 1rem;
+}
+
+.find-people ul li a {
+    display: flex;
+    align-items: center;
+}
+
+.find-people ul li a .profile-picture {
+    height: 3rem;
+    width: 3rem;
+    object-fit: cover;
+    margin-right: 0.5rem;
+}
+
+.find-people input {
+    line-height: 2rem;
+    padding: 0 0.5rem;
+}
+
+.friends > section {
+    margin-bottom: 3rem;
+}
+
+.friends ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.friends ul li {
+    flex-basis: 33%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.friends ul li .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 5rem;
+}
+
+.friends ul .profile-picture {
+    height: 5rem;
+    width: 5rem;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.nav button {
+    display: none;
+}
+
+.chat {
+    width: 600px;
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chat > * {
+    flex: 0 0 auto;
+}
+
+.chat .no-messages {
+    flex: 1;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    font-family: monospace;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.chat .messages {
+    flex: 1 1 auto;
+    overflow: scroll;
+}
+
+.chat .messages ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.chat .messages .message {
+    display: flex;
+}
+
+.chat .messages .message .message-picture img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    margin-right: 0.75rem;
+}
+
+.chat .messages .message .message-info {
+    font-size: 0.9rem;
+}
+
+.chat .messages .message .message-info .message-username {
+    margin-right: 0.5rem;
+}
+.chat .messages .message .message-info .message-date {
+    color: gray;
+    font-size: 0.75rem;
+}
+
+.chat .messages .message .message-body {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+}
+
+.chat form {
+    display: flex;
+    padding-top: 1rem;
+}
+
+.chat form textarea {
+    flex: 1;
+    padding: 0.5rem;
+    line-height: 1.5rem;
+    resize: none;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+
+.chat form button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.chat form button[disabled] {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+        min-width: 0;
+        padding: 0 1rem;
+    }
+    .registration-form form {
+        display: block;
+    }
+    .registration-form form > * {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    .friends ul li {
+        flex-basis: 100vw;
+    }
+    .profile {
+        flex-wrap: wrap;
+    }
+    .profile .sidebar {
+        width: 100%;
+        flex: 1;
+        order: 1;
+    }
+    .profile .content {
+        width: 100%;
+    }
+
+    .nav.nav-open .nav-content {
+        transform: translateY(4rem);
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid blue;
+        background-color: dodgerblue;
+    }
+    .nav.nav-open .nav-content a {
+        line-height: 3rem;
+        padding: 0;
+        text-align: center;
+    }
+    .nav button {
+        display: block;
+    }
+    .nav .nav-content {
+        width: 100vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: white;
+        transform: translateY(-100%);
+    }
+    .chat {
+        width: 100%;
+    }
+
+    .app > .container {
+        max-height: calc(100vh - 7.5rem);
+    }
+
+    .app footer > div {
+        width: 100%;
+        padding: 1rem;
+    }
 }
