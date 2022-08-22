@@ -10,6 +10,7 @@ const {
     getUserById,
     createUser,
     updateUserProfilePicture,
+    updateUserBio,
     login,
 } = require("./db");
 
@@ -34,6 +35,18 @@ app.get("/api/users/me", async (request, response) => {
     }
     const loggedUser = await getUserById(request.session.user_id);
     response.json(loggedUser);
+});
+
+app.put("/api/users/me", async (request, response) => {
+    if (!request.session.user_id) {
+        response.json(null);
+        return;
+    }
+    const updatedUser = await updateUserBio({
+        user_id: request.session.user_id,
+        ...request.body,
+    });
+    response.json(updatedUser);
 });
 
 app.post("/api/users", async (request, response) => {

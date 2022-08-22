@@ -1,5 +1,6 @@
 import { Component } from "react";
 
+import Profile from "./Profile";
 import ProfilePicture from "./ProfilePicture";
 import ProfilePictureUploader from "./ProfilePictureUploader";
 
@@ -19,6 +20,12 @@ class App extends Component {
         this.onProfilePictureClick = this.onProfilePictureClick.bind(this);
         this.onProfilePictureUpload = this.onProfilePictureUpload.bind(this);
         this.onModalClose = this.onModalClose.bind(this);
+        this.onBioUpdate = this.onBioUpdate.bind(this);
+    }
+    onBioUpdate(bio) {
+        this.setState({
+            user: { ...this.state.user, bio },
+        });
     }
     onProfilePictureClick() {
         this.setState({ showModal: true });
@@ -61,6 +68,12 @@ class App extends Component {
                         />
                     </div>
                 </header>
+                <section className="container">
+                    <Profile
+                        user={this.state.user}
+                        onBioUpdate={this.onBioUpdate}
+                    />
+                </section>
                 <footer>
                     <div>
                         <span>(c) 2022 SPICED Academy</span>

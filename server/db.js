@@ -55,10 +55,18 @@ async function login({ email, password }) {
 }
 
 function updateUserProfilePicture({ user_id, profile_picture_url }) {
-    return db.query(`UPDATE users SET profile_picture_url = $1 WHERE id = $2`, [
-        profile_picture_url,
-        user_id,
-    ]);
+    return db
+        .query(`UPDATE users SET profile_picture_url = $1 WHERE id = $2`, [
+            profile_picture_url,
+            user_id,
+        ])
+        .then((result) => result.rows[0]);
+}
+
+function updateUserBio({ user_id, bio }) {
+    return db
+        .query(`UPDATE users SET bio = $1 WHERE id = $2`, [bio, user_id])
+        .then((result) => result.rows[0]);
 }
 
 module.exports = {
@@ -66,4 +74,5 @@ module.exports = {
     login,
     createUser,
     updateUserProfilePicture,
+    updateUserBio,
 };
