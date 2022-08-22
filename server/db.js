@@ -20,10 +20,9 @@ const db = spicedPg(getDatabaseURL());
 
 console.log(`[social:db] connecting to ${database}`);
 
-function getUserById(id) {
-    return db
-        .query("SELECT * FROM users WHERE id = $1", [id])
-        .then((result) => result.rows[0]);
+async function getUserById(id) {
+    const result = await db.query("SELECT * FROM users WHERE id = $1", [id]);
+    return result.rows[0];
 }
 
 function getUserByEmail(email) {
@@ -55,8 +54,16 @@ async function login({ email, password }) {
     return match ? user : null;
 }
 
+function updateUserProfilePicture({ user_id, profile_picture_url }) {
+    return db.query(`UPDATE users SET profile_picture_url = $1 WHERE id = $2`, [
+        profile_picture_url,
+        user_id,
+    ]);
+}
+
 module.exports = {
     getUserById,
     login,
     createUser,
+    updateUserProfilePicture,
 };

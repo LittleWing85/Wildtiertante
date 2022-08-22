@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom";
-import Welcome from "./Welcome";
+import Welcome from "./Welcome/Welcome";
+import App from "./App/App";
 
 fetch("/api/users/me")
     .then((response) => response.json())
@@ -7,10 +8,6 @@ fetch("/api/users/me")
         if (!user) {
             ReactDOM.render(<Welcome />, document.querySelector("main"));
         } else {
-            ReactDOM.render(<HelloWorld />, document.querySelector("main"));
+            ReactDOM.render(<App />, document.querySelector("main"));
         }
     });
-
-function HelloWorld() {
-    return <div>Hello, World!</div>;
-}
