@@ -12,6 +12,8 @@ const {
     updateUserProfilePicture,
     updateUserBio,
     login,
+    getRecentUsers,
+    searchUsers,
 } = require("./db");
 
 const { SESSION_SECRET } = require("../secrets.json");
@@ -35,6 +37,16 @@ app.get("/api/users/me", async (request, response) => {
     }
     const loggedUser = await getUserById(request.session.user_id);
     response.json(loggedUser);
+});
+
+app.get("/api/users/recent", async (request, response) => {
+    const users = await getRecentUsers(request.query);
+    response.json(users);
+});
+
+app.get("/api/users/search", async (request, response) => {
+    const users = await searchUsers(request.query);
+    response.json(users);
 });
 
 app.put("/api/users/me", async (request, response) => {

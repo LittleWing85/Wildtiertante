@@ -108,6 +108,10 @@ form button {
 .app > header nav a {
     padding-right: 1rem;
 }
+.app > header nav a.active {
+    font-weight: bold;
+    text-decoration: none;
+}
 
 .app footer > div {
     width: 768px;
@@ -391,6 +395,7 @@ form button {
         padding: 0;
         text-align: center;
     }
+
     .nav button {
         display: block;
     }

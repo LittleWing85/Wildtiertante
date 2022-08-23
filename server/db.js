@@ -69,10 +69,29 @@ function updateUserBio({ user_id, bio }) {
         .then((result) => result.rows[0]);
 }
 
+function getRecentUsers({ limit = 3 }) {
+    return db
+        .query(`SELECT * FROM users ORDER BY id DESC LIMIT $1`, [limit])
+        .then((result) => result.rows);
+}
+
+function searchUsers({ q }) {
+    return db
+        .query(
+            `SELECT * FROM users
+            WHERE first_name ILIKE $1
+            OR last_name ILIKE $1`,
+            [`${q}%`]
+        )
+        .then((result) => result.rows);
+}
+
 module.exports = {
     getUserById,
     login,
     createUser,
     updateUserProfilePicture,
     updateUserBio,
+    getRecentUsers,
+    searchUsers,
 };

@@ -1,8 +1,11 @@
 import { Component } from "react";
 
+import { BrowserRouter, Route, NavLink } from "react-router-dom";
+
 import Profile from "./Profile";
 import ProfilePicture from "./ProfilePicture";
 import ProfilePictureUploader from "./ProfilePictureUploader";
+import FindPeople from "./FindPeople";
 
 class App extends Component {
     constructor(props) {
@@ -50,42 +53,52 @@ class App extends Component {
 
     render() {
         return (
-            <section className="app">
-                <header>
-                    <nav className="nav">
-                        <div className="nav-content">
-                            <a href="#">Home</a>
+            <BrowserRouter>
+                <section className="app">
+                    <header>
+                        <nav className="nav">
+                            <div className="nav-content">
+                                <NavLink to="/" exact>
+                                    Home
+                                </NavLink>
+                                <NavLink to="/people">Find People</NavLink>
+                            </div>
+                        </nav>
+                        <div className="user">
+                            <span>
+                                Welcome{" "}
+                                <strong>{this.state.user.firstName}</strong>!
+                            </span>
+                            <ProfilePicture
+                                {...this.state.user}
+                                onClick={this.onProfilePictureClick}
+                            />
                         </div>
-                    </nav>
-                    <div className="user">
-                        <span>
-                            Welcome <strong>{this.state.user.firstName}</strong>
-                            !
-                        </span>
-                        <ProfilePicture
-                            {...this.state.user}
-                            onClick={this.onProfilePictureClick}
+                    </header>
+                    <section className="container">
+                        <Route path="/" exact>
+                            <Profile
+                                user={this.state.user}
+                                onBioUpdate={this.onBioUpdate}
+                            />
+                        </Route>
+                        <Route path="/people">
+                            <FindPeople />
+                        </Route>
+                    </section>
+                    <footer>
+                        <div>
+                            <span>(c) 2022 SPICED Academy</span>
+                        </div>
+                    </footer>
+                    {this.state.showModal && (
+                        <ProfilePictureUploader
+                            onUpload={this.onProfilePictureUpload}
+                            onClose={this.onModalClose}
                         />
-                    </div>
-                </header>
-                <section className="container">
-                    <Profile
-                        user={this.state.user}
-                        onBioUpdate={this.onBioUpdate}
-                    />
+                    )}
                 </section>
-                <footer>
-                    <div>
-                        <span>(c) 2022 SPICED Academy</span>
-                    </div>
-                </footer>
-                {this.state.showModal && (
-                    <ProfilePictureUploader
-                        onUpload={this.onProfilePictureUpload}
-                        onClose={this.onModalClose}
-                    />
-                )}
-            </section>
+            </BrowserRouter>
         );
     }
 }
