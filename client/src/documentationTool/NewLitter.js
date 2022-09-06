@@ -1,25 +1,41 @@
 import { useState } from "react";
+import IndividualInfo from "./IndividualInfo.js";
 
 export default function NewLitter() {
     const now = new Date().toISOString().slice(0, 10);
     const [date, setDate] = useState(now);
+    const [amountIndividuals, setAmountIndividuals] = useState(2);
+    const [animals, setAnimals] = useState([]);
+
     function onDateChange(event) {
         setDate(event.target.value);
+    }
+    function onIndividualChange(retievedInfo) {
+        let newAnimal = [...animals];
+        newAnimal[retievedInfo.idx] = retievedInfo;
+        setAnimals(newAnimal);
+    }
+
+    function amountIndividualsChanged(event) {
+        setAmountIndividuals(parseInt(event.target.value));
     }
 
     function onSubmit(event) {
         event.preventDefault();
         const litterData = {
-            //ToDo: remove hardcoding of Eichhörnchen when problem is fixed
-            species: "Eichhörnchen",
+            species: event.target.species.value,
             arrival: event.target.arrival.value,
             amount: event.target.amount.value,
+            feedings: event.target.feedings.value,
+            notes: event.target.notes.value,
+            name: event.target.species.value,
+            age: event.target.age.value,
+            weight: event.target.weight.value,
+            sex: event.target.sex.value,
         };
-        console.log("litterData", litterData);
-        console.log("event.target.species.value", event.target.species.value);
         fetch("/api/litter", {
             method: "POST",
-            body: JSON.stringify(litterData),
+            body: JSON.stringify({ litterData, animals }),
             headers: {
                 "Content-Type": "application/json",
             },
@@ -29,7 +45,7 @@ export default function NewLitter() {
     return (
         <section>
             <form className="litterForm" onSubmit={onSubmit}>
-                <p className="headingInForm">Information about litter</p>
+                <h1>Information about litter</h1>
 
                 <div className="flexHorizontallyInputs">
                     <div className="labelFixedWidth">
@@ -63,11 +79,13 @@ export default function NewLitter() {
                         <label htmlFor="amount">Amount of animals</label>
                     </div>
                     <input
+                        onChange={amountIndividualsChanged}
                         className="inputNarrow"
                         type="number"
                         name="amount"
                         id="amount"
-                        defaultValue="1"
+                        min="1"
+                        defaultValue={amountIndividuals}
                     />
                 </div>
 
@@ -80,6 +98,7 @@ export default function NewLitter() {
                         type="number"
                         name="feedings"
                         id="feedings"
+                        defaultValue="1"
                     />
                 </div>
 
@@ -90,23 +109,23 @@ export default function NewLitter() {
                     <input
                         className="inputTime"
                         type="time"
-                        name="feedingTime"
+                        name="feedingTime1"
                         id="feedingTime"
                     />
                     <input
                         className="inputTime"
                         type="time"
-                        name="feedingTime"
+                        name="feedingTime2"
                     />
                     <input
                         className="inputTime"
                         type="time"
-                        name="feedingTime"
+                        name="feedingTime3"
                     />
                     <input
                         className="inputTime"
                         type="time"
-                        name="feedingTime"
+                        name="feedingTime4"
                     />
                 </div>
 
@@ -114,200 +133,24 @@ export default function NewLitter() {
                     <div className="labelFixedWidth">
                         <label htmlFor="notes">Notes</label>
                     </div>
-                    <textarea className="inputWide" id="notes"></textarea>
-                </div>
-
-                <p className="headingInForm">Animal 1</p>
-                <div className="flexHorizontallyInputs">
-                    <div className="labelFixedWidth">
-                        <label htmlFor="name">
-                            Name / optical identifier / ID
-                        </label>
-                    </div>
-                    <input
+                    <textarea
                         className="inputWide"
                         type="text"
-                        name="species"
-                        id="species"
-                    />
-                </div>
-                <div className="flexHorizontallyInputs">
-                    <div className="labelFixedWidth">
-                        <label htmlFor="age">Age in days</label>
-                    </div>
-                    <input
-                        className="inputNarrow"
-                        type="number"
-                        name="age"
-                        id="age"
-                    />
+                        name="notes"
+                        id="notes"
+                        defaultValue="1"
+                    ></textarea>
                 </div>
 
-                <div className="flexHorizontallyInputs">
-                    <div className="labelFixedWidth">
-                        <label htmlFor="age">Weight in grams</label>
-                    </div>
-                    <input
-                        className="inputNarrow"
-                        type="number"
-                        name="age"
-                        id="age"
-                    />
-                </div>
-                <div className="flexHorizontallyInputs">
-                    <div className="labelFixedWidth">
-                        <label htmlFor="sex">Sex</label>
-                    </div>
-                    <input
-                        className="inputMiddle"
-                        type="text"
-                        name="sex"
-                        id="sex"
-                    />
-                </div>
-
-                <div className="flexHorizontallyInputs">
-                    <div className="labelFixedWidth">
-                        <label htmlFor="medication">Medication</label>
-                    </div>
-                    <input
-                        className="inputWide"
-                        type="text"
-                        name="medication"
-                        id="medication"
-                    />
-                </div>
-                <div className="flexHorizontallyInputs">
-                    <div className="labelFixedWidth">
-                        <label htmlFor="doses">Doses per Day</label>
-                    </div>
-                    <input
-                        className="inputNarrow"
-                        type="number"
-                        name="doses"
-                        id="doses"
-                    />
-                </div>
-
-                <div className="flexHorizontallyInputs">
-                    <div className="labelFixedWidth">
-                        <label htmlFor="medicationTimes">
-                            Times for Medication
-                        </label>
-                    </div>
-                    <input
-                        className="inputTime"
-                        type="time"
-                        name="medicationTime"
-                        id="medicationTimes"
-                    />
-                    <input
-                        className="inputTime"
-                        type="time"
-                        name="medicationTime"
-                    />
-                    <input
-                        className="inputTime"
-                        type="time"
-                        name="medicationTime"
-                    />
-                </div>
-
-                {/*                <p className="headingInForm">Animal 2</p>
-                <div className="flexHorizontallyInputs">
-                    <div className="labelFixedWidth">
-                        <label htmlFor="name">
-                            Name / optical identifier / ID
-                        </label>
-                    </div>
-                    <input
-                        className="inputWide"
-                        type="text"
-                        name="species"
-                        id="species"
-                    />
-                </div>
-                <div className="flexHorizontallyInputs">
-                    <div className="labelFixedWidth">
-                        <label htmlFor="age">Age in days</label>
-                    </div>
-                    <input
-                        className="inputNarrow"
-                        type="number"
-                        name="age"
-                        id="age"
-                    />
-                </div>
-
-                <div className="flexHorizontallyInputs">
-                    <div className="labelFixedWidth">
-                        <label htmlFor="age">Weight in grams</label>
-                    </div>
-                    <input
-                        className="inputNarrow"
-                        type="number"
-                        name="age"
-                        id="age"
-                    />
-                </div>
-                <div className="flexHorizontallyInputs">
-                    <div className="labelFixedWidth">
-                        <label htmlFor="sex">Sex</label>
-                    </div>
-                    <input
-                        className="inputMiddle"
-                        type="text"
-                        name="sex"
-                        id="sex"
-                    />
-                </div>
-
-                <div className="flexHorizontallyInputs">
-                    <div className="labelFixedWidth">
-                        <label htmlFor="medication">Medication</label>
-                    </div>
-                    <input
-                        className="inputWide"
-                        type="text"
-                        name="medication"
-                        id="medication"
-                    />
-                </div>
-                <div className="flexHorizontallyInputs">
-                    <div className="labelFixedWidth">
-                        <label htmlFor="doses">Doses per Day</label>
-                    </div>
-                    <input
-                        className="inputNarrow"
-                        type="number"
-                        name="doses"
-                        id="doses"
-                    />
-                </div>
-
-                <div className="flexHorizontallyInputs">
-                    <div className="labelFixedWidth">
-                        <label htmlFor="medicationTimes">
-                            Times for Medication
-                        </label>
-                    </div>
-                    <input
-                        className="inputTime"
-                        type="time"
-                        name="medicationTime"
-                        id="medicationTimes"
-                    />
-                    <input
-                        className="inputTime"
-                        type="time"
-                        name="medicationTime"
-                    />
-                    <input
-                        className="inputTime"
-                        type="time"
-                        name="medicationTime"
-                    />
-                </div> */}
+                {Array(amountIndividuals)
+                    .fill(0)
+                    .map((x, idx) => (
+                        <IndividualInfo
+                            key={idx}
+                            idx={idx}
+                            onIndividualChange={onIndividualChange}
+                        />
+                    ))}
 
                 <button className="topSpaceBig">Add</button>
             </form>

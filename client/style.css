@@ -10,7 +10,8 @@ a {
     color: black;
 }
 h1 {
-    margin: 3rem 0 0 0;
+    font-weight: bold;
+    margin: 2.5rem 0 1rem 0;
 }
 
 /* Font sizing */
@@ -85,10 +86,6 @@ button {
     width: 5rem;
     padding: 0.2rem;
     margin-top: 2rem;
-}
-.headingInForm {
-    font-weight: bold;
-    margin-top: 2.5rem;
 }
 form {
     display: flex;
