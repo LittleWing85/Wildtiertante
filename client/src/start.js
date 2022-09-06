@@ -1,7 +1,4 @@
 import ReactDOM from "react-dom";
+import ToolMainpage from "./documentationTool/toolMainpage";
 
-ReactDOM.render(<HelloWorld />, document.querySelector("main"));
-
-function HelloWorld() {
-    return <div>Hello, World!</div>;
-}
+ReactDOM.render(<ToolMainpage />, document.querySelector("main"));
