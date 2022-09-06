@@ -36,7 +36,7 @@ h1,
     margin: 0 40% 0 23%;
 }
 .logo {
-    margin-top: 1rem;
+    margin-top: 2rem;
     color: white;
     height: 3rem;
     font-size: 30px;
@@ -69,7 +69,7 @@ menu {
 }
 .sideImageLeft,
 .sideImageRight {
-    top: 6.9rem;
+    top: 6rem;
     position: absolute;
 }
 .sideImageLeft {
