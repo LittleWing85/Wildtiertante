@@ -14,7 +14,6 @@ export default function NewLitter() {
         let newAnimal = [...animals];
         newAnimal[retrievedInfo.idx] = retrievedInfo;
         setAnimals(newAnimal);
-        console.log("NewLitter.js", newAnimal);
     }
 
     function amountIndividualsChanged(event) {
@@ -23,7 +22,6 @@ export default function NewLitter() {
 
     function onSubmit(event) {
         event.preventDefault();
-        console.log(animals);
         const litterData = {
             species: event.target.species.value,
             arrival: event.target.arrival.value,

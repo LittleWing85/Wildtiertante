@@ -8,8 +8,6 @@ export default function IndividualInfo({ idx, onIndividualChange }) {
 
     useEffect(() => {
         onIndividualChange(fields);
-        /*         console.log("IndividualInfos.js, fields:", fields);
-        console.log("IndividualInfos.js, idx:", idx); */
     }, [fields]);
 
     return (
@@ -51,6 +49,7 @@ export default function IndividualInfo({ idx, onIndividualChange }) {
                     name="weight"
                     id="weiht"
                     defaultValue="1"
+                    onChange={handleChange}
                 />
             </div>
             <div className="flexHorizontallyInputs">
@@ -63,6 +62,7 @@ export default function IndividualInfo({ idx, onIndividualChange }) {
                     name="sex"
                     id="sex"
                     defaultValue="not sure yet"
+                    onChange={handleChange}
                 />
             </div>
             <div className="flexHorizontallyInputs">
