@@ -12,7 +12,7 @@ app.post("/api/litter", (request, response) => {
         const data = { ...request.body, id_ofLitter: newLitter.id_litter };
         console.log("server.js, data:", data);
         for (const individual of data.animals) {
-            console.log(individual.name);
+            console.log(individual);
         }
         /* 
                  createIndividual(data).then((newIndividual) =>
