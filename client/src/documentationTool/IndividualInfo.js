@@ -8,6 +8,8 @@ export default function IndividualInfo({ idx, onIndividualChange }) {
 
     useEffect(() => {
         onIndividualChange(fields);
+        /*         console.log("IndividualInfos.js, fields:", fields);
+        console.log("IndividualInfos.js, idx:", idx); */
     }, [fields]);
 
     return (

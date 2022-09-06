@@ -10,10 +10,11 @@ export default function NewLitter() {
     function onDateChange(event) {
         setDate(event.target.value);
     }
-    function onIndividualChange(retievedInfo) {
+    function onIndividualChange(retrievedInfo) {
         let newAnimal = [...animals];
-        newAnimal[retievedInfo.idx] = retievedInfo;
+        newAnimal[retrievedInfo.idx] = retrievedInfo;
         setAnimals(newAnimal);
+        console.log("NewLitter.js", newAnimal);
     }
 
     function amountIndividualsChanged(event) {
@@ -22,16 +23,13 @@ export default function NewLitter() {
 
     function onSubmit(event) {
         event.preventDefault();
+        console.log(animals);
         const litterData = {
             species: event.target.species.value,
             arrival: event.target.arrival.value,
             amount: event.target.amount.value,
             feedings: event.target.feedings.value,
             notes: event.target.notes.value,
-            name: event.target.species.value,
-            age: event.target.age.value,
-            weight: event.target.weight.value,
-            sex: event.target.sex.value,
         };
         fetch("/api/litter", {
             method: "POST",
@@ -152,7 +150,7 @@ export default function NewLitter() {
                         />
                     ))}
 
-                <button className="topSpaceBig">Add</button>
+                <button className="topSpaceBig">Create new litter</button>
             </form>
         </section>
     );
