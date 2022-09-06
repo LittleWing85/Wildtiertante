@@ -10,13 +10,14 @@ export default function NewLitter() {
     function onSubmit(event) {
         event.preventDefault();
         const litterData = {
-            /* species: event.target.species.value, */
+            //ToDo: remove hardcoding of Eichhörnchen when problem is fixed
+            species: "Eichhörnchen",
             arrival: event.target.arrival.value,
             amount: event.target.amount.value,
         };
         console.log("litterData", litterData);
         console.log("event.target.species.value", event.target.species.value);
-        fetch("/api/newLitter", {
+        fetch("/api/litter", {
             method: "POST",
             body: JSON.stringify(litterData),
             headers: {
