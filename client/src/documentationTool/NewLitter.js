@@ -1,7 +1,25 @@
 export default function NewLitter() {
+    function onSubmit(event) {
+        event.preventDefault();
+        const litterData = {
+            species: event.target.species.value,
+            arrival: event.target.arrival.value,
+            amount: event.target.amount.value,
+        };
+        console.log("litterData", litterData);
+        console.log("event.target.species.value", event.target.species.value);
+        fetch("/api/users", {
+            method: "POST",
+            body: JSON.stringify(litterData),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    }
+
     return (
         <section>
-            <form className="litterForm">
+            <form className="litterForm" onSubmit={onSubmit}>
                 <p className="headingInForm">Information about litter</p>
 
                 <div className="flexHorizontallyInputs">
@@ -13,6 +31,7 @@ export default function NewLitter() {
                         type="text"
                         name="species"
                         id="species"
+                        defaultValue="Eichhörnchen"
                     />
                 </div>
 
@@ -37,6 +56,7 @@ export default function NewLitter() {
                         type="number"
                         name="amount"
                         id="amount"
+                        defaultValue="1"
                     />
                 </div>
 
@@ -182,7 +202,7 @@ export default function NewLitter() {
                     />
                 </div>
 
-                <p className="headingInForm">Animal 2</p>
+                {/*                <p className="headingInForm">Animal 2</p>
                 <div className="flexHorizontallyInputs">
                     <div className="labelFixedWidth">
                         <label htmlFor="name">
@@ -276,7 +296,7 @@ export default function NewLitter() {
                         type="time"
                         name="medicationTime"
                     />
-                </div>
+                </div> */}
 
                 <button className="topSpaceBig">Add</button>
             </form>
