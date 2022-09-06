@@ -7,17 +7,11 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
 app.post("/api/litter", (request, response) => {
-    console.log(request.body);
     createLitter(request.body.litterData).then((newLitter) => {
-        const data = { ...request.body, id_ofLitter: newLitter.id_litter };
-        console.log("server.js, data:", data);
-        for (const individual of data.animals) {
-            console.log(individual);
+        for (const individual of request.body.animals) {
+            const data = { ...individual, id_ofLitter: newLitter.id_litter };
+            createIndividual(data);
         }
-        /* 
-                 createIndividual(data).then((newIndividual) =>
-            console.log("server.js", newIndividual)
-        ); */
     });
 });
 
