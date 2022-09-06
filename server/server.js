@@ -1,12 +1,11 @@
 const express = require("express");
 const app = express();
-const compression = require("compression");
 const path = require("path");
 
-app.use(compression());
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
-app.post("/api/newLitter", (request, response) => {
+app.post("/api/litter", (request, response) => {
     console.log("server.js, request.body:", request.body);
 });
 
