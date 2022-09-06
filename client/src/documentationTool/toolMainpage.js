@@ -21,7 +21,7 @@ export default function ToolMainpage() {
                         <NavLink className="menuEntry" to="/" exact>
                             Who&apos;s next?
                         </NavLink>
-                        <NavLink className="menuEntry" to="/newlitter">
+                        <NavLink className="menuEntry" to="/newLitter">
                             Add new Litter
                         </NavLink>
                         <NavLink className="menuEntry" to="/sdfsdf">
@@ -40,7 +40,7 @@ export default function ToolMainpage() {
                             <WhosNext />
                         </div>
                     </Route>
-                    <Route path="/newlitter">
+                    <Route path="/newLitter">
                         <NewLitter />
                     </Route>
                 </section>

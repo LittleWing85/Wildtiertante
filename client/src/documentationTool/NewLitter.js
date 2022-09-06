@@ -1,14 +1,22 @@
+import { useState } from "react";
+
 export default function NewLitter() {
+    const now = new Date().toISOString().slice(0, 10);
+    const [date, setDate] = useState(now);
+    function onDateChange(event) {
+        setDate(event.target.value);
+    }
+
     function onSubmit(event) {
         event.preventDefault();
         const litterData = {
-            species: event.target.species.value,
+            /* species: event.target.species.value, */
             arrival: event.target.arrival.value,
             amount: event.target.amount.value,
         };
         console.log("litterData", litterData);
         console.log("event.target.species.value", event.target.species.value);
-        fetch("/api/users", {
+        fetch("/api/newLitter", {
             method: "POST",
             body: JSON.stringify(litterData),
             headers: {
@@ -44,6 +52,8 @@ export default function NewLitter() {
                         type="date"
                         name="arrival"
                         id="arrival"
+                        value={date}
+                        onChange={onDateChange}
                     />
                 </div>
 
