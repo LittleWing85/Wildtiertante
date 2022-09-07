@@ -5,8 +5,15 @@ import FeedingTimes from "./FeedingTimes.js";
 export default function NewLitter() {
     const now = new Date().toISOString().slice(0, 10);
     const [date, setDate] = useState(now);
-    const [amountIndividuals, setAmountIndividuals] = useState(2);
-    const [animals, setAnimals] = useState([]);
+    /* const [amountIndividuals, setAmountIndividuals] = useState(2); */
+    const [animals, setAnimals] = useState([
+        {
+            name: "animal1",
+            age: 1,
+            weight: 100,
+            sex: "not sure yet",
+        },
+    ]);
     const [amountFeedings, setAmountFeedings] = useState(3);
     const [feedingTimes, setfeedingTimes] = useState([]);
 
@@ -14,9 +21,21 @@ export default function NewLitter() {
         setDate(event.target.value);
     }
 
-    function amountIndividualsChanged(event) {
-        setAmountIndividuals(parseInt(event.target.value));
+    function addAnimal() {
+        setAnimals([
+            ...animals,
+            {
+                name: `animal ${animals.length + 1}`,
+                age: 1,
+                weight: 100,
+                sex: "not sure yet",
+            },
+        ]);
     }
+
+    /*     function amountIndividualsChanged(event) {
+        setAmountIndividuals(parseInt(event.target.value));
+    } */
 
     function onIndividualChange(retrievedInfo) {
         const newAnimals = [...animals];
@@ -45,9 +64,14 @@ export default function NewLitter() {
             feedings: feedingTimes.map((time) => time.time),
             notes: event.target.notes.value,
         };
+        const animalsWithDefaults = animals.map((x, index) => ({
+            name: `Animal ${index + 1}`,
+            age: 1,
+            ...x,
+        }));
         fetch("/api/litter", {
             method: "POST",
-            body: JSON.stringify({ litterData, animals }),
+            body: JSON.stringify({ litterData, animals: animalsWithDefaults }),
             headers: {
                 "Content-Type": "application/json",
             },
@@ -83,21 +107,6 @@ export default function NewLitter() {
                         id="arrival"
                         value={date}
                         onChange={onDateChange}
-                    />
-                </div>
-
-                <div className="flexHorizontallyInputs">
-                    <div className="labelFixedWidth">
-                        <label htmlFor="amount">Amount of animals</label>
-                    </div>
-                    <input
-                        onChange={amountIndividualsChanged}
-                        className="inputNarrow"
-                        type="number"
-                        name="amount"
-                        id="amount"
-                        min="1"
-                        defaultValue={amountIndividuals}
                     />
                 </div>
 
@@ -145,15 +154,16 @@ export default function NewLitter() {
                     ></textarea>
                 </div>
 
-                {Array(amountIndividuals)
-                    .fill(0)
-                    .map((x, idx) => (
-                        <IndividualInfo
-                            key={idx}
-                            idx={idx}
-                            onIndividualChange={onIndividualChange}
-                        />
-                    ))}
+                {animals.map((x, idx) => (
+                    <IndividualInfo
+                        animal={x}
+                        key={idx}
+                        idx={idx}
+                        onIndividualChange={onIndividualChange}
+                    />
+                ))}
+
+                <button onClick={addAnimal}>Add new animal</button>
 
                 <button className="topSpaceBig">Create new litter</button>
             </form>
