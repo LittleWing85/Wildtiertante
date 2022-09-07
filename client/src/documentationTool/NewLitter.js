@@ -5,7 +5,6 @@ import FeedingTimes from "./FeedingTimes.js";
 export default function NewLitter() {
     const now = new Date().toISOString().slice(0, 10);
     const [date, setDate] = useState(now);
-    /* const [amountIndividuals, setAmountIndividuals] = useState(2); */
     const [animals, setAnimals] = useState([
         {
             name: "animal1",
@@ -21,46 +20,11 @@ export default function NewLitter() {
         setDate(event.target.value);
     }
 
-    function addAnimal() {
-        setAnimals([
-            ...animals,
-            {
-                name: `animal ${animals.length + 1}`,
-                age: 1,
-                weight: 100,
-                sex: "not sure yet",
-            },
-        ]);
-    }
-
-    /*     function amountIndividualsChanged(event) {
-        setAmountIndividuals(parseInt(event.target.value));
-    } */
-
-    function onIndividualChange(retrievedInfo) {
-        const newAnimals = [...animals];
-        newAnimals[retrievedInfo.idx] = retrievedInfo;
-        setAnimals(newAnimals);
-    }
-
-    function amountFeedingsChanged(event) {
-        setAmountFeedings(parseInt(event.target.value));
-    }
-
-    function onFeedingsChange(addedFeedingTime) {
-        const newFeedingTimes = [...feedingTimes];
-        newFeedingTimes[addedFeedingTime.idx] = addedFeedingTime;
-        setfeedingTimes(newFeedingTimes);
-        //console.log("NewLitter.js, feedingTimes:", feedingTimes);
-    }
-
     function onSubmit(event) {
         event.preventDefault();
         const litterData = {
             species: event.target.species.value,
             arrival: event.target.arrival.value,
-            amount: event.target.amount.value,
-            /*             feedings: event.target.feedings.value, */
             feedings: feedingTimes.map((time) => time.time),
             notes: event.target.notes.value,
         };
@@ -78,6 +42,38 @@ export default function NewLitter() {
         });
     }
 
+    function addAnimal() {
+        setAnimals([
+            ...animals,
+            {
+                name: `animal ${animals.length + 1}`,
+                age: 1,
+                weight: 100,
+                sex: "not sure yet",
+            },
+        ]); /* .then(() => console.log(animals)); */
+    }
+
+    function removeLastAnimal() {
+        setAnimals([animals.pop()]);
+    }
+
+    function onIndividualChange(retrievedInfo) {
+        const newAnimals = [...animals];
+        newAnimals[retrievedInfo.idx] = retrievedInfo;
+        setAnimals(newAnimals);
+    }
+
+    function amountFeedingsChanged(event) {
+        setAmountFeedings(parseInt(event.target.value));
+    }
+
+    function onFeedingsChange(addedFeedingTime) {
+        const newFeedingTimes = [...feedingTimes];
+        newFeedingTimes[addedFeedingTime.idx] = addedFeedingTime;
+        setfeedingTimes(newFeedingTimes);
+    }
+
     return (
         <section>
             <form className="litterForm" onSubmit={onSubmit}>
@@ -88,6 +84,7 @@ export default function NewLitter() {
                         <label htmlFor="species">Species</label>
                     </div>
                     <input
+                        required
                         className="inputWide"
                         type="text"
                         name="species"
@@ -101,6 +98,7 @@ export default function NewLitter() {
                         <label htmlFor="arrival">Date of Arrival</label>
                     </div>
                     <input
+                        required
                         className="inputMiddle"
                         type="date"
                         name="arrival"
@@ -115,11 +113,13 @@ export default function NewLitter() {
                         <label htmlFor="feedings">Feedings per day</label>
                     </div>
                     <input
+                        required
                         onChange={amountFeedingsChanged}
                         className="inputNarrow"
                         type="number"
                         name="feedings"
                         id="feedings"
+                        min="2"
                         defaultValue={amountFeedings}
                     />
                 </div>
@@ -162,10 +162,9 @@ export default function NewLitter() {
                         onIndividualChange={onIndividualChange}
                     />
                 ))}
-
-                <button onClick={addAnimal}>Add new animal</button>
-
-                <button className="topSpaceBig">Create new litter</button>
+                <button onClick={addAnimal}>Add another animal</button>
+                <button onClick={removeLastAnimal}>Remove last animal</button>
+                <button className="topSpaceBig">Create this litter</button>
             </form>
         </section>
     );

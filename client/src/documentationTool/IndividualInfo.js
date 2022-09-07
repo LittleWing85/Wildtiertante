@@ -19,6 +19,7 @@ export default function IndividualInfo({ animal, idx, onIndividualChange }) {
                     <label htmlFor="name">Name / optical identifier / ID</label>
                 </div>
                 <input
+                    required
                     className="inputWide"
                     type="text"
                     name="name"
@@ -37,6 +38,7 @@ export default function IndividualInfo({ animal, idx, onIndividualChange }) {
                     name="age"
                     id="age"
                     value={animal.age}
+                    min="0"
                     onChange={handleChange}
                 />
             </div>
@@ -48,7 +50,8 @@ export default function IndividualInfo({ animal, idx, onIndividualChange }) {
                     className="inputNarrow"
                     type="number"
                     name="weight"
-                    id="weiht"
+                    id="weight"
+                    min="1"
                     value={animal.weight}
                     onChange={handleChange}
                 />
@@ -66,7 +69,7 @@ export default function IndividualInfo({ animal, idx, onIndividualChange }) {
                     onChange={handleChange}
                 />
             </div>
-            <div className="flexHorizontallyInputs">
+            {/*             <div className="flexHorizontallyInputs">
                 <div className="labelFixedWidth">
                     <label htmlFor="medication">Medication</label>
                 </div>
@@ -110,7 +113,7 @@ export default function IndividualInfo({ animal, idx, onIndividualChange }) {
                     type="time"
                     name="medicationTime"
                 />
-            </div>
+            </div> */}
         </div>
     );
 }
