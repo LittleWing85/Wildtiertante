@@ -28,10 +28,11 @@ export default function NewLitter() {
         setAmountFeedings(parseInt(event.target.value));
     }
 
-    function onFeedingsChange(feedingTime) {
+    function onFeedingsChange(addedFeedingTime) {
         const newFeedingTimes = [...feedingTimes];
-        newFeedingTimes[feedingTime.idx] = feedingTime;
+        newFeedingTimes[addedFeedingTime.idx] = addedFeedingTime;
         setfeedingTimes(newFeedingTimes);
+        //console.log("NewLitter.js, feedingTimes:", feedingTimes);
     }
 
     function onSubmit(event) {
@@ -41,6 +42,7 @@ export default function NewLitter() {
             arrival: event.target.arrival.value,
             amount: event.target.amount.value,
             feedings: event.target.feedings.value,
+            feedingTimes: feedingTimes,
             notes: event.target.notes.value,
         };
         fetch("/api/litter", {

@@ -22,7 +22,6 @@ function createLitter({ species, arrival, amount, feedings, notes }) {
         .then((result) => result.rows[0]);
 }
 function createIndividual({ id_ofLitter, name, age, weight, sex }) {
-    console.log("db.js", id_ofLitter);
     return db
         .query(
             `INSERT INTO individuals (id_ofLitter, name, age, weight, sex) 
