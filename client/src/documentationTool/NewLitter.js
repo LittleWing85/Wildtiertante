@@ -1,23 +1,37 @@
 import { useState } from "react";
 import IndividualInfo from "./IndividualInfo.js";
+import FeedingTimes from "./FeedingTimes.js";
 
 export default function NewLitter() {
     const now = new Date().toISOString().slice(0, 10);
     const [date, setDate] = useState(now);
     const [amountIndividuals, setAmountIndividuals] = useState(2);
     const [animals, setAnimals] = useState([]);
+    const [amountFeedings, setAmountFeedings] = useState(3);
+    const [feedingTimes, setfeedingTimes] = useState([]);
 
     function onDateChange(event) {
         setDate(event.target.value);
     }
-    function onIndividualChange(retrievedInfo) {
-        let newAnimal = [...animals];
-        newAnimal[retrievedInfo.idx] = retrievedInfo;
-        setAnimals(newAnimal);
-    }
 
     function amountIndividualsChanged(event) {
         setAmountIndividuals(parseInt(event.target.value));
+    }
+
+    function onIndividualChange(retrievedInfo) {
+        const newAnimals = [...animals];
+        newAnimals[retrievedInfo.idx] = retrievedInfo;
+        setAnimals(newAnimals);
+    }
+
+    function amountFeedingsChanged(event) {
+        setAmountFeedings(parseInt(event.target.value));
+    }
+
+    function onFeedingsChange(feedingTime) {
+        const newFeedingTimes = [...feedingTimes];
+        newFeedingTimes[feedingTime.idx] = feedingTime;
+        setfeedingTimes(newFeedingTimes);
     }
 
     function onSubmit(event) {
@@ -90,11 +104,12 @@ export default function NewLitter() {
                         <label htmlFor="feedings">Feedings per day</label>
                     </div>
                     <input
+                        onChange={amountFeedingsChanged}
                         className="inputNarrow"
                         type="number"
                         name="feedings"
                         id="feedings"
-                        defaultValue="1"
+                        defaultValue={amountFeedings}
                     />
                 </div>
 
@@ -102,27 +117,17 @@ export default function NewLitter() {
                     <div className="labelFixedWidth">
                         <label htmlFor="feedingTime">Feeding times</label>
                     </div>
-                    <input
-                        className="inputTime"
-                        type="time"
-                        name="feedingTime1"
-                        id="feedingTime"
-                    />
-                    <input
-                        className="inputTime"
-                        type="time"
-                        name="feedingTime2"
-                    />
-                    <input
-                        className="inputTime"
-                        type="time"
-                        name="feedingTime3"
-                    />
-                    <input
-                        className="inputTime"
-                        type="time"
-                        name="feedingTime4"
-                    />
+                    <div className="flexHorizontallyInputs">
+                        {Array(amountFeedings)
+                            .fill(0)
+                            .map((x, idx) => (
+                                <FeedingTimes
+                                    key={idx}
+                                    idx={idx}
+                                    onFeedingsChange={onFeedingsChange}
+                                />
+                            ))}
+                    </div>
                 </div>
 
                 <div className="flexHorizontallyInputs">

@@ -121,7 +121,7 @@ input {
     display: flex;
     align-items: flex-start;
     margin-top: 0.7rem;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 .inputWide {
     width: 21rem;
@@ -131,7 +131,7 @@ input {
 }
 .inputNarrow,
 .inputTime {
-    width: 4rem;
+    width: 4.5rem;
 }
 .inputTime {
     margin-right: 1rem;
