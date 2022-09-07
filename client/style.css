@@ -4,6 +4,9 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
+body {
+    overflow: hidden;
+}
 
 a {
     text-decoration: none;
@@ -12,6 +15,9 @@ a {
 h1 {
     font-weight: bold;
     margin: 2.5rem 0 1rem 0;
+}
+.listStyleNone {
+    list-style-type: none;
 }
 
 /* Font sizing */
@@ -35,6 +41,7 @@ h1,
 .mainContainer {
     display: flex;
     margin: 0 40% 0 23%;
+    overflow-y: scroll;
 }
 .logo {
     margin-top: 2rem;
@@ -63,7 +70,6 @@ menu {
     border-top-right-radius: 15px;
     color: white;
 }
-
 .active {
     background-color: white;
     color: green;
@@ -72,6 +78,7 @@ menu {
 .sideImageRight {
     top: 6rem;
     position: absolute;
+    /*     overflow: hidden; */
 }
 .sideImageLeft {
     width: 15%;
@@ -83,7 +90,7 @@ menu {
 
 /* Buttons and forms */
 button {
-    width: 5rem;
+    width: 15rem;
     padding: 0.2rem;
     margin-top: 2rem;
 }
@@ -91,8 +98,17 @@ form {
     display: flex;
     flex-direction: column;
 }
+.flexHorizontallyInputs {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 0.7rem;
+    flex-wrap: wrap;
+}
 label {
     margin: 0.5rem 0.5rem 0.3rem 0;
+}
+.labelFixedWidth {
+    width: 13rem;
 }
 textarea,
 input {
@@ -102,6 +118,20 @@ input {
 }
 input {
     height: 1.7rem;
+}
+
+.inputWide {
+    width: 21rem;
+}
+.inputMiddle {
+    width: 7rem;
+}
+.inputNarrow,
+.inputTime {
+    width: 4.5rem;
+}
+.inputTime {
+    margin-right: 1rem;
 }
 
 /* Layout in general */
@@ -116,26 +146,4 @@ input {
 /* new litter */
 .litterForm {
     width: 36rem;
-}
-.flexHorizontallyInputs {
-    display: flex;
-    align-items: flex-start;
-    margin-top: 0.7rem;
-    flex-wrap: wrap;
-}
-.inputWide {
-    width: 21rem;
-}
-.inputMiddle {
-    width: 7rem;
-}
-.inputNarrow,
-.inputTime {
-    width: 4.5rem;
-}
-.inputTime {
-    margin-right: 1rem;
-}
-.labelFixedWidth {
-    width: 13rem;
 }
