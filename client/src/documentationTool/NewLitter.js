@@ -41,8 +41,8 @@ export default function NewLitter() {
             species: event.target.species.value,
             arrival: event.target.arrival.value,
             amount: event.target.amount.value,
-            feedings: event.target.feedings.value,
-            feedingTimes: feedingTimes,
+            /*             feedings: event.target.feedings.value, */
+            feedings: feedingTimes.map((time) => time.time),
             notes: event.target.notes.value,
         };
         fetch("/api/litter", {

@@ -12,12 +12,13 @@ if (!process.env.DATABASE_URL) {
 }
 
 function createLitter({ species, arrival, amount, feedings, notes }) {
+    const feedingsArray = "ARRAY [TIME '7:00', TIME '14:30']";
     return db
         .query(
             `INSERT INTO litters (species, arrival, amount, feedings, notes) 
                 VALUES ($1, $2, $3, $4, $5)
                 RETURNING *`,
-            [species, arrival, amount, feedings, notes]
+            [species, arrival, amount, feedingsArray, notes]
         )
         .then((result) => result.rows[0]);
 }

@@ -6,14 +6,16 @@ const { createLitter, createIndividual } = require("./db");
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
-app.post("/api/litter", (request, response) => {
+app.post("/api/litter", async (request, response) => {
     console.log(request.body.litterData);
-    createLitter(request.body.litterData).then((newLitter) => {
+    const newLitter = await createLitter(request.body.litterData);
+    response.json(newLitter);
+    /*     .then((newLitter) => {
         for (const individual of request.body.animals) {
             const data = { ...individual, id_ofLitter: newLitter.id_litter };
             createIndividual(data);
         }
-    });
+    }); */
 });
 
 app.get("*", function (request, response) {

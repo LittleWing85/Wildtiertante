@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 export default function FeedingTimes({ idx, onFeedingsChange }) {
     const [time, setTime] = useState({});
     function handleChange(event) {
-        setTime({ idx, [event.target.name]: event.target.value });
+        setTime({ idx, time: event.target.value });
     }
     useEffect(() => {
         onFeedingsChange(time);

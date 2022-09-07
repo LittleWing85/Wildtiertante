@@ -6,7 +6,7 @@ CREATE TABLE litters (
     species VARCHAR(255) NOT NULL,
     arrival DATE NOT NULL,
     amount INTEGER NOT NULL,
-    feedings INTEGER,
+    feedings TIME[],
     notes TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
