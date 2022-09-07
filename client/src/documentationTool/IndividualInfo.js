@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 export default function IndividualInfo({ idx, onIndividualChange }) {
     const [fields, setFields] = useState({});
+
     function handleChange(event) {
         setFields({ ...fields, idx, [event.target.name]: event.target.value });
     }
@@ -12,7 +13,7 @@ export default function IndividualInfo({ idx, onIndividualChange }) {
 
     return (
         <div>
-            <h1 className="animal">Animal {idx + 1}</h1>{" "}
+            <h1 className="animal">Animal {idx + 1}</h1>
             <div className="flexHorizontallyInputs">
                 <div className="labelFixedWidth">
                     <label htmlFor="name">Name / optical identifier / ID</label>
