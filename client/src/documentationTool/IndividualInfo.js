@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function IndividualInfo({ idx, onIndividualChange }) {
+export default function IndividualInfo({ animal, idx, onIndividualChange }) {
     const [fields, setFields] = useState({});
 
     function handleChange(event) {
@@ -23,7 +23,7 @@ export default function IndividualInfo({ idx, onIndividualChange }) {
                     type="text"
                     name="name"
                     id="name"
-                    defaultValue={`Animal ${idx + 1}`}
+                    value={animal.name}
                     onChange={handleChange}
                 />
             </div>
@@ -36,7 +36,7 @@ export default function IndividualInfo({ idx, onIndividualChange }) {
                     type="number"
                     name="age"
                     id="age"
-                    defaultValue="1"
+                    value={animal.age}
                     onChange={handleChange}
                 />
             </div>
@@ -49,7 +49,7 @@ export default function IndividualInfo({ idx, onIndividualChange }) {
                     type="number"
                     name="weight"
                     id="weiht"
-                    defaultValue="1"
+                    value={animal.weight}
                     onChange={handleChange}
                 />
             </div>
@@ -62,7 +62,7 @@ export default function IndividualInfo({ idx, onIndividualChange }) {
                     type="text"
                     name="sex"
                     id="sex"
-                    defaultValue="not sure yet"
+                    value={animal.sex}
                     onChange={handleChange}
                 />
             </div>
