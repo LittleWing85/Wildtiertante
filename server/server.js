@@ -7,6 +7,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
 app.post("/api/litter", (request, response) => {
+    console.log(request.body.litterData);
     createLitter(request.body.litterData).then((newLitter) => {
         for (const individual of request.body.animals) {
             const data = { ...individual, id_ofLitter: newLitter.id_litter };
