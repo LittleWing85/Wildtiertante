@@ -53,7 +53,7 @@ function fullJoinLittersAndFeedings() {
             FROM litters
             FULL JOIN feedings
             ON litters.litter_id = feedings.idAssociatedLitter
-            ORDER by litters.litterCreated_at DESC`
+            ORDER by litters.litterCreated_at ASC`
         )
         .then((result) => result.rows);
 }
