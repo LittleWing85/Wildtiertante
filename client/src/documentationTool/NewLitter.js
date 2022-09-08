@@ -51,11 +51,11 @@ export default function NewLitter() {
                 weight: 100,
                 sex: "not sure yet",
             },
-        ]); /* .then(() => console.log(animals)); */
+        ]);
     }
 
     function removeLastAnimal() {
-        setAnimals([animals.pop()]);
+        setAnimals((oldState) => oldState.slice(0, -1));
     }
 
     function onIndividualChange(retrievedInfo) {

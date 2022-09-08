@@ -18,10 +18,11 @@ export default function WhosNext() {
 
     function onSubmit(event) {
         event.preventDefault();
-        console.log(event);
+        console.log(event.target.name);
         const feedingData = {
             amountMilk: event.target.amountMilk.value,
             feedingSlot: event.target.feedingSlot.value,
+            //ID of litter has to be sent, too
         };
         console.log(feedingData);
 
@@ -47,7 +48,7 @@ export default function WhosNext() {
 
                         {unfedLitter.notes && <p>Notes: {unfedLitter.notes}</p>}
 
-                        <form onSubmit={onSubmit}>
+                        <form onSubmit={onSubmit} name={unfedLitter.litter_id}>
                             <div className="flexHorizontallyInputs">
                                 <div className="labelFixedWidth">
                                     <label htmlFor="amountMilk">
