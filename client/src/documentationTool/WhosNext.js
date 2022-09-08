@@ -51,7 +51,6 @@ export default function WhosNext() {
         event.preventDefault();
         const feedingData = {
             amountMilk: event.target.amountMilk.value,
-            feedingSlot: event.target.feedingSlot,
             idAssociatedLitter: event.target.name,
         };
 
