@@ -6,6 +6,7 @@ const {
     createIndividual,
     getLastFeedings,
     fullJoinLittersAndFeedings,
+    createFeedingEntry,
 } = require("./db");
 
 app.use(express.json());
@@ -23,6 +24,11 @@ app.post("/api/litter", async (request, response) => {
     }
 });
 
+app.post("/api/feedingData", async (request, response) => {
+    const newFeedingEntry = await createFeedingEntry(request.body.feedingData);
+    response.json(newFeedingEntry);
+});
+
 app.get("/api/unfedLitters", async (request, response) => {
     const fullJoin = await fullJoinLittersAndFeedings();
     const unfedLitters = fullJoin.filter(function (record) {
@@ -33,7 +39,6 @@ app.get("/api/unfedLitters", async (request, response) => {
 
 app.get("/api/nextFeedings", async (request, response) => {
     const lastFeedings = await getLastFeedings();
-
     const filteredData = [];
     for (const item of lastFeedings) {
         if (
@@ -52,13 +57,23 @@ app.get("/api/nextFeedings", async (request, response) => {
             }
         }
     }
-    //ToDo: Map each result to the next feeding
-    //How can the next feeding be determined?
-    //Maybe by determining the index of the timeSlot of the last feeding
-    //in the array with the feeding times
-    //and then take the time at the next index?
-    //ToDo: Sorting the array for feedingSlot desc after mapping
-    response.json(filteredData);
+
+    const newData = filteredData
+        .map(function (feeding) {
+            const arrayFeedingTimes = feeding.feedings;
+            const lastFeedingTime = feeding.feedingslot;
+            const currentIndex = arrayFeedingTimes.indexOf(lastFeedingTime);
+            const nextIndex = (currentIndex + 1) % arrayFeedingTimes.length;
+            const nextFeedingTime = arrayFeedingTimes[nextIndex];
+            return { ...feeding, nextFeeding: nextFeedingTime };
+        })
+        .sort((a, b) => {
+            if (a.nextFeeding > b.nextFeeding) {
+                return -1;
+            }
+            return 1;
+        });
+    response.json(newData);
 });
 
 app.get("*", function (request, response) {

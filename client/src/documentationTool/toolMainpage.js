@@ -5,15 +5,6 @@ import WhosNext from "./WhosNext.js";
 export default function ToolMainpage() {
     return (
         <BrowserRouter>
-            <img
-                className="sideImageLeft"
-                src="./media/Franziskustierheim-3801.JPG"
-            />
-            <img
-                className="sideImageRight"
-                src="./media/Franziskustierheim-3390.JPG"
-            />
-
             <header>
                 <div className="containerLogo"></div>
                 <nav>
@@ -33,18 +24,25 @@ export default function ToolMainpage() {
                     </menu>
                     <p className="logo">WILDTIERTANTE</p>
                 </nav>
-
-                <section className="mainContainer">
-                    <Route path="/" exact>
-                        <div>
-                            <WhosNext />
-                        </div>
-                    </Route>
-                    <Route path="/newLitter">
-                        <NewLitter />
-                    </Route>
-                </section>
             </header>
+            <div className="wrapper">
+                <div className="left-picture"></div>
+                <div className="center">
+                    <main className="content">
+                        <section className="mainContainer">
+                            <Route path="/" exact>
+                                <div>
+                                    <WhosNext />
+                                </div>
+                            </Route>
+                            <Route path="/newLitter">
+                                <NewLitter />
+                            </Route>
+                        </section>
+                    </main>
+                </div>
+                <div className="right-picture"> </div>
+            </div>
         </BrowserRouter>
     );
 }
