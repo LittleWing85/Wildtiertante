@@ -21,6 +21,19 @@ function createLitter({ species, arrival, feedings, notes }) {
         )
         .then((result) => result.rows[0]);
 }
+
+function createFeedingEntry({ idAssociatedLitter, amountMilk, feedingSlot }) {
+    console.log(idAssociatedLitter);
+    return db
+        .query(
+            `INSERT INTO feedings (idAssociatedLitter, amountMilk, feedingSlot)
+			VALUES($1, $2, $3)
+			RETURNING *`,
+            [idAssociatedLitter, amountMilk, feedingSlot]
+        )
+        .then((result) => result.rows[0]);
+}
+
 function createIndividual({ idAssociatedLitter, name, age, weight, sex }) {
     return db
         .query(
@@ -39,9 +52,6 @@ function getLastFeedings() {
             FROM litters
             JOIN feedings
             ON litters.litter_id = feedings.idAssociatedLitter`
-            //WHERE feeding_id of all feeding records for the litter
-            //has the highest value! This is the last feeding :-)
-            //But how do I do that????
         )
         .then((result) => result.rows);
 }
@@ -62,4 +72,5 @@ module.exports = {
     createIndividual,
     getLastFeedings,
     fullJoinLittersAndFeedings,
+    createFeedingEntry,
 };

@@ -1,30 +1,40 @@
 import { useState, useEffect } from "react";
 
+function formatTime(time) {
+    const formattedTime = time.split(":").slice(0, 2).join(":");
+    return formattedTime;
+}
+
 export default function WhosNext() {
     const [currentLitters, setCurrentLitters] = useState([]);
     const [unfedLitters, setUnfedLitters] = useState([]);
+    const [currentFeedingSlot, setCurrentFeedingSlot] = useState("");
+
+    function saveTime(feedingSlot) {
+        setCurrentFeedingSlot(feedingSlot);
+    }
 
     useEffect(() => {
+        updateData();
+    }, []);
+
+    function updateData() {
         fetch("/api/nextFeedings")
             .then((response) => response.json())
             .then((data) => setCurrentLitters(data));
-    }, []);
 
-    useEffect(() => {
         fetch("/api/unfedLitters")
             .then((response) => response.json())
             .then((data) => setUnfedLitters(data));
-    }, []);
+    }
 
-    function onSubmit(event) {
+    function onSubmitUnfed(event) {
         event.preventDefault();
-        console.log(event.target.name);
         const feedingData = {
             amountMilk: event.target.amountMilk.value,
             feedingSlot: event.target.feedingSlot.value,
-            //ID of litter has to be sent, too
+            idAssociatedLitter: event.target.name,
         };
-        console.log(feedingData);
 
         fetch("/api/feedingData", {
             method: "POST",
@@ -32,7 +42,29 @@ export default function WhosNext() {
             headers: {
                 "Content-Type": "application/json",
             },
+        }).then(() => {
+            updateData();
         });
+    }
+
+    function onSubmitFed(event) {
+        event.preventDefault();
+        const feedingData = {
+            amountMilk: event.target.amountMilk.value,
+            feedingSlot: event.target.feedingSlot,
+            idAssociatedLitter: event.target.name,
+        };
+
+        console.log(feedingData);
+        /*         fetch("/api/feedingData", {
+            method: "POST",
+            body: JSON.stringify({ feedingData }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then(() => {
+            updateData();
+        }); */
     }
 
     return (
@@ -48,7 +80,10 @@ export default function WhosNext() {
 
                         {unfedLitter.notes && <p>Notes: {unfedLitter.notes}</p>}
 
-                        <form onSubmit={onSubmit} name={unfedLitter.litter_id}>
+                        <form
+                            onSubmit={onSubmitUnfed}
+                            name={unfedLitter.litter_id}
+                        >
                             <div className="flexHorizontallyInputs">
                                 <div className="labelFixedWidth">
                                     <label htmlFor="amountMilk">
@@ -69,13 +104,12 @@ export default function WhosNext() {
                                         Feeding slot
                                     </label>
                                 </div>
-                                <input
-                                    required
-                                    className="inputTime"
-                                    type="time"
-                                    name="feedingSlot"
-                                    id="feedingSlot"
-                                />
+                                <select name="feedingSlot" id="feedingSlot">
+                                    <option value="08:00">8:00</option>
+
+                                    <option value="16:00">16:00</option>
+                                    <option value="00:00">00:00</option>
+                                </select>
                             </div>
 
                             <button>
@@ -89,7 +123,10 @@ export default function WhosNext() {
             <ul>
                 {currentLitters.map((currentLitter) => (
                     <li key={currentLitter.litter_id} className="listStyleNone">
-                        <h1>Time of next feeding:</h1>
+                        <h1>
+                            Time of next feeding:{" "}
+                            {formatTime(currentLitter.nextFeeding)}
+                        </h1>
                         <p>
                             Litter with {currentLitter.species}, Litter id:{" "}
                             {currentLitter.litter_id}
@@ -97,8 +134,24 @@ export default function WhosNext() {
                         {currentLitter.notes && (
                             <p>Notes: {currentLitter.notes}</p>
                         )}
-                        <form>
-                            <input />
+                        <form
+                            onSubmit={onSubmitFed}
+                            name={currentLitter.litter_id}
+                        >
+                            <div className="flexHorizontallyInputs">
+                                <div className="labelFixedWidth">
+                                    <label htmlFor="amountMilk">
+                                        Amount of milk consumed
+                                    </label>
+                                </div>
+                                <input
+                                    required
+                                    className="inputWide"
+                                    type="text"
+                                    name="amountMilk"
+                                    id="amountMilk"
+                                />
+                            </div>
                             <button>Submit ammount of milk</button>
                         </form>
                     </li>

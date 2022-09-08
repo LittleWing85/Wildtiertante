@@ -42,4 +42,10 @@ VALUES ('mice', NOW(), ARRAY [TIME '6:00', TIME '12:00',  TIME '22:00'], 'Not to
 INSERT INTO feedings (idAssociatedLitter, amountMilk, feedingSlot)
 VALUES (3, '0,2-0,8ml', '06:00');
 INSERT INTO feedings (idAssociatedLitter, amountMilk, feedingSlot)
-VALUES (3, '0,2-0,6ml', '12:00');
+VALUES (3, '0,2-0,6ml', '22:00');
+
+INSERT INTO litters (species, arrival, feedings, notes)
+VALUES ('deer', NOW(), ARRAY [TIME '6:00', TIME '12:00',  TIME '22:00'], 'Not too much!');
+INSERT INTO feedings (idAssociatedLitter, amountMilk, feedingSlot)
+VALUES (4, '0,2-0,6ml', '12:00');
+
