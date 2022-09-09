@@ -7,6 +7,7 @@ const {
     getLastFeedings,
     fullJoinLittersAndFeedings,
     createFeedingEntry,
+    getLitters,
 } = require("./db");
 
 app.use(express.json());
@@ -27,6 +28,10 @@ app.post("/api/litter", async (request, response) => {
 app.post("/api/feedingData", async (request, response) => {
     const newFeedingEntry = await createFeedingEntry(request.body.feedingData);
     response.json(newFeedingEntry);
+});
+app.get("/api/litterOverview", async (request, response) => {
+    const litters = await getLitters();
+    response.json(litters);
 });
 
 app.get("/api/unfedLitters", async (request, response) => {
@@ -69,9 +74,9 @@ app.get("/api/nextFeedings", async (request, response) => {
         })
         .sort((a, b) => {
             if (a.nextFeeding > b.nextFeeding) {
-                return -1;
+                return 1;
             }
-            return 1;
+            return -1;
         });
     response.json(newData);
 });

@@ -11,14 +11,16 @@ html {
 body {
     height: 100%;
 }
-
 a {
     text-decoration: none;
     color: black;
 }
 h1 {
-    font-weight: bold;
     margin: 2.5rem 0 1rem 0;
+}
+h2 {
+    margin: 2rem 0 0.3rem 0;
+    font-size: 16px;
 }
 .listStyleNone {
     list-style-type: none;
@@ -46,7 +48,8 @@ h1,
     display: flex;
     margin: 0 40% 0 23%;
 }
-.logo {
+.logo,
+.logo.active {
     margin-top: 2rem;
     color: white;
     height: 3rem;
@@ -77,7 +80,6 @@ menu {
     background-color: white;
     color: green;
 }
-
 .wrapper {
     display: flex;
     min-height: 100%;
