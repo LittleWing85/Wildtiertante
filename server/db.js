@@ -13,7 +13,7 @@ if (!process.env.DATABASE_URL) {
 function createLitter({ species, arrival, feedings, notes }) {
     return db
         .query(
-            `INSERT INTO litters (species, arrival,  feedings, notes)
+            `INSERT INTO litters (species, arrival, feedings, notes)
 			VALUES($1, $2, $3, $4)
 			RETURNING *`,
             [species, arrival, feedings, notes]
@@ -44,6 +44,15 @@ function createIndividual({ idAssociatedLitter, name, age, weight, sex }) {
         .then((result) => result.rows[0]);
 }
 
+function getLitters() {
+    return db
+        .query(
+            `SELECT * FROM litters
+            ORDER by litter_id ASC`
+        )
+        .then((result) => result.rows);
+}
+
 function getLastFeedings() {
     return db
         .query(
@@ -72,4 +81,5 @@ module.exports = {
     getLastFeedings,
     fullJoinLittersAndFeedings,
     createFeedingEntry,
+    getLitters,
 };
