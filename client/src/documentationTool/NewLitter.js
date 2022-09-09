@@ -40,6 +40,15 @@ export default function NewLitter() {
                 "Content-Type": "application/json",
             },
         });
+        setAnimals([
+            {
+                name: `animal1`,
+                age: 1,
+                weight: 100,
+                sex: "not sure yet",
+            },
+        ]);
+        event.target.species.value = "";
     }
 
     function addAnimal() {
@@ -89,7 +98,6 @@ export default function NewLitter() {
                         type="text"
                         name="species"
                         id="species"
-                        defaultValue="Eichhörnchen"
                     />
                 </div>
 
@@ -150,7 +158,6 @@ export default function NewLitter() {
                         type="text"
                         name="notes"
                         id="notes"
-                        defaultValue="1"
                     ></textarea>
                 </div>
 
@@ -162,8 +169,12 @@ export default function NewLitter() {
                         onIndividualChange={onIndividualChange}
                     />
                 ))}
-                <button onClick={addAnimal}>Add another animal</button>
-                <button onClick={removeLastAnimal}>Remove last animal</button>
+                <button type="button" onClick={addAnimal}>
+                    Add another animal
+                </button>
+                <button type="button" onClick={removeLastAnimal}>
+                    Remove last animal
+                </button>
                 <button className="topSpaceBig">Create this litter</button>
             </form>
         </section>
