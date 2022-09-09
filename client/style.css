@@ -11,33 +11,6 @@ html {
 body {
     height: 100%;
 }
-.wrapper {
-    display: flex;
-    min-height: 100%;
-}
-
-.left-picture,
-.right-picture {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
-.center {
-    flex: 1;
-    height: 92vh;
-    overflow-y: auto;
-}
-
-.left-picture {
-    flex-basis: 20%;
-    background-image: url("./media/Franziskustierheim-3801.JPG");
-}
-
-.right-picture {
-    flex-basis: 30%;
-    background-image: url("./media/Franziskustierheim-3390.JPG");
-}
 
 a {
     text-decoration: none;
@@ -85,7 +58,7 @@ h1,
 }
 nav {
     display: flex;
-    height: 6rem;
+    height: 10vh;
     background-color: green;
 }
 menu {
@@ -104,17 +77,30 @@ menu {
     background-color: white;
     color: green;
 }
-.sideImageLeft,
-.sideImageRight {
-    top: 6rem;
-    position: absolute;
+
+.wrapper {
+    display: flex;
+    min-height: 100%;
 }
-.sideImageLeft {
-    width: 22%;
+
+.left-picture,
+.right-picture {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
-.sideImageRight {
-    right: 0;
-    width: 35%;
+.center {
+    flex: 1;
+    height: 90vh;
+    overflow-y: auto;
+}
+.left-picture {
+    flex-basis: 20%;
+    background-image: url("./media/Franziskustierheim-3801.JPG");
+}
+.right-picture {
+    flex-basis: 30%;
+    background-image: url("./media/Franziskustierheim-3390.JPG");
 }
 
 /* Buttons and forms */

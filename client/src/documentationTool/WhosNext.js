@@ -8,11 +8,6 @@ function formatTime(time) {
 export default function WhosNext() {
     const [currentLitters, setCurrentLitters] = useState([]);
     const [unfedLitters, setUnfedLitters] = useState([]);
-    const [currentFeedingSlot, setCurrentFeedingSlot] = useState("");
-
-    function saveTime(feedingSlot) {
-        setCurrentFeedingSlot(feedingSlot);
-    }
 
     useEffect(() => {
         updateData();
@@ -52,10 +47,10 @@ export default function WhosNext() {
         const feedingData = {
             amountMilk: event.target.amountMilk.value,
             idAssociatedLitter: event.target.name,
+            feedingSlot: event.target.currentFeeding.value,
         };
 
-        console.log(feedingData);
-        /*         fetch("/api/feedingData", {
+        fetch("/api/feedingData", {
             method: "POST",
             body: JSON.stringify({ feedingData }),
             headers: {
@@ -63,7 +58,7 @@ export default function WhosNext() {
             },
         }).then(() => {
             updateData();
-        }); */
+        });
     }
 
     return (
@@ -137,6 +132,11 @@ export default function WhosNext() {
                             onSubmit={onSubmitFed}
                             name={currentLitter.litter_id}
                         >
+                            <input
+                                type="hidden"
+                                name="currentFeeding"
+                                value={currentLitter.nextFeeding}
+                            />
                             <div className="flexHorizontallyInputs">
                                 <div className="labelFixedWidth">
                                     <label htmlFor="amountMilk">
