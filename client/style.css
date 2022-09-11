@@ -88,7 +88,7 @@ menu {
 }
 .center {
     flex: 1;
-    height: 91.5vh;
+    height: 92vh;
     overflow-y: auto;
 }
 .left-picture,
