@@ -22,7 +22,6 @@ function createLitter({ species, arrival, feedings, notes }) {
 }
 
 function createFeedingEntry({ idAssociatedLitter, amountMilk, feedingSlot }) {
-    console.log(idAssociatedLitter);
     return db
         .query(
             `INSERT INTO feedings (idAssociatedLitter, amountMilk, feedingSlot)

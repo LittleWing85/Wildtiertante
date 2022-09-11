@@ -25,9 +25,11 @@ export default function NewLitter() {
         const litterData = {
             species: event.target.species.value,
             arrival: event.target.arrival.value,
-            feedings: feedingTimes.map((time) => time.time),
+            /*           feedings: feedingTimes.map((time) => time.time), */
+            feedings: ["08:00", "14:00", "20:00"],
             notes: event.target.notes.value,
         };
+        console.log(litterData);
         const animalsWithDefaults = animals.map((x, index) => ({
             name: `Animal ${index + 1}`,
             age: 1,
@@ -39,16 +41,19 @@ export default function NewLitter() {
             headers: {
                 "Content-Type": "application/json",
             },
+        }).then(() => {
+            setAnimals([
+                {
+                    name: `animal1`,
+                    age: 1,
+                    weight: 100,
+                    sex: "not sure yet",
+                },
+            ]);
+            event.target.species.value = "";
+            event.target.notes.value = "";
+            alert("New litter was created successfully!");
         });
-        setAnimals([
-            {
-                name: `animal1`,
-                age: 1,
-                weight: 100,
-                sex: "not sure yet",
-            },
-        ]);
-        event.target.species.value = "";
     }
 
     function addAnimal() {
@@ -85,8 +90,8 @@ export default function NewLitter() {
 
     return (
         <section>
-            <form className="litterForm" onSubmit={onSubmit}>
-                <h1>Information about litter</h1>
+            <form onSubmit={onSubmit}>
+                <h1>Information about all animals of the litter</h1>
 
                 <div className="flexHorizontallyInputs">
                     <div className="labelFixedWidth">
@@ -169,12 +174,14 @@ export default function NewLitter() {
                         onIndividualChange={onIndividualChange}
                     />
                 ))}
-                <button type="button" onClick={addAnimal}>
-                    Add another animal
-                </button>
-                <button type="button" onClick={removeLastAnimal}>
-                    Remove last animal
-                </button>
+                <div className="flexHorizontally ">
+                    <button type="button" onClick={addAnimal}>
+                        Add animal
+                    </button>
+                    <button type="button" onClick={removeLastAnimal}>
+                        Delete animal
+                    </button>
+                </div>
                 <button className="topSpaceBig">Create this litter</button>
             </form>
         </section>

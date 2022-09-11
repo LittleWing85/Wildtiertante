@@ -39,6 +39,7 @@ export default function WhosNext() {
             },
         }).then(() => {
             updateData();
+            event.target.amountMilk.value = "";
         });
     }
 
@@ -58,6 +59,7 @@ export default function WhosNext() {
             },
         }).then(() => {
             updateData();
+            event.target.amountMilk.value = "";
         });
     }
 
@@ -66,13 +68,16 @@ export default function WhosNext() {
             <ul>
                 {unfedLitters.map((unfedLitter) => (
                     <li key={unfedLitter.litter_id} className="listStyleNone">
-                        <h1>Unfed</h1>
-                        <p>
-                            Litter with {unfedLitter.species}, Litter id:{" "}
-                            {unfedLitter.litter_id}
-                        </p>
+                        <h1>
+                            Unfed, Litter number {unfedLitter.litter_id} (
+                            {unfedLitter.species})
+                        </h1>
 
-                        {unfedLitter.notes && <p>Notes: {unfedLitter.notes}</p>}
+                        {unfedLitter.notes && (
+                            <p className="topSpaceSmall">
+                                Notes: {unfedLitter.notes}
+                            </p>
+                        )}
 
                         <form
                             onSubmit={onSubmitUnfed}
@@ -80,35 +85,40 @@ export default function WhosNext() {
                         >
                             <div className="flexHorizontallyInputs">
                                 <div className="labelFixedWidth">
-                                    <label htmlFor="amountMilk">
-                                        Amount of milk consumed
-                                    </label>
-                                </div>
-                                <input
-                                    required
-                                    className="inputWide"
-                                    type="text"
-                                    name="amountMilk"
-                                    id="amountMilk"
-                                />
-                            </div>
-                            <div className="flexHorizontallyInputs">
-                                <div className="labelFixedWidth">
                                     <label htmlFor="feedingSlot">
                                         Feeding slot
                                     </label>
                                 </div>
-                                <select name="feedingSlot" id="feedingSlot">
+
+                                <select
+                                    className="inputMiddle inputMilk"
+                                    name="feedingSlot"
+                                    id="feedingSlot"
+                                >
                                     <option value="08:00">8:00</option>
 
                                     <option value="16:00">16:00</option>
                                     <option value="00:00">00:00</option>
                                 </select>
                             </div>
+                            <div className="flexHorizontallyInputs bottomSpace">
+                                <div className="labelFixedWidth">
+                                    <label htmlFor="amountMilk">
+                                        Amount of milk:
+                                    </label>
+                                </div>
+                                <input
+                                    required
+                                    className="inputMiddle inputMilk"
+                                    type="text"
+                                    name="amountMilk"
+                                    id="amountMilk"
+                                />
 
-                            <button>
-                                Submit ammount of milk and feedingSlot
-                            </button>
+                                <button className="buttonWhosNext">
+                                    Submit
+                                </button>
+                            </div>
                         </form>
                     </li>
                 ))}
@@ -117,16 +127,16 @@ export default function WhosNext() {
             <ul>
                 {currentLitters.map((currentLitter) => (
                     <li key={currentLitter.litter_id} className="listStyleNone">
-                        <h1>
-                            Time of next feeding:{" "}
-                            {formatTime(currentLitter.nextFeeding)}
-                        </h1>
-                        <p>
-                            Litter with {currentLitter.species}, Litter id:{" "}
-                            {currentLitter.litter_id}
-                        </p>
+                        <h2>
+                            At {formatTime(currentLitter.nextFeeding)}: Litter
+                            number {currentLitter.litter_id} (
+                            {currentLitter.species})
+                        </h2>
+
                         {currentLitter.notes && (
-                            <p>Notes: {currentLitter.notes}</p>
+                            <p className="topSpaceSmall">
+                                Notes: {currentLitter.notes}
+                            </p>
                         )}
                         <form
                             onSubmit={onSubmitFed}
@@ -137,21 +147,23 @@ export default function WhosNext() {
                                 name="currentFeeding"
                                 value={currentLitter.nextFeeding}
                             />
-                            <div className="flexHorizontallyInputs">
+                            <div className="flexHorizontallyInputs bottomSpace">
                                 <div className="labelFixedWidth">
                                     <label htmlFor="amountMilk">
-                                        Amount of milk consumed
+                                        Amount of milk:
                                     </label>
                                 </div>
                                 <input
                                     required
-                                    className="inputWide"
+                                    className="inputMiddle inputMilk"
                                     type="text"
                                     name="amountMilk"
                                     id="amountMilk"
                                 />
+                                <button className="buttonWhosNext">
+                                    Submit
+                                </button>
                             </div>
-                            <button>Submit ammount of milk</button>
                         </form>
                     </li>
                 ))}

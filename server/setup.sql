@@ -30,22 +30,41 @@ CREATE TABLE feedings (
 );
 
 INSERT INTO litters (species, arrival, feedings, notes)
-VALUES ('squirrels', NOW(), ARRAY [TIME '10:00', TIME '20:00'], '');
+VALUES ('Squirrels', NOW(), ARRAY [TIME '10:00', TIME '20:00'], '');
 INSERT INTO feedings (idAssociatedLitter, amountMilk, feedingSlot)
 VALUES (1, '2-4ml', '10:00');
 
 INSERT INTO litters (species, arrival, feedings, notes)
-VALUES ('rabbits', NOW(), ARRAY [TIME '11:00', TIME '21:00'],'Very shy!');
+VALUES ('Rabbits', NOW(), ARRAY [TIME '11:00', TIME '21:00'],'Very shy!');
 
 INSERT INTO litters (species, arrival, feedings, notes)
-VALUES ('mice', NOW(), ARRAY [TIME '6:00', TIME '12:00',  TIME '22:00'], 'Not too much!');
+VALUES ('Mice', NOW(), ARRAY [TIME '6:00', TIME '12:00',  TIME '22:00'], 'Not too much!');
 INSERT INTO feedings (idAssociatedLitter, amountMilk, feedingSlot)
 VALUES (3, '0,2-0,8ml', '06:00');
 INSERT INTO feedings (idAssociatedLitter, amountMilk, feedingSlot)
 VALUES (3, '0,2-0,6ml', '22:00');
 
 INSERT INTO litters (species, arrival, feedings, notes)
-VALUES ('deer', NOW(), ARRAY [TIME '6:00', TIME '12:00',  TIME '22:00'], 'Not too much!');
+VALUES ('Deer', NOW(), ARRAY [TIME '6:00', TIME '12:00',  TIME '22:00'], 'Not too much!');
 INSERT INTO feedings (idAssociatedLitter, amountMilk, feedingSlot)
 VALUES (4, '0,2-0,6ml', '12:00');
+
+INSERT INTO litters (species, arrival, feedings, notes)
+VALUES ('Hedhehogs', NOW(), ARRAY [TIME '6:00', TIME '12:00',  TIME '22:00'], 'Not too much!');
+INSERT INTO feedings (idAssociatedLitter, amountMilk, feedingSlot)
+VALUES (5, '0,2-0,8ml', '06:00');
+INSERT INTO feedings (idAssociatedLitter, amountMilk, feedingSlot)
+VALUES (5, '0,2-0,6ml', '22:00');
+
+INSERT INTO litters (species, arrival, feedings, notes)
+VALUES ('Bambies', NOW(), ARRAY [TIME '10:00', TIME '20:00'], '');
+INSERT INTO feedings (idAssociatedLitter, amountMilk, feedingSlot)
+VALUES (6, '2-4ml', '10:00');
+
+INSERT INTO litters (species, arrival, feedings, notes)
+VALUES ('Foxes', NOW(), ARRAY [TIME '6:00', TIME '12:00',  TIME '22:00'], 'Not too much!');
+INSERT INTO feedings (idAssociatedLitter, amountMilk, feedingSlot)
+VALUES (7, '0,2-0,8ml', '06:00');
+INSERT INTO feedings (idAssociatedLitter, amountMilk, feedingSlot)
+VALUES (7, '0,2-0,6ml', '22:00');
 

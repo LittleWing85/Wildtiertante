@@ -13,10 +13,12 @@ export default function IndividualInfo({ animal, idx, onIndividualChange }) {
 
     return (
         <div>
-            <h1 className="animal">Animal {idx + 1}</h1>
+            <h1 className="animal topSpaceBig">
+                Information about animal {idx + 1}
+            </h1>
             <div className="flexHorizontallyInputs">
                 <div className="labelFixedWidth">
-                    <label htmlFor="name">Name / optical identifier / ID</label>
+                    <label htmlFor="name">Name / ID</label>
                 </div>
                 <input
                     required
@@ -69,51 +71,6 @@ export default function IndividualInfo({ animal, idx, onIndividualChange }) {
                     onChange={handleChange}
                 />
             </div>
-            {/*             <div className="flexHorizontallyInputs">
-                <div className="labelFixedWidth">
-                    <label htmlFor="medication">Medication</label>
-                </div>
-                <input
-                    className="inputWide"
-                    type="text"
-                    name="medication"
-                    id="medication"
-                />
-            </div>
-            <div className="flexHorizontallyInputs">
-                <div className="labelFixedWidth">
-                    <label htmlFor="doses">Doses per Day</label>
-                </div>
-                <input
-                    className="inputNarrow"
-                    type="number"
-                    name="doses"
-                    id="doses"
-                />
-            </div>
-            <div className="flexHorizontallyInputs">
-                <div className="labelFixedWidth">
-                    <label htmlFor="medicationTimes">
-                        Times for Medication
-                    </label>
-                </div>
-                <input
-                    className="inputTime"
-                    type="time"
-                    name="medicationTime"
-                    id="medicationTimes"
-                />
-                <input
-                    className="inputTime"
-                    type="time"
-                    name="medicationTime"
-                />
-                <input
-                    className="inputTime"
-                    type="time"
-                    name="medicationTime"
-                />
-            </div> */}
         </div>
     );
 }
