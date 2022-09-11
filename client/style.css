@@ -49,7 +49,7 @@ h1 {
 .logo,
 .logo.active {
     position: absolute;
-    top: 2rem;
+    top: 1.8rem;
     right: 1rem;
     color: white;
     height: 3rem;
