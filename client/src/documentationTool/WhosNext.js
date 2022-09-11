@@ -96,7 +96,6 @@ export default function WhosNext() {
                                     id="feedingSlot"
                                 >
                                     <option value="08:00">8:00</option>
-
                                     <option value="16:00">16:00</option>
                                     <option value="00:00">00:00</option>
                                 </select>
