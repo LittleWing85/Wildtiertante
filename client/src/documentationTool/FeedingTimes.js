@@ -11,6 +11,7 @@ export default function FeedingTimes({ idx, onFeedingsChange }) {
     }, [time]);
     return (
         <input
+            required
             className="inputTime"
             type="time"
             name={`feedingTime${idx + 1}`}

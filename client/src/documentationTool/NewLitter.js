@@ -29,12 +29,12 @@ export default function NewLitter() {
             feedings: ["08:00", "14:00", "20:00"],
             notes: event.target.notes.value,
         };
-        console.log(litterData);
         const animalsWithDefaults = animals.map((x, index) => ({
             name: `Animal ${index + 1}`,
             age: 1,
             ...x,
         }));
+        console.log(animalsWithDefaults);
         fetch("/api/litter", {
             method: "POST",
             body: JSON.stringify({ litterData, animals: animalsWithDefaults }),
