@@ -15,7 +15,6 @@ export default function LitterOverview() {
         fetch("/api/litterOverview")
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 setCurrentLitters(data);
             });
     }, []);
