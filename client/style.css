@@ -277,4 +277,14 @@ p a:hover {
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
     }
+    .aboutImagesContainer {
+        display: flex;
+        flex-direction: column;
+    }
+    .aboutImage {
+        margin-top: 2rem;
+        width: 100% !important;
+        height: 15rem;
+        object-fit: cover;
+    }
 }
