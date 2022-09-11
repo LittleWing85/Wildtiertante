@@ -26,12 +26,15 @@ export default function ToolMainpage() {
                     <NavLink className="logo" to="/" exact>
                         WILDTIERTANTE
                     </NavLink>
+                    <NavLink className="logoMobile" to="/" exact>
+                        W
+                    </NavLink>
                 </nav>
             </header>
             <div className="wrapper">
                 <div className="left-picture"></div>
                 <div className="center">
-                    <div className="content">
+                    <div>
                         <section className="mainContainer">
                             <Route path="/" exact>
                                 <div>

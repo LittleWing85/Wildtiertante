@@ -34,7 +34,7 @@ p {
 }
 
 .menuEntry {
-    font-size: 22px;
+    font-size: 20px;
 }
 h1 {
     font-size: 17px;
@@ -42,9 +42,8 @@ h1 {
 
 /* main Layout */
 .mainContainer {
-    display: flex;
-    margin: 0 21% 0 21%;
-    padding: 3rem 1rem 2rem 1rem;
+    width: 31rem;
+    padding: 3rem 1rem 1rem 1rem;
 }
 .logo,
 .logo.active {
@@ -59,6 +58,10 @@ h1 {
     padding: 0.5rem;
     border: 1px solid black;
 }
+.logoMobile,
+.logoMobile.active {
+    display: none;
+}
 nav {
     display: flex;
     height: 8vh;
@@ -72,8 +75,8 @@ menu {
     width: 62.5%;
 }
 .menuEntry {
-    padding: 1rem;
-    margin-right: 1rem;
+    padding: 0.8rem;
+    margin-right: 0.8rem;
     font-weight: bold;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -87,8 +90,11 @@ menu {
     display: flex;
 }
 .center {
+    display: flex;
+    justify-content: center;
     flex: 1;
     height: 92vh;
+    overflow-x: hidden;
     overflow-y: auto;
 }
 .left-picture,
@@ -119,7 +125,7 @@ button {
 form {
     display: flex;
     flex-direction: column;
-    width: 40em;
+    width: 31rem;
 }
 .flexHorizontallyInputs {
     display: flex;
@@ -198,4 +204,77 @@ input {
 }
 p a:hover {
     color: blue;
+}
+
+@media screen and (max-width: 1400px) {
+    menu {
+        margin: 1rem 0 0 0;
+        width: 45.5%;
+    }
+    .menuEntry {
+        font-size: 18px;
+    }
+    .right-picture {
+        flex-basis: 30%;
+        background-image: url("./media/Franziskustierheim-3390_narrow.jpg");
+    }
+    .left-picture {
+        flex-basis: 18%;
+        background-image: url("./media/Franziskustierheim-3801_narrow.jpg");
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .inputWide {
+        width: 15rem;
+    }
+    form {
+        width: 25rem;
+    }
+    .mainContainer {
+        width: 25rem;
+    }
+    .logo,
+    .logo.active {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .logo,
+    .logo.active {
+        display: none;
+    }
+    .logoMobile,
+    .logoMobile.active {
+        display: block;
+        position: absolute;
+        top: 1.8rem;
+        right: 1rem;
+        color: white;
+        height: 3rem;
+        font-size: 30px;
+        font-weight: bold;
+        background-color: green;
+        padding: 0.5rem;
+        border: 1px solid black;
+    }
+    .right-picture,
+    .left-picture {
+        display: none;
+    }
+    nav {
+        padding-left: 0;
+    }
+    menu {
+        width: 80%;
+    }
+    .menuEntry {
+        padding: 0.8rem;
+        margin-right: 0.8rem;
+        font-weight: bold;
+        font-size: 16px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
 }
