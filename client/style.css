@@ -242,7 +242,7 @@ p a:hover {
     }
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 1100px) {
     .logo,
     .logo.active {
         display: none;
