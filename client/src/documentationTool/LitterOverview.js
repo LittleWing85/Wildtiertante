@@ -25,12 +25,15 @@ export default function LitterOverview() {
             <ul>
                 {currentLitters.map((currentLitter) => (
                     <li key={currentLitter.litter_id} className="listStyleNone">
-                        <h2>
+                        <h1>
                             {currentLitter.species}, litter ID:{" "}
                             {currentLitter.litter_id}
-                        </h2>
+                        </h1>
                         <p>Arrival date: {formatDate(currentLitter.arrival)}</p>
-                        <p>
+                        {currentLitter.notes && (
+                            <p>Notes: {currentLitter.notes}</p>
+                        )}
+                        <p className="bottomSpace">
                             Feeding times:{" "}
                             {currentLitter.feedings.map((feedingTime) => (
                                 <span key={feedingTime}>
@@ -38,9 +41,6 @@ export default function LitterOverview() {
                                 </span>
                             ))}
                         </p>
-                        {currentLitter.notes && (
-                            <p>Notes: {currentLitter.notes}</p>
-                        )}
                     </li>
                 ))}
             </ul>

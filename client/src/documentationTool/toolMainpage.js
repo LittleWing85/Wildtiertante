@@ -8,7 +8,6 @@ export default function ToolMainpage() {
     return (
         <BrowserRouter>
             <header>
-                <div className="containerLogo"></div>
                 <nav>
                     <menu>
                         <NavLink className="menuEntry" to="/" exact>
@@ -32,7 +31,7 @@ export default function ToolMainpage() {
             <div className="wrapper">
                 <div className="left-picture"></div>
                 <div className="center">
-                    <main className="content">
+                    <div className="content">
                         <section className="mainContainer">
                             <Route path="/" exact>
                                 <div>
@@ -51,7 +50,7 @@ export default function ToolMainpage() {
                                 <LitterOverview />
                             </Route>
                         </section>
-                    </main>
+                    </div>
                 </div>
                 <div className="right-picture"> </div>
             </div>
