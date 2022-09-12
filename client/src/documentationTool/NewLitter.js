@@ -26,7 +26,7 @@ export default function NewLitter() {
             species: event.target.species.value,
             arrival: event.target.arrival.value,
             /*           feedings: feedingTimes.map((time) => time.time), */
-            feedings: ["08:00", "14:00", "20:00"],
+            feedings: ["12:00", "18:00", "00:00"],
             notes: event.target.notes.value,
         };
         const animalsWithDefaults = animals.map((x, index) => ({
