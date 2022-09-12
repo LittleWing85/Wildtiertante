@@ -35,7 +35,7 @@ INSERT INTO feedings (idAssociatedLitter, amountMilk, feedingSlot)
 VALUES (1, '2-4ml', '14:00');
 
 INSERT INTO litters (species, arrival, feedings, notes)
-VALUES ('Rabbits', NOW(), ARRAY [TIME '11:00', TIME '21:00'],'Very shy, handle very carefully!');
+VALUES ('Rabbits', NOW(), ARRAY [TIME '06:00', TIME '14:00', TIME '22:00'],'Very shy, handle very carefully!');
 
 INSERT INTO litters (species, arrival, feedings, notes)
 VALUES ('Mice', NOW(), ARRAY [TIME '7:00', TIME '15:00',  TIME '23:00'], 'The smallest one seems to have a pain in his right leg. Show it to the vet tomorrow.');
