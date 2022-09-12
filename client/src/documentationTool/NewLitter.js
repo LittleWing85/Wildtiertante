@@ -73,6 +73,7 @@ export default function NewLitter() {
     }
 
     function onIndividualChange(retrievedInfo) {
+        /*  console.log("retrievedInfo:", retrievedInfo); */
         const newAnimals = [...animals];
         newAnimals[retrievedInfo.idx] = retrievedInfo;
         setAnimals(newAnimals);

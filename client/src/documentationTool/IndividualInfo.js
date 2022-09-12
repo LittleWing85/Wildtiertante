@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function IndividualInfo({ animal, idx, onIndividualChange }) {
-    const [fields, setFields] = useState({});
-
+    const [fields, setFields] = useState(animal);
     function handleChange(event) {
         setFields({ ...fields, idx, [event.target.name]: event.target.value });
     }
