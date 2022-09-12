@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 export default function FeedingTimes({ idx, onFeedingsChange }) {
     const [time, setTime] = useState({});
-    const defaultFeedingTimes = ["07:00", "15:00", "23:00"];
+    const defaultFeedingTimes = ["12:00", "18:00", "00:00", "06:00"];
     function handleChange(event) {
         setTime({ idx, time: event.target.value });
     }
