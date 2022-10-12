@@ -5,7 +5,10 @@
     font-family: sans-serif;
 }
 body {
-    overflow-y: hidden;
+    height: 100%;
+}
+html {
+    height: 100%;
 }
 a {
     text-decoration: none;
@@ -63,10 +66,13 @@ h2 {
 .logoMobile.active {
     display: none;
 }
+header {
+    height: 9vh;
+    /* min-height: 5rem; */
+}
 nav {
+    height: 9vh;
     display: flex;
-    height: 8vh;
-    min-height: 6rem;
     padding-left: 18%;
     background-color: green;
 }
@@ -89,14 +95,14 @@ menu {
 }
 .wrapper {
     display: flex;
+    height: 91vh;
 }
 .center {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
     display: flex;
     justify-content: center;
-    flex: 1;
-    height: 92vh;
-    overflow-x: hidden;
-    overflow-y: auto;
 }
 .left-picture,
 .right-picture {
@@ -265,9 +271,7 @@ p a:hover {
     .left-picture {
         display: none;
     }
-    nav {
-        padding-left: 0;
-    }
+
     menu {
         width: 80%;
     }
