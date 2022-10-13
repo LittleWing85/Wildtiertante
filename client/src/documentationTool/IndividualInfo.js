@@ -15,7 +15,7 @@ export default function IndividualInfo({ animal, idx, onIndividualChange }) {
             <h1 className="animal topSpaceBig">
                 Information about animal {idx + 1}
             </h1>
-            <div className="flexHorizontallyInputs">
+            <div className="flexLabelAndInput">
                 <div className="labelFixedWidth">
                     <label htmlFor="name">Name / ID</label>
                 </div>
@@ -29,7 +29,7 @@ export default function IndividualInfo({ animal, idx, onIndividualChange }) {
                     onChange={handleChange}
                 />
             </div>
-            <div className="flexHorizontallyInputs">
+            <div className="flexLabelAndInput">
                 <div className="labelFixedWidth">
                     <label htmlFor="age">Age in days</label>
                 </div>
@@ -43,7 +43,7 @@ export default function IndividualInfo({ animal, idx, onIndividualChange }) {
                     onChange={handleChange}
                 />
             </div>
-            <div className="flexHorizontallyInputs">
+            <div className="flexLabelAndInput">
                 <div className="labelFixedWidth">
                     <label htmlFor="weight">Weight in grams</label>
                 </div>
@@ -57,7 +57,7 @@ export default function IndividualInfo({ animal, idx, onIndividualChange }) {
                     onChange={handleChange}
                 />
             </div>
-            <div className="flexHorizontallyInputs">
+            <div className="flexLabelAndInput">
                 <div className="labelFixedWidth">
                     <label htmlFor="sex">Sex</label>
                 </div>

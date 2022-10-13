@@ -68,7 +68,6 @@ h2 {
 }
 header {
     height: 9vh;
-    /* min-height: 5rem; */
 }
 nav {
     height: 9vh;
@@ -119,6 +118,23 @@ menu {
     background-image: url("./media/Franziskustierheim-3390.JPG");
 }
 
+/* Layout in general */
+.topSpaceBig {
+    margin-top: 4rem;
+}
+.topSpace {
+    margin-top: 2rem;
+}
+.topSpaceSmall {
+    margin-top: 0rem;
+}
+.bottomSpace {
+    margin-bottom: 3rem;
+}
+.flexHorizontally {
+    display: flex;
+}
+
 /* Buttons and forms */
 button {
     width: 10rem;
@@ -128,17 +144,24 @@ button {
     border-radius: 15px;
     border: 1px solid green;
 }
-
 form {
     display: flex;
     flex-direction: column;
     width: 31rem;
 }
-.flexHorizontallyInputs {
+.flexLabelAndInput,
+.flexLabelAndInputSmallMargin,
+.flexLabelAndInputSmallMargin,
+.flexTimes {
     display: flex;
     align-items: center;
-    margin-top: 0.7rem;
     flex-wrap: wrap;
+}
+.flexLabelAndInput {
+    margin-top: 0.7rem;
+}
+.flexLabelAndInputSmallMargin {
+    margin-top: 0.35rem;
 }
 label {
     margin: 0.5rem 0.5rem 0.3rem 0;
@@ -160,7 +183,6 @@ select {
 input {
     height: 1.7rem;
 }
-
 .inputWide {
     width: 21rem;
 }
@@ -172,25 +194,9 @@ input {
     width: 5.5rem;
 }
 .inputTime {
-    margin-right: 1rem;
+    margin: 0.35rem 0.5rem 0 0;
 }
 
-/* Layout in general */
-.topSpaceBig {
-    margin-top: 4rem;
-}
-.topSpace {
-    margin-top: 2rem;
-}
-.topSpaceSmall {
-    margin-top: 0.8rem;
-}
-.bottomSpace {
-    margin-bottom: 3rem;
-}
-.flexHorizontally {
-    display: flex;
-}
 /* Who's next */
 .buttonWhosNext {
     margin-top: 0rem;
@@ -199,6 +205,7 @@ input {
 .inputMilk {
     margin-right: 1.5rem;
 }
+
 /* About */
 .aboutImagesContainer {
     display: flex;
