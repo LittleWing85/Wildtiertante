@@ -94,7 +94,7 @@ export default function NewLitter() {
             <form onSubmit={onSubmit}>
                 <h1>Information about all animals of the litter</h1>
 
-                <div className="flexHorizontallyInputs">
+                <div className="flexLabelAndInput">
                     <div className="labelFixedWidth">
                         <label htmlFor="species">Species</label>
                     </div>
@@ -107,7 +107,7 @@ export default function NewLitter() {
                     />
                 </div>
 
-                <div className="flexHorizontallyInputs">
+                <div className="flexLabelAndInput">
                     <div className="labelFixedWidth">
                         <label htmlFor="arrival">Date of Arrival</label>
                     </div>
@@ -122,7 +122,7 @@ export default function NewLitter() {
                     />
                 </div>
 
-                <div className="flexHorizontallyInputs">
+                <div className="flexLabelAndInput">
                     <div className="labelFixedWidth">
                         <label htmlFor="feedings">Feedings per day</label>
                     </div>
@@ -138,11 +138,11 @@ export default function NewLitter() {
                     />
                 </div>
 
-                <div className="flexHorizontallyInputs">
+                <div className="flexLabelAndInputSmallMargin">
                     <div className="labelFixedWidth">
                         <label htmlFor="feedingTime">Feeding times</label>
                     </div>
-                    <div className="flexHorizontallyInputs">
+                    <div className="flexTimes inputWide">
                         {Array(amountFeedings)
                             .fill(0)
                             .map((x, idx) => (
@@ -155,7 +155,7 @@ export default function NewLitter() {
                     </div>
                 </div>
 
-                <div className="flexHorizontallyInputs">
+                <div className="flexLabelAndInput">
                     <div className="labelFixedWidth">
                         <label htmlFor="notes">Notes</label>
                     </div>
@@ -175,7 +175,7 @@ export default function NewLitter() {
                         onIndividualChange={onIndividualChange}
                     />
                 ))}
-                <div className="flexHorizontally ">
+                <div className="flexLabelAndInput">
                     <button type="button" onClick={addAnimal}>
                         Add animal
                     </button>
