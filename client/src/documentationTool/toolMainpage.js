@@ -3,13 +3,13 @@ import About from "./About.js";
 import WhosNext from "./WhosNext.js";
 import NewLitter from "./NewLitter.js";
 import LitterOverview from "./LitterOverview.js";
-import LoginButton from "../LoginButton.js";
+import LoginRegisterButtons from "../LoginRegisterButtons.js";
 
 export default function ToolMainpage() {
     return (
         <BrowserRouter>
             <header>
-                <LoginButton />
+                <LoginRegisterButtons />
                 <nav>
                     <menu>
                         <NavLink className="menuEntry" to="/" exact>

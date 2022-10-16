@@ -1,17 +1,77 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const cookieSession = require("cookie-session");
 const {
+    createUser,
     createLitter,
     createIndividual,
-    getLastFeedings,
-    fullJoinLittersAndFeedings,
     createFeedingEntry,
+    login,
+    getLastFeedings,
     getLitters,
+    fullJoinLittersAndFeedings,
 } = require("./db");
+const cookieSessionMiddleware = cookieSession({
+    secret: "Hello something",
+    maxAge: 1000 * 60 * 60 * 24 * 14,
+});
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
+app.use(cookieSessionMiddleware);
+
+function checkLogin(request, response, next) {
+    console.log("Check was called!");
+    if (!request.session.user_id) {
+        console.log("No user_id stored in Cookies!");
+        response.redirect("/");
+        return;
+    } else {
+        next();
+    }
+}
+
+app.post("/api/registration", (request, response) => {
+    createUser(request.body)
+        .then((newUser) => {
+            request.session.user_id = newUser.user_id;
+            response.json(newUser);
+        })
+        .catch((error) => {
+            console.log("POST /api/registration", error);
+            if (error.constraint === "email") {
+                response.status(400).json({ error: "E-mail already in use" });
+                return;
+            }
+            response
+                .status(500)
+                .json({ error: "Something went wrong. Please try again." });
+        });
+});
+
+app.post("/api/login", (request, response) => {
+    login(request.body)
+        .then((foundUser) => {
+            if (foundUser) {
+                request.session.user_id = foundUser.id;
+                response.json(foundUser);
+                return;
+            }
+            response.json(null);
+        })
+        .catch((error) => {
+            console.log("POST /api/login", error);
+            response.status(500).json({
+                error: "Something went wrong. Please try again.",
+            });
+        });
+});
+
+app.post("/logout", (request, response) => {
+    request.session = null;
+    response.redirect("/");
+});
 
 app.post("/api/litter", async (request, response) => {
     const newLitter = await createLitter(request.body.litterData);
@@ -29,7 +89,8 @@ app.post("/api/feedingData", async (request, response) => {
     const newFeedingEntry = await createFeedingEntry(request.body.feedingData);
     response.json(newFeedingEntry);
 });
-app.get("/api/litterOverview", async (request, response) => {
+
+app.get("/api/litterOverview", checkLogin, async (request, response) => {
     const litters = await getLitters();
     response.json(litters);
 });

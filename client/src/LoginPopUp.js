@@ -1,19 +1,53 @@
-export default function LoginPopUp({ onLogin, onLoginClose }) {
+import { useState } from "react";
+
+export default function LoginPopUp({ onLoginClose, toggleLoggedIn }) {
+    const [showLoginErrorMessage, setShowLoginErrorMessage] = useState(false);
+    function toggleLoginErrorMessage() {
+        if (showLoginErrorMessage) {
+            setShowLoginErrorMessage(false);
+            return;
+        }
+        setShowLoginErrorMessage(true);
+    }
+
     function onSubmitLogin(event) {
         event.preventDefault();
-        onLogin(event);
+        const loginData = {
+            email: event.target.email.value,
+            password: event.target.password.value,
+        };
+        fetch("/api/login", {
+            method: "POST",
+            body: JSON.stringify(loginData),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then((response) => response.json())
+            .then((foundUser) => {
+                if (foundUser) {
+                    toggleLoggedIn();
+                    onLoginClose();
+                    return;
+                }
+                toggleLoginErrorMessage();
+            })
+            .catch((error) => console.log(error));
     }
 
     return (
-        <div className="loginPopUpContainer">
+        <div className="popUpContainer">
             <div className="loginPopUp">
-                <button className="closingButtonLogin" onClick={onLoginClose}>
+                <button className="closingButton" onClick={onLoginClose}>
                     X
                 </button>
-                <form onSubmit={onSubmitLogin}>
-                    <label className="labeling" htmlFor="email">
-                        Email address
-                    </label>
+                {showLoginErrorMessage && (
+                    <p className="errorMessage">
+                        Wrong credentials or you haven&apos;t registered yet.
+                    </p>
+                )}
+                <form className="flexVertically " onSubmit={onSubmitLogin}>
+                    <label htmlFor="email">Email address</label>
                     <input
                         id="email"
                         name="email"
@@ -21,9 +55,7 @@ export default function LoginPopUp({ onLogin, onLoginClose }) {
                         required
                         placeholder="Email"
                     />
-                    <label className="labeling" htmlFor="password">
-                        Password
-                    </label>
+                    <label htmlFor="password">Password</label>
                     <input
                         id="password"
                         name="password"

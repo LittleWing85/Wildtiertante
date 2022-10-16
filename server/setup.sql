@@ -1,6 +1,16 @@
 DROP TABLE IF EXISTS feedings;
 DROP TABLE IF EXISTS individuals;
 DROP TABLE IF EXISTS litters;
+DROP TABLE IF EXISTS users;
+
+
+CREATE TABLE users (
+    user_                                                  id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    password_hash VARCHAR NOT NULL,
+    user_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 CREATE TABLE litters (
     litter_id SERIAL PRIMARY KEY,
