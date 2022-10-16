@@ -91,7 +91,7 @@ export default function NewLitter() {
 
     return (
         <section>
-            <form onSubmit={onSubmit}>
+            <form className="formMainContainer" onSubmit={onSubmit}>
                 <h1>Information about all animals of the litter</h1>
 
                 <div className="flexLabelAndInput">
