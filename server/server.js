@@ -35,8 +35,10 @@ function checkLogin(request, response, next) {
 app.post("/api/registration", (request, response) => {
     createUser(request.body)
         .then((newUser) => {
+            console.log("newUser.user_id", newUser.user_id);
             request.session.user_id = newUser.user_id;
             response.json(newUser);
+            console.log("request.session.user_id", request.session.user_id);
         })
         .catch((error) => {
             console.log("POST /api/registration", error);

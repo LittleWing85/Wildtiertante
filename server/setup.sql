@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS users;
 
 
 CREATE TABLE users (
-    user_                                                  id SERIAL PRIMARY KEY,
+    user_id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
     password_hash VARCHAR NOT NULL,
