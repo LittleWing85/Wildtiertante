@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
+import About from "./About.js";
+
 function formatDate(date) {
     const formattedDate = date.split("T").slice(0, 1);
     return formattedDate;
@@ -15,6 +18,14 @@ export default function LitterOverview() {
         fetch("/api/litterOverview")
             .then((response) => response.json())
             .then((data) => {
+                if (!data) {
+                    /*console.log(
+                        "Log from LitterOverview.js: No user logged in"
+                    ); 
+                     return; */
+                    ReactDOM.render(<About />, document.querySelector("main"));
+                    return;
+                }
                 setCurrentLitters(data);
             });
     }, []);

@@ -28,35 +28,41 @@ function createUser({ name, email, password }) {
     });
 }
 
-function createLitter({ species, arrival, feedings, notes }) {
+function createLitter({
+    id_associated_user,
+    species,
+    arrival,
+    feedings,
+    notes,
+}) {
     return db
         .query(
-            `INSERT INTO litters (species, arrival, feedings, notes)
-			VALUES($1, $2, $3, $4)
+            `INSERT INTO litters (id_associated_user, species, arrival, feedings, notes)
+			VALUES($1, $2, $3, $4, $5)
 			RETURNING *`,
-            [species, arrival, feedings, notes]
+            [id_associated_user, species, arrival, feedings, notes]
         )
         .then((result) => result.rows[0]);
 }
 
-function createFeedingEntry({ idAssociatedLitter, amountMilk, feedingSlot }) {
+function createFeedingEntry({ id_associated_litter, amountMilk, feedingSlot }) {
     return db
         .query(
-            `INSERT INTO feedings (idAssociatedLitter, amountMilk, feedingSlot)
+            `INSERT INTO feedings (id_associated_litter, amountMilk, feedingSlot)
 			VALUES($1, $2, $3)
 			RETURNING *`,
-            [idAssociatedLitter, amountMilk, feedingSlot]
+            [id_associated_litter, amountMilk, feedingSlot]
         )
         .then((result) => result.rows[0]);
 }
 
-function createIndividual({ idAssociatedLitter, name, age, weight, sex }) {
+function createIndividual({ id_associated_litter, name, age, weight, sex }) {
     return db
         .query(
-            `INSERT INTO individuals (idAssociatedLitter, name, age, weight, sex) 
-                VALUES ($1, $2, $3, $4, $5)
-                RETURNING *`,
-            [idAssociatedLitter, name, age, weight, sex]
+            `INSERT INTO individuals (id_associated_litter, name, age, weight, sex) 
+            VALUES ($1, $2, $3, $4, $5)
+            RETURNING *`,
+            [id_associated_litter, name, age, weight, sex]
         )
         .then((result) => result.rows[0]);
 }
@@ -84,11 +90,13 @@ function getUserByEmail(email) {
         .then((result) => result.rows[0]);
 }
 
-function getLitters() {
+function getLitters(currentUser) {
     return db
         .query(
             `SELECT * FROM litters
-            ORDER by litter_id ASC`
+            WHERE id_associated_user=$1
+            ORDER by litter_id ASC`,
+            [currentUser]
         )
         .then((result) => result.rows);
 }
@@ -99,7 +107,7 @@ function getLastFeedings() {
             `SELECT * 
             FROM litters
             JOIN feedings
-            ON litters.litter_id = feedings.idAssociatedLitter`
+            ON litters.litter_id = feedings.id_associated_litter`
         )
         .then((result) => result.rows);
 }
@@ -110,7 +118,7 @@ function fullJoinLittersAndFeedings() {
             `SELECT * 
             FROM litters
             FULL JOIN feedings
-            ON litters.litter_id = feedings.idAssociatedLitter
+            ON litters.litter_id = feedings.id_associated_litter
             ORDER by litters.litterCreated_at ASC`
         )
         .then((result) => result.rows);
