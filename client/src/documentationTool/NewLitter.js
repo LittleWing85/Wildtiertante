@@ -34,7 +34,6 @@ export default function NewLitter() {
             age: 1,
             ...x,
         }));
-        console.log(animalsWithDefaults);
         fetch("/api/litter", {
             method: "POST",
             body: JSON.stringify({ litterData, animals: animalsWithDefaults }),
@@ -73,7 +72,6 @@ export default function NewLitter() {
     }
 
     function onIndividualChange(retrievedInfo) {
-        /*  console.log("retrievedInfo:", retrievedInfo); */
         const newAnimals = [...animals];
         newAnimals[retrievedInfo.idx] = retrievedInfo;
         setAnimals(newAnimals);

@@ -63,12 +63,16 @@ app.post("/logout", (request, response) => {
 });
 
 app.post("/api/litter", async (request, response) => {
-    const newLitter = await createLitter(request.body.litterData);
-    response.json(newLitter);
+    const litterData = {
+        ...request.body.litterData,
+        id_associated_user: request.session.user_id,
+    };
+    const newLitterEntry = await createLitter(litterData);
+    response.json(newLitterEntry);
     for (const individual of request.body.animals) {
         const data = {
             ...individual,
-            idAssociatedLitter: newLitter.litter_id,
+            id_associated_litter: newLitterEntry.litter_id,
         };
         createIndividual(data);
     }
@@ -80,14 +84,15 @@ app.post("/api/feedingData", async (request, response) => {
 });
 
 app.get("/api/litterOverview", async (request, response) => {
-    if (!request.session.user_id) {
-        console.log("request.session.user_id", request.session.user_id);
-        console.log("No user_id stored in Cookies!");
-        response.redirect("/");
+    const currentUser = request.session.user_id;
+    const litters = await getLitters(currentUser);
+    console.log("server.js, litters:", litters);
+    console.log("server.js, currentUser:", currentUser);
+    if (currentUser) {
+        response.json(litters);
         return;
     }
-    const litters = await getLitters();
-    response.json(litters);
+    response.json(null);
 });
 
 app.get("/api/unfedLitters", async (request, response) => {
