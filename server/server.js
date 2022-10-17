@@ -21,24 +21,11 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
 app.use(cookieSessionMiddleware);
 
-function checkLogin(request, response, next) {
-    console.log("Check was called!");
-    if (!request.session.user_id) {
-        console.log("No user_id stored in Cookies!");
-        response.redirect("/");
-        return;
-    } else {
-        next();
-    }
-}
-
 app.post("/api/registration", (request, response) => {
     createUser(request.body)
         .then((newUser) => {
-            console.log("newUser.user_id", newUser.user_id);
             request.session.user_id = newUser.user_id;
             response.json(newUser);
-            console.log("request.session.user_id", request.session.user_id);
         })
         .catch((error) => {
             console.log("POST /api/registration", error);
@@ -56,7 +43,7 @@ app.post("/api/login", (request, response) => {
     login(request.body)
         .then((foundUser) => {
             if (foundUser) {
-                request.session.user_id = foundUser.id;
+                request.session.user_id = foundUser.user_id;
                 response.json(foundUser);
                 return;
             }
@@ -92,7 +79,13 @@ app.post("/api/feedingData", async (request, response) => {
     response.json(newFeedingEntry);
 });
 
-app.get("/api/litterOverview", checkLogin, async (request, response) => {
+app.get("/api/litterOverview", async (request, response) => {
+    if (!request.session.user_id) {
+        console.log("request.session.user_id", request.session.user_id);
+        console.log("No user_id stored in Cookies!");
+        response.redirect("/");
+        return;
+    }
     const litters = await getLitters();
     response.json(litters);
 });
