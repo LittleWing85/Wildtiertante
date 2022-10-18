@@ -70,7 +70,6 @@ function createIndividual({ id_associated_litter, name, age, weight, sex }) {
 function login({ email, password }) {
     return getUserByEmail(email).then((foundUser) => {
         if (!foundUser) {
-            console.log("no User found");
             return null;
         }
         return bcrypt
@@ -101,25 +100,29 @@ function getLitters(currentUser) {
         .then((result) => result.rows);
 }
 
-function getLastFeedings() {
+function getLastFeedings(currentUser) {
     return db
         .query(
             `SELECT * 
             FROM litters
             JOIN feedings
-            ON litters.litter_id = feedings.id_associated_litter`
+            ON litters.litter_id = feedings.id_associated_litter
+            WHERE id_associated_user=$1`,
+            [currentUser]
         )
         .then((result) => result.rows);
 }
 
-function fullJoinLittersAndFeedings() {
+function fullJoinLittersAndFeedings(currentUser) {
     return db
         .query(
             `SELECT * 
             FROM litters
             FULL JOIN feedings
             ON litters.litter_id = feedings.id_associated_litter
-            ORDER by litters.litterCreated_at ASC`
+            WHERE id_associated_user=$1
+            ORDER by litters.litterCreated_at ASC`,
+            [currentUser]
         )
         .then((result) => result.rows);
 }

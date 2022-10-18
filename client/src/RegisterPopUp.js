@@ -1,4 +1,8 @@
-export default function RegisterPopUp({ onRegisterClose }) {
+import { useState } from "react";
+
+export default function RegisterPopUp({ onRegisterClose, toggleLoggedIn }) {
+    const [errorOnRegistration, setErrorOnRegistration] = useState(false);
+
     function onSubmitRegistrationData(event) {
         event.preventDefault();
         const registrationData = {
@@ -12,8 +16,18 @@ export default function RegisterPopUp({ onRegisterClose }) {
             headers: {
                 "Content-Type": "application/json",
             },
-        });
-        onRegisterClose();
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.error) {
+                    setErrorOnRegistration(true);
+                    console.log(data.error);
+                    return;
+                }
+                setErrorOnRegistration(false);
+                toggleLoggedIn();
+                onRegisterClose();
+            });
     }
 
     return (
@@ -22,6 +36,12 @@ export default function RegisterPopUp({ onRegisterClose }) {
                 <button className="closingButton" onClick={onRegisterClose}>
                     X
                 </button>
+                {errorOnRegistration && (
+                    <p className="errorMessage">
+                        Maybe this email adress is already in use. If not,
+                        please try again later.
+                    </p>
+                )}
                 <form
                     className="flexVertically"
                     onSubmit={onSubmitRegistrationData}
