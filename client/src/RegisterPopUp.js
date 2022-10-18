@@ -21,7 +21,6 @@ export default function RegisterPopUp({ onRegisterClose, toggleLoggedIn }) {
             .then((data) => {
                 if (data.error) {
                     setErrorOnRegistration(true);
-                    console.log(data.error);
                     return;
                 }
                 setErrorOnRegistration(false);

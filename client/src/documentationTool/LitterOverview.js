@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 function formatDate(date) {
     const formattedDate = date.split("T").slice(0, 1);
@@ -12,6 +12,7 @@ function formatTime(time) {
 
 export default function LitterOverview() {
     const [currentLitters, setCurrentLitters] = useState([]);
+    const [showMessage, setShowMessage] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
@@ -20,6 +21,11 @@ export default function LitterOverview() {
             .then((data) => {
                 if (!data) {
                     history.push("/");
+                    alert("Please log in first to use this functionality.");
+                    return;
+                }
+                if (data.length === 0) {
+                    setShowMessage(true);
                     return;
                 }
                 setCurrentLitters(data);
@@ -28,6 +34,12 @@ export default function LitterOverview() {
 
     return (
         <section>
+            {showMessage && (
+                <p className="topSpace">
+                    You have no litters currently. Click{" "}
+                    <NavLink to="/newLitter">here</NavLink> to add new litters.
+                </p>
+            )}
             <ul>
                 {currentLitters.map((currentLitter) => (
                     <li key={currentLitter.litter_id} className="listStyleNone">

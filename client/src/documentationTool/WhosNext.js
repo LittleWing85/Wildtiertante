@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { NavLink, useHistory } from "react-router-dom";
 
 function formatTime(time) {
     const formattedTime = time.split(":").slice(0, 2).join(":");
@@ -6,21 +7,45 @@ function formatTime(time) {
 }
 
 export default function WhosNext() {
-    const [currentLitters, setCurrentLitters] = useState([]);
     const [unfedLitters, setUnfedLitters] = useState([]);
+    const [feedAgainLitters, setfeedAgainLitters] = useState([]);
+    const [noCurrentLitters, setNoCurrentLitters] = useState(true);
+    const history = useHistory();
 
     useEffect(() => {
         updateData();
     }, []);
 
-    function updateData() {
-        fetch("/api/nextFeedings")
+    useEffect(() => {
+        fetch("/api/user_id")
             .then((response) => response.json())
-            .then((data) => setCurrentLitters(data));
+            .then((data) => {
+                if (!data) {
+                    history.push("/");
+                    alert("Please log in first to use this functionality.");
+                }
+            });
+    }, []);
 
+    function updateData() {
         fetch("/api/unfedLitters")
             .then((response) => response.json())
-            .then((data) => setUnfedLitters(data));
+            .then((data) => {
+                if (data.length > 0) {
+                    setNoCurrentLitters(false);
+                    setUnfedLitters(data);
+                    return;
+                }
+            });
+        fetch("/api/nextFeedings")
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.length > 0) {
+                    setNoCurrentLitters(false);
+                    setfeedAgainLitters(data);
+                    return;
+                }
+            });
     }
 
     function onSubmitUnfed(event) {
@@ -65,6 +90,12 @@ export default function WhosNext() {
 
     return (
         <section>
+            {noCurrentLitters && (
+                <p className="topSpace">
+                    You have no litters currently. Click{" "}
+                    <NavLink to="/newLitter">here</NavLink> to add new litters.
+                </p>
+            )}
             <ul>
                 {unfedLitters.map((unfedLitter) => (
                     <li key={unfedLitter.litter_id} className="listStyleNone">
@@ -125,7 +156,7 @@ export default function WhosNext() {
             </ul>
 
             <ul>
-                {currentLitters.map((currentLitter) => (
+                {feedAgainLitters.map((currentLitter) => (
                     <li key={currentLitter.litter_id} className="listStyleNone">
                         <h2>
                             At {formatTime(currentLitter.nextFeeding)}: Litter

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import IndividualInfo from "./IndividualInfo.js";
 import FeedingTimes from "./FeedingTimes.js";
 
@@ -15,6 +16,18 @@ export default function NewLitter() {
     ]);
     const [amountFeedings, setAmountFeedings] = useState(3);
     const [feedingTimes, setfeedingTimes] = useState([]);
+    const history = useHistory();
+
+    useEffect(() => {
+        fetch("/api/user_id")
+            .then((response) => response.json())
+            .then((data) => {
+                if (!data) {
+                    history.push("/");
+                    alert("Please log in first to use this functionality.");
+                }
+            });
+    }, []);
 
     function onDateChange(event) {
         setDate(event.target.value);

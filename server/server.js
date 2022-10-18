@@ -104,6 +104,7 @@ app.get("/api/litterOverview", async (request, response) => {
     response.json(null);
 });
 
+/* Gets all newly arrived litters who haven't been fed yet */
 app.get("/api/unfedLitters", async (request, response) => {
     const currentUser = request.session.user_id;
     const fullJoin = await fullJoinLittersAndFeedings(currentUser);
@@ -113,6 +114,9 @@ app.get("/api/unfedLitters", async (request, response) => {
     response.json(unfedLitters);
 });
 
+/* Gets litters that have been fed at least once 
+and maps the time the litters have been feed last
+to the time when the next feeding should happen */
 app.get("/api/nextFeedings", async (request, response) => {
     const currentUser = request.session.user_id;
     const lastFeedings = await getLastFeedings(currentUser);
