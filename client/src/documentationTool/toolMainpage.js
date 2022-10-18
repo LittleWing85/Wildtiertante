@@ -9,7 +9,6 @@ export default function ToolMainpage() {
     return (
         <BrowserRouter>
             <header>
-                <LoginRegisterButtons />
                 <nav>
                     <menu>
                         <NavLink className="menuEntry" to="/" exact>
@@ -25,12 +24,15 @@ export default function ToolMainpage() {
                             Litter overview
                         </NavLink>
                     </menu>
-                    <NavLink className="logo" to="/" exact>
-                        WILDTIERTANTE
-                    </NavLink>
-                    <NavLink className="logoMobile" to="/" exact>
-                        W
-                    </NavLink>
+                    <div>
+                        <LoginRegisterButtons />
+                        <NavLink className="logo" to="/" exact>
+                            WILDTIERTANTE
+                        </NavLink>
+                        <NavLink className="logoMobile" to="/" exact>
+                            W
+                        </NavLink>
+                    </div>
                 </nav>
             </header>
             <div className="wrapper">
