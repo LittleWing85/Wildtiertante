@@ -8,7 +8,7 @@ const {
     createIndividual,
     createFeedingEntry,
     login,
-    getLastFeedings,
+    getAllFeedings,
     getLitters,
     fullJoinLittersAndFeedings,
 } = require("./db");
@@ -115,37 +115,39 @@ app.get("/api/unfedLitters", async (request, response) => {
 });
 
 /* Gets litters that have been fed at least once 
-and maps the time the litters have been feed last
-to the time when the next feeding should happen */
+and maps the time the litters have been feed last to the time when the next feeding should happen */
 app.get("/api/nextFeedings", async (request, response) => {
     const currentUser = request.session.user_id;
-    const lastFeedings = await getLastFeedings(currentUser);
-    const filteredData = [];
-    for (const item of lastFeedings) {
+    const allFeedings = await getAllFeedings(currentUser); // all data about feedings that have already happened
+    const lastFeedings = []; // data about the last time each litter was fed
+    for (const item of allFeedings) {
         if (
-            !filteredData.map((item) => item.litter_id).includes(item.litter_id)
+            !lastFeedings.map((item) => item.litter_id).includes(item.litter_id)
         ) {
-            filteredData.push(item);
+            lastFeedings.push(item);
         } else {
-            const found = filteredData.find(
+            const found = lastFeedings.find(
                 (x) => x.litter_id === item.litter_id
             );
             if (item.feeding_id > found.feeding_id) {
-                const index = filteredData
+                const index = lastFeedings
                     .map((el) => el.litter_id)
                     .indexOf(found.litter_id);
-                filteredData[index] = item;
+                lastFeedings[index] = item;
             }
         }
     }
 
-    const newData = filteredData
+    /* Beginning of old code
+    maps time of last feeding for each litter to the time each litter should be fed next
+    const allFeedingsToday = lastFeedings
         .map(function (feeding) {
-            const arrayFeedingTimes = feeding.feedings;
-            const lastFeedingTime = feeding.feedingslot;
-            const currentIndex = arrayFeedingTimes.indexOf(lastFeedingTime);
-            const nextIndex = (currentIndex + 1) % arrayFeedingTimes.length;
-            const nextFeedingTime = arrayFeedingTimes[nextIndex];
+            const arrayFeedingTimes = feeding.feedings; // array with all daily feeding slots
+            const lastFeedingTime = feeding.feedingslot; // time of the last feeding
+            const currentIndex = arrayFeedingTimes.indexOf(lastFeedingTime); // position of the last feeding time in the array with all feeding slots
+            const nextIndex = (currentIndex + 1) % arrayFeedingTimes.length; // position of the next feeding time in the array with all feeding slots
+            const nextFeedingTime = arrayFeedingTimes[nextIndex]; // time of the next feeding
+
             return { ...feeding, nextFeeding: nextFeedingTime };
         })
         .sort((a, b) => {
@@ -154,7 +156,62 @@ app.get("/api/nextFeedings", async (request, response) => {
             }
             return -1;
         });
-    response.json(newData);
+    console.log(allFeedingsToday); // nextFeedingsToday is an array that contains an object for each litter that has to be fed on the same day; each object includes the data of the last feeding, the litter and the next feeding time
+    End of old code */
+
+    /* Maps time of last feeding for each litter to the time each litter should be fed next if next feeding is on the same day
+    and filters those litters who have to be fed for the enxt time on the same day.
+    nextFeedingsToday is an array that contains an object for each litter that has to be fed the next time on the same day
+    each object in  nextFeedingsToday includes the data of the last feeding, the litter and the next feeding time */
+    const nextFeedingsToday = lastFeedings
+        .map(function (feeding) {
+            const arrayFeedingTimes = feeding.feedings; // array with all daily feeding slots
+            const lastFeedingTime = feeding.feedingslot; // time of the last feeding
+            const currentIndex = arrayFeedingTimes.indexOf(lastFeedingTime); // position of the last feeding time in the array with all feeding slots
+            const nextIndex = (currentIndex + 1) % arrayFeedingTimes.length; // position of the next feeding time in the array with all feeding slots
+            const nextFeedingTime = arrayFeedingTimes[nextIndex]; // time of the next feeding
+            if (nextIndex > 0) {
+                return { ...feeding, nextFeeding: nextFeedingTime };
+            }
+        })
+        .sort((a, b) => {
+            if (a.nextFeeding > b.nextFeeding) {
+                return 1;
+            }
+            return -1;
+        });
+
+    /* Maps time of last feeding for each litter to the time each litter should be fed next if next feeding is on the next day 
+    and filters those litters who have to be fed for the enxt time on the same day.
+    NextFeedingsTomorrow is an array that contains an object for each litter that has to be fed the next time on the next day
+    each object in nextFeedingsTomorrow includes the data of the last feeding, the litter and the next feeding time. */
+    const nextFeedingsTomorrow = lastFeedings
+        .map(function (lastFeeding) {
+            const arrayFeedingTimes = lastFeeding.feedings; // array with all daily feeding slots
+            const lastFeedingTime = lastFeeding.feedingslot; // time of the last feeding
+            const currentIndex = arrayFeedingTimes.indexOf(lastFeedingTime); // position of the last feeding time in the array with all feeding slots
+            const nextIndex = (currentIndex + 1) % arrayFeedingTimes.length; // position of the next feeding time in the array with all feeding slots
+            const nextFeedingTime = arrayFeedingTimes[nextIndex]; // time of the next feeding
+            if (nextIndex === 0) {
+                return { ...lastFeeding, nextFeeding: nextFeedingTime };
+            }
+        })
+        .filter(function (nextFeeding) {
+            if (nextFeeding) {
+                return nextFeeding;
+            }
+        })
+        .sort((a, b) => {
+            if (a.nextFeeding > b.nextFeeding) {
+                return 1;
+            }
+            return -1;
+        });
+
+    /* Puts together next feedings in the right order regarding same day and next day */
+    const allNextFeedings = [...nextFeedingsToday, ...nextFeedingsTomorrow];
+    console.log(allNextFeedings);
+    response.json(allNextFeedings);
 });
 
 app.get("*", function (request, response) {
