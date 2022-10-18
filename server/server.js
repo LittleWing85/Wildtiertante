@@ -29,13 +29,15 @@ app.post("/api/registration", (request, response) => {
         })
         .catch((error) => {
             console.log("POST /api/registration", error);
-            if (error.constraint === "email") {
-                response.status(400).json({ error: "E-mail already in use" });
+            if (error.constraint === "users_email_key") {
+                response.status(400).json({
+                    error: "E-mail already in use.",
+                });
                 return;
             }
-            response
-                .status(500)
-                .json({ error: "Something went wrong. Please try again." });
+            response.status(500).json({
+                error: "Something went wrong. Please try again later.",
+            });
         });
 });
 
@@ -83,11 +85,18 @@ app.post("/api/feedingData", async (request, response) => {
     response.json(newFeedingEntry);
 });
 
+app.get("/api/user_id", (request, response) => {
+    const currentUser = request.session.user_id;
+    if (currentUser) {
+        response.json(currentUser);
+        return;
+    }
+    response.json(null);
+});
+
 app.get("/api/litterOverview", async (request, response) => {
     const currentUser = request.session.user_id;
     const litters = await getLitters(currentUser);
-    console.log("server.js, litters:", litters);
-    console.log("server.js, currentUser:", currentUser);
     if (currentUser) {
         response.json(litters);
         return;
@@ -96,7 +105,8 @@ app.get("/api/litterOverview", async (request, response) => {
 });
 
 app.get("/api/unfedLitters", async (request, response) => {
-    const fullJoin = await fullJoinLittersAndFeedings();
+    const currentUser = request.session.user_id;
+    const fullJoin = await fullJoinLittersAndFeedings(currentUser);
     const unfedLitters = fullJoin.filter(function (record) {
         return record.feeding_id === null;
     });
@@ -104,7 +114,8 @@ app.get("/api/unfedLitters", async (request, response) => {
 });
 
 app.get("/api/nextFeedings", async (request, response) => {
-    const lastFeedings = await getLastFeedings();
+    const currentUser = request.session.user_id;
+    const lastFeedings = await getLastFeedings(currentUser);
     const filteredData = [];
     for (const item of lastFeedings) {
         if (

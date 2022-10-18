@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import About from "./About.js";
+import { useHistory } from "react-router-dom";
 
 function formatDate(date) {
     const formattedDate = date.split("T").slice(0, 1);
@@ -13,17 +12,14 @@ function formatTime(time) {
 
 export default function LitterOverview() {
     const [currentLitters, setCurrentLitters] = useState([]);
+    const history = useHistory();
 
     useEffect(() => {
         fetch("/api/litterOverview")
             .then((response) => response.json())
             .then((data) => {
                 if (!data) {
-                    /*console.log(
-                        "Log from LitterOverview.js: No user logged in"
-                    ); 
-                     return; */
-                    ReactDOM.render(<About />, document.querySelector("main"));
+                    history.push("/");
                     return;
                 }
                 setCurrentLitters(data);

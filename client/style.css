@@ -45,17 +45,13 @@ h2 {
 }
 
 /* main Layout */
-.mainContainer {
-    width: 31rem;
-    padding: 3rem 1rem 1rem 1rem;
-}
 .logo,
 .logo.active {
     position: absolute;
     top: 1.8rem;
     color: white;
     height: 3rem;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
     background-color: green;
     padding: 0.5rem;
@@ -69,11 +65,12 @@ h2 {
 .logoMobile.active {
     display: none;
 }
+
 header {
-    height: 9vh;
+    height: 11vh;
 }
 nav {
-    height: 9vh;
+    height: 11vh;
     display: flex;
     padding-left: 18%;
     background-color: green;
@@ -97,7 +94,7 @@ menu {
 }
 .wrapper {
     display: flex;
-    height: 91vh;
+    height: 89vh;
 }
 .center {
     flex: 1;
@@ -105,6 +102,10 @@ menu {
     overflow-y: auto;
     display: flex;
     justify-content: center;
+}
+.mainContainer {
+    width: 31rem;
+    padding: 3rem 1rem 1rem 1rem;
 }
 .left-picture,
 .right-picture {
@@ -133,19 +134,19 @@ menu {
 .loginregister {
     color: white;
     height: 3rem;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     background-color: green;
     padding: 0.75rem;
     margin: 1.8rem 0 0 1rem;
     border: 1px solid black;
-    width: 8rem;
+    width: 6rem;
 }
 .loginregister:hover {
     cursor: pointer;
 }
 .loginPopUp {
-    height: 19rem;
+    height: 22rem;
 }
 .registerPopUp {
     height: 24rem;
@@ -164,6 +165,9 @@ menu {
     height: 2rem;
     margin: 0 0 0 31rem;
     border-radius: 4px;
+}
+.clickHere:hover {
+    cursor: pointer;
 }
 
 /* Layout in general */

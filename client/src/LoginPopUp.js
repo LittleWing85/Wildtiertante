@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export default function LoginPopUp({ onLoginClose, toggleLoggedIn }) {
+export default function LoginPopUp({
+    onLoginClose,
+    toggleLoggedIn,
+    onRegisterClick,
+}) {
     const [showLoginErrorMessage, setShowLoginErrorMessage] = useState(false);
     function toggleLoginErrorMessage() {
         if (showLoginErrorMessage) {
@@ -35,6 +39,11 @@ export default function LoginPopUp({ onLoginClose, toggleLoggedIn }) {
             .catch((error) => console.log(error));
     }
 
+    function switchToRegistration() {
+        onLoginClose();
+        onRegisterClick();
+    }
+
     return (
         <div className="popUpContainer">
             <div className="loginPopUp">
@@ -65,6 +74,13 @@ export default function LoginPopUp({ onLoginClose, toggleLoggedIn }) {
                     />
                     <button>Login</button>
                 </form>
+                <p className="topSpace">
+                    No account yet? Click{" "}
+                    <span className="clickHere" onClick={switchToRegistration}>
+                        here
+                    </span>{" "}
+                    to register!
+                </p>
             </div>
         </div>
     );
