@@ -100,7 +100,7 @@ function getLitters(currentUser) {
         .then((result) => result.rows);
 }
 
-function getLastFeedings(currentUser) {
+function getAllFeedings(currentUser) {
     return db
         .query(
             `SELECT * 
@@ -131,7 +131,7 @@ module.exports = {
     createLitter,
     createIndividual,
     login,
-    getLastFeedings,
+    getAllFeedings,
     fullJoinLittersAndFeedings,
     createFeedingEntry,
     getLitters,
