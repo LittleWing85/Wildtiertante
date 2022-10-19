@@ -7,6 +7,7 @@ const {
     createLitter,
     createIndividual,
     createFeedingEntry,
+    createFeedingEntryFirstTime,
     login,
     getAllFeedings,
     getLitters,
@@ -80,6 +81,13 @@ app.post("/api/litter", async (request, response) => {
     }
 });
 
+app.post("/api/feedingDataFirstTime", async (request, response) => {
+    const newFeedingEntry = await createFeedingEntryFirstTime(
+        request.body.feedingData
+    );
+    response.json(newFeedingEntry);
+});
+
 app.post("/api/feedingData", async (request, response) => {
     const newFeedingEntry = await createFeedingEntry(request.body.feedingData);
     response.json(newFeedingEntry);
@@ -111,6 +119,7 @@ app.get("/api/unfedLitters", async (request, response) => {
     const unfedLitters = fullJoin.filter(function (record) {
         return record.feeding_id === null;
     });
+    //console.log("unfedLitters", unfedLitters);
     response.json(unfedLitters);
 });
 
@@ -174,6 +183,11 @@ app.get("/api/nextFeedings", async (request, response) => {
                 return { ...feeding, nextFeeding: nextFeedingTime };
             }
         })
+        .filter(function (nextFeeding) {
+            if (nextFeeding) {
+                return nextFeeding;
+            }
+        })
         .sort((a, b) => {
             if (a.nextFeeding > b.nextFeeding) {
                 return 1;
@@ -210,7 +224,6 @@ app.get("/api/nextFeedings", async (request, response) => {
 
     /* Puts together next feedings in the right order regarding same day and next day */
     const allNextFeedings = [...nextFeedingsToday, ...nextFeedingsTomorrow];
-    console.log(allNextFeedings);
     response.json(allNextFeedings);
 });
 

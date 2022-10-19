@@ -46,27 +46,27 @@ export default function LoginRegisterButtons() {
     return (
         <BrowserRouter>
             <div className="loginregisterContainer">
+                {loggedIn && (
+                    <form action="/logout" method="POST">
+                        <button className="loginregister">Logout</button>
+                    </form>
+                )}
+
                 {!loggedIn && (
                     <div>
-                        <button
-                            className="loginregister"
-                            onClick={onRegisterClick}
-                        >
-                            Register
-                        </button>
                         <button
                             className="loginregister"
                             onClick={onLoginClick}
                         >
                             Login
                         </button>
+                        <button
+                            className="loginregister"
+                            onClick={onRegisterClick}
+                        >
+                            Register
+                        </button>
                     </div>
-                )}
-
-                {loggedIn && (
-                    <form action="/logout" method="POST">
-                        <button className="loginregister">Logout</button>
-                    </form>
                 )}
             </div>
 

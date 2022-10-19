@@ -3,7 +3,7 @@ import { NavLink, useHistory } from "react-router-dom";
 
 function formatTime(time) {
     const formattedTime = time.split(":").slice(0, 2).join(":");
-    return formattedTime;
+    return formattedTime + " ";
 }
 
 export default function WhosNext() {
@@ -53,10 +53,10 @@ export default function WhosNext() {
         const feedingData = {
             amountMilk: event.target.amountMilk.value,
             feedingSlot: event.target.feedingSlot.value,
-            idAssociatedLitter: event.target.name,
+            id_associated_litter: event.target.name,
         };
 
-        fetch("/api/feedingData", {
+        fetch("/api/feedingDataFirstTime", {
             method: "POST",
             body: JSON.stringify({ feedingData }),
             headers: {
@@ -72,7 +72,7 @@ export default function WhosNext() {
         event.preventDefault();
         const feedingData = {
             amountMilk: event.target.amountMilk.value,
-            idAssociatedLitter: event.target.name,
+            id_associated_litter: event.target.name,
             feedingSlot: event.target.currentFeeding.value,
         };
 
@@ -122,7 +122,23 @@ export default function WhosNext() {
                                     </label>
                                 </div>
 
-                                <select
+                                <input
+                                    className="inputMiddle inputMilk"
+                                    name="feedingSlot"
+                                    id="feedingSlot"
+                                    type="time"
+                                ></input>
+                                <p>
+                                    Possible feeding slots:{" "}
+                                    {unfedLitter.feedings.map((feedingTime) => (
+                                        <span key={feedingTime}>
+                                            {formatTime(feedingTime)}
+                                        </span>
+                                    ))}
+                                </p>
+
+                                {/* ToDo for later: Allow user only to choose time from the array with feeding slots */}
+                                {/*                                 <select
                                     className="inputMiddle inputMilk"
                                     name="feedingSlot"
                                     id="feedingSlot"
@@ -130,7 +146,7 @@ export default function WhosNext() {
                                     <option value="08:00">8:00</option>
                                     <option value="16:00">16:00</option>
                                     <option value="00:00">00:00</option>
-                                </select>
+                                </select> */}
                             </div>
                             <div className="flexHorizontallyInputs bottomSpace">
                                 <div className="labelFixedWidth">
