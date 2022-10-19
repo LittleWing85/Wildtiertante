@@ -66,7 +66,7 @@ function createFeedingEntryFirstTime({
     const test = new Date().split("T").slice(0, 1); */
     console.log(today);
     /*     console.log(formattedDate);
-    console.log(test); */
+    console.log(test);  */
 
     return db
         .query(
