@@ -56,6 +56,28 @@ function createFeedingEntry({ id_associated_litter, amountMilk, feedingSlot }) {
         .then((result) => result.rows[0]);
 }
 
+function createFeedingEntryFirstTime({
+    id_associated_litter,
+    amountMilk,
+    feedingSlot,
+}) {
+    const today = new Date();
+    /*     const formattedDate = today.split("T").slice(0, 1);
+    const test = new Date().split("T").slice(0, 1); */
+    console.log(today);
+    /*     console.log(formattedDate);
+    console.log(test); */
+
+    return db
+        .query(
+            `INSERT INTO feedings (id_associated_litter, amountMilk, feedingSlot)
+			VALUES($1, $2, $3)
+			RETURNING *`,
+            [id_associated_litter, amountMilk, feedingSlot]
+        )
+        .then((result) => result.rows[0]);
+}
+
 function createIndividual({ id_associated_litter, name, age, weight, sex }) {
     return db
         .query(
@@ -134,5 +156,6 @@ module.exports = {
     getAllFeedings,
     fullJoinLittersAndFeedings,
     createFeedingEntry,
+    createFeedingEntryFirstTime,
     getLitters,
 };

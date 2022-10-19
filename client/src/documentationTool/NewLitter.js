@@ -5,7 +5,10 @@ import FeedingTimes from "./FeedingTimes.js";
 
 export default function NewLitter() {
     const now = new Date().toISOString().slice(0, 10);
+    const history = useHistory();
     const [date, setDate] = useState(now);
+    const [amountFeedings, setAmountFeedings] = useState(3);
+    const [feedingTimes, setfeedingTimes] = useState([]);
     const [animals, setAnimals] = useState([
         {
             name: "animal1",
@@ -14,9 +17,6 @@ export default function NewLitter() {
             sex: "not sure yet",
         },
     ]);
-    const [amountFeedings, setAmountFeedings] = useState(3);
-    const [feedingTimes, setfeedingTimes] = useState([]);
-    const history = useHistory();
 
     useEffect(() => {
         fetch("/api/user_id")
@@ -38,8 +38,7 @@ export default function NewLitter() {
         const litterData = {
             species: event.target.species.value,
             arrival: event.target.arrival.value,
-            /*           feedings: feedingTimes.map((time) => time.time), */
-            feedings: ["12:00", "18:00", "00:00"],
+            feedings: feedingTimes.map((time) => time.time),
             notes: event.target.notes.value,
         };
         const animalsWithDefaults = animals.map((x, index) => ({
@@ -62,6 +61,7 @@ export default function NewLitter() {
                     sex: "not sure yet",
                 },
             ]);
+            setAmountFeedings(3);
             event.target.species.value = "";
             event.target.notes.value = "";
             alert("New litter was created successfully!");
@@ -145,7 +145,7 @@ export default function NewLitter() {
                         name="feedings"
                         id="feedings"
                         min="2"
-                        defaultValue={amountFeedings}
+                        value={amountFeedings}
                     />
                 </div>
 
@@ -158,6 +158,7 @@ export default function NewLitter() {
                             .fill(0)
                             .map((x, idx) => (
                                 <FeedingTimes
+                                    /* feedingTimes={feedingTimes} */
                                     key={idx}
                                     idx={idx}
                                     onFeedingsChange={onFeedingsChange}

@@ -68,19 +68,6 @@ export default function IndividualInfo({ animal, idx, onIndividualChange }) {
                     value={animal.sex}
                 </select>
             </div>
-            {/*<div className="flexHorizontallyInputs">
-                <div className="labelFixedWidth">
-                    <label htmlFor="sex">Sex</label>
-                </div>
-                <input
-                    className="inputMiddle"
-                    type="text"
-                    name="sex"
-                    id="sex"
-                    value={animal.sex}
-                    onChange={handleChange}
-                />
-            </div> */}
         </div>
     );
 }
