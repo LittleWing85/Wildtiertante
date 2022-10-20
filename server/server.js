@@ -7,7 +7,6 @@ const {
     createLitter,
     createIndividual,
     createFeedingEntry,
-    createFeedingEntryFirstTime,
     login,
     getAllFeedings,
     getLitters,
@@ -81,13 +80,6 @@ app.post("/api/litter", async (request, response) => {
     }
 });
 
-app.post("/api/feedingDataFirstTime", async (request, response) => {
-    const newFeedingEntry = await createFeedingEntryFirstTime(
-        request.body.feedingData
-    );
-    response.json(newFeedingEntry);
-});
-
 app.post("/api/feedingData", async (request, response) => {
     const newFeedingEntry = await createFeedingEntry(request.body.feedingData);
     response.json(newFeedingEntry);
@@ -119,7 +111,6 @@ app.get("/api/unfedLitters", async (request, response) => {
     const unfedLitters = fullJoin.filter(function (record) {
         return record.feeding_id === null;
     });
-    //console.log("unfedLitters", unfedLitters);
     response.json(unfedLitters);
 });
 
@@ -147,84 +138,52 @@ app.get("/api/nextFeedings", async (request, response) => {
         }
     }
 
-    /* Beginning of old code
-    maps time of last feeding for each litter to the time each litter should be fed next
-    const allFeedingsToday = lastFeedings
+    /* maps time of last feeding for each litter to the time each litter should be fed next */
+    const nextFeedings = lastFeedings
         .map(function (feeding) {
             const arrayFeedingTimes = feeding.feedings; // array with all daily feeding slots
             const lastFeedingTime = feeding.feedingslot; // time of the last feeding
             const currentIndex = arrayFeedingTimes.indexOf(lastFeedingTime); // position of the last feeding time in the array with all feeding slots
             const nextIndex = (currentIndex + 1) % arrayFeedingTimes.length; // position of the next feeding time in the array with all feeding slots
             const nextFeedingTime = arrayFeedingTimes[nextIndex]; // time of the next feeding
+            //Puts together the time of the next feeding with the date from the last feeding
 
-            return { ...feeding, nextFeeding: nextFeedingTime };
-        })
-        .sort((a, b) => {
-            if (a.nextFeeding > b.nextFeeding) {
-                return 1;
-            }
-            return -1;
-        });
-    console.log(allFeedingsToday); // nextFeedingsToday is an array that contains an object for each litter that has to be fed on the same day; each object includes the data of the last feeding, the litter and the next feeding time
-    End of old code */
-
-    /* Maps time of last feeding for each litter to the time each litter should be fed next if next feeding is on the same day
-    and filters those litters who have to be fed for the enxt time on the same day.
-    nextFeedingsToday is an array that contains an object for each litter that has to be fed the next time on the same day
-    each object in  nextFeedingsToday includes the data of the last feeding, the litter and the next feeding time */
-    const nextFeedingsToday = lastFeedings
-        .map(function (feeding) {
-            const arrayFeedingTimes = feeding.feedings; // array with all daily feeding slots
-            const lastFeedingTime = feeding.feedingslot; // time of the last feeding
-            const currentIndex = arrayFeedingTimes.indexOf(lastFeedingTime); // position of the last feeding time in the array with all feeding slots
-            const nextIndex = (currentIndex + 1) % arrayFeedingTimes.length; // position of the next feeding time in the array with all feeding slots
-            const nextFeedingTime = arrayFeedingTimes[nextIndex]; // time of the next feeding
-            if (nextIndex > 0) {
-                return { ...feeding, nextFeeding: nextFeedingTime };
-            }
-        })
-        .filter(function (nextFeeding) {
-            if (nextFeeding) {
-                return nextFeeding;
-            }
-        })
-        .sort((a, b) => {
-            if (a.nextFeeding > b.nextFeeding) {
-                return 1;
-            }
-            return -1;
-        });
-
-    /* Maps time of last feeding for each litter to the time each litter should be fed next if next feeding is on the next day 
-    and filters those litters who have to be fed for the enxt time on the same day.
-    NextFeedingsTomorrow is an array that contains an object for each litter that has to be fed the next time on the next day
-    each object in nextFeedingsTomorrow includes the data of the last feeding, the litter and the next feeding time. */
-    const nextFeedingsTomorrow = lastFeedings
-        .map(function (lastFeeding) {
-            const arrayFeedingTimes = lastFeeding.feedings; // array with all daily feeding slots
-            const lastFeedingTime = lastFeeding.feedingslot; // time of the last feeding
-            const currentIndex = arrayFeedingTimes.indexOf(lastFeedingTime); // position of the last feeding time in the array with all feeding slots
-            const nextIndex = (currentIndex + 1) % arrayFeedingTimes.length; // position of the next feeding time in the array with all feeding slots
-            const nextFeedingTime = arrayFeedingTimes[nextIndex]; // time of the next feeding
+            //If nextIndex is 0, the next feeding happens on the next day so JS has to add 1 to the day
             if (nextIndex === 0) {
-                return { ...lastFeeding, nextFeeding: nextFeedingTime };
+                let nextFeedingDateAndTime = new Date(
+                    feeding.feedingdate + "T" + nextFeedingTime + ".000Z"
+                );
+                nextFeedingDateAndTime.setDate(
+                    nextFeedingDateAndTime.getDate() + 1
+                );
+                console.log("if", feeding.feedingdate);
+                console.log("if", nextFeedingDateAndTime);
+                return {
+                    ...feeding,
+                    nextFeedingTime: nextFeedingTime,
+                    nextFeedingDateAndTime: nextFeedingDateAndTime,
+                };
             }
-        })
-        .filter(function (nextFeeding) {
-            if (nextFeeding) {
-                return nextFeeding;
-            }
+            let nextFeedingDateAndTime = new Date(
+                feeding.feedingdate + "T" + nextFeedingTime + ".000Z"
+            );
+            console.log("else", feeding.feedingdate);
+            console.log("else", nextFeedingDateAndTime);
+            return {
+                ...feeding,
+                nextFeedingTime: nextFeedingTime,
+                nextFeedingDateAndTime: nextFeedingDateAndTime,
+            };
         })
         .sort((a, b) => {
-            if (a.nextFeeding > b.nextFeeding) {
+            if (a.nextFeedingDateAndTime > b.nextFeedingDateAndTime) {
                 return 1;
             }
             return -1;
         });
-
-    /* Puts together next feedings in the right order regarding same day and next day */
-    const allNextFeedings = [...nextFeedingsToday, ...nextFeedingsTomorrow];
-    response.json(allNextFeedings);
+    // allFeedings is an array that contains an object for each litter; each object includes the data of the last feeding, the litter and the next feeding time
+    /*     console.log(nextFeedings); */
+    response.json(nextFeedings);
 });
 
 app.get("*", function (request, response) {
