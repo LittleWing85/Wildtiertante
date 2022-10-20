@@ -63,9 +63,6 @@ export default function WhosNext() {
         };
 
         fetch("/api/feedingData", {
-            //only difference between onSubmitUnfed and onSubmitFed
-            //for 2 different SQL queries ind db.js
-            //SQL queries can be merged into one function to reduce this code and routes in server.js
             method: "POST",
             body: JSON.stringify({ feedingData }),
             headers: {
@@ -139,11 +136,13 @@ export default function WhosNext() {
                                 ></input>
                                 <p>
                                     Possible feeding slots:{" "}
-                                    {unfedLitter.feedings.map((feedingTime) => (
-                                        <span key={feedingTime}>
-                                            {formatTime1(feedingTime)}
-                                        </span>
-                                    ))}
+                                    {unfedLitter.feedingslots.map(
+                                        (feedingTime) => (
+                                            <span key={feedingTime}>
+                                                {formatTime1(feedingTime)}
+                                            </span>
+                                        )
+                                    )}
                                 </p>
 
                                 {/* ToDo for later: Allow user only to choose time from the array with feeding slots */}

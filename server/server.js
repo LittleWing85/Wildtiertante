@@ -141,7 +141,7 @@ app.get("/api/nextFeedings", async (request, response) => {
     /* maps time of last feeding for each litter to the time each litter should be fed next */
     const nextFeedings = lastFeedings
         .map(function (feeding) {
-            const arrayFeedingTimes = feeding.feedings; // array with all daily feeding slots
+            const arrayFeedingTimes = feeding.feedingslots; // array with all daily feeding slots
             const lastFeedingTime = feeding.feedingslot; // time of the last feeding
             const currentIndex = arrayFeedingTimes.indexOf(lastFeedingTime); // position of the last feeding time in the array with all feeding slots
             const nextIndex = (currentIndex + 1) % arrayFeedingTimes.length; // position of the next feeding time in the array with all feeding slots
@@ -156,8 +156,6 @@ app.get("/api/nextFeedings", async (request, response) => {
                 nextFeedingDateAndTime.setDate(
                     nextFeedingDateAndTime.getDate() + 1
                 );
-                console.log("if", feeding.feedingdate);
-                console.log("if", nextFeedingDateAndTime);
                 return {
                     ...feeding,
                     nextFeedingTime: nextFeedingTime,
@@ -167,8 +165,6 @@ app.get("/api/nextFeedings", async (request, response) => {
             let nextFeedingDateAndTime = new Date(
                 feeding.feedingdate + "T" + nextFeedingTime + ".000Z"
             );
-            console.log("else", feeding.feedingdate);
-            console.log("else", nextFeedingDateAndTime);
             return {
                 ...feeding,
                 nextFeedingTime: nextFeedingTime,
@@ -182,7 +178,6 @@ app.get("/api/nextFeedings", async (request, response) => {
             return -1;
         });
     // allFeedings is an array that contains an object for each litter; each object includes the data of the last feeding, the litter and the next feeding time
-    /*     console.log(nextFeedings); */
     response.json(nextFeedings);
 });
 

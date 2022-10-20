@@ -53,7 +53,7 @@ export default function LitterOverview() {
                         )}
                         <p className="bottomSpace">
                             Feeding times:{" "}
-                            {currentLitter.feedings.map((feedingTime) => (
+                            {currentLitter.feedingslots.map((feedingTime) => (
                                 <span key={feedingTime}>
                                     {formatTime(feedingTime)}
                                 </span>

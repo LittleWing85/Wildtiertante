@@ -32,15 +32,15 @@ function createLitter({
     id_associated_user,
     species,
     arrival,
-    feedings,
+    feedingslots,
     notes,
 }) {
     return db
         .query(
-            `INSERT INTO litters (id_associated_user, species, arrival, feedings, notes)
+            `INSERT INTO litters (id_associated_user, species, arrival, feedingslots, notes)
 			VALUES($1, $2, $3, $4, $5)
 			RETURNING *`,
-            [id_associated_user, species, arrival, feedings, notes]
+            [id_associated_user, species, arrival, feedingslots, notes]
         )
         .then((result) => result.rows[0]);
 }
@@ -170,13 +170,12 @@ async function determineDateForFeedingEntry(id_associated_litter, feedingSlot) {
             .toISOString()
             .split("T")
             .slice(0, 1)[0];
-        console.log(currentFeedingDate);
         return currentFeedingDate;
     }
     const litterData = await getlitterDataOfSpecificLitter(
         id_associated_litter
     );
-    const firstFeedingInArray = litterData[0].feedings[0];
+    const firstFeedingInArray = litterData[0].feedingslots[0];
     if (firstFeedingInArray === feedingSlot) {
         // This means that this is the first feeding of a day and to keep track of the date of this feeding, we take the date from the previous feeding plus one day
         const nextDay = new Date(
@@ -189,7 +188,6 @@ async function determineDateForFeedingEntry(id_associated_litter, feedingSlot) {
             .toISOString()
             .split("T")
             .slice(0, 1)[0];
-        console.log(currentFeedingDate);
         return currentFeedingDate;
     } else {
         // In this case, the litter has been fed today already.
@@ -199,7 +197,6 @@ async function determineDateForFeedingEntry(id_associated_litter, feedingSlot) {
         const currentFeedingDate =
             feedingsOfSpecificLitter[feedingsOfSpecificLitter.length - 1]
                 .feedingdate;
-        console.log(currentFeedingDate);
         return currentFeedingDate;
     }
 }
