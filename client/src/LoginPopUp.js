@@ -6,13 +6,6 @@ export default function LoginPopUp({
     onRegisterClick,
 }) {
     const [showLoginErrorMessage, setShowLoginErrorMessage] = useState(false);
-    function toggleLoginErrorMessage() {
-        if (showLoginErrorMessage) {
-            setShowLoginErrorMessage(false);
-            return;
-        }
-        setShowLoginErrorMessage(true);
-    }
 
     function onSubmitLogin(event) {
         event.preventDefault();
@@ -30,11 +23,12 @@ export default function LoginPopUp({
             .then((response) => response.json())
             .then((foundUser) => {
                 if (foundUser) {
+                    setShowLoginErrorMessage(false);
                     toggleLoggedIn();
                     onLoginClose();
                     return;
                 }
-                toggleLoginErrorMessage();
+                setShowLoginErrorMessage(true);
             })
             .catch((error) => console.log(error));
     }

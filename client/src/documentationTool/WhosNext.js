@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 
-function formatTime(time) {
+function formatTime1(time) {
     const formattedTime = time.split(":").slice(0, 2).join(":");
     return formattedTime + " ";
+}
+
+function formatTime2(time) {
+    const formattedTime = time.split(":").slice(0, 2).join(":");
+    return formattedTime;
 }
 
 export default function WhosNext() {
@@ -36,6 +41,7 @@ export default function WhosNext() {
                     setUnfedLitters(data);
                     return;
                 }
+                setUnfedLitters([]);
             });
         fetch("/api/nextFeedings")
             .then((response) => response.json())
@@ -52,11 +58,14 @@ export default function WhosNext() {
         event.preventDefault();
         const feedingData = {
             amountMilk: event.target.amountMilk.value,
-            feedingSlot: event.target.feedingSlot.value,
             id_associated_litter: event.target.name,
+            feedingSlot: event.target.feedingSlot.value, //only difference between onSubmitFed and onSubmitUnfed
         };
 
-        fetch("/api/feedingDataFirstTime", {
+        fetch("/api/feedingData", {
+            //only difference between onSubmitUnfed and onSubmitFed
+            //for 2 different SQL queries ind db.js
+            //SQL queries can be merged into one function to reduce this code and routes in server.js
             method: "POST",
             body: JSON.stringify({ feedingData }),
             headers: {
@@ -73,7 +82,7 @@ export default function WhosNext() {
         const feedingData = {
             amountMilk: event.target.amountMilk.value,
             id_associated_litter: event.target.name,
-            feedingSlot: event.target.currentFeeding.value,
+            feedingSlot: event.target.currentFeeding.value, //only difference between onSubmitFed and onSubmitUnfed
         };
 
         fetch("/api/feedingData", {
@@ -132,7 +141,7 @@ export default function WhosNext() {
                                     Possible feeding slots:{" "}
                                     {unfedLitter.feedings.map((feedingTime) => (
                                         <span key={feedingTime}>
-                                            {formatTime(feedingTime)}
+                                            {formatTime1(feedingTime)}
                                         </span>
                                     ))}
                                 </p>
@@ -175,8 +184,8 @@ export default function WhosNext() {
                 {feedAgainLitters.map((currentLitter) => (
                     <li key={currentLitter.litter_id} className="listStyleNone">
                         <h2>
-                            At {formatTime(currentLitter.nextFeeding)}: Litter
-                            number {currentLitter.litter_id} (
+                            At {formatTime2(currentLitter.nextFeedingTime)}:
+                            Litter number {currentLitter.litter_id} (
                             {currentLitter.species})
                         </h2>
 
@@ -192,7 +201,7 @@ export default function WhosNext() {
                             <input
                                 type="hidden"
                                 name="currentFeeding"
-                                value={currentLitter.nextFeeding}
+                                value={currentLitter.nextFeedingTime}
                             />
                             <div className="flexHorizontallyInputs bottomSpace">
                                 <div className="labelFixedWidth">
