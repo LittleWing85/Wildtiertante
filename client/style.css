@@ -130,6 +130,7 @@ menu {
     margin: 0;
     display: flex;
     position: absolute;
+    width: 18%;
 }
 .loginregister {
     color: white;
@@ -301,6 +302,10 @@ p a:hover {
         flex-basis: 18%;
         background-image: url("./media/Franziskustierheim-3801_narrow.jpg");
     }
+    .loginregister {
+        width: 4.5rem;
+        font-size: 13px;
+    }
 }
 
 @media screen and (max-width: 1024px) {
@@ -317,6 +322,16 @@ p a:hover {
     .logo,
     .logo.active {
         font-size: 20px;
+    }
+    .loginregister {
+        width: 4.5rem;
+        font-size: 13px;
+        margin: 0.25rem;
+        padding: 0rem;
+        height: 2rem;
+    }
+    .loginregisterContainer {
+        padding: 1rem;
     }
 }
 
@@ -344,7 +359,6 @@ p a:hover {
     .left-picture {
         display: none;
     }
-
     menu {
         width: 80%;
     }

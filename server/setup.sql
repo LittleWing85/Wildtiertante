@@ -36,17 +36,17 @@ CREATE TABLE feedings (
     id_associated_litter INT REFERENCES litters(litter_id) NOT NULL,
     amountMilk VARCHAR(255) NOT NULL,
     feedingSlot TIME,
-    feedingDate VARCHAR(255),
+    feedingDate VARCHAR(255) NOT NULL,
     feedingCreated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 );
 
 INSERT INTO litters (id_associated_user, species, arrival, feedingslots, notes)
-VALUES (1, 'Squirrels', NOW(), ARRAY [TIME '02:00', TIME '04:00', TIME '13:00', TIME '23:00'], '');
+VALUES (1, 'Squirrels', NOW(), ARRAY [TIME '02:00', TIME '06:00', TIME '10:00', TIME '14:00', TIME '18:00', TIME '22:00'], '');
 
 
 INSERT INTO litters (id_associated_user, species, arrival, feedingslots, notes)
-VALUES (1, 'Rabbits', NOW(), ARRAY [TIME '01:00', TIME '05:00', TIME '17:00', TIME '23:30'],'Very shy, handle very carefully!');
+VALUES (1, 'Rabbits', NOW(), ARRAY [TIME '06:00', TIME '12:00', TIME '18:00', TIME '22:00'],'Very shy, handle very carefully!');
 
 INSERT INTO litters (id_associated_user, species, arrival, feedingslots, notes)
-VALUES (1, 'Mice', NOW(), ARRAY [TIME '00:30', TIME '07:00', TIME '16:00', TIME '22:00'], 'The smallest one seems to have a pain in his right leg. Show it to the vet tomorrow.');
+VALUES (1, 'Mice', NOW(), ARRAY [TIME '06:00', TIME '12:00', TIME '18:00', TIME '22:00'], 'The smallest one seems to have a pain in his right leg. Show it to the vet tomorrow.');
