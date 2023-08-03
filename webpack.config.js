@@ -19,14 +19,14 @@ module.exports = () => ({
         contentBase: path.join(__dirname, "client", "public"),
         proxy: {
             "/": {
-                target: "http://localhost:3001",
+                target: "http://localhost:4001",
             },
             "/socket.io": {
-                target: "http://localhost:3001",
+                target: "http://localhost:4001",
                 ws: true,
             },
         },
-        port: "3000",
+        port: "4000",
     },
     module: {
         rules: [

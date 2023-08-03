@@ -1,11 +1,8 @@
 import { NavLink, Route, BrowserRouter } from "react-router-dom";
-import About from "../About.js";
-import WhosNext from "./WhosNext.js";
-import NewLitter from "./NewLitter.js";
-import LitterOverview from "./LitterOverview.js";
-import LoginRegisterButtons from "../LoginRegisterButtons.js";
+import About from "./About.js";
+import LoginRegisterButtons from "./LoginRegisterButtons.js";
 
-export default function ToolMainpage() {
+export default function Main() {
     return (
         <BrowserRouter>
             <header>
@@ -14,15 +11,6 @@ export default function ToolMainpage() {
                     <menu>
                         <NavLink className="menuEntry" to="/" exact>
                             About
-                        </NavLink>
-                        <NavLink className="menuEntry" to="/whosNext">
-                            Who&apos;s next?
-                        </NavLink>
-                        <NavLink className="menuEntry" to="/newLitter">
-                            Add new Litter
-                        </NavLink>
-                        <NavLink className="menuEntry" to="/litterOverview">
-                            Litter overview
                         </NavLink>
                     </menu>
                     <NavLink className="logo" to="/" exact>
@@ -42,17 +30,6 @@ export default function ToolMainpage() {
                                 <div>
                                     <About />
                                 </div>
-                            </Route>
-                            <Route path="/whosNext">
-                                <div>
-                                    <WhosNext />
-                                </div>
-                            </Route>
-                            <Route path="/newLitter">
-                                <NewLitter />
-                            </Route>
-                            <Route path="/litterOverview">
-                                <LitterOverview />
                             </Route>
                         </section>
                     </div>
