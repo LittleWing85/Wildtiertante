@@ -1,4 +1,7 @@
 import ReactDOM from "react-dom";
-import ToolMainpage from "./documentationTool/toolMainpage";
+import Main from "./Main";
 
-ReactDOM.render(<ToolMainpage />, document.querySelector("main"));
+ReactDOM.render(<Main />, document.querySelector("main"));
+
+/* import ToolMainpage from "./documentationTool/toolMainpage";
+ReactDOM.render(<ToolMainpage />, document.querySelector("main")); */
