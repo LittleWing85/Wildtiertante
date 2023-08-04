@@ -1,28 +1,23 @@
 import { NavLink, Route, BrowserRouter } from "react-router-dom";
-import About from "../About.js";
-import WhosNext from "./WhosNext.js";
-import NewLitter from "./NewLitter.js";
-import LitterOverview from "./LitterOverview.js";
-import LoginRegisterButtons from "../LoginRegisterButtons.js";
+import About from "./common/About.js";
+import LoginRegisterButtons from "./common/LoginRegisterButtons.js";
+import ToolMainpage from "./documentationTool/ToolMainpage.js";
 
-export default function ToolMainpage() {
+export default function Mainpage() {
     return (
         <BrowserRouter>
             <header>
                 <LoginRegisterButtons />
-                <nav>
-                    <menu>
-                        <NavLink className="menuEntry" to="/" exact>
+                <nav className="navMain">
+                    <menu className="menuMain">
+                        <NavLink className="menuEntryMain" to="/" exact>
                             About
                         </NavLink>
-                        <NavLink className="menuEntry" to="/whosNext">
-                            Who&apos;s next?
-                        </NavLink>
-                        <NavLink className="menuEntry" to="/newLitter">
-                            Add new Litter
-                        </NavLink>
-                        <NavLink className="menuEntry" to="/litterOverview">
-                            Litter overview
+                        <NavLink
+                            className="menuEntryMain"
+                            to="/documentationTool"
+                        >
+                            Documentation Tool
                         </NavLink>
                     </menu>
                     <NavLink className="logo" to="/" exact>
@@ -37,22 +32,16 @@ export default function ToolMainpage() {
                 <div className="left-picture"></div>
                 <div className="center">
                     <div>
-                        <section className="mainContainer">
+                        <section>
                             <Route path="/" exact>
                                 <div>
                                     <About />
                                 </div>
                             </Route>
-                            <Route path="/whosNext">
+                            <Route path="/documentationTool">
                                 <div>
-                                    <WhosNext />
+                                    <ToolMainpage />
                                 </div>
-                            </Route>
-                            <Route path="/newLitter">
-                                <NewLitter />
-                            </Route>
-                            <Route path="/litterOverview">
-                                <LitterOverview />
                             </Route>
                         </section>
                     </div>
