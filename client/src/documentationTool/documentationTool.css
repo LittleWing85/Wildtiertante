@@ -1,0 +1,70 @@
+button {
+    width: 10rem;
+    padding: 0.2rem;
+    margin: 2rem 1rem 0 0;
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid green;
+}
+label {
+    margin: 0.5rem 0.5rem 0.3rem 0;
+}
+input {
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 4px;
+    padding: 0.2rem;
+    height: 1.7rem;
+}
+
+.buttonWhosNext {
+    margin-top: 0rem;
+    width: 5rem;
+}
+.inputMilk {
+    margin-right: 1.5rem;
+}
+.formMainContainer {
+    display: flex;
+    flex-direction: column;
+    width: 31rem;
+}
+.flexLabelAndInput,
+.flexLabelAndInputSmallMargin,
+.flexLabelAndInputSmallMargin,
+.flexTimes {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.flexLabelAndInput {
+    margin-top: 0.7rem;
+}
+.flexLabelAndInputSmallMargin {
+    margin-top: 0.35rem;
+}
+select {
+    background-color: white;
+    height: 1.5rem;
+}
+.labelFixedWidth {
+    width: 8rem;
+}
+textarea,
+select {
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 4px;
+    padding: 0.2rem;
+}
+.inputWide {
+    width: 21rem;
+}
+.inputMiddle {
+    width: 7rem;
+}
+.inputNarrow,
+.inputTime {
+    width: 5.5rem;
+}
+.inputTime {
+    margin: 0.35rem 0.5rem 0 0;
+}

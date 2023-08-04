@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
-import LoginPopUp from "./LoginPopUp.js";
-import RegisterPopUp from "./RegisterPopUp.js";
+import LoginPopUp from "./popUpLogin.js";
+import RegisterPopUp from "./popUpRegister.js";
+import "./loginAndRegister.css";
 
-export default function LoginRegisterButtons() {
+export default function Buttons() {
     const [showLoginPopUp, setShowLoginPopUp] = useState(false);
     const [showRegisterPopUp, setShowRegisterPopUp] = useState(false);
     const [loggedIn, setloggedIn] = useState();
@@ -45,30 +46,20 @@ export default function LoginRegisterButtons() {
 
     return (
         <BrowserRouter>
-            <div className="loginregisterContainer">
+            <div className="containerLoginButton">
                 {loggedIn && (
                     <form action="/logout" method="POST">
-                        <button className="loginregister">Logout</button>
+                        <button className="buttonLoginRegister">Logout</button>
                     </form>
                 )}
-
-                {!loggedIn && (
-                    <div>
-                        <button
-                            className="loginregister"
-                            onClick={onLoginClick}
-                        >
-                            Login
-                        </button>
-                        <button
-                            className="loginregister"
-                            onClick={onRegisterClick}
-                        >
-                            Register
-                        </button>
-                    </div>
-                )}
             </div>
+
+            {!loggedIn && (
+                <div className="containerLoginButton">
+                    <button onClick={onLoginClick}>Login</button>
+                    <button onClick={onRegisterClick}>Register</button>
+                </div>
+            )}
 
             <section>
                 {showLoginPopUp && (

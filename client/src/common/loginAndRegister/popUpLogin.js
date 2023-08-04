@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./loginAndRegister.css";
 
 export default function LoginPopUp({
     onLoginClose,
@@ -39,9 +40,9 @@ export default function LoginPopUp({
     }
 
     return (
-        <div className="popUpContainer">
-            <div className="loginPopUp">
-                <button className="closingButton" onClick={onLoginClose}>
+        <div className="containerPopUp">
+            <div className="popUpLogin">
+                <button className="buttonClosing" onClick={onLoginClose}>
                     X
                 </button>
                 {showLoginErrorMessage && (

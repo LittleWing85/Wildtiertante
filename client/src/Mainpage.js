@@ -1,52 +1,44 @@
 import { NavLink, Route, BrowserRouter } from "react-router-dom";
-import About from "./common/About.js";
-import LoginRegisterButtons from "./common/LoginRegisterButtons.js";
+import About from "./common/about/About.js";
+import Buttons from "./common/loginAndRegister/Buttons.js";
 import ToolMainpage from "./documentationTool/ToolMainpage.js";
+import "./common/logo/logo.css";
 
 export default function Mainpage() {
     return (
         <BrowserRouter>
             <header>
-                <LoginRegisterButtons />
-                <nav className="navMain">
-                    <menu className="menuMain">
-                        <NavLink className="menuEntryMain" to="/" exact>
-                            About
-                        </NavLink>
-                        <NavLink
-                            className="menuEntryMain"
-                            to="/documentationTool"
-                        >
-                            Documentation Tool
-                        </NavLink>
-                    </menu>
-                    <NavLink className="logo" to="/" exact>
-                        WILDTIERTANTE
+                <NavLink className="logo" to="/" exact>
+                    WILDTIERTANTE
+                </NavLink>
+                <NavLink className="logoMobile" to="/" exact>
+                    W
+                </NavLink>
+
+                <nav>
+                    <NavLink className="navEntry" to="/" exact>
+                        About
                     </NavLink>
-                    <NavLink className="logoMobile" to="/" exact>
-                        W
+                    <NavLink className="navEntry" to="/documentationTool">
+                        Documentation Tool
                     </NavLink>
                 </nav>
+                <Buttons />
             </header>
-            <div className="wrapper">
-                <div className="left-picture"></div>
-                <div className="center">
-                    <div>
-                        <section>
-                            <Route path="/" exact>
-                                <div>
-                                    <About />
-                                </div>
-                            </Route>
-                            <Route path="/documentationTool">
-                                <div>
-                                    <ToolMainpage />
-                                </div>
-                            </Route>
-                        </section>
-                    </div>
-                </div>
-                <div className="right-picture"> </div>
+
+            <div className="content">
+                <section>
+                    <Route path="/" exact>
+                        <div>
+                            <About />
+                        </div>
+                    </Route>
+                    <Route path="/documentationTool">
+                        <div>
+                            <ToolMainpage />
+                        </div>
+                    </Route>
+                </section>
             </div>
         </BrowserRouter>
     );
