@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./loginAndRegister.css";
 
 export default function RegisterPopUp({ onRegisterClose, toggleLoggedIn }) {
     const [errorOnRegistration, setErrorOnRegistration] = useState(false);
@@ -30,9 +31,9 @@ export default function RegisterPopUp({ onRegisterClose, toggleLoggedIn }) {
     }
 
     return (
-        <div className="popUpContainer">
-            <div className="registerPopUp">
-                <button className="closingButton" onClick={onRegisterClose}>
+        <div className="containerPopUp">
+            <div className="popUpRegister">
+                <button className="buttonClosing" onClick={onRegisterClose}>
                     X
                 </button>
                 {errorOnRegistration && (

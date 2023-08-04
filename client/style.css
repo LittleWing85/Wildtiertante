@@ -26,7 +26,7 @@ p {
     list-style-type: none;
 }
 
-/* Font sizing */
+/* font sizing */
 p,
 label,
 button,
@@ -40,141 +40,23 @@ h1,
 h2 {
     font-size: 17px;
 }
-.menuEntry {
-    font-size: 20px;
+p a:hover {
+    color: blue;
 }
 
-/* main Layout */
-.logo,
-.logo.active {
-    position: absolute;
-    top: 1.8rem;
-    color: white;
-    height: 3rem;
-    font-size: 20px;
-    font-weight: bold;
-    background-color: green;
-    padding: 0.5rem;
-    border: 1px solid black;
+/* macro typography */
+.content {
+    width: 60rem;
 }
-.logo,
-.logo.active {
-    right: 1rem;
+.flexHorizontally {
+    display: flex;
 }
-.logoMobile,
-.logoMobile.active {
-    display: none;
+.flexVertically {
+    display: flex;
+    flex-direction: column;
 }
 
-header {
-    height: 11vh;
-}
-.navMain {
-    height: 11vh;
-    display: flex;
-    padding-left: 18%;
-    background-color: green;
-}
-.navLeft {
-    background-color: deeppink;
-}
-.menuMain {
-    display: flex;
-    margin: 2.2rem 0 0 0;
-    width: 62.5%;
-}
-.menuEntryMain {
-    padding: 0.8rem;
-    margin-right: 0.8rem;
-    font-weight: bold;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    color: white;
-}
-.active {
-    background-color: white;
-    color: green;
-}
-.wrapper {
-    display: flex;
-    height: 89vh;
-}
-.center {
-    flex: 1;
-    padding: 1rem;
-    overflow-y: auto;
-    display: flex;
-    justify-content: center;
-}
-.mainContainer {
-    width: 31rem;
-    padding: 3rem 1rem 1rem 1rem;
-}
-.left-picture,
-.right-picture {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-.left-picture {
-    flex-basis: 18%;
-    background-image: url("./media/Franziskustierheim-3801.JPG");
-}
-.right-picture {
-    flex-basis: 35%;
-    background-image: url("./media/Franziskustierheim-3390.JPG");
-}
-
-/* Login & registration */
-.errorMessage {
-    margin: 0 0 1rem 0;
-}
-.loginregisterContainer {
-    margin: 0;
-    display: flex;
-    position: absolute;
-    width: 18%;
-}
-.loginregister {
-    color: white;
-    height: 3rem;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: green;
-    padding: 0.75rem;
-    margin: 1.8rem 0 0 1rem;
-    border: 1px solid black;
-    width: 6rem;
-}
-.loginregister:hover {
-    cursor: pointer;
-}
-.loginPopUp {
-    height: 22rem;
-}
-.registerPopUp {
-    height: 24rem;
-}
-.registerPopUp,
-.loginPopUp {
-    background-color: green;
-    margin-top: 25vh;
-    margin-right: 33%;
-    width: 35rem;
-    border-radius: 15px;
-    padding: 1rem;
-}
-.closingButton {
-    width: 2rem;
-    height: 2rem;
-    margin: 0 0 0 31rem;
-    border-radius: 4px;
-}
-.clickHere:hover {
-    cursor: pointer;
-}
-
-/* Layout in general */
+/* micro typography */
 .topSpaceBig {
     margin-top: 4rem;
 }
@@ -187,200 +69,28 @@ header {
 .bottomSpace {
     margin-bottom: 3rem;
 }
-.flexHorizontally {
-    display: flex;
-}
-.flexVertically {
-    display: flex;
-    flex-direction: column;
-}
 
-.popUpContainer {
-    position: absolute;
+/* navigation & menu */
+header {
+    height: 5rem;
+    background-color: green;
     display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
 }
-
-/* Buttons and forms */
-button {
-    width: 10rem;
-    padding: 0.2rem;
-    margin: 2rem 1rem 0 0;
+.nav {
+    display: flex;
+    margin: 2.2rem 0 0 0;
+    width: 62.5%;
+}
+.navEntry {
+    font-size: 20px;
+    padding: 0.8rem;
+    margin-right: 0.8rem;
+    font-weight: bold;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    color: white;
+}
+.active {
     background-color: white;
-    border-radius: 15px;
-    border: 1px solid green;
-}
-.formMainContainer {
-    display: flex;
-    flex-direction: column;
-    width: 31rem;
-}
-.flexLabelAndInput,
-.flexLabelAndInputSmallMargin,
-.flexLabelAndInputSmallMargin,
-.flexTimes {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-.flexLabelAndInput {
-    margin-top: 0.7rem;
-}
-.flexLabelAndInputSmallMargin {
-    margin-top: 0.35rem;
-}
-label {
-    margin: 0.5rem 0.5rem 0.3rem 0;
-}
-select {
-    background-color: white;
-    height: 1.5rem;
-}
-.labelFixedWidth {
-    width: 8rem;
-}
-textarea,
-input,
-select {
-    border: 1px solid rgb(204, 204, 204);
-    border-radius: 4px;
-    padding: 0.2rem;
-}
-input {
-    height: 1.7rem;
-}
-.inputWide {
-    width: 21rem;
-}
-.inputMiddle {
-    width: 7rem;
-}
-.inputNarrow,
-.inputTime {
-    width: 5.5rem;
-}
-.inputTime {
-    margin: 0.35rem 0.5rem 0 0;
-}
-
-/* Who's next */
-.buttonWhosNext {
-    margin-top: 0rem;
-    width: 5rem;
-}
-.inputMilk {
-    margin-right: 1.5rem;
-}
-
-/* About */
-.aboutImagesContainer {
-    display: flex;
-    justify-content: space-between;
-}
-.aboutImage {
-    margin-top: 2rem;
-    width: 46% !important;
-    height: 10rem;
-    object-fit: cover;
-}
-p a:hover {
-    color: blue;
-}
-
-@media screen and (max-width: 1400px) {
-    menu {
-        margin: 1rem 0 0 0;
-        width: 45.5%;
-    }
-    .menuEntry {
-        font-size: 18px;
-    }
-    .right-picture {
-        flex-basis: 30%;
-        background-image: url("./media/Franziskustierheim-3390_narrow.jpg");
-    }
-    .left-picture {
-        flex-basis: 18%;
-        background-image: url("./media/Franziskustierheim-3801_narrow.jpg");
-    }
-    .loginregister {
-        width: 4.5rem;
-        font-size: 13px;
-    }
-}
-
-@media screen and (max-width: 1024px) {
-    .inputWide {
-        width: 15rem;
-    }
-    form {
-        width: 25rem;
-    }
-    .mainContainer {
-        width: 25rem;
-    }
-    .login,
-    .logo,
-    .logo.active {
-        font-size: 20px;
-    }
-    .loginregister {
-        width: 4.5rem;
-        font-size: 13px;
-        margin: 0.25rem;
-        padding: 0rem;
-        height: 2rem;
-    }
-    .loginregisterContainer {
-        padding: 1rem;
-    }
-}
-
-@media screen and (max-width: 720px) {
-    .login,
-    .logo,
-    .logo.active {
-        display: none;
-    }
-    .logoMobile,
-    .logoMobile.active {
-        display: block;
-        position: absolute;
-        top: 1.8rem;
-        right: 1rem;
-        color: white;
-        height: 3rem;
-        font-size: 30px;
-        font-weight: bold;
-        background-color: green;
-        padding: 0.5rem;
-        border: 1px solid black;
-    }
-    .right-picture,
-    .left-picture {
-        display: none;
-    }
-    menu {
-        width: 80%;
-    }
-    .menuEntry {
-        padding: 0.8rem;
-        margin-right: 0.8rem;
-        font-weight: bold;
-        font-size: 16px;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-    }
-    .aboutImagesContainer {
-        display: flex;
-        flex-direction: column;
-    }
-    .aboutImage {
-        margin-top: 2rem;
-        width: 100% !important;
-        height: 15rem;
-        object-fit: cover;
-    }
+    color: green;
 }

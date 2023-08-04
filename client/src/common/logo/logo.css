@@ -1,0 +1,12 @@
+.logo,
+.logo.active {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: green;
+    border: 1px solid black;
+}
+.logoMobile,
+.logoMobile.active {
+    display: none;
+}

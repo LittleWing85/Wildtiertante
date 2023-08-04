@@ -6,18 +6,10 @@ import LitterOverview from "./LitterOverview.js";
 export default function ToolMainpage() {
     return (
         <BrowserRouter>
-            <nav className="navLeft">
-                <menu>
-                    <NavLink className="menuEntry" to="/whosNext">
-                        Who&apos;s next?
-                    </NavLink>
-                    <NavLink className="menuEntry" to="/newLitter">
-                        Add new Litter
-                    </NavLink>
-                    <NavLink className="menuEntry" to="/litterOverview">
-                        Litter overview
-                    </NavLink>
-                </menu>
+            <nav>
+                <NavLink to="/whosNext">Who&apos;s next?</NavLink>
+                <NavLink to="/newLitter">Add new Litter</NavLink>
+                <NavLink to="/litterOverview">Litter overview</NavLink>
             </nav>
 
             <div>

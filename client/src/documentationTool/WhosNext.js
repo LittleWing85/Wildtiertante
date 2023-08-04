@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink, useHistory } from "react-router-dom";
+import "./documentationTool.css";
 
 function formatTime1(time) {
     const formattedTime = time.split(":").slice(0, 2).join(":");
