@@ -69,18 +69,21 @@ h2 {
 header {
     height: 11vh;
 }
-nav {
+.navMain {
     height: 11vh;
     display: flex;
     padding-left: 18%;
     background-color: green;
 }
-menu {
+.navLeft {
+    background-color: deeppink;
+}
+.menuMain {
     display: flex;
     margin: 2.2rem 0 0 0;
     width: 62.5%;
 }
-.menuEntry {
+.menuEntryMain {
     padding: 0.8rem;
     margin-right: 0.8rem;
     font-weight: bold;
