@@ -6,6 +6,7 @@
 }
 body {
     height: 100%;
+    overflow: hidden;
 }
 html {
     height: 100%;
@@ -45,8 +46,29 @@ p a:hover {
 }
 
 /* macro typography */
+main {
+    display: grid;
+    grid-template-rows: 5rem 1fr;
+}
+.layoutContent {
+    display: flex;
+    height: 50vh;
+}
+.center {
+    flex: 1;
+    overflow-y: auto;
+}
+/* section {
+    width: 33%;
+} */
+
+.left,
+.right {
+    width: 50px;
+    background-color: deeppink;
+}
 .content {
-    width: 60rem;
+    height: 150vh;
 }
 .flexHorizontally {
     display: flex;
@@ -72,10 +94,12 @@ p a:hover {
 
 /* navigation & menu */
 header {
-    height: 5rem;
+    display: grid;
+    grid-template-rows: 5rem;
+    grid-template-columns: 13rem 1fr 13rem;
     background-color: green;
-    display: flex;
 }
+
 .nav {
     display: flex;
     margin: 2.2rem 0 0 0;

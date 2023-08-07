@@ -8,12 +8,14 @@ export default function Mainpage() {
     return (
         <BrowserRouter>
             <header>
-                <NavLink className="logo" to="/" exact>
-                    WILDTIERTANTE
-                </NavLink>
-                <NavLink className="logoMobile" to="/" exact>
-                    W
-                </NavLink>
+                <div>
+                    <NavLink className="logo" to="/" exact>
+                        WILDTIERTANTE
+                    </NavLink>
+                    <NavLink className="logoMobile" to="/" exact>
+                        W
+                    </NavLink>
+                </div>
 
                 <nav>
                     <NavLink className="navEntry" to="/" exact>
@@ -23,22 +25,28 @@ export default function Mainpage() {
                         Documentation Tool
                     </NavLink>
                 </nav>
-                <Buttons />
+                <div>
+                    <Buttons />
+                </div>
             </header>
 
-            <div className="content">
-                <section>
-                    <Route path="/" exact>
-                        <div>
-                            <About />
-                        </div>
-                    </Route>
-                    <Route path="/documentationTool">
-                        <div>
-                            <ToolMainpage />
-                        </div>
-                    </Route>
+            <div className="layoutContent">
+                <section className="left"></section>
+                <section className="center">
+                    <div className="content">
+                        <Route path="/" exact>
+                            <div>
+                                <About />
+                            </div>
+                        </Route>
+                        <Route path="/documentationTool">
+                            <div>
+                                <ToolMainpage />
+                            </div>
+                        </Route>
+                    </div>
                 </section>
+                <section className="right"></section>
             </div>
         </BrowserRouter>
     );
