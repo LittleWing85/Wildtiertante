@@ -45,40 +45,13 @@ p a:hover {
     color: blue;
 }
 
-/* macro typography */
-main {
-    display: grid;
-    grid-template-rows: 5rem 1fr;
-}
-.layoutContent {
-    display: flex;
-    height: 50vh;
-}
-.center {
-    flex: 1;
-    overflow-y: auto;
-}
-/* section {
-    width: 33%;
-} */
-
-.left,
-.right {
-    width: 50px;
-    background-color: deeppink;
-}
-.content {
-    height: 150vh;
-}
-.flexHorizontally {
-    display: flex;
-}
+/* alignment */
 .flexVertically {
     display: flex;
     flex-direction: column;
 }
 
-/* micro typography */
+/* spacing */
 .topSpaceBig {
     margin-top: 4rem;
 }
@@ -92,14 +65,38 @@ main {
     margin-bottom: 3rem;
 }
 
+/* overall layout */
+.layoutContent {
+    display: flex;
+    height: 100vh;
+}
+.left,
+.center,
+.right {
+    margin-top: 5rem;
+}
+.center {
+    flex: 1;
+    overflow-y: auto;
+}
+.left,
+.right {
+    width: 200px;
+    background-color: deeppink;
+}
+.content {
+    height: 150vh;
+}
+
 /* navigation & menu */
 header {
+    position: absolute;
+    width: 100%;
     display: grid;
     grid-template-rows: 5rem;
     grid-template-columns: 13rem 1fr 13rem;
     background-color: green;
 }
-
 .nav {
     display: flex;
     margin: 2.2rem 0 0 0;
