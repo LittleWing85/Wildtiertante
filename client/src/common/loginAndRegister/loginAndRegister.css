@@ -11,17 +11,19 @@ input {
 /* buttons for login & register */
 .containerLoginButton {
     display: flex;
+    align-items: center;
+    height: 100%;
     padding: 0 1rem;
 }
 .containerLoginButton button {
-    color: white;
-    width: 6rem;
-    height: 3rem;
-    font-size: 16px;
+    width: 4rem;
+    height: 1.8rem;
     margin: 0 0.5rem;
+    color: white;
+    background-color: rgb(12, 166, 12);
+    border: none;
+    font-size: 14px;
     font-weight: bold;
-    background-color: green;
-    border: 1px solid black;
 }
 button:hover {
     cursor: pointer;
