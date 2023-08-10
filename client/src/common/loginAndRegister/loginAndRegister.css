@@ -11,16 +11,17 @@ input {
 /* buttons for login & register */
 .containerLoginButton {
     display: flex;
+    padding: 0 1rem;
 }
 .containerLoginButton button {
     color: white;
+    width: 6rem;
     height: 3rem;
     font-size: 16px;
+    margin: 0 0.5rem;
     font-weight: bold;
     background-color: green;
     border: 1px solid black;
-    width: 6rem;
-    margin: 0;
 }
 button:hover {
     cursor: pointer;

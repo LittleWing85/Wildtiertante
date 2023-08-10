@@ -8,7 +8,7 @@ export default function Mainpage() {
     return (
         <BrowserRouter>
             <header>
-                <div>
+                <div className="containerLogo">
                     <NavLink className="logo" to="/" exact>
                         WILDTIERTANTE
                     </NavLink>
@@ -30,20 +30,22 @@ export default function Mainpage() {
                 </div>
             </header>
 
-            <div className="layoutContent">
+            <div className="layout">
                 <section className="left"></section>
                 <section className="center">
                     <div className="content">
-                        <Route path="/" exact>
-                            <div>
-                                <About />
-                            </div>
-                        </Route>
-                        <Route path="/documentationTool">
-                            <div>
-                                <ToolMainpage />
-                            </div>
-                        </Route>
+                        <div className="shadowBox">
+                            <Route path="/" exact>
+                                <div>
+                                    <About />
+                                </div>
+                            </Route>
+                            <Route path="/documentationTool">
+                                <div>
+                                    <ToolMainpage />
+                                </div>
+                            </Route>
+                        </div>
                     </div>
                 </section>
                 <section className="right"></section>

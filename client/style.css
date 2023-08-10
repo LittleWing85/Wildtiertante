@@ -4,13 +4,6 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
-body {
-    height: 100%;
-    overflow: hidden;
-}
-html {
-    height: 100%;
-}
 a {
     text-decoration: none;
     color: black;
@@ -66,38 +59,34 @@ p a:hover {
 }
 
 /* overall layout */
-.layoutContent {
-    display: flex;
-    height: 100vh;
+.layout {
+    padding-top: 5em;
+    display: grid;
+    grid-template-columns: 1fr 70rem 1fr;
 }
 .left,
-.center,
-.right {
-    margin-top: 5rem;
-}
-.center {
-    flex: 1;
-    overflow-y: auto;
-    padding: 1rem;
-    box-shadow: 0 0 0.5em 0.2em rgb(225, 225, 220);
-}
-.left,
-.right {
-    width: 25rem;
-    background-color: rgb(241, 241, 241);
-}
+.right,
 .content {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(240, 240, 240);
+}
+.shadowBox {
+    padding: 2rem;
+    width: 68rem;
     height: 150vh;
+    background-color: white;
+    box-shadow: 0 0 0.2rem 0.05em rgb(220, 220, 220);
 }
 
 /* navigation & menu */
 header {
-    position: absolute;
+    position: fixed;
     width: 100%;
     display: grid;
     grid-template-rows: 5rem;
-    grid-template-columns: 25rem 1fr 25rem;
-    background-color: green;
+    grid-template-columns: 1fr 68rem 1fr;
+    background-color: rgb(12, 166, 12);
     align-items: center;
 }
 .nav {

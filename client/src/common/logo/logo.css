@@ -1,3 +1,8 @@
+.containerLogo {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 2rem;
+}
 .logo,
 .logo.active {
     color: white;
