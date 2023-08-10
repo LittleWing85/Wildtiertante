@@ -46,13 +46,17 @@ export default function Buttons() {
 
     return (
         <BrowserRouter>
-            <div className="containerLoginButton">
-                {loggedIn && (
-                    <form action="/logout" method="POST">
-                        <button className="buttonLoginRegister">Logout</button>
-                    </form>
-                )}
-            </div>
+            {
+                <div className="containerLoginButton">
+                    {loggedIn && (
+                        <form action="/logout" method="POST">
+                            <button className="buttonLoginRegister">
+                                Logout
+                            </button>
+                        </form>
+                    )}
+                </div>
+            }
 
             {!loggedIn && (
                 <div className="containerLoginButton">

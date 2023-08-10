@@ -84,10 +84,10 @@ header {
     position: fixed;
     width: 100%;
     display: grid;
+    align-items: center;
     grid-template-rows: 5rem;
     grid-template-columns: 1fr 68rem 1fr;
     background-color: rgb(12, 166, 12);
-    align-items: center;
 }
 .nav {
     display: flex;
@@ -95,15 +95,21 @@ header {
     width: 62.5%;
 }
 .navEntry {
-    font-size: 20px;
     padding: 0.8rem;
     margin-right: 0.8rem;
+    border-radius: 15px;
+    border: solid rgb(12, 166, 12) 1px;
+    color: rgb(216, 246, 216);
+    font-size: 20px;
     font-weight: bold;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    color: white;
+}
+.navEntry:hover {
+    border: solid rgb(216, 246, 216) 1px;
 }
 .active {
-    background-color: white;
+    background-color: rgb(216, 246, 216);
     color: green;
+}
+.active:hover {
+    border: solid rgb(12, 166, 12) 1px;
 }
