@@ -22,7 +22,6 @@ input {
     color: white;
     background-color: rgb(12, 166, 12);
     border: none;
-    font-size: 14px;
     font-weight: bold;
 }
 button:hover {
@@ -31,6 +30,7 @@ button:hover {
 
 /* popups for login & register */
 .containerPopUp {
+    background-color: deeppink;
     position: absolute;
     display: flex;
     justify-content: center;

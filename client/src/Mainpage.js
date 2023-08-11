@@ -22,7 +22,7 @@ export default function Mainpage() {
                         About
                     </NavLink>
                     <NavLink className="navEntry" to="/documentationTool">
-                        Documentation Tool
+                        App
                     </NavLink>
                 </nav>
                 <div>

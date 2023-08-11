@@ -60,7 +60,7 @@ p a:hover {
 
 /* overall layout */
 .layout {
-    padding-top: 5em;
+    padding-top: 5.8em;
     display: grid;
     grid-template-columns: 1fr 70rem 1fr;
 }
@@ -72,7 +72,7 @@ p a:hover {
     background-color: rgb(240, 240, 240);
 }
 .shadowBox {
-    padding: 2rem;
+    padding: 2rem 3rem;
     width: 68rem;
     height: 150vh;
     background-color: white;
@@ -85,29 +85,28 @@ header {
     width: 100%;
     display: grid;
     align-items: center;
-    grid-template-rows: 5rem;
+    grid-template-rows: 5.8rem;
     grid-template-columns: 1fr 68rem 1fr;
     background-color: rgb(12, 166, 12);
 }
-.nav {
+nav {
+    padding: 0 3rem;
     display: flex;
-    margin: 2.2rem 0 0 0;
-    width: 62.5%;
+    gap: 1rem;
 }
 .navEntry {
-    padding: 0.8rem;
-    margin-right: 0.8rem;
+    padding: 0.5rem 1.8rem;
     border-radius: 15px;
     border: solid rgb(12, 166, 12) 1px;
-    color: rgb(216, 246, 216);
-    font-size: 20px;
+    color: rgb(181, 245, 181);
+    font-size: 16px;
     font-weight: bold;
 }
 .navEntry:hover {
-    border: solid rgb(216, 246, 216) 1px;
+    border: solid rgb(181, 245, 181) 1px;
 }
 .active {
-    background-color: rgb(216, 246, 216);
+    background-color: rgb(181, 245, 181);
     color: green;
 }
 .active:hover {
