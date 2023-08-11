@@ -95,7 +95,7 @@ nav {
     gap: 1rem;
 }
 .navEntry {
-    padding: 0.5rem 1.8rem;
+    padding: 0.5rem 1.2rem;
     border-radius: 15px;
     border: solid rgb(12, 166, 12) 1px;
     color: rgb(181, 245, 181);
@@ -107,7 +107,8 @@ nav {
 }
 .active {
     background-color: rgb(181, 245, 181);
-    color: green;
+    border: solid rgb(181, 245, 181) 1px;
+    color: rgb(12, 166, 12);
 }
 .active:hover {
     border: solid rgb(12, 166, 12) 1px;

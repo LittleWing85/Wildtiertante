@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./loginAndRegister.css";
+import "./loginLogoutRegister.css";
 
 export default function RegisterPopUp({ onRegisterClose, toggleLoggedIn }) {
     const [errorOnRegistration, setErrorOnRegistration] = useState(false);
