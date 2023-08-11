@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
-import LoginPopUp from "./popUpLogin.js";
-import RegisterPopUp from "./popUpRegister.js";
+import LoginPopUp from "./PopUpLogin.js";
+import RegisterPopUp from "./PopUpRegister.js";
 import "./loginAndRegister.css";
 
 export default function Buttons() {
