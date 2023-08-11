@@ -30,8 +30,12 @@ export default function LoginLogoutRegister() {
         <div>
             {!loggedIn && (
                 <div className="containerLoginRegister">
-                    <NavLink to="/login">Login</NavLink>
-                    <NavLink to="/register">Register</NavLink>
+                    <div>
+                        <NavLink to="/login">Login</NavLink>
+                    </div>
+                    <div>
+                        <NavLink to="/register">Register</NavLink>
+                    </div>
                 </div>
             )}
             {loggedIn && (
