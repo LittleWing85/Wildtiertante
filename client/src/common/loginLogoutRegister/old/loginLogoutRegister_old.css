@@ -1,0 +1,66 @@
+label {
+    margin: 0.5rem 0.5rem 0.3rem 0;
+}
+input {
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 4px;
+    padding: 0.2rem;
+    height: 1.7rem;
+}
+
+/* buttons for login & register */
+.containerLoginButton {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 1rem;
+}
+.containerLoginButton button {
+    width: 4rem;
+    height: 1.8rem;
+    margin: 0 0.5rem;
+    color: white;
+    background-color: rgb(12, 166, 12);
+    border: none;
+    font-weight: bold;
+}
+button:hover {
+    cursor: pointer;
+}
+
+/* popups for login & register */
+.containerPopUp {
+    background-color: deeppink;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+.popUpLogin {
+    height: 22rem;
+}
+.popUpRegister {
+    height: 24rem;
+}
+.popUpLogin,
+.popUpRegister {
+    background-color: green;
+    margin-top: 25vh;
+    margin-right: 33%;
+    width: 35rem;
+    border-radius: 15px;
+    padding: 1rem;
+}
+.clickHere:hover {
+    cursor: pointer;
+}
+.errorMessage {
+    margin: 0 0 1rem 0;
+}
+.buttonClosing {
+    width: 2rem;
+    height: 2rem;
+    margin: 0 0 0 31rem;
+    border-radius: 4px;
+}

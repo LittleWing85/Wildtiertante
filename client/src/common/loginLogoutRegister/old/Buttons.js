@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { NavLink } from "react-router-dom";
 import LoginPopUp from "./PopUpLogin.js";
 import RegisterPopUp from "./PopUpRegister.js";
 import "./loginLogoutRegister.css";
@@ -47,9 +46,6 @@ export default function Buttons() {
 
     return (
         <BrowserRouter>
-            <div>
-                <NavLink to="/register">Register</NavLink>
-            </div>
             {
                 <div className="containerLoginButton">
                     {loggedIn && (
@@ -64,8 +60,8 @@ export default function Buttons() {
 
             {!loggedIn && (
                 <div className="containerLoginButton">
-                    {/* <button onClick={onLoginClick}>Login</button>
-                    <button onClick={onRegisterClick}>Register</button> */}
+                    <button onClick={onLoginClick}>Login</button>
+                    <button onClick={onRegisterClick}>Register</button>
                 </div>
             )}
 
