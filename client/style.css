@@ -4,35 +4,27 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
-a {
-    text-decoration: none;
-    color: black;
-}
-h1,
-h2 {
-    margin: 0 0 0.6rem 0;
-}
-p {
-    text-align: justify;
-    line-height: 1.3rem;
-}
 .listStyleNone {
     list-style-type: none;
 }
 
-/* font sizing */
+/* font styling */
 p,
 label,
 button,
-a,
 input,
 textarea,
 select {
     font-size: 15px;
+    color: rgb(68, 68, 68);
 }
 h1,
 h2 {
     font-size: 17px;
+}
+a {
+    font-size: 15px;
+    text-decoration: none;
 }
 p a:hover {
     color: blue;
@@ -45,38 +37,46 @@ p a:hover {
 }
 
 /* spacing */
+h1,
+h2 {
+    margin-bottom: 0.6em;
+}
+p {
+    line-height: 1.3em;
+    margin-bottom: 0.7em;
+}
 .topSpaceBig {
-    margin-top: 4rem;
+    margin-top: 4em;
 }
 .topSpace {
-    margin-top: 2rem;
+    margin-top: 2em;
 }
 .topSpaceSmall {
-    margin-top: 0rem;
+    margin-top: 0em;
 }
 .bottomSpace {
-    margin-bottom: 3rem;
+    margin-bottom: 3em;
 }
 
 /* overall layout */
 .layout {
     padding-top: 5.8em;
     display: grid;
-    grid-template-columns: 1fr 70rem 1fr;
+    grid-template-columns: 1fr 70em 1fr;
 }
 .left,
 .right,
 .content {
     display: flex;
     justify-content: center;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(250, 250, 250);
 }
 .shadowBox {
-    padding: 2rem 3rem;
-    width: 68rem;
+    padding: 2em 3em;
+    width: 67em;
     height: 150vh;
     background-color: white;
-    box-shadow: 0 0 0.2rem 0.05em rgb(220, 220, 220);
+    box-shadow: 0 0 1em 0.2em rgb(235, 235, 235);
 }
 
 /* navigation & menu */
@@ -85,17 +85,17 @@ header {
     width: 100%;
     display: grid;
     align-items: center;
-    grid-template-rows: 5.8rem;
-    grid-template-columns: 1fr 68rem 1fr;
+    grid-template-rows: 5.8em;
+    grid-template-columns: 1fr 68em 1fr;
     background-color: rgb(12, 166, 12);
 }
 nav {
-    padding: 0 3rem;
+    padding: 0 3em;
     display: flex;
-    gap: 1rem;
+    gap: 1em;
 }
 .navEntry {
-    padding: 0.5rem 1.5rem;
+    padding: 0.5em 1.5em;
     border-radius: 20px;
     border: solid rgb(12, 166, 12) 1px;
     color: rgb(215, 248, 215);
