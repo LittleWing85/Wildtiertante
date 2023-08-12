@@ -95,21 +95,21 @@ nav {
     gap: 1rem;
 }
 .navEntry {
-    padding: 0.5rem 1.2rem;
-    border-radius: 15px;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
     border: solid rgb(12, 166, 12) 1px;
-    color: rgb(181, 245, 181);
-    font-size: 16px;
+    color: rgb(215, 248, 215);
+    font-size: 18px;
     font-weight: bold;
 }
 .navEntry:hover {
-    border: solid rgb(181, 245, 181) 1px;
+    border: solid rgb(215, 248, 215) 1px;
 }
-.active {
-    background-color: rgb(181, 245, 181);
-    border: solid rgb(181, 245, 181) 1px;
+nav .active {
+    background-color: rgb(215, 248, 215);
+    border: solid rgb(215, 248, 215) 1px;
     color: rgb(12, 166, 12);
 }
-.active:hover {
-    border: solid rgb(181, 245, 181) 1px;
+nav .active:hover {
+    border: solid rgb(215, 248, 215) 1px;
 }

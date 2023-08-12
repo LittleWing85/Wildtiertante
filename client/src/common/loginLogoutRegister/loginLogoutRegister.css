@@ -1,20 +1,7 @@
-.containerLoginRegister {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.5rem;
-    height: 5.8rem;
+.iconHeader {
+    width: 2em;
+    margin-left: 2em;
 }
-
-.containerLoginRegister a {
-    background-color: rgb(181, 245, 181);
-    color: rgb(12, 166, 12);
-    border-radius: 15px;
-    padding: 0.5rem 1rem;
-}
-
-.containerLoginRegister .active {
-    color: black;
-    background-color: rgb(12, 166, 12);
-    border: none;
+.iconHeader:hover {
+    width: 2.3em;
 }
