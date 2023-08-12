@@ -1,7 +1,7 @@
 .containerLogo {
     display: flex;
     justify-content: flex-end;
-    padding: 0 3rem 0 0;
+    padding-right: 2rem;
 }
 .logo,
 .logo.active {

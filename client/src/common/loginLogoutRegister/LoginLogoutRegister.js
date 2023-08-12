@@ -29,18 +29,25 @@ export default function LoginLogoutRegister() {
     return (
         <div>
             {!loggedIn && (
-                <div className="containerLoginRegister">
-                    <div>
-                        <NavLink to="/login">Login</NavLink>
-                    </div>
-                    <div>
-                        <NavLink to="/register">Register</NavLink>
-                    </div>
+                <div>
+                    <NavLink to="/login">
+                        <img
+                            className="iconHeader"
+                            src="./icons/login.png"
+                            alt="icon for login"
+                        />
+                    </NavLink>
                 </div>
             )}
             {loggedIn && (
-                <div className="containerLoginRegister">
-                    <NavLink to="/about">Logout</NavLink>
+                <div>
+                    <NavLink className="iconHeader" to="/about">
+                        <img
+                            className="iconHeader"
+                            src="./icons/logout.png"
+                            alt="icon for logout"
+                        />
+                    </NavLink>
                 </div>
             )}
         </div>
