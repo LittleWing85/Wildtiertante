@@ -60,7 +60,7 @@ p {
 
 /* overall layout */
 .layout {
-    padding-top: 5.8em;
+    padding-top: 6.5em;
     display: grid;
     grid-template-columns: 1fr 70em 1fr;
 }
@@ -85,7 +85,7 @@ header {
     width: 100%;
     display: grid;
     align-items: center;
-    grid-template-rows: 5.8em;
+    grid-template-rows: 6.5em;
     grid-template-columns: 1fr 68em 1fr;
     background-color: rgb(12, 166, 12);
 }

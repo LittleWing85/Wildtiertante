@@ -11,11 +11,12 @@ export default function Mainpage() {
         <BrowserRouter>
             <header>
                 <div className="containerLogo">
-                    <NavLink className="logo" to="/" exact>
-                        WILDTIERTANTE
-                    </NavLink>
-                    <NavLink className="logoMobile" to="/" exact>
-                        W
+                    <NavLink to="/" exact>
+                        <img
+                            className="logo"
+                            src="./icons/logo.png"
+                            alt="cude logo with human and racoon cuddling"
+                        />
                     </NavLink>
                 </div>
 
