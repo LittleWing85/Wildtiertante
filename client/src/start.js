@@ -1,4 +1,12 @@
 import ReactDOM from "react-dom";
 import Mainpage from "./Mainpage";
+import { Provider } from "react-redux";
 
-ReactDOM.render(<Mainpage />, document.querySelector("main"));
+import { store } from "./store/store";
+
+ReactDOM.render(
+    <Provider store={store}>
+        <Mainpage />
+    </Provider>,
+    document.querySelector("main")
+);

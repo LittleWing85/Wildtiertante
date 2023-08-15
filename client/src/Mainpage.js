@@ -1,10 +1,13 @@
 import { NavLink, Route, BrowserRouter } from "react-router-dom";
+
 import About from "./common/about/About.js";
 import LoginLogoutRegister from "./common/loginLogoutRegister/LoginLogout.js";
 import ToolMainpage from "./documentationTool/ToolMainpage.js";
 import Register from "./common/loginLogoutRegister/Register.js";
 import Login from "./common/loginLogoutRegister/Login.js";
 import "./common/logo/logo.css";
+
+import { Counter } from "./test/Counter.js";
 
 export default function Mainpage() {
     return (
@@ -15,7 +18,7 @@ export default function Mainpage() {
                         <img
                             className="logo"
                             src="./icons/logo.png"
-                            alt="cude logo with human and racoon cuddling"
+                            alt="cute logo with human and racoon cuddling"
                         />
                     </NavLink>
                 </div>
@@ -34,7 +37,9 @@ export default function Mainpage() {
             </header>
 
             <div className="layout">
-                <section className="left"></section>
+                <section className="left">
+                    <Counter />
+                </section>
                 <section className="center">
                     <div className="content">
                         <div className="shadowBox">
