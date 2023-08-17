@@ -1,8 +1,12 @@
 import { useState } from "react";
-import "./loginLogoutRegister.css";
+import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 
-export default function Login({ toggleLoggedIn, onRegisterClick }) {
+import { login, logout } from "./loggedinSlice.js";
+
+export default function Login() {
     const [showLoginErrorMessage, setShowLoginErrorMessage] = useState(false);
+    const dispatch = useDispatch();
 
     function onSubmitLogin(event) {
         event.preventDefault();
@@ -21,25 +25,17 @@ export default function Login({ toggleLoggedIn, onRegisterClick }) {
             .then((foundUser) => {
                 if (foundUser) {
                     setShowLoginErrorMessage(false);
-                    toggleLoggedIn();
+                    dispatch(login());
                     return;
                 }
+                dispatch(logout());
                 setShowLoginErrorMessage(true);
             })
             .catch((error) => console.log(error));
     }
 
-    function switchToRegistration() {
-        onRegisterClick();
-    }
-
     return (
         <div>
-            {showLoginErrorMessage && (
-                <p className="errorMessage">
-                    Wrong credentials or you haven&apos;t registered yet.
-                </p>
-            )}
             <form className="flexVertically " onSubmit={onSubmitLogin}>
                 <label htmlFor="email">Email address</label>
                 <input
@@ -57,15 +53,22 @@ export default function Login({ toggleLoggedIn, onRegisterClick }) {
                     required
                     placeholder="Password"
                 />
-                <button>Login</button>
+                <NavLink to="/documentationTool">
+                    <button>Login</button>
+                </NavLink>
             </form>
             <p className="topSpace">
                 No account yet? Click{" "}
-                <span className="clickHere" onClick={switchToRegistration}>
+                <NavLink to="/register" className="clickHere">
                     here
-                </span>{" "}
+                </NavLink>{" "}
                 to register!
             </p>
+            {showLoginErrorMessage && (
+                <p className="errorMessage">
+                    Wrong credentials or you haven&apos;t registered yet.
+                </p>
+            )}
         </div>
     );
 }

@@ -1,9 +1,13 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+
 import "./loginLogoutRegister.css";
+import { login, logout } from "./loggedinSlice.js";
 
 export default function LoginLogoutRegister() {
-    const [loggedIn, setloggedIn] = useState();
+    const dispatch = useDispatch();
+    const logged = useSelector((state) => state.loggedin.value);
 
     //Makes sure that user is still logged in if browser is refreshed
     useEffect(() => {
@@ -11,24 +15,16 @@ export default function LoginLogoutRegister() {
             .then((response) => response.json())
             .then((data) => {
                 if (data) {
-                    setloggedIn(true);
+                    dispatch(login());
                     return;
                 }
-                setloggedIn(false);
+                dispatch(logout());
             });
     }, []);
 
-    /*     function toggleLoggedIn() {
-        if (loggedIn) {
-            setloggedIn(false);
-            return;
-        }
-        setloggedIn(true);
-    }
- */
     return (
         <div>
-            {!loggedIn && (
+            {!logged && (
                 <div>
                     <NavLink to="/login">
                         <img
@@ -39,9 +35,13 @@ export default function LoginLogoutRegister() {
                     </NavLink>
                 </div>
             )}
-            {loggedIn && (
+            {logged && (
                 <div>
-                    <NavLink className="iconHeader" to="/about">
+                    <NavLink
+                        className="iconHeader"
+                        to="/"
+                        onClick={() => dispatch(logout())}
+                    >
                         <img
                             className="iconHeader"
                             src="./icons/logout.png"

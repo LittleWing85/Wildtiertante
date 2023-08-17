@@ -7,8 +7,6 @@ import Register from "./common/loginLogoutRegister/Register.js";
 import Login from "./common/loginLogoutRegister/Login.js";
 import "./common/logo/logo.css";
 
-import { Counter } from "./test/Counter.js";
-
 export default function Mainpage() {
     return (
         <BrowserRouter>
@@ -37,9 +35,7 @@ export default function Mainpage() {
             </header>
 
             <div className="layout">
-                <section className="left">
-                    <Counter />
-                </section>
+                <section className="left"></section>
                 <section className="center">
                     <div className="content">
                         <div className="shadowBox">
