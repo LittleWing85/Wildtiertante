@@ -29,6 +29,9 @@ a {
 p a:hover {
     color: blue;
 }
+.errorMessage {
+    color: red;
+}
 
 /* alignment */
 .flexVertically {

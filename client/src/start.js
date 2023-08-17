@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
-import Mainpage from "./Mainpage";
 import { Provider } from "react-redux";
 
+import Mainpage from "./Mainpage";
 import { store } from "./store/store";
 
 ReactDOM.render(
