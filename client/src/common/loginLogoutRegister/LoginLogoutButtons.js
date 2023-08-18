@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import "./loginLogoutRegister.css";
 import { login, logout } from "./loggedinSlice.js";
 
-export default function LoginLogoutRegister() {
+export default function LoginLogoutButtons() {
     const dispatch = useDispatch();
     const logged = useSelector((state) => state.loggedin.value);
 
@@ -37,17 +37,14 @@ export default function LoginLogoutRegister() {
             )}
             {logged && (
                 <div>
-                    <NavLink
-                        className="iconHeader"
-                        to="/"
-                        onClick={() => dispatch(logout())}
-                    >
+                    {
                         <img
+                            onClick={() => dispatch(logout())}
                             className="iconHeader"
                             src="./icons/logout.png"
                             alt="icon for logout"
                         />
-                    </NavLink>
+                    }
                 </div>
             )}
         </div>

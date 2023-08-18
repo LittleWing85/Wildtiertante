@@ -1,7 +1,7 @@
 import { NavLink, Route, BrowserRouter } from "react-router-dom";
 
 import About from "./common/about/About.js";
-import LoginLogoutRegister from "./common/loginLogoutRegister/LoginLogout.js";
+import LoginLogoutButtons from "./common/loginLogoutRegister/LoginLogoutButtons.js";
 import ToolMainpage from "./documentationTool/ToolMainpage.js";
 import Register from "./common/loginLogoutRegister/Register.js";
 import Login from "./common/loginLogoutRegister/Login.js";
@@ -30,7 +30,7 @@ export default function Mainpage() {
                     </NavLink>
                 </nav>
                 <div>
-                    <LoginLogoutRegister />
+                    <LoginLogoutButtons />
                 </div>
             </header>
 

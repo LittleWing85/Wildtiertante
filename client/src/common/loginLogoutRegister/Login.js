@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import { login, logout } from "./loggedinSlice.js";
+import { login } from "./loggedinSlice.js";
 
 export default function Login() {
     const [showLoginErrorMessage, setShowLoginErrorMessage] = useState(false);
@@ -28,7 +28,6 @@ export default function Login() {
                     dispatch(login());
                     return;
                 }
-                dispatch(logout());
                 setShowLoginErrorMessage(true);
             })
             .catch((error) => console.log(error));
@@ -53,9 +52,8 @@ export default function Login() {
                     required
                     placeholder="Password"
                 />
-                <NavLink to="/documentationTool">
-                    <button>Login</button>
-                </NavLink>
+
+                <button>Login</button>
             </form>
             <p className="topSpace">
                 No account yet? Click{" "}

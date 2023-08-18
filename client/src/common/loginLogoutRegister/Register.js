@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
 
 import { login } from "./loggedinSlice.js";
 
@@ -63,9 +62,8 @@ export default function Register() {
                     required
                     placeholder="Password"
                 />
-                <NavLink to="/documentationTool">
-                    <button>Submit Data</button>
-                </NavLink>
+
+                <button>Submit Data</button>
             </form>
             {errorOnRegistration && (
                 <p className="errorMessage">
