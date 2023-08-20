@@ -61,8 +61,8 @@ app.post("/api/login", (request, response) => {
 
 app.post("/api/logout", (request, response) => {
     request.session = null;
-    console.log("Goodbye from backend");
     response.redirect("/");
+    console.log("Goodbye from backend");
 });
 
 app.post("/api/litter", async (request, response) => {
