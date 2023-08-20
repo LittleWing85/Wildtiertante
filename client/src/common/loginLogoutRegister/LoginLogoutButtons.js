@@ -22,6 +22,14 @@ export default function LoginLogoutButtons() {
             });
     }, []);
 
+    function onLogout() {
+        console.log("Goodbye!");
+        dispatch(logout());
+        fetch("/api/logout", {
+            method: "POST",
+        });
+    }
+
     return (
         <div>
             {!logged && (
@@ -39,7 +47,7 @@ export default function LoginLogoutButtons() {
                 <div>
                     {
                         <img
-                            onClick={() => dispatch(logout())}
+                            onClick={onLogout}
                             className="iconHeader"
                             src="./icons/logout.png"
                             alt="icon for logout"
