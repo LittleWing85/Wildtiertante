@@ -15,6 +15,9 @@ input {
     padding: 0.2rem;
     height: 1.7rem;
 }
+.navSecondLevel {
+    background-color: rgb(215, 248, 215);
+}
 
 .buttonWhosNext {
     margin-top: 0rem;
