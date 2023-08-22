@@ -96,7 +96,7 @@ export default function WhosNext() {
     }
 
     return (
-        <section>
+        <div>
             {noCurrentLitters && (
                 <p className="topSpace">
                     You have no litters currently. Click{" "}
@@ -224,6 +224,6 @@ export default function WhosNext() {
                     </li>
                 ))}
             </ul>
-        </section>
+        </div>
     );
 }

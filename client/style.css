@@ -75,13 +75,15 @@ p {
     background-color: rgb(250, 250, 250);
 }
 .shadowBox {
-    padding: 2em 3em;
     width: 67em;
     background-color: white;
     box-shadow: 0 0 1em 0.2em rgb(235, 235, 235);
 }
+section {
+    padding: 2rem 3rem;
+}
 
-/* navigation & menu */
+/* header and nav 1st level */
 header {
     position: fixed;
     width: 100%;
@@ -114,4 +116,10 @@ nav .active {
 }
 nav .active:hover {
     border: solid rgb(215, 248, 215) 1px;
+}
+
+/* nav 2nd level */
+.navSecondLevel {
+    height: 3em;
+    background-color: rgb(215, 248, 215);
 }

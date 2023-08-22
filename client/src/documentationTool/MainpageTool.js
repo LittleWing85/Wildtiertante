@@ -13,7 +13,7 @@ export default function MainpageTool() {
             </nav>
 
             <div>
-                <section className="mainContainer">
+                <section>
                     <Route path="/whosNext">
                         <div>
                             <WhosNext />
