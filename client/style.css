@@ -77,7 +77,6 @@ p {
 .shadowBox {
     padding: 2em 3em;
     width: 67em;
-    height: 150vh;
     background-color: white;
     box-shadow: 0 0 1em 0.2em rgb(235, 235, 235);
 }
