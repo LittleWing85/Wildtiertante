@@ -23,7 +23,6 @@ export default function LoginLogoutButtons() {
     }, []);
 
     function onLogout() {
-        console.log("Goodbye!");
         dispatch(logout());
         fetch("/api/logout", {
             method: "POST",
