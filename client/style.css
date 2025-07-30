@@ -62,6 +62,10 @@ p {
 }
 
 /* overall layout */
+.mainContainer {
+    display: grid;
+    min-height: 100vh;
+}
 .layout {
     padding-top: 6.5em;
     display: grid;
@@ -76,7 +80,6 @@ p {
 }
 .shadowBox {
     width: 67em;
-    background-color: white;
     box-shadow: 0 0 1em 0.2em rgb(235, 235, 235);
 }
 section {

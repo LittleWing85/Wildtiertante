@@ -11,65 +11,67 @@ import "./common/logo/logo.css";
 export default function Mainpage() {
     return (
         <BrowserRouter>
-            <header>
-                <div className="containerLogo">
-                    <NavLink to="/" exact>
-                        <img
-                            className="logo"
-                            src="./icons/logo.png"
-                            alt="cute logo with human and racoon cuddling"
-                        />
-                    </NavLink>
-                </div>
-
-                <nav>
-                    <NavLink className="navEntry" to="/" exact>
-                        About
-                    </NavLink>
-                    <NavLink className="navEntry" to="/information">
-                        Jungtieraufzucht
-                    </NavLink>
-                    <NavLink className="navEntry" to="/documentationTool">
-                        App
-                    </NavLink>
-                </nav>
-                <div>
-                    <LoginLogoutButtons />
-                </div>
-            </header>
-
-            <div className="layout">
-                <div className="left"></div>
-                <div className="center">
-                    <div className="shadowBox">
-                        <Route path="/" exact>
-                            <div>
-                                <About />
-                            </div>
-                        </Route>
-                        <Route path="/information">
-                            <div>
-                                <Information />
-                            </div>
-                        </Route>
-                        <Route path="/documentationTool">
-                            <div>
-                                <DocumentationTool />
-                            </div>
-                        </Route>
-                        <Route path="/register">
-                            <div>
-                                <Register />
-                            </div>
-                        </Route>
-                        <Route path="/login">
-                            <div>
-                                <Login />
-                            </div>
-                        </Route>
+            <div className="mainContainer">
+                <header>
+                    <div className="containerLogo">
+                        <NavLink to="/" exact>
+                            <img
+                                className="logo"
+                                src="./icons/logo.png"
+                                alt="cute logo with human and racoon cuddling"
+                            />
+                        </NavLink>
                     </div>
+
+                    <nav>
+                        <NavLink className="navEntry" to="/" exact>
+                            About
+                        </NavLink>
+                        <NavLink className="navEntry" to="/information">
+                            Jungtieraufzucht
+                        </NavLink>
+                        <NavLink className="navEntry" to="/documentationTool">
+                            App
+                        </NavLink>
+                    </nav>
+                    <div>
+                        <LoginLogoutButtons />
+                    </div>
+                </header>
+
+                <div className="layout">
+                    <div className="left"></div>
+                    <div className="center">
+                        <div className="shadowBox">
+                            <Route path="/" exact>
+                                <div>
+                                    <About />
+                                </div>
+                            </Route>
+                            <Route path="/information">
+                                <div>
+                                    <Information />
+                                </div>
+                            </Route>
+                            <Route path="/documentationTool">
+                                <div>
+                                    <DocumentationTool />
+                                </div>
+                            </Route>
+                            <Route path="/register">
+                                <div>
+                                    <Register />
+                                </div>
+                            </Route>
+                            <Route path="/login">
+                                <div>
+                                    <Login />
+                                </div>
+                            </Route>
+                        </div>
+                    </div>
+                    <div className="right"></div>
                 </div>
-                <div className="right"></div>
             </div>
         </BrowserRouter>
     );
