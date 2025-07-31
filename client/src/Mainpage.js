@@ -7,6 +7,7 @@ import Information from "./information/Information.js";
 import Register from "./common/loginLogoutRegister/Register.js";
 import Login from "./common/loginLogoutRegister/Login.js";
 import "./common/logo/logo.css";
+import WhosNext from "./documentationTool/WhosNext.js";
 
 export default function Mainpage() {
     return (
