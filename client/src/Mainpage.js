@@ -39,36 +39,34 @@ export default function Mainpage() {
                     </div>
                 </header>
 
-                <div className="layout">
+                <div className="content">
                     <div className="left"></div>
                     <div className="center">
-                        <div className="shadowBox">
-                            <Route path="/" exact>
-                                <div>
-                                    <About />
-                                </div>
-                            </Route>
-                            <Route path="/information">
-                                <div>
-                                    <Information />
-                                </div>
-                            </Route>
-                            <Route path="/documentationTool">
-                                <div>
-                                    <DocumentationTool />
-                                </div>
-                            </Route>
-                            <Route path="/register">
-                                <div>
-                                    <Register />
-                                </div>
-                            </Route>
-                            <Route path="/login">
-                                <div>
-                                    <Login />
-                                </div>
-                            </Route>
-                        </div>
+                        <Route path="/" exact>
+                            <div>
+                                <About />
+                            </div>
+                        </Route>
+                        <Route path="/information">
+                            <div>
+                                <Information />
+                            </div>
+                        </Route>
+                        <Route path="/documentationTool">
+                            <div>
+                                <DocumentationTool />
+                            </div>
+                        </Route>
+                        <Route path="/register">
+                            <div>
+                                <Register />
+                            </div>
+                        </Route>
+                        <Route path="/login">
+                            <div>
+                                <Login />
+                            </div>
+                        </Route>
                     </div>
                     <div className="right"></div>
                 </div>
