@@ -70,6 +70,7 @@ export default function Mainpage() {
                     </div>
                     <div className="right"></div>
                 </div>
+                <footer></footer>
             </div>
         </BrowserRouter>
     );
