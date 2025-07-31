@@ -65,22 +65,22 @@ p {
 .mainContainer {
     display: grid;
     min-height: 100vh;
+    grid-template-rows: 6.5em 1fr;
 }
-.layout {
-    padding-top: 6.5em;
+.content {
+    /* padding-top: 6.5em;*/
     display: grid;
-    grid-template-columns: 1fr 70em 1fr;
+    grid-template-columns: 1fr 60em 1fr;
 }
 .left,
 .right,
 .center {
     display: flex;
     justify-content: center;
-    background-color: rgb(250, 250, 250);
 }
-.shadowBox {
-    width: 67em;
-    box-shadow: 0 0 1em 0.2em rgb(235, 235, 235);
+.left,
+.right {
+    background-color: rgb(243, 243, 243);
 }
 section {
     padding: 2rem 3rem;
@@ -88,7 +88,7 @@ section {
 
 /* header and nav 1st level */
 header {
-    position: fixed;
+    /*position: fixed;*/
     width: 100%;
     display: grid;
     align-items: center;
