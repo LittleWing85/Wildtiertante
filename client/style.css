@@ -65,10 +65,9 @@ p {
 .mainContainer {
     display: grid;
     min-height: 100vh;
-    grid-template-rows: 6.5em 1fr;
+    grid-template-rows: 6.5em 1fr 6.5em;
 }
 .content {
-    /* padding-top: 6.5em;*/
     display: grid;
     grid-template-columns: 1fr 60em 1fr;
 }
@@ -79,7 +78,8 @@ p {
     justify-content: center;
 }
 .left,
-.right {
+.right,
+footer {
     background-color: rgb(243, 243, 243);
 }
 section {
@@ -88,13 +88,11 @@ section {
 
 /* header and nav 1st level */
 header {
-    /*position: fixed;*/
     width: 100%;
     display: grid;
     align-items: center;
-    grid-template-rows: 6.5em;
     grid-template-columns: 1fr 68em 1fr;
-    background-color: rgb(12, 166, 12);
+    border-bottom: 0.05em solid rgb(0, 88, 0);
 }
 nav {
     padding: 0 3em;
@@ -103,22 +101,19 @@ nav {
 }
 .navEntry {
     padding: 0.5em 1.5em;
+    background-color: rgb(243, 243, 243);
     border-radius: 20px;
-    border: solid rgb(12, 166, 12) 1px;
-    color: rgb(215, 248, 215);
+    border: solid rgb(243, 243, 243) 1px;
+    color: rgb(0, 88, 0);
     font-size: 18px;
     font-weight: bold;
 }
 .navEntry:hover {
-    border: solid rgb(215, 248, 215) 1px;
+    border: solid rgb(0, 88, 0) 1px;
 }
 nav .active {
-    background-color: rgb(215, 248, 215);
-    border: solid rgb(215, 248, 215) 1px;
-    color: rgb(12, 166, 12);
-}
-nav .active:hover {
-    border: solid rgb(215, 248, 215) 1px;
+    background-color: rgb(255, 255, 255);
+    border: solid rgb(0, 88, 0) 1px;
 }
 
 /* nav 2nd level */
