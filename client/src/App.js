@@ -3,11 +3,11 @@ import {
     RouterProvider,
     createBrowserRouter,
     createRoutesFromElements,
-    Suspense,
-    lazy,
 } from "react-router-dom";
+import { lazy } from "react";
 
 import Root from "./basics/Root.js";
+import LazyLoading from "./LayoutRoute.js";
 import Register from "./basics/loginLogoutRegister/Register.js";
 import Login from "./basics/loginLogoutRegister/Login.js";
 import "./basics/logo/logo.css";
@@ -29,23 +29,11 @@ const router = createBrowserRouter(
             <Route path="documentationTool" element={<DocumentationTool />}>
                 <Route index element={<LitterOverview />} />
                 <Route path="litterOverview" element={<LitterOverview />} />
-                <Route
-                    path="whosNext"
-                    element={
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <WhosNext />
-                        </Suspense>
-                    }
-                />
-                <Route
-                    path="newLitter"
-                    element={
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <NewLitter />
-                        </Suspense>
-                    }
-                />
-                {/* add wrapper if number of Routes with lazy loading will be more than three. 
+                <Route element={<LazyLoading />}>
+                    <Route path="whosNext" element={<WhosNext />} />
+                    <Route path="newLitter" element={<NewLitter />} />
+                </Route>
+                {/* use wrapper instead of Layout Route if different fallbacks are needed. 
                 See ImprovementsThatMightBeInterestingInTheFuture.doc for more info/*/}
             </Route>
             <Route path="register" element={<Register />} />
