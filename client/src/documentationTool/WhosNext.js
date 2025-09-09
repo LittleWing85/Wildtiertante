@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./documentationTool.css";
 
 function formatTime1(time) {
@@ -16,7 +16,7 @@ export default function WhosNext() {
     const [unfedLitters, setUnfedLitters] = useState([]);
     const [feedAgainLitters, setfeedAgainLitters] = useState([]);
     const [noCurrentLitters, setNoCurrentLitters] = useState(true);
-    const history = useHistory();
+    const history = useNavigate();
 
     useEffect(() => {
         updateData();
