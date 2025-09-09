@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import IndividualInfo from "./IndividualInfo.js";
 import FeedingTimes from "./FeedingTimes.js";
 
 export default function NewLitter() {
     const now = new Date().toISOString().slice(0, 10);
-    const history = useHistory();
+    const history = useNavigate();
     const [date, setDate] = useState(now);
     const [amountFeedings, setAmountFeedings] = useState(3);
     const [feedingTimes, setfeedingTimes] = useState([]);

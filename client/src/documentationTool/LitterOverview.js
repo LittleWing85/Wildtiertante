@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function formatDate(date) {
     const formattedDate = date.split("T").slice(0, 1);
@@ -13,7 +13,7 @@ function formatTime(time) {
 export default function LitterOverview() {
     const [currentLitters, setCurrentLitters] = useState([]);
     const [showMessage, setShowMessage] = useState(false);
-    const history = useHistory();
+    const history = useNavigate();
 
     useEffect(() => {
         fetch("/api/litterOverview")
