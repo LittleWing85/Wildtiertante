@@ -1,4 +1,13 @@
-import { useState, useEffect } from "react";
+export default function LitterOverview() {
+    return (
+        <p>
+            Here you can see later when which of your protégés are ready to be
+            fed
+        </p>
+    );
+}
+
+/*import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./documentationTool.css";
 
@@ -146,16 +155,16 @@ export default function WhosNext() {
                                     )}
                                 </p>
 
-                                {/* ToDo for later: Allow user only to choose time from the array with feeding slots */}
-                                {/*                                 <select
-                                    className="inputMiddle inputMilk"
-                                    name="feedingSlot"
-                                    id="feedingSlot"
-                                >
-                                    <option value="08:00">8:00</option>
-                                    <option value="16:00">16:00</option>
-                                    <option value="00:00">00:00</option>
-                                </select> */}
+                                // ToDo for later: Allow user only to choose time from the array with feeding slots
+                                //<select
+                                //    className="inputMiddle inputMilk"
+                                //    name="feedingSlot"
+                                //    id="feedingSlot"
+                                //>
+                                //    <option value="08:00">8:00</option>
+                                //    <option value="16:00">16:00</option>
+                                //    <option value="00:00">00:00</option>
+                                //</select>
                             </div>
                             <div className="flexHorizontallyInputs bottomSpace">
                                 <div className="labelFixedWidth">
@@ -226,4 +235,4 @@ export default function WhosNext() {
             </ul>
         </div>
     );
-}
+}*/

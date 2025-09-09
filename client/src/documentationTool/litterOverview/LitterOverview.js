@@ -1,4 +1,7 @@
-import { useState, useEffect } from "react";
+export default function LitterOverview() {
+    return <p>You will see an overview of your litters later</p>;
+}
+/*import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 function formatDate(date) {
@@ -65,3 +68,4 @@ export default function LitterOverview() {
         </section>
     );
 }
+*/

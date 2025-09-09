@@ -1,13 +1,27 @@
-import WhosNext from "./WhosNext.js";
-import NewLitter from "./NewLitter.js";
-import LitterOverview from "./LitterOverview.js";
+import { Outlet, NavLink } from "react-router-dom";
 
 export default function DocumentationTool() {
     return (
         <div>
-            <section>
-                <p>Coming Soon!</p>
-            </section>
+            <div className="nav">
+                <NavLink
+                    className="navEntry"
+                    to="/documentationTool/litterOverview"
+                >
+                    Litter overview
+                </NavLink>
+                <NavLink className="navEntry" to="/documentationTool/whosNext">
+                    Who&apos next
+                </NavLink>
+                <NavLink className="navEntry" to="/documentationTool/newLitter">
+                    New Litter
+                </NavLink>
+            </div>
+            <p>
+                Here you will find a tool that supports you with organizing milk
+                feedings
+            </p>
+            <Outlet />
         </div>
     );
 }
