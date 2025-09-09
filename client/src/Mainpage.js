@@ -1,12 +1,12 @@
 import { NavLink, Route, BrowserRouter } from "react-router-dom";
 
-import About from "./common/about/About.js";
-import LoginLogoutButtons from "./common/loginLogoutRegister/LoginLogoutButtons.js";
+import About from "./basics/about/About.js";
+import LoginLogoutButtons from "./basics/loginLogoutRegister/LoginLogoutButtons.js";
 import DocumentationTool from "./documentationTool/DocumentationTool.js";
 import Information from "./information/Information.js";
-import Register from "./common/loginLogoutRegister/Register.js";
-import Login from "./common/loginLogoutRegister/Login.js";
-import "./common/logo/logo.css";
+import Register from "./basics/loginLogoutRegister/Register.js";
+import Login from "./basics/loginLogoutRegister/Login.js";
+import "./basics/logo/logo.css";
 
 export default function Mainpage() {
     return (
