@@ -1,4 +1,8 @@
-import { useState, useEffect } from "react";
+export default function NewLitter() {
+    return <p>You will be able to add new litter here later</p>;
+}
+
+/*import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import IndividualInfo from "./IndividualInfo.js";
 import FeedingTimes from "./FeedingTimes.js";
@@ -158,7 +162,7 @@ export default function NewLitter() {
                             .fill(0)
                             .map((x, idx) => (
                                 <FeedingTimes
-                                    /* feedingTimes={feedingTimes} */
+                                    // feedingTimes={feedingTimes} 
                                     key={idx}
                                     idx={idx}
                                     onFeedingsChange={onFeedingsChange}
@@ -200,3 +204,4 @@ export default function NewLitter() {
         </section>
     );
 }
+*/
