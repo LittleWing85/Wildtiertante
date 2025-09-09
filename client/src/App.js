@@ -3,6 +3,8 @@ import {
     RouterProvider,
     createBrowserRouter,
     createRoutesFromElements,
+    Suspense,
+    lazy,
 } from "react-router-dom";
 
 import Root from "./basics/Root.js";
@@ -14,8 +16,10 @@ import About from "./basics/about/About.js";
 import Information from "./information/Information.js";
 import DocumentationTool from "./documentationTool/DocumentationTool.js";
 import LitterOverview from "./documentationTool/litterOverview/LitterOverview.js";
-import WhosNext from "./documentationTool/whosNext/WhosNext.js";
-import NewLitter from "./documentationTool/newLitter/NewLitter.js";
+const WhosNext = lazy(() => import("./documentationTool/whosNext/WhosNext.js"));
+const NewLitter = lazy(() =>
+    import("./documentationTool/newLitter/NewLitter.js")
+);
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -25,8 +29,24 @@ const router = createBrowserRouter(
             <Route path="documentationTool" element={<DocumentationTool />}>
                 <Route index element={<LitterOverview />} />
                 <Route path="litterOverview" element={<LitterOverview />} />
-                <Route path="whosNext" element={<WhosNext />} />
-                <Route path="newLitter" element={<NewLitter />} />
+                <Route
+                    path="whosNext"
+                    element={
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <WhosNext />
+                        </Suspense>
+                    }
+                />
+                <Route
+                    path="newLitter"
+                    element={
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <NewLitter />
+                        </Suspense>
+                    }
+                />
+                {/* add wrapper if number of Routes with lazy loading will be more than three. 
+                See ImprovementsThatMightBeInterestingInTheFuture.doc for more info/*/}
             </Route>
             <Route path="register" element={<Register />} />
             <Route path="login" element={<Login />} />
