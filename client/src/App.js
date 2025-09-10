@@ -33,7 +33,7 @@ const router = createBrowserRouter(
                     <Route path="whosNext" element={<WhosNext />} />
                     <Route path="newLitter" element={<NewLitter />} />
                 </Route>
-                {/* use wrapper instead of Layout Route if different fallbacks are needed. 
+                {/* Use wrapper instead of Layout Route if different fallbacks are needed. 
                 See ImprovementsThatMightBeInterestingInTheFuture.doc for more info/*/}
             </Route>
             <Route path="register" element={<Register />} />
