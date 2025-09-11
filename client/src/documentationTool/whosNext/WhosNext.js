@@ -1,3 +1,7 @@
+/*This component displays a list of the litters that the user has currently in his care.
+It is sorted in the order in which the animals must be fed.
+If a user clicks on a litter, a form is display where he can enter date of the feedings. */
+
 export default function LitterOverview() {
     return (
         <p>

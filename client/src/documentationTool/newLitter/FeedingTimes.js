@@ -1,3 +1,6 @@
+/*This component is part of the form for adding a new litter to the user's account.
+The user can add feeding times in here.*/
+
 import { useState, useEffect } from "react";
 
 export default function FeedingTimes({ idx, onFeedingsChange }) {

@@ -1,3 +1,5 @@
+//This component displays a list of all the litters that the user has or had in his care.
+
 export default function LitterOverview() {
     return <p>You will see an overview of your litters later</p>;
 }
