@@ -1,3 +1,6 @@
+/*This component is part of the form for adding a new litter to the user's account.
+The user can add information about an individual animal which is part of the added litter.*/
+
 import { useState, useEffect } from "react";
 
 export default function IndividualInfo({ animal, idx, onIndividualChange }) {

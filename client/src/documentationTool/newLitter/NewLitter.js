@@ -1,3 +1,5 @@
+//This component enables the user to add a new litter to his account.
+
 export default function NewLitter() {
     return <p>You will be able to add new litter here later</p>;
 }
