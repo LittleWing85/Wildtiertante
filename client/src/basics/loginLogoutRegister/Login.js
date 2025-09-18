@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { login } from "./loggedinSlice.js";
 
 export default function Login() {
     const [showLoginErrorMessage, setShowLoginErrorMessage] = useState(false);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     function onSubmitLogin(event) {
         event.preventDefault();
@@ -29,6 +30,9 @@ export default function Login() {
                     return;
                 }
                 setShowLoginErrorMessage(true);
+            })
+            .then(() => {
+                navigate("/documentationTool");
             })
             .catch((error) => console.log(error));
     }
