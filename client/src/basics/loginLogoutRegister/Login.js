@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { login } from "./loggedinSlice.js";
 
@@ -57,9 +57,9 @@ export default function Login() {
             </form>
             <p className="topSpace">
                 No account yet? Click{" "}
-                <NavLink to="/register" className="clickHere">
+                <Link to="/register" className="clickHere">
                     here
-                </NavLink>{" "}
+                </Link>{" "}
                 to register!
             </p>
             {showLoginErrorMessage && (
