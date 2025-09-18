@@ -11,7 +11,7 @@ export default function DocumentationTool() {
                     Litter overview
                 </NavLink>
                 <NavLink className="navEntry" to="/documentationTool/whosNext">
-                    Who&apos next
+                    Who&apos;s next
                 </NavLink>
                 <NavLink className="navEntry" to="/documentationTool/newLitter">
                     New Litter
