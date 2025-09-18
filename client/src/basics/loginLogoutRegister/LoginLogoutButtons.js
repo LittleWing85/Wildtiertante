@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import "./loginLogoutRegister.css";
 import { login, logout } from "./loggedinSlice.js";
@@ -8,8 +8,8 @@ import { login, logout } from "./loggedinSlice.js";
 export default function LoginLogoutButtons() {
     const dispatch = useDispatch();
     const logged = useSelector((state) => state.loggedin.value);
+    const navigate = useNavigate();
 
-    //Makes sure that user is still logged in if browser is refreshed
     useEffect(() => {
         fetch("/api/user_id")
             .then((response) => response.json())
@@ -20,12 +20,14 @@ export default function LoginLogoutButtons() {
                 }
                 dispatch(logout());
             });
-    }, []);
+    }, []); //Makes sure that user is still logged in if browser is refreshed
 
     function onLogout() {
         dispatch(logout());
         fetch("/api/logout", {
             method: "POST",
+        }).then(() => {
+            navigate("/");
         });
     }
 
