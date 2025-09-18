@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./loginLogoutRegister.css";
 import { login, logout } from "./loggedinSlice.js";
@@ -35,13 +35,13 @@ export default function LoginLogoutButtons() {
         <div>
             {!logged && (
                 <div>
-                    <NavLink to="/login">
+                    <Link to="/login">
                         <img
                             className="iconHeader"
                             src="./icons/login.png"
                             alt="icon for login"
                         />
-                    </NavLink>
+                    </Link>
                 </div>
             )}
             {logged && (
