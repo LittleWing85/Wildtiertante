@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { login } from "./loggedinSlice.js";
 
-export default function Login() {
+export default function LoginForm() {
     const [showLoginErrorMessage, setShowLoginErrorMessage] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
