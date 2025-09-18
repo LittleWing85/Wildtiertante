@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./loginLogoutRegister.css";
 import { login, logout } from "./loggedinSlice.js";
 
-export default function LoginLogoutButtons() {
+export default function LoginLogoutButtonsAndLogout() {
     const dispatch = useDispatch();
     const logged = useSelector((state) => state.loggedin.value);
     const navigate = useNavigate();

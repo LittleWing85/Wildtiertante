@@ -9,7 +9,7 @@ import { lazy } from "react";
 import Root from "./basics/Root.js";
 import LazyLoading from "./LayoutRoute.js";
 import Register from "./basics/loginLogoutRegister/Register.js";
-import Login from "./basics/loginLogoutRegister/Login.js";
+import LoginForm from "./basics/loginLogoutRegister/LoginForm.js";
 import "./basics/logo/logo.css";
 
 import About from "./basics/about/About.js";
@@ -37,7 +37,7 @@ const router = createBrowserRouter(
                 See ImprovementsThatMightBeInterestingInTheFuture.doc for more info/*/}
             </Route>
             <Route path="register" element={<Register />} />
-            <Route path="login" element={<Login />} />
+            <Route path="login" element={<LoginForm />} />
         </Route>
     )
 );
