@@ -92,7 +92,7 @@ header {
     display: grid;
     align-items: center;
     grid-template-columns: 1fr 68em 1fr;
-    border-bottom: 0.05em solid rgb(0, 88, 0);
+    border-bottom: 0.05em solid hotpink;
 }
 nav {
     padding: 0 3em;
@@ -103,20 +103,19 @@ nav {
     padding: 0.5em 1.5em;
     border-radius: 20px;
     border: solid rgb(255, 255, 255) 1px;
-    color: rgb(0, 88, 0);
+    color: hotpink;
     font-size: 18px;
     font-weight: bold;
 }
 .navEntry:hover {
-    border: solid rgb(0, 88, 0) 1px;
+    border: solid hotpink 1px;
 }
 nav .active {
     background-color: rgb(255, 255, 255);
-    border: solid rgb(0, 88, 0) 1px;
+    border: solid hotpink 1px;
 }
 
 /* nav 2nd level */
 .navSecondLevel {
     height: 3em;
-    background-color: rgb(215, 248, 215);
 }
