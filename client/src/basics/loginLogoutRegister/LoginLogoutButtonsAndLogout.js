@@ -26,8 +26,6 @@ export default function LoginLogoutButtonsAndLogout() {
         dispatch(logout());
         fetch("/api/logout", {
             method: "POST",
-        }).then(() => {
-            navigate("/");
         });
     }
 
