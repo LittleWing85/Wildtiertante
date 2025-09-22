@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "./loginLogoutRegister.css";
 import { login, logout } from "./loggedinSlice.js";
@@ -8,7 +8,6 @@ import { login, logout } from "./loggedinSlice.js";
 export default function LoginLogoutButtonsAndLogout() {
     const dispatch = useDispatch();
     const logged = useSelector((state) => state.loggedin.value);
-    const navigate = useNavigate();
 
     useEffect(() => {
         fetch("/api/user_id")
