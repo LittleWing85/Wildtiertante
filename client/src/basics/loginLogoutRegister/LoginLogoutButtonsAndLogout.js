@@ -35,26 +35,15 @@ export default function LoginLogoutButtonsAndLogout() {
         <div>
             {!logged && (
                 <div>
-                    <Link to="/login">
-                        <img
-                            className="iconHeader"
-                            src="./icons/login.png"
-                            alt="icon for login"
-                        />
+                    <Link to="/login" className="navEntry">
+                        Login
                     </Link>
                 </div>
             )}
             {logged && (
-                <div>
-                    {
-                        <img
-                            onClick={onLogout}
-                            className="iconHeader"
-                            src="./icons/logout.png"
-                            alt="icon for logout"
-                        />
-                    }
-                </div>
+                <Link to="/" onClick={onLogout} className="navEntry">
+                    Logout
+                </Link>
             )}
         </div>
     );
