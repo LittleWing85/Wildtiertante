@@ -99,6 +99,7 @@ nav {
     display: flex;
     gap: 1em;
 }
+
 .navEntry {
     padding: 0.5em 1.5em;
     border-radius: 20px;
