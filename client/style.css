@@ -72,8 +72,7 @@ p {
     grid-template-columns: 1fr 60em 1fr;
 }
 .left,
-.right,
-.center {
+.right {
     display: flex;
     justify-content: center;
 }
