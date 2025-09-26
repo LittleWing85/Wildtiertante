@@ -1,211 +1,53 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function About() {
     return (
         <section>
             <p>
-                Feeding an orphaned wild animal baby regularly with the right
-                amount of milk increases its chances of survival.
-                Wildtiertante.de provides a tool to support you in organizing
-                and documentating the feeding of your little patients. Open the
-                tab{" "}
-                <NavLink to="/newLitter">&quot;Add new Litter&quot;</NavLink> to
-                enter information about how many patients you are caring for.
-                You will find a list with the next feeding times for all your
-                animals sorted by feeding time in the tab{" "}
-                <NavLink to="/whosNext">&quot;Who&apos;s next?&quot;</NavLink>.
+                Liebe Päppler, <br />
+                <br />
+                schön, dass ihr auf meiner Seite gelandet seid!
             </p>
             <p>
-                Feeding an orphaned wild animal baby regularly with the right
-                amount of milk increases its chances of survival.
-                Wildtiertante.de provides a tool to support you in organizing
-                and documentating the feeding of your little patients. Open the
-                tab{" "}
-                <NavLink to="/newLitter">&quot;Add new Litter&quot;</NavLink> to
-                enter information about how many patients you are caring for.
-                You will find a list with the next feeding times for all your
-                animals sorted by feeding time in the tab{" "}
-                <NavLink to="/whosNext">&quot;Who&apos;s next?&quot;</NavLink>.
+                Ihr findet <Link to={"/information"}>hier</Link> Informationen
+                zur Jungtieraufzucht von Eichhörnchen, Mäusen und Kaninchen.
+                Wichtig: Diese Informationen richten sich ausschließlich an
+                Zieheltern, die bereits über Fachwissen verfügen - z.B.
+                Tierpfleger*innen, TFAs, Tierschutzzentren und Pflegestellen,
+                die bereits Babytiere anderer Tierarten aufgezogen haben.
+                Jungtiere gehören IMMER in die Hände von Fachmenschen, um ihnen
+                eine Überlebenschance zu sichern. NIEMALS sollten unerfahrene
+                Finder Jungtiere alleine aufziehen.
             </p>
             <p>
-                Feeding an orphaned wild animal baby regularly with the right
-                amount of milk increases its chances of survival.
-                Wildtiertante.de provides a tool to support you in organizing
-                and documentating the feeding of your little patients. Open the
-                tab{" "}
-                <NavLink to="/newLitter">&quot;Add new Litter&quot;</NavLink> to
-                enter information about how many patients you are caring for.
-                You will find a list with the next feeding times for all your
-                animals sorted by feeding time in the tab{" "}
-                <NavLink to="/whosNext">&quot;Who&apos;s next?&quot;</NavLink>.
+                Das Herzstück meiner Webseite bildet die{" "}
+                <Link to={"/documentationTool"}>App</Link>, die euch bei den
+                Milchfütterungen aller Tierarten unterstützt. Sie zeigt euch an,
+                welche Tiere als nächstes und in welcher Reihenfolge gefüttert
+                werden müssen, damit ihr den Überblick behaltet, wenn ihr sehr
+                viele Tiere aufzieht und/oder mehrere Ersatzeltern eure Kleinen
+                in Schichten versorgen. Außerdem rechnet sie euch automatisch
+                aus, welche Milchmenge eute Kleinen pro Fütterung ungefähr
+                bekommen sollten und überwacht die Gesamtmilchmenge pro Tag.
+                Schaut euch die App an - sie hält noch tolle und hilfreiche
+                weitere Funktionen für euch bereit!
             </p>
             <p>
-                Feeding an orphaned wild animal baby regularly with the right
-                amount of milk increases its chances of survival.
-                Wildtiertante.de provides a tool to support you in organizing
-                and documentating the feeding of your little patients. Open the
-                tab{" "}
-                <NavLink to="/newLitter">&quot;Add new Litter&quot;</NavLink> to
-                enter information about how many patients you are caring for.
-                You will find a list with the next feeding times for all your
-                animals sorted by feeding time in the tab{" "}
-                <NavLink to="/whosNext">&quot;Who&apos;s next?&quot;</NavLink>.
+                Noch ein paar Infos zu mir: Ich habe ehrenamtlich und
+                hauptberuflich 11 Jahre Erfahrung in der Aufzucht von Jungtieren
+                in verschiedenen Stationen in Norddeutschland gesammelt,
+                besonders kleine und empfindliche Flaschenkinder ehrenamtlich zu
+                Hause als private Pflegestelle aufgezogen und zahlreiche
+                Seminare zum Thema Jungtieraufzucht besucht. Bei mir zu Hause
+                leben außerdem zwei Kaninchen, die ich aus dem Tierschutz
+                übernommen habe.
             </p>
             <p>
-                Feeding an orphaned wild animal baby regularly with the right
-                amount of milk increases its chances of survival.
-                Wildtiertante.de provides a tool to support you in organizing
-                and documentating the feeding of your little patients. Open the
-                tab{" "}
-                <NavLink to="/newLitter">&quot;Add new Litter&quot;</NavLink> to
-                enter information about how many patients you are caring for.
-                You will find a list with the next feeding times for all your
-                animals sorted by feeding time in the tab{" "}
-                <NavLink to="/whosNext">&quot;Who&apos;s next?&quot;</NavLink>.
-            </p>
-            <p>
-                Feeding an orphaned wild animal baby regularly with the right
-                amount of milk increases its chances of survival.
-                Wildtiertante.de provides a tool to support you in organizing
-                and documentating the feeding of your little patients. Open the
-                tab{" "}
-                <NavLink to="/newLitter">&quot;Add new Litter&quot;</NavLink> to
-                enter information about how many patients you are caring for.
-                You will find a list with the next feeding times for all your
-                animals sorted by feeding time in the tab{" "}
-                <NavLink to="/whosNext">&quot;Who&apos;s next?&quot;</NavLink>.
-            </p>
-            <p>
-                Feeding an orphaned wild animal baby regularly with the right
-                amount of milk increases its chances of survival.
-                Wildtiertante.de provides a tool to support you in organizing
-                and documentating the feeding of your little patients. Open the
-                tab{" "}
-                <NavLink to="/newLitter">&quot;Add new Litter&quot;</NavLink> to
-                enter information about how many patients you are caring for.
-                You will find a list with the next feeding times for all your
-                animals sorted by feeding time in the tab{" "}
-                <NavLink to="/whosNext">&quot;Who&apos;s next?&quot;</NavLink>.
-            </p>
-            <p>
-                Feeding an orphaned wild animal baby regularly with the right
-                amount of milk increases its chances of survival.
-                Wildtiertante.de provides a tool to support you in organizing
-                and documentating the feeding of your little patients. Open the
-                tab{" "}
-                <NavLink to="/newLitter">&quot;Add new Litter&quot;</NavLink> to
-                enter information about how many patients you are caring for.
-                You will find a list with the next feeding times for all your
-                animals sorted by feeding time in the tab{" "}
-                <NavLink to="/whosNext">&quot;Who&apos;s next?&quot;</NavLink>.
-            </p>
-            <p>
-                Feeding an orphaned wild animal baby regularly with the right
-                amount of milk increases its chances of survival.
-                Wildtiertante.de provides a tool to support you in organizing
-                and documentating the feeding of your little patients. Open the
-                tab{" "}
-                <NavLink to="/newLitter">&quot;Add new Litter&quot;</NavLink> to
-                enter information about how many patients you are caring for.
-                You will find a list with the next feeding times for all your
-                animals sorted by feeding time in the tab{" "}
-                <NavLink to="/whosNext">&quot;Who&apos;s next?&quot;</NavLink>.
-            </p>
-            <p>
-                Feeding an orphaned wild animal baby regularly with the right
-                amount of milk increases its chances of survival.
-                Wildtiertante.de provides a tool to support you in organizing
-                and documentating the feeding of your little patients. Open the
-                tab{" "}
-                <NavLink to="/newLitter">&quot;Add new Litter&quot;</NavLink> to
-                enter information about how many patients you are caring for.
-                You will find a list with the next feeding times for all your
-                animals sorted by feeding time in the tab{" "}
-                <NavLink to="/whosNext">&quot;Who&apos;s next?&quot;</NavLink>.
-            </p>
-            <p>
-                Feeding an orphaned wild animal baby regularly with the right
-                amount of milk increases its chances of survival.
-                Wildtiertante.de provides a tool to support you in organizing
-                and documentating the feeding of your little patients. Open the
-                tab{" "}
-                <NavLink to="/newLitter">&quot;Add new Litter&quot;</NavLink> to
-                enter information about how many patients you are caring for.
-                You will find a list with the next feeding times for all your
-                animals sorted by feeding time in the tab{" "}
-                <NavLink to="/whosNext">&quot;Who&apos;s next?&quot;</NavLink>.
-            </p>
-            <p>
-                Feeding an orphaned wild animal baby regularly with the right
-                amount of milk increases its chances of survival.
-                Wildtiertante.de provides a tool to support you in organizing
-                and documentating the feeding of your little patients. Open the
-                tab{" "}
-                <NavLink to="/newLitter">&quot;Add new Litter&quot;</NavLink> to
-                enter information about how many patients you are caring for.
-                You will find a list with the next feeding times for all your
-                animals sorted by feeding time in the tab{" "}
-                <NavLink to="/whosNext">&quot;Who&apos;s next?&quot;</NavLink>.
-            </p>
-            <p>
-                Feeding an orphaned wild animal baby regularly with the right
-                amount of milk increases its chances of survival.
-                Wildtiertante.de provides a tool to support you in organizing
-                and documentating the feeding of your little patients. Open the
-                tab{" "}
-                <NavLink to="/newLitter">&quot;Add new Litter&quot;</NavLink> to
-                enter information about how many patients you are caring for.
-                You will find a list with the next feeding times for all your
-                animals sorted by feeding time in the tab{" "}
-                <NavLink to="/whosNext">&quot;Who&apos;s next?&quot;</NavLink>.
-            </p>
-            <p>
-                Feeding an orphaned wild animal baby regularly with the right
-                amount of milk increases its chances of survival.
-                Wildtiertante.de provides a tool to support you in organizing
-                and documentating the feeding of your little patients. Open the
-                tab{" "}
-                <NavLink to="/newLitter">&quot;Add new Litter&quot;</NavLink> to
-                enter information about how many patients you are caring for.
-                You will find a list with the next feeding times for all your
-                animals sorted by feeding time in the tab{" "}
-                <NavLink to="/whosNext">&quot;Who&apos;s next?&quot;</NavLink>.
-            </p>
-            <p>
-                Feeding an orphaned wild animal baby regularly with the right
-                amount of milk increases its chances of survival.
-                Wildtiertante.de provides a tool to support you in organizing
-                and documentating the feeding of your little patients. Open the
-                tab{" "}
-                <NavLink to="/newLitter">&quot;Add new Litter&quot;</NavLink> to
-                enter information about how many patients you are caring for.
-                You will find a list with the next feeding times for all your
-                animals sorted by feeding time in the tab{" "}
-                <NavLink to="/whosNext">&quot;Who&apos;s next?&quot;</NavLink>.
-            </p>
-            <p>
-                Feeding an orphaned wild animal baby regularly with the right
-                amount of milk increases its chances of survival.
-                Wildtiertante.de provides a tool to support you in organizing
-                and documentating the feeding of your little patients. Open the
-                tab{" "}
-                <NavLink to="/newLitter">&quot;Add new Litter&quot;</NavLink> to
-                enter information about how many patients you are caring for.
-                You will find a list with the next feeding times for all your
-                animals sorted by feeding time in the tab{" "}
-                <NavLink to="/whosNext">&quot;Who&apos;s next?&quot;</NavLink>.
-            </p>
-            <p>
-                Feeding an orphaned wild animal baby regularly with the right
-                amount of milk increases its chances of survival.
-                Wildtiertante.de provides a tool to support you in organizing
-                and documentating the feeding of your little patients. Open the
-                tab{" "}
-                <NavLink to="/newLitter">&quot;Add new Litter&quot;</NavLink> to
-                enter information about how many patients you are caring for.
-                You will find a list with the next feeding times for all your
-                animals sorted by feeding time in the tab{" "}
-                <NavLink to="/whosNext">&quot;Who&apos;s next?&quot;</NavLink>.
+                Ich wünsche euch viel Spaß auf meiner Seite und freue mich über
+                euer Feedback, Anregungen, Fragen und Verbesserungsvorschläge!
+                <br />
+                <br />
+                Eure Wildtiertante
             </p>
         </section>
     );
