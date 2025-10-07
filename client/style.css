@@ -106,6 +106,7 @@ nav {
     color: hotpink;
     font-size: 18px;
     font-weight: bold;
+    height: 2.5 em;
 }
 .navEntry:hover {
     border: solid hotpink 1px;
