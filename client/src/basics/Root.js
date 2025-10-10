@@ -22,7 +22,10 @@ export default function Root() {
                         Jungtieraufzucht
                     </NavLink>
                     <NavLink className="navEntry" to="/documentationTool">
-                        App
+                        Fütterungstool
+                    </NavLink>
+                    <NavLink className="navEntry" to="/wildAnimalFound">
+                        Wildtier gefunden
                     </NavLink>
                 </nav>
                 {/*Use a callback function in nav if more styling logic is needed in the future than CSS allows. 
