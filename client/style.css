@@ -3,27 +3,33 @@
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
-}
-.listStyleNone {
-    list-style-type: none;
+    line-height: 1.5em;
 }
 
 /* font styling */
+h1,
+h2 {
+    color: deeppink;
+    font-weight: bold;
+}
+h1 {
+    font-size: 1.2em;
+}
+h2 {
+    font-size: 1em;
+    margin-top: 1.5em;
+}
 p,
 label,
 button,
 input,
 textarea,
 select {
-    font-size: 15px;
+    font-size: 1em;
     color: rgb(68, 68, 68);
 }
-h1,
-h2 {
-    font-size: 17px;
-}
 a {
-    font-size: 15px;
+    font-size: 1em;
     text-decoration: none;
 }
 p a:hover {
@@ -44,10 +50,6 @@ h1,
 h2 {
     margin-bottom: 0.6em;
 }
-p {
-    line-height: 1.3em;
-    margin-bottom: 0.7em;
-}
 .topSpaceBig {
     margin-top: 4em;
 }
@@ -55,10 +57,10 @@ p {
     margin-top: 2em;
 }
 .topSpaceSmall {
-    margin-top: 0em;
+    margin-top: 1em;
 }
 .bottomSpace {
-    margin-bottom: 3em;
+    margin-bottom: 2em;
 }
 
 /* overall layout */
@@ -82,7 +84,7 @@ footer {
     background-color: rgb(243, 243, 243);
 }
 section {
-    padding: 2rem 3rem;
+    margin: 2rem 3rem;
 }
 
 /* header and nav */
@@ -91,7 +93,7 @@ header {
     display: grid;
     align-items: center;
     grid-template-columns: 1fr 68em 1fr;
-    border-bottom: 0.05em solid hotpink;
+    border-bottom: 0.05em solid deeppink;
 }
 nav,
 .nav2 {
@@ -111,20 +113,26 @@ nav {
     padding: 0.5em 1.5em;
     border-radius: 20px;
     border: solid rgb(255, 255, 255) 1px;
-    color: hotpink;
-    font-size: 18px;
+    color: deeppink;
+    font-size: 1em;
     font-weight: bold;
     height: 2.5em;
 }
 .navEntry:hover {
-    border: solid hotpink 1px;
+    border: solid deeppink 1px;
 }
 nav .active {
     background-color: rgb(255, 255, 255);
-    border: solid hotpink 1px;
+    border: solid deeppink 1px;
 }
 
-/* nav 2nd level */
-.navSecondLevel {
-    height: 3em;
+/* lists */
+.listStyleNone {
+    list-style-type: none;
+}
+li::marker {
+    color: deeppink;
+}
+li {
+    margin-left: 1em;
 }
