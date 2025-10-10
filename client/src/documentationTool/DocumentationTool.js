@@ -3,7 +3,7 @@ import { Outlet, NavLink } from "react-router-dom";
 export default function DocumentationTool() {
     return (
         <section>
-            <nav className="nav">
+            <nav className="nav2">
                 <NavLink
                     className="navEntry"
                     to="/documentationTool/litterOverview"
@@ -17,13 +17,12 @@ export default function DocumentationTool() {
                     New Litter
                 </NavLink>
             </nav>
-            <section>
-                <p>
-                    Here you will find a tool that supports you with organizing
-                    milk feedings
-                </p>
-                <Outlet />
-            </section>
+
+            <p>
+                Here you will find a tool that supports you with organizing milk
+                feedings
+            </p>
+            <Outlet />
         </section>
     );
 }
