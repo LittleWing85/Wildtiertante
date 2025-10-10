@@ -96,6 +96,7 @@ header {
 nav {
     padding: 0 3em;
     display: flex;
+    align-items: center;
     gap: 1em;
     height: 5em;
 }
