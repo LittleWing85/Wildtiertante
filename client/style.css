@@ -93,14 +93,20 @@ header {
     grid-template-columns: 1fr 68em 1fr;
     border-bottom: 0.05em solid hotpink;
 }
-nav {
-    padding: 0 3em;
+nav,
+.nav2 {
     display: flex;
     align-items: center;
     gap: 1em;
+}
+nav {
+    padding: 0 3em;
     height: 5em;
 }
-
+.nav2 {
+    padding: 0 0 2em 0;
+    height: 3.5em;
+}
 .navEntry {
     padding: 0.5em 1.5em;
     border-radius: 20px;
@@ -108,7 +114,7 @@ nav {
     color: hotpink;
     font-size: 18px;
     font-weight: bold;
-    height: 2.4em;
+    height: 2.5em;
 }
 .navEntry:hover {
     border: solid hotpink 1px;
