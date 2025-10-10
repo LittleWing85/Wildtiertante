@@ -20,6 +20,7 @@ const WhosNext = lazy(() => import("./documentationTool/whosNext/WhosNext.js"));
 const NewLitter = lazy(() =>
     import("./documentationTool/newLitter/NewLitter.js")
 );
+import WildAnimalFound from "./wildanimalfound/WildAnimalFound.js";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -33,9 +34,11 @@ const router = createBrowserRouter(
                     <Route path="whosNext" element={<WhosNext />} />
                     <Route path="newLitter" element={<NewLitter />} />
                 </Route>
+
                 {/* Use wrapper instead of Layout Route if different fallbacks are needed. 
                 See ImprovementsThatMightBeInterestingInTheFuture.doc for more info/*/}
             </Route>
+            <Route path="wildAnimalFound" element={<WildAnimalFound />} />
             <Route path="register" element={<Register />} />
             <Route path="login" element={<LoginForm />} />
         </Route>
