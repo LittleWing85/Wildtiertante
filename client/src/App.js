@@ -7,12 +7,12 @@ import {
 import { lazy } from "react";
 
 import Root from "./basics/Root.js";
-import LazyLoading from "./LayoutRoute.js";
+import LazyLoading from "./basics/LayoutRoute.js";
 import Register from "./basics/loginLogoutRegister/Register.js";
 import LoginForm from "./basics/loginLogoutRegister/LoginForm.js";
 import "./basics/logo/logo.css";
 
-import About from "./basics/about/About.js";
+import About from "./about/About.js";
 import Information from "./information/Information.js";
 import DocumentationTool from "./documentationTool/DocumentationTool.js";
 import LitterOverview from "./documentationTool/litterOverview/LitterOverview.js";
