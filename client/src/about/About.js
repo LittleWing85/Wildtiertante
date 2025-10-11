@@ -11,7 +11,7 @@ export default function About() {
                 Meine große Leidenschaft gilt der Aufzucht von verwaisten
                 Wildtierbabys. Auf dieser Seite stelle ich euch alle Tipps und
                 Infos zur Verfügung, die ich in meinen elf Jahren als Ersatzmama
-                für verwaiste Tierbabies gesammelt habe.
+                für verwaiste Tierbabys gesammelt habe.
             </p>
             <p className="topSpaceSmall">
                 <Link to={"/information"}>Hier</Link> findet ihr ausführliche{" "}
@@ -42,14 +42,13 @@ export default function About() {
                 weitere tolle und hilfreiche Funktionen für euch bereit!
             </p>
             <p className="topSpaceSmall">
-                Nun noch <b>ein paar Infos zu mir</b>: Mein Wissen stammt von
-                verschiedenen, auf Wildtiere spezialisierte Seminare und den
-                Erfahrungen aus elf Jahren, in denen ich ehrenamtlich und
-                hauptberuflich in verschiedenen Wildtierstationen
-                Norddeutschlands gearbeitet habe. Dabei durfte ich Finder von
-                Wildtieren telefonisch beraten, erste Hilfe für Neuankömmlinge
-                leisten und verwaiste Tierbabies aufziehen. Einige besonders
-                kleine und empfindliche Flaschenkinder habe ich als
+                Nun noch <b>ein paar Infos zu mir</b>: Mein Wissen stammt aus
+                Seminaren über Wildtiere und aus den Erfahrungen, die ich
+                während elf Jahren ehrenamtlicher und hauptberuflicher Arbeit
+                bei mehreren Wildtierstationen gesammelt habe. Dabei durfte ich
+                Finder von Wildtieren telefonisch beraten, erste Hilfe für
+                Neuankömmlinge leisten und verwaiste Tierbabys aufziehen. Einige
+                besonders kleine und empfindliche Flaschenkinder habe ich als
                 ehrenamtliche Pflegestelle zu Hause rund um die Uhr versorgt.
                 Bei mir leben außerdem dauerhaft zwei wunderbare Kaninchen, die
                 ich aus dem Tierschutz adoptiert habe.
