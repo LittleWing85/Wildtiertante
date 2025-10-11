@@ -34,38 +34,38 @@ export default function WildAnimalFound() {
                     Fliegen haben bereits ihre Eier auf dem Findling abgelegt
                 </li>
             </ul>
-            <h2>Spezialfall Tierbabies</h2>
+            <h2>Spezialfall Tierbabys</h2>
             <p>
                 Babytiere sind besonders empfindlich und keine noch so erfahrene
                 und fachkundige Menschenhand kann das Muttertier ersetzen. Bitte
-                versucht daher unbedingt, Tierbabies zurückzusetzen, falls ihr
+                versucht daher unbedingt, Tierbabys zurückzusetzen, falls ihr
                 irgendwo in erreichbarer Nähe das Nest findet und wartet ab, ob
                 das Muttertier zurückkehrt. Bitte sucht die Umgebung vorher nach
                 weiteren Babytieren ab. Wildtiere, die in der Nähe von Menschen
                 leben, sind an unseren Geruch gewöhnt und nehmen ihren Nachwuchs
                 in der Regel auch dann wieder an, wenn er ein wenig nach Mensch
-                riecht. In folgenden Fällen können Tierbabies allerdings nicht
-                in das Nest zurückgesetzt werden, da sie menschliche Hilfe
+                riecht. In folgenden Fällen können Tierbabys allerdings nicht in
+                das Nest zurückgesetzt werden, da sie menschliche Hilfe
                 benötigen:
             </p>
             <ul className="topSpaceSmall">
-                <li>Die Babies sind kühl oder kalt</li>
+                <li>Die Babys sind kühl oder kalt</li>
                 <li>Bei Verletzungen</li>
-                <li>Fliegen haben bereits ihre Eier auf den Babies abgelegt</li>
+                <li>Fliegen haben bereits ihre Eier auf den Babys abgelegt</li>
                 <li>
-                    Bei Eichhörnchenbabies, die euch hinterherlaufen oder sogar
+                    Bei Eichhörnchenbabys, die euch hinterherlaufen oder sogar
                     am Bein hochklettern &#40;in der Regel ist das Muttertier
                     nicht zum Nachwuchs zurückgekehrt&#41;
                 </li>
             </ul>
             <p className="topSpaceSmall">
-                Hilfebedürftige Tierbabies benötigen moderate Wärme &ndash; z.B.
+                Hilfebedürftige Tierbabys benötigen moderate Wärme &ndash; z.B.
                 Körperwärme oder eine lauwarme Wärmflasche. Auf keinen Fall
                 sollten Wasser, Muttermilchersatz, Tee o.Ä. in die Mäulchen
                 eingegeben oder in einem Napf bereitgestellt werden. Geschwächte
                 Babytiere können nicht richtig abschlucken und dadurch ersticken
                 oder in Wassernäpfen ertrinken. Bitte sucht die Umgebung
-                unbedingt nach weiteren Tierbabies ab, sodass keines
+                unbedingt nach weiteren Tierbabys ab, sodass keines
                 zurückbleibt.
             </p>
 
@@ -86,7 +86,7 @@ export default function WildAnimalFound() {
                     zum Säugen vorbeigekommen
                 </li>
                 <li>Bei Verletzungen</li>
-                <li>Fliegen haben bereits ihre Eier auf den Babies abgelegt</li>
+                <li>Fliegen haben bereits ihre Eier auf den Babys abgelegt</li>
             </ul>
             <h2>Spezialfall Igel</h2>
             <p className="bottomSpace"></p>
