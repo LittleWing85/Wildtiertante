@@ -4,7 +4,7 @@ export default function WildAnimalFound() {
             <h1>Wildtier gefunden, was tun? </h1>
             <p className="bottomSpace">
                 Nicht alle Wildtiere, die wir bei Ausflügen in der Natur oder in
-                der Stadt antreffen, sind hilfebedürftig &ndash; und auch bei
+                der Stadt antreffen, sind hilfebedürftig &mdash; und auch bei
                 hilfebedürftigen Wildtieren gibt es einiges zu beachten. Ein
                 Wildtier aus der Natur zu entnehmen sollte immer die letzte
                 Möglichkeit sein, da die Tiere dabei großem Stress ausgesetzt
@@ -59,7 +59,7 @@ export default function WildAnimalFound() {
                 </li>
             </ul>
             <p className="topSpaceSmall">
-                Hilfebedürftige Tierbabys benötigen moderate Wärme &ndash; z.B.
+                Hilfebedürftige Tierbabys benötigen moderate Wärme &mdash; z.B.
                 Körperwärme oder eine lauwarme Wärmflasche. Auf keinen Fall
                 sollten Wasser, Muttermilchersatz, Tee o.Ä. in die Mäulchen
                 eingegeben oder in einem Napf bereitgestellt werden. Geschwächte
