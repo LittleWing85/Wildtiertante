@@ -4,7 +4,7 @@ export default function WildAnimalFound() {
             <h1>Wildtier gefunden, was tun? </h1>
             <p className="bottomSpace">
                 Nicht alle Wildtiere, die wir bei Ausflügen in der Natur oder in
-                der Stadt antreffen, sind hilfebedürftig &ndash; und auch bei
+                der Stadt antreffen, sind hilfebedürftig &mdash; und auch bei
                 hilfebedürftigen Wildtieren gibt es einiges zu beachten. Ein
                 Wildtier aus der Natur zu entnehmen sollte immer die letzte
                 Möglichkeit sein, da die Tiere dabei großem Stress ausgesetzt
@@ -50,9 +50,9 @@ export default function WildAnimalFound() {
             </p>
             <ul className="topSpaceSmall">
                 <li>
-                    Bei Eichhörnchenbabys, die euch hinterherlaufen oder sogar
-                    am Bein hochklettern &#40;in der Regel ist das Muttertier
-                    hier nicht zum Nachwuchs zurückgekehrt&#41;
+                    Eichhörnchenbabys, die euch hinterherlaufen oder sogar am
+                    Bein hochklettern &#40;in der Regel ist das Muttertier hier
+                    nicht zum Nachwuchs zurückgekehrt&#41;
                 </li>
                 <li>Die Babys sind kühl oder kalt</li>
                 <li>Bei Verletzungen</li>
@@ -85,13 +85,62 @@ export default function WildAnimalFound() {
                     Das Muttertier ist mindestens einen halben Tag lang nicht
                     zum Säugen vorbeigekommen
                 </li>
+                <li>Das Tierbaby liegt auf der Seite</li>
                 <li>Bei Verletzungen</li>
-                <li>Fliegen haben bereits ihre Eier auf den Babys abgelegt</li>
+                <li>
+                    Fliegen haben bereits ihre Eier auf den Kleinen abgelegt
+                </li>
             </ul>
-            <h2>Spezialfall Igel</h2>
-            <p className="bottomSpace"></p>
+            <h2>Spezialfall Igelkinder</h2>
+            <p className="bottomSpace">
+                Gesunde Igelkinder, die ohne Mutter im Herbst auf Nahrungssuche
+                sind, werden idealerweise draußen zugefüttert. So haben sie in
+                ihrer natürlichen und vertrauten Umgebung die Chance, sich vor
+                dem Wintereinbruch noch eine dicke Speckschicht anzufuttern. In
+                folgenden Fällen ist das allerdings nicht möglich und die Tiere
+                müssen sachkundig versorgt werden:
+                <ul className="topSpaceSmall">
+                    <li>
+                        Das Igelbaby liegt auf der Seite und rollt sich nicht
+                        zusammen
+                    </li>
+                    <li>
+                        Die Temperaturen fallen nachts unter 15° &#40;bei
+                        Temperaturen unter 15° können Igel nicht zunehmen&#41;
+                    </li>
+                    <li>
+                        Das Igelbaby ist abgemagert und hat einen sogenannten
+                        &quot;Hungerknick&quot; im Nacken; d.h. hinter dem Kopf
+                        ist eine deutliche Einbuchtung zu sehen
+                    </li>
+                    <li>Bei Verletzungen</li>
+                    <li>
+                        Fliegen haben bereits ihre Eier auf dem Tierchen
+                        abgelegt
+                    </li>
+                </ul>
+            </p>
             <h1>Wie sieht&#39;s mit der Zuständigkeit aus?</h1>
-            <p className="bottomSpace"></p>
+            <p className="bottomSpace">
+                In der Natur lebende Wildtiere gelten vor dem Gesetz als
+                herrenlos &#40;
+                <a href="https://www.gesetze-im-internet.de/bgb/__960.html">
+                    Bürgergliches Gesetzbuch, §960 wilde Tiere
+                </a>
+                &#41;. Anders als bei gefunden Haustieren sind Gemeinden daher
+                nicht verpflichtet, sich um hilfsbedürftige Wildtiere zu
+                kümmern. Jeder, der über die nötigen Fähigkeiten verfügt, darf
+                ein Wildtier in Not fachgerecht versorgen. Eine Ausnahme bildet
+                jagdbares Wild &mdash; also Wildtiere, die gejagt werden dürfen.
+                Diese Tiere dürfen nur vom zuständigen Jäger bzw. nach voriger
+                Absprache mit dem zuständigen Jäger aus der Natur entnommen
+                werden. Eine Auflistung der in Deutschland jagbaren Tierarten
+                findet sich im{" "}
+                <a href="https://www.gesetze-im-internet.de/bjagdg/__2.html">
+                    Bundesjagdgesetz, §2 Tierarten
+                </a>
+                . Je nach Bundesland können weitere Tierarten hinzukommen.
+            </p>
             <h1>Wohin mit unserem Findling?</h1>
             <p className="bottomSpace"></p>
             <h1>Sicherheit geht vor!</h1>
