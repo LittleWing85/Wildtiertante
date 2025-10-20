@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { login } from "./loggedinSlice.js";
+import { login } from "./loggedinSlice.jsx";
 
 export default function Register() {
     const [errorOnRegistration, setErrorOnRegistration] = useState(false);

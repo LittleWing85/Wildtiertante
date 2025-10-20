@@ -99,27 +99,26 @@ export default function WildAnimalFound() {
                 dem Wintereinbruch noch eine dicke Speckschicht anzufuttern. In
                 folgenden Fällen ist das allerdings nicht möglich und die Tiere
                 müssen sachkundig versorgt werden:
-                <ul className="topSpaceSmall">
-                    <li>
-                        Das Igelbaby liegt auf der Seite und rollt sich nicht
-                        zusammen
-                    </li>
-                    <li>
-                        Die Temperaturen fallen nachts unter 15° &#40;bei
-                        Temperaturen unter 15° können Igel nicht zunehmen&#41;
-                    </li>
-                    <li>
-                        Das Igelbaby ist abgemagert und hat einen sogenannten
-                        &quot;Hungerknick&quot; im Nacken; d.h. hinter dem Kopf
-                        ist eine deutliche Einbuchtung zu sehen
-                    </li>
-                    <li>Bei Verletzungen</li>
-                    <li>
-                        Fliegen haben bereits ihre Eier auf dem Tierchen
-                        abgelegt
-                    </li>
-                </ul>
             </p>
+            <ul className="topSpaceSmall">
+                <li>
+                    Das Igelbaby liegt auf der Seite und rollt sich nicht
+                    zusammen
+                </li>
+                <li>
+                    Die Temperaturen fallen nachts unter 15° &#40;bei
+                    Temperaturen unter 15° können Igel nicht zunehmen&#41;
+                </li>
+                <li>
+                    Das Igelbaby ist abgemagert und hat einen sogenannten
+                    &quot;Hungerknick&quot; im Nacken; d.h. hinter dem Kopf ist
+                    eine deutliche Einbuchtung zu sehen
+                </li>
+                <li>Bei Verletzungen</li>
+                <li>
+                    Fliegen haben bereits ihre Eier auf dem Tierchen abgelegt
+                </li>
+            </ul>
             <h1>Wie sieht&#39;s mit der Zuständigkeit aus?</h1>
             <p className="bottomSpace">
                 In der Natur lebende Wildtiere gelten vor dem Gesetz als

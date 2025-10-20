@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import LoginLogoutButtonsAndLogout from "./loginLogoutRegister/LoginLogoutButtonsAndLogout.js";
+import LoginLogoutButtonsAndLogout from "./loginLogoutRegister/LoginLogoutButtonsAndLogout.jsx";
 
 export default function Root() {
     return (

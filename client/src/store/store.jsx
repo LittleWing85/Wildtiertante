@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import loggedinReducer from "../basics/loginLogoutRegister/loggedinSlice.js";
+import loggedinReducer from "../basics/loginLogoutRegister/loggedinSlice.jsx";
 
 export const store = configureStore({
     reducer: {

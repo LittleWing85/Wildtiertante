@@ -6,21 +6,23 @@ import {
 } from "react-router-dom";
 import { lazy } from "react";
 
-import Root from "./basics/Root.js";
-import LazyLoading from "./basics/LayoutRoute.js";
-import Register from "./basics/loginLogoutRegister/Register.js";
-import LoginForm from "./basics/loginLogoutRegister/LoginForm.js";
+import Root from "./basics/Root.jsx";
+import LazyLoading from "./basics/LayoutRoute.jsx";
+import Register from "./basics/loginLogoutRegister/Register.jsx";
+import LoginForm from "./basics/loginLogoutRegister/LoginForm.jsx";
 import "./basics/logo/logo.css";
 
-import About from "./about/About.js";
-import Information from "./information/Information.js";
-import DocumentationTool from "./documentationTool/DocumentationTool.js";
-import LitterOverview from "./documentationTool/litterOverview/LitterOverview.js";
-const WhosNext = lazy(() => import("./documentationTool/whosNext/WhosNext.js"));
-const NewLitter = lazy(() =>
-    import("./documentationTool/newLitter/NewLitter.js")
+import About from "./about/About.jsx";
+import Information from "./information/Information.jsx";
+import DocumentationTool from "./documentationTool/DocumentationTool.jsx";
+import LitterOverview from "./documentationTool/litterOverview/LitterOverview.jsx";
+const WhosNext = lazy(() =>
+    import("./documentationTool/whosNext/WhosNext.jsx")
 );
-import WildAnimalFound from "./wildanimalfound/WildAnimalFound.js";
+const NewLitter = lazy(() =>
+    import("./documentationTool/newLitter/NewLitter.jsx")
+);
+import WildAnimalFound from "./wildanimalfound/WildAnimalFound.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
