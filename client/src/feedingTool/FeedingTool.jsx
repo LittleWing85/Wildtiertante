@@ -1,4 +1,4 @@
-//   This component renders the second level nav and checks if user is logged in
+//    This component renders the second level nav and checks if user is logged in
 
 import { useEffect } from "react";
 import { Outlet, NavLink, useNavigate } from "react-router-dom";
