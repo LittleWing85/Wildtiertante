@@ -14,14 +14,10 @@ import "./basics/logo/logo.css";
 
 import About from "./about/About.jsx";
 import Information from "./information/Information.jsx";
-import DocumentationTool from "./documentationTool/DocumentationTool.jsx";
-import LitterOverview from "./documentationTool/litterOverview/LitterOverview.jsx";
-const WhosNext = lazy(() =>
-    import("./documentationTool/whosNext/WhosNext.jsx")
-);
-const NewLitter = lazy(() =>
-    import("./documentationTool/newLitter/NewLitter.jsx")
-);
+import FeedingTool from "./feedingTool/FeedingTool.jsx";
+import LitterOverview from "./feedingTool/litterOverview/LitterOverview.jsx";
+const WhosNext = lazy(() => import("./feedingTool/whosNext/WhosNext.jsx"));
+const NewLitter = lazy(() => import("./feedingTool/newLitter/NewLitter.jsx"));
 import WildAnimalFound from "./wildanimalfound/WildAnimalFound.jsx";
 
 const router = createBrowserRouter(
@@ -29,7 +25,7 @@ const router = createBrowserRouter(
         <Route path="/" element={<Root />}>
             <Route index element={<About />} />
             <Route path="information" element={<Information />} />
-            <Route path="documentationTool" element={<DocumentationTool />}>
+            <Route path="feedingTool" element={<FeedingTool />}>
                 <Route index element={<LitterOverview />} />
                 <Route path="litterOverview" element={<LitterOverview />} />
                 <Route element={<LazyLoading />}>

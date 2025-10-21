@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { Outlet, NavLink, useNavigate } from "react-router-dom";
 
-export default function DocumentationTool() {
+export default function FeedingTool() {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,16 +26,13 @@ export default function DocumentationTool() {
     return (
         <section>
             <nav className="nav2">
-                <NavLink
-                    className="navEntry"
-                    to="/documentationTool/litterOverview"
-                >
+                <NavLink className="navEntry" to="/feedingTool/litterOverview">
                     Litter overview
                 </NavLink>
-                <NavLink className="navEntry" to="/documentationTool/whosNext">
+                <NavLink className="navEntry" to="/feedingTool/whosNext">
                     Who&apos;s next
                 </NavLink>
-                <NavLink className="navEntry" to="/documentationTool/newLitter">
+                <NavLink className="navEntry" to="/feedingTool/newLitter">
                     New Litter
                 </NavLink>
             </nav>

@@ -28,7 +28,7 @@ export default function About() {
                 Damit ihr beim Päppeln eurer Schützlinge den Überblick behaltet,
                 habe ich ein{" "}
                 <b>
-                    spezielles <Link to={"/documentationTool"}>Tool</Link>
+                    spezielles <Link to={"/feedingTool"}>Tool</Link>
                 </b>{" "}
                 entwickelt. Es zeigt euch an, welche Tierbabys als nächstes und
                 in welcher Reihenfolge gefüttert werden müssen. Das ist
@@ -38,7 +38,7 @@ export default function About() {
                 automatisch aus, welche Milchmenge eure Kleinen pro Fütterung
                 ungefähr bekommen sollten. So braucht ihr nicht bei jeder
                 Fütterung von vorne losrechnen. Schaut euch das{" "}
-                <Link to={"/documentationTool"}>Tool</Link> einfach an - es hält
+                <Link to={"/feedingTool"}>Tool</Link> einfach an - es hält
                 weitere tolle und hilfreiche Funktionen für euch bereit!
             </p>
             <p className="topSpaceSmall">

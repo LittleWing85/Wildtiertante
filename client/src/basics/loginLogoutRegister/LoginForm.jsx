@@ -32,7 +32,7 @@ export default function LoginForm() {
                 setShowLoginErrorMessage(true);
             })
             .then(() => {
-                navigate("/documentationTool");
+                navigate("/feedingTool");
             })
             .catch((error) => console.log(error));
     }

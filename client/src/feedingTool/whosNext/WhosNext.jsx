@@ -2,7 +2,7 @@
 It is sorted in the order in which the animals must be fed.
 If a user clicks on a litter, a form is display where he can enter date of the feedings. */
 
-export default function LitterOverview() {
+export default function WhosNext() {
     return (
         <p>
             Here you can see later when which of your protégés are ready to be
@@ -13,7 +13,7 @@ export default function LitterOverview() {
 
 /*import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import "./documentationTool.css";
+import "./feedingTool.css";
 
 function formatTime1(time) {
     const formattedTime = time.split(":").slice(0, 2).join(":");

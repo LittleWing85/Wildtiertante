@@ -21,7 +21,7 @@ export default function Root() {
                     <NavLink className="navEntry" to="/information">
                         Jungtieraufzucht
                     </NavLink>
-                    <NavLink className="navEntry" to="/documentationTool">
+                    <NavLink className="navEntry" to="/feedingTool">
                         Fütterungstool
                     </NavLink>
                     <NavLink className="navEntry" to="/wildAnimalFound">
