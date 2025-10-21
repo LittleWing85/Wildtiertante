@@ -11,7 +11,7 @@ export default function FeedingTool() {
             .then((response) => response.json())
             .then((data) => {
                 if (!data) {
-                    navigate("/");
+                    navigate("/login");
                     alert("Please log in first to use this functionality.");
                     return;
                 }
