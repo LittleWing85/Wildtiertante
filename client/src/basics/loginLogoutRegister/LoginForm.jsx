@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import { login } from "./loggedinSlice.jsx";
 
@@ -8,6 +8,9 @@ export default function LoginForm() {
     const [showLoginErrorMessage, setShowLoginErrorMessage] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const message = location.state?.message;
 
     function onSubmitLogin(event) {
         event.preventDefault();
@@ -39,6 +42,7 @@ export default function LoginForm() {
 
     return (
         <div>
+            {message && <p className="infoBanner">{message}</p>}
             <form className="flexVertically " onSubmit={onSubmitLogin}>
                 <label htmlFor="email">Email address</label>
                 <input

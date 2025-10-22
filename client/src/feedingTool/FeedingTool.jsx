@@ -11,8 +11,12 @@ export default function FeedingTool() {
             .then((response) => response.json())
             .then((data) => {
                 if (!data) {
-                    navigate("/login");
-                    alert("Please log in first to use this functionality.");
+                    navigate("/login", {
+                        state: {
+                            message:
+                                "Bitte melde dich an, um das Fütterungstool zu verwenden. ",
+                        },
+                    });
                     return;
                 }
                 if (data.length === 0) {
