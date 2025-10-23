@@ -1,32 +1,23 @@
-//This component renders the second level nav and checks if user is logged in
+//This component renders the second level nav and checks if the user is logged in.
+//It also has an Outlet so the content chosen by a user via second level nav will be rendered.
 
-import { useEffect, useState } from "react";
-import { Outlet, NavLink, Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, NavLink, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function FeedingTool() {
-    const [currentLitters, setCurrentLitters] = useState(null);
     const navigate = useNavigate();
-
+    const logged = useSelector((state) => state.loggedin.value);
     useEffect(() => {
-        fetch("/api/litterOverview")
-            .then((response) => response.json())
-            .then((data) => {
-                if (!data) {
-                    navigate("/login", {
-                        state: {
-                            message:
-                                "Bitte melde dich an, um das Fütterungstool zu verwenden. ",
-                        },
-                    });
-                    return;
-                }
-                setCurrentLitters(data);
+        if (!logged) {
+            navigate("/login", {
+                state: {
+                    message:
+                        "Bitte melde dich an, um das Fütterungstool zu verwenden.",
+                },
             });
-    }, [navigate]);
-
-    if (!currentLitters) {
-        return <p>Lade Daten...</p>;
-    }
+        }
+    }, [logged, navigate]);
 
     return (
         <section>
@@ -41,17 +32,6 @@ export default function FeedingTool() {
                     New Litter
                 </NavLink>
             </nav>
-
-            {currentLitters.length === 0 && (
-                <p>
-                    Momentan ist niemand eingetragen, der Milch oder Medikamente
-                    bekommt. <Link to="/feedingTool/newLitter">Hier</Link>{" "}
-                    kannst du neue Tierbabys hinzufügen. Möchtest du
-                    Informationen zu Tierbabys, die du schon eingetragen hast,
-                    bearbeiten, dann klicke{" "}
-                    <Link to="/feedingTool/litterOverview">hier</Link>.
-                </p>
-            )}
 
             <Outlet />
         </section>

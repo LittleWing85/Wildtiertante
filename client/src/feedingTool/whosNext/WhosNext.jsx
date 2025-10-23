@@ -2,12 +2,40 @@
 It is sorted in the order in which the animals must be fed.
 If a user clicks on a litter, a form is display where he can enter date of the feedings. */
 
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 export default function WhosNext() {
+    const [currentLitters, setCurrentLitters] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        fetch("/api/litterOverview")
+            .then((response) => response.json())
+            .then((data) => {
+                setCurrentLitters(data);
+            });
+    }, [navigate]);
+
+    if (!currentLitters) {
+        return <p>Lade Daten...</p>;
+    }
+
     return (
-        <p>
-            Here you can see later when which of your protégés are ready to be
-            fed
-        </p>
+        <div>
+            {currentLitters.length === 0 ? (
+                <p>
+                    Momentan ist niemand eingetragen, der Milch oder Medikamente
+                    bekommt. <Link to="/feedingTool/newLitter">Hier</Link>{" "}
+                    kannst du neue Tierbabys hinzufügen. Möchtest du
+                    Informationen zu Tierbabys, die du schon eingetragen hast,
+                    bearbeiten, dann klicke{" "}
+                    <Link to="/feedingTool/litterOverview">hier</Link>.
+                </p>
+            ) : (
+                <p>Test-Text</p>
+            )}
+        </div>
     );
 }
 
