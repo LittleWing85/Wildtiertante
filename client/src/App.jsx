@@ -6,10 +6,10 @@ import {
 } from "react-router-dom";
 import { lazy } from "react";
 
-import Root from "./basics/Root.jsx";
-import LazyLoading from "./basics/LayoutRoute.jsx";
-import Register from "./basics/loginLogoutRegister/Register.jsx";
-import LoginForm from "./basics/loginLogoutRegister/LoginForm.jsx";
+import Root from "./Root.jsx";
+import LazyLoading from "./LayoutRoute.jsx";
+import Register from "./loginLogoutRegister/Register.jsx";
+import LoginForm from "./loginLogoutRegister/LoginForm.jsx";
 
 import About from "./about/About.jsx";
 import Information from "./information/Information.jsx";
