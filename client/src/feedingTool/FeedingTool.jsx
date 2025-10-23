@@ -23,7 +23,6 @@ export default function FeedingTool() {
                     alert("Login successful, you have currently no animals");
                     return;
                 }
-                alert("Login successful");
             });
     }, [navigate]);
 

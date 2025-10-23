@@ -10,7 +10,6 @@ import Root from "./basics/Root.jsx";
 import LazyLoading from "./basics/LayoutRoute.jsx";
 import Register from "./basics/loginLogoutRegister/Register.jsx";
 import LoginForm from "./basics/loginLogoutRegister/LoginForm.jsx";
-import "./basics/logo/logo.css";
 
 import About from "./about/About.jsx";
 import Information from "./information/Information.jsx";

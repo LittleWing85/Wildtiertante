@@ -86,6 +86,14 @@ footer {
 section {
     margin: 2rem 3rem;
 }
+.containerLogo {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 2em;
+}
+.logo {
+    height: 5rem;
+}
 
 /* header and nav */
 header {
