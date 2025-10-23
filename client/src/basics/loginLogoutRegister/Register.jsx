@@ -1,3 +1,5 @@
+//This component renders the form for registration
+
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 

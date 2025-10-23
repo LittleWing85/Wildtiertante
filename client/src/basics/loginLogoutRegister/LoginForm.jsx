@@ -1,3 +1,5 @@
+// This component renders the form for login.
+
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -41,8 +43,15 @@ export default function LoginForm() {
     }
 
     return (
-        <div>
+        <section>
             {message && <p className="infoBanner">{message}</p>}
+            <p className="bottomSpace">
+                No account yet? Click{" "}
+                <Link to="/register" className="clickHere">
+                    here
+                </Link>{" "}
+                to register!
+            </p>
             <form className="flexVertically " onSubmit={onSubmitLogin}>
                 <label htmlFor="email">Email address</label>
                 <input
@@ -63,18 +72,12 @@ export default function LoginForm() {
 
                 <button>Login</button>
             </form>
-            <p className="topSpace">
-                No account yet? Click{" "}
-                <Link to="/register" className="clickHere">
-                    here
-                </Link>{" "}
-                to register!
-            </p>
+
             {showLoginErrorMessage && (
                 <p className="errorMessage">
                     Wrong credentials or you haven&apos;t registered yet.
                 </p>
             )}
-        </div>
+        </section>
     );
 }
