@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { login } from "./loggedinSlice.jsx";
 
 export default function Register() {
     const [errorOnRegistration, setErrorOnRegistration] = useState(false);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     function onSubmitRegistrationData(event) {
         event.preventDefault();
@@ -31,6 +33,7 @@ export default function Register() {
                 }
                 dispatch(login());
                 setErrorOnRegistration(false);
+                navigate("/feedingTool");
             });
     }
 

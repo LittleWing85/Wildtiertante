@@ -25,10 +25,10 @@ const router = createBrowserRouter(
             <Route index element={<About />} />
             <Route path="information" element={<Information />} />
             <Route path="feedingTool" element={<FeedingTool />}>
-                <Route index element={<LitterOverview />} />
-                <Route path="litterOverview" element={<LitterOverview />} />
+                <Route index element={<WhosNext />} />
+                <Route path="whosNext" element={<WhosNext />} />
                 <Route element={<LazyLoading />}>
-                    <Route path="whosNext" element={<WhosNext />} />
+                    <Route path="litterOverview" element={<LitterOverview />} />
                     <Route path="newLitter" element={<NewLitter />} />
                 </Route>
 
