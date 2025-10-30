@@ -14,8 +14,10 @@ import LoginForm from "./loginLogoutRegister/LoginForm.jsx";
 import About from "./about/About.jsx";
 import Information from "./information/Information.jsx";
 import FeedingTool from "./feedingTool/FeedingTool.jsx";
-import LitterOverview from "./feedingTool/litterOverview/LitterOverview.jsx";
-const WhosNext = lazy(() => import("./feedingTool/whosNext/WhosNext.jsx"));
+import WhosNext from "./feedingTool/whosNext/WhosNext.jsx";
+const LitterOverview = lazy(() =>
+    import("./feedingTool/litterOverview/LitterOverview.jsx")
+);
 const NewLitter = lazy(() => import("./feedingTool/newLitter/NewLitter.jsx"));
 import WildAnimalFound from "./wildanimalfound/WildAnimalFound.jsx";
 
