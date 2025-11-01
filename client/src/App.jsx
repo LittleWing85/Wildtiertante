@@ -8,8 +8,8 @@ import { lazy } from "react";
 
 import Root from "./Root.jsx";
 import LazyLoading from "./LayoutRoute.jsx";
-import Register from "./loginLogoutRegister/Register.jsx";
-import LoginForm from "./loginLogoutRegister/LoginForm.jsx";
+import RegistrationForm from "./LoginLogoutRegistration/loginLogoutRegistrationChildren/RegistrationForm.jsx";
+import LoginForm from "./LoginLogoutRegistration/loginLogoutRegistrationChildren/LoginForm.jsx";
 
 import About from "./about/About.jsx";
 import Information from "./information/Information.jsx";
@@ -38,7 +38,7 @@ const router = createBrowserRouter(
                 See ImprovementsThatMightBeInterestingInTheFuture.doc for more info/*/}
             </Route>
             <Route path="wildAnimalFound" element={<WildAnimalFound />} />
-            <Route path="register" element={<Register />} />
+            <Route path="register" element={<RegistrationForm />} />
             <Route path="login" element={<LoginForm />} />
         </Route>
     )

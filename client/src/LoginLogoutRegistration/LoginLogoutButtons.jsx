@@ -4,10 +4,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import "./loginLogoutRegister.css";
+import "./loginLogoutRegistration.css";
 import { login, logout } from "./loggedinSlice.jsx";
 
-export default function LoginLogoutButtonsAndLogout() {
+export default function LoginLogoutButtons() {
     const dispatch = useDispatch();
     const logged = useSelector((state) => state.loggedin.value);
 
@@ -21,7 +21,7 @@ export default function LoginLogoutButtonsAndLogout() {
                 }
                 dispatch(logout());
             });
-    }, []); //Makes sure that user is still logged in if browser is refreshed
+    }, []);
 
     function onLogout() {
         dispatch(logout());
@@ -35,7 +35,7 @@ export default function LoginLogoutButtonsAndLogout() {
             {!logged && (
                 <div>
                     <Link to="/login" className="navEntry">
-                        Login
+                        Anmelden
                     </Link>
                 </div>
             )}

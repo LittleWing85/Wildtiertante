@@ -4,9 +4,9 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { login } from "./loggedinSlice.jsx";
+import { login } from "./loggedinSlice.js";
 
-export default function Register() {
+export default function RegistrationForm() {
     const [errorOnRegistration, setErrorOnRegistration] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
