@@ -46,14 +46,14 @@ export default function LoginForm() {
         <section>
             {message && <p className="infoBanner">{message}</p>}
             <p className="bottomSpace">
-                No account yet? Click{" "}
+                Noch nicht angemeldet?{" "}
                 <Link to="/register" className="clickHere">
-                    here
+                    Hier
                 </Link>{" "}
-                to register!
+                gehts zur Registrierung!
             </p>
             <form className="flexVertically " onSubmit={onSubmitLogin}>
-                <label htmlFor="email">Email address</label>
+                <label htmlFor="email">Emailadresse</label>
                 <input
                     id="email"
                     name="email"
@@ -61,7 +61,7 @@ export default function LoginForm() {
                     required
                     placeholder="Email"
                 />
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Passwort</label>
                 <input
                     id="password"
                     name="password"
