@@ -43,7 +43,7 @@ export default function Register() {
                 className="flexVertically"
                 onSubmit={onSubmitRegistrationData}
             >
-                <label htmlFor="name">Name of your shelter</label>
+                <label htmlFor="name">Name</label>
                 <input
                     id="name"
                     name="name"
@@ -51,7 +51,7 @@ export default function Register() {
                     required
                     placeholder="Name of your shelter"
                 />
-                <label htmlFor="email">Email address</label>
+                <label htmlFor="email">Emailadresse</label>
                 <input
                     id="email"
                     name="email"
@@ -59,7 +59,7 @@ export default function Register() {
                     required
                     placeholder="Email"
                 />
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Passwort</label>
                 <input
                     id="password"
                     name="password"
