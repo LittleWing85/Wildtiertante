@@ -100,7 +100,7 @@ export default function WildAnimalFound() {
                 folgenden Fällen ist das allerdings nicht möglich und die Tiere
                 müssen sachkundig versorgt werden:
             </p>
-            <ul className="topSpaceSmall">
+            <ul className="topSpaceSmall, bottomSpace">
                 <li>
                     Das Igelbaby liegt auf der Seite und rollt sich nicht
                     zusammen
