@@ -10,7 +10,7 @@ export default function FeedingTool() {
     const logged = useSelector((state) => state.loggedin.value);
     useEffect(() => {
         if (!logged) {
-            navigate("/login", {
+            navigate("/signIn", {
                 state: {
                     message:
                         "Bitte melde dich an, um das Fütterungstool zu verwenden.",

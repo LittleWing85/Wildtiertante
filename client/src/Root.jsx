@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import LoginLogoutButtons from "./LoginLogoutRegistration/LoginLogoutButtons.jsx";
+import LoginLogoutButtons from "./signInLogout/LoginLogoutButtons.jsx";
 
 export default function Root() {
     return (
@@ -10,7 +10,7 @@ export default function Root() {
                         <img
                             className="logo"
                             src="./icons/logo.jpg"
-                            alt="cute logo with human and racoon cuddling"
+                            alt="logo with pink paw"
                         />
                     </NavLink>
                 </div>

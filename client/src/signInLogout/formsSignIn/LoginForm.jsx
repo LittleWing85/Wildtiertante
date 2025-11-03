@@ -2,17 +2,14 @@
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import { login } from "./loginLogoutRegisterChildren/loggedinSlice.js";
+import { login } from "../loggedinSlice.jsx";
 
 export default function LoginForm() {
     const [showLoginErrorMessage, setShowLoginErrorMessage] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const location = useLocation();
-
-    const message = location.state?.message;
 
     function onSubmitLogin(event) {
         event.preventDefault();
@@ -43,16 +40,8 @@ export default function LoginForm() {
     }
 
     return (
-        <section>
-            {message && <p className="infoBanner">{message}</p>}
-            <p className="bottomSpace">
-                Noch nicht angemeldet?{" "}
-                <Link to="/register" className="clickHere">
-                    Hier
-                </Link>{" "}
-                gehts zur Registrierung!
-            </p>
-            <form className="flexVertically " onSubmit={onSubmitLogin}>
+        <div className="topSpaceBig">
+            <form className="flexVertically" onSubmit={onSubmitLogin}>
                 <label htmlFor="email">Emailadresse</label>
                 <input
                     id="email"
@@ -61,7 +50,9 @@ export default function LoginForm() {
                     required
                     placeholder="Email"
                 />
-                <label htmlFor="password">Passwort</label>
+                <label htmlFor="password" className="topSpaceSmall">
+                    Passwort
+                </label>
                 <input
                     id="password"
                     name="password"
@@ -70,7 +61,7 @@ export default function LoginForm() {
                     placeholder="Password"
                 />
 
-                <button>Login</button>
+                <button className="topSpace">Login</button>
             </form>
 
             {showLoginErrorMessage && (
@@ -78,6 +69,6 @@ export default function LoginForm() {
                     Wrong credentials or you haven&apos;t registered yet.
                 </p>
             )}
-        </section>
+        </div>
     );
 }

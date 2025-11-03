@@ -3,14 +3,17 @@ import {
     RouterProvider,
     createBrowserRouter,
     createRoutesFromElements,
+    Navigate,
 } from "react-router-dom";
 import { lazy } from "react";
 
 import Root from "./Root.jsx";
 import LazyLoading from "./LayoutRoute.jsx";
 
-import RegistrationForm from "./LoginLogoutRegistration/loginLogoutRegistrationChildren/RegistrationForm.jsx";
-import LoginForm from "./LoginLogoutRegistration/loginLogoutRegistrationChildren/LoginForm.jsx";
+import SignIn from "./signInLogout/SignInLogout.jsx";
+import RegistrationForm from "./signInLogout/formsSignIn/RegistrationForm.jsx";
+import LoginForm from "./signInLogout/formsSignIn/LoginForm.jsx";
+
 import About from "./about/About.jsx";
 import Information from "./information/Information.jsx";
 import FeedingTool from "./feedingTool/FeedingTool.jsx";
@@ -24,6 +27,11 @@ import WildAnimalFound from "./wildanimalfound/WildAnimalFound.jsx";
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<Root />}>
+            <Route path="signIn" element={<SignIn />}>
+                <Route index element={<Navigate to="login" replace />} />
+                <Route path="login" element={<LoginForm />} />
+                <Route path="registration" element={<RegistrationForm />} />
+            </Route>
             <Route index element={<About />} />
             <Route path="information" element={<Information />} />
             <Route path="feedingTool" element={<FeedingTool />}>
@@ -33,13 +41,10 @@ const router = createBrowserRouter(
                     <Route path="litterOverview" element={<LitterOverview />} />
                     <Route path="newLitter" element={<NewLitter />} />
                 </Route>
-
                 {/* Use wrapper instead of Layout Route if different fallbacks are needed. 
                 See ImprovementsThatMightBeInterestingInTheFuture.doc for more info/*/}
             </Route>
             <Route path="wildAnimalFound" element={<WildAnimalFound />} />
-            <Route path="register" element={<RegistrationForm />} />
-            <Route path="login" element={<LoginForm />} />
         </Route>
     )
 );

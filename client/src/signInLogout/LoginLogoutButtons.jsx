@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import "./loginLogoutRegistration.css";
+import "./signInLogout.css";
 import { login, logout } from "./loggedinSlice.jsx";
 
 export default function LoginLogoutButtons() {
@@ -34,7 +34,7 @@ export default function LoginLogoutButtons() {
         <div>
             {!logged && (
                 <div>
-                    <Link to="/login" className="navEntry">
+                    <Link to="/signIn" className="navEntry">
                         Anmelden
                     </Link>
                 </div>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { login } from "./loggedinSlice.js";
+import { login } from "../loggedinSlice.jsx";
 
 export default function RegistrationForm() {
     const [errorOnRegistration, setErrorOnRegistration] = useState(false);
@@ -38,7 +38,7 @@ export default function RegistrationForm() {
     }
 
     return (
-        <div>
+        <div className="topSpaceBig">
             <form
                 className="flexVertically"
                 onSubmit={onSubmitRegistrationData}
@@ -51,7 +51,9 @@ export default function RegistrationForm() {
                     required
                     placeholder="Name of your shelter"
                 />
-                <label htmlFor="email">Emailadresse</label>
+                <label htmlFor="email" className="topSpaceSmall">
+                    Emailadresse
+                </label>
                 <input
                     id="email"
                     name="email"
@@ -59,7 +61,9 @@ export default function RegistrationForm() {
                     required
                     placeholder="Email"
                 />
-                <label htmlFor="password">Passwort</label>
+                <label htmlFor="password" className="topSpaceSmall">
+                    Passwort
+                </label>
                 <input
                     id="password"
                     name="password"
@@ -68,7 +72,7 @@ export default function RegistrationForm() {
                     placeholder="Password"
                 />
 
-                <button>Submit Data</button>
+                <button className="topSpace">Submit Data</button>
             </form>
             {errorOnRegistration && (
                 <p className="errorMessage">

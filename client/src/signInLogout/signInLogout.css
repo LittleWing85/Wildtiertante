@@ -1,0 +1,43 @@
+.infoBanner {
+    background-color: lab(94.68% 2.89 -1.71);
+    color: deeppink;
+    margin-top: 1em;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.sectionLoginForm {
+    display: flex;
+    justify-content: center;
+}
+
+.divLoginForm {
+    width: 30em;
+}
+
+.tabBar {
+    display: flex;
+}
+
+.tabBarElement {
+    width: 15em;
+    height: 3em;
+    border-bottom: 1px solid;
+}
+
+.tabText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: black;
+}
+
+.tabBarElement:has(.active) {
+    border-top: 1pt solid;
+    border-right: 1pt solid;
+    border-bottom: none;
+    border-left: 1pt solid;
+}
