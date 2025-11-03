@@ -8,9 +8,9 @@ import { lazy } from "react";
 
 import Root from "./Root.jsx";
 import LazyLoading from "./LayoutRoute.jsx";
+
 import RegistrationForm from "./LoginLogoutRegistration/loginLogoutRegistrationChildren/RegistrationForm.jsx";
 import LoginForm from "./LoginLogoutRegistration/loginLogoutRegistrationChildren/LoginForm.jsx";
-
 import About from "./about/About.jsx";
 import Information from "./information/Information.jsx";
 import FeedingTool from "./feedingTool/FeedingTool.jsx";

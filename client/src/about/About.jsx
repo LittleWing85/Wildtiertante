@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import "./about.css";
+
 export default function About() {
     return (
         <section>
@@ -58,6 +60,11 @@ export default function About() {
                 euer Feedback, Anregungen, Fragen und Verbesserungsvorschläge!
             </p>
             <p className="topSpaceSmall">Eure Wildtiertante</p>
+            <img
+                className="imageAbout"
+                src="./media/wildtiertante.jpg"
+                alt="human and racoon cuddling"
+            />
         </section>
     );
 }
