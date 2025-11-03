@@ -23,7 +23,15 @@
 .tabBarElement {
     width: 15em;
     height: 3em;
+    border-top: 1pt solid white;
     border-bottom: 1px solid;
+}
+
+.tabBarElement:has(.active) {
+    border-top: 1pt solid;
+    border-right: 1pt solid;
+    border-bottom: 1pt solid white;
+    border-left: 1pt solid;
 }
 
 .tabText {
@@ -34,11 +42,4 @@
     height: 100%;
     color: black;
     cursor: pointer;
-}
-
-.tabBarElement:has(.active) {
-    border-top: 1pt solid;
-    border-right: 1pt solid;
-    border-bottom: none;
-    border-left: 1pt solid;
 }
