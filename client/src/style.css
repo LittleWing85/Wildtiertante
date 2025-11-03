@@ -12,11 +12,12 @@ h2 {
     color: deeppink;
     font-weight: bold;
 }
-h1 {
+h1,
+.navEntry {
     font-size: 1.2em;
 }
 h2 {
-    font-size: 1em;
+    font-size: 1.1em;
     margin-top: 1.5em;
 }
 p,
@@ -32,6 +33,7 @@ a {
     font-size: 1em;
     text-decoration: none;
 }
+
 p a:hover {
     color: blue;
 }
@@ -122,7 +124,6 @@ nav {
     border-radius: 20px;
     border: solid rgb(255, 255, 255) 1px;
     color: deeppink;
-    font-size: 1em;
     font-weight: bold;
     height: 2.5em;
 }
