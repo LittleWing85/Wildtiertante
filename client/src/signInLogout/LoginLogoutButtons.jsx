@@ -1,4 +1,4 @@
-//This component shows the buttons for login and logout. It also executes the logout.
+//This component shows the buttons for login and logout. It also executes the logout
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";

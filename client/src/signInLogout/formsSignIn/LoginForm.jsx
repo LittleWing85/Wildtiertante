@@ -1,4 +1,4 @@
-// This component renders the form for login.
+// This component renders the form for login
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
