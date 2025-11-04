@@ -25,6 +25,7 @@
     height: 3em;
     border-top: 1pt solid white;
     border-bottom: 1px solid;
+    border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .tabBarElement:has(.active) {
