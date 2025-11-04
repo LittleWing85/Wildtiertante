@@ -7,34 +7,60 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../loggedinSlice.jsx";
 
 export default function RegistrationForm() {
-    const [errorOnRegistration, setErrorOnRegistration] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(null);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    function onSubmitRegistrationData(event) {
+    async function onSubmitRegistrationData(event) {
         event.preventDefault();
+
         const registrationData = {
             name: event.target.name.value,
             email: event.target.email.value,
             password: event.target.password.value,
         };
-        fetch("/api/registration", {
-            method: "POST",
-            body: JSON.stringify(registrationData),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.error) {
-                    setErrorOnRegistration(true);
-                    return;
-                }
-                dispatch(login());
-                setErrorOnRegistration(false);
-                navigate("/feedingTool");
+
+        try {
+            const response = await fetch("/api/registration", {
+                method: "POST",
+                body: JSON.stringify(registrationData),
+                headers: {
+                    "Content-Type": "application/json",
+                },
             });
+
+            if (!response.ok) {
+                throw {
+                    type: "server",
+                    code: response.status,
+                    text: `Serverfehler:${response.status}${response.statusText}`,
+                };
+            }
+
+            const data = await response.json();
+
+            if (data.error) {
+                throw {
+                    type: "application",
+                    text:
+                        data.errorMessage ||
+                        "Diese E-Mail-Adresse wird bereits verwendet.",
+                };
+            }
+
+            dispatch(login());
+            navigate("/feedingTool");
+        } catch (error) {
+            console.error("Error during registration:", error);
+            if (!error.type) {
+                setErrorMessage({
+                    type: "network",
+                    text: "Ein Netzwerkfehler ist aufgetreten. Bitte überprüfe deine Verbindung zum Internet.",
+                });
+            } else {
+                setErrorMessage(error);
+            }
+        }
     }
 
     return (
@@ -74,11 +100,8 @@ export default function RegistrationForm() {
 
                 <button className="topSpace">Submit Data</button>
             </form>
-            {errorOnRegistration && (
-                <p className="errorMessage">
-                    Maybe this email adress is already in use. If not, please
-                    try again later.
-                </p>
+            {errorMessage && (
+                <p className="errorMessage">{errorMessage.text}</p>
             )}
         </div>
     );
