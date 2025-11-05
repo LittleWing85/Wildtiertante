@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import "./signInLogout.css";
-import { login, logout } from "./loggedinSlice.jsx";
+import { login, logout } from "./loggedinSlice.js";
 
 export default function LoginLogoutButtons() {
     const dispatch = useDispatch();
