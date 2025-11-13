@@ -30,12 +30,16 @@
         "uid-safe": "^2.1.4"
     },
     "devDependencies": {
+        "@testing-library/jest-dom": "^6.9.1",
+        "@testing-library/react": "^16.3.0",
         "concurrently": "^5.3.0",
         "eslint": "^7.16.0",
         "eslint-plugin-react": "^7.12.4",
         "jest": "^26.6.3",
+        "jsdom": "^27.1.0",
         "msw": "^2.11.6",
-        "nodemon": "^2.0.6"
+        "nodemon": "^2.0.6",
+        "vitest": "^4.0.8"
     },
     "jest": {
         "setupFiles": [
