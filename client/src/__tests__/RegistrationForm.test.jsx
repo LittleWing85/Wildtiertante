@@ -1,49 +1,57 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
-import RegistrationForm from "../components/RegistrationForm";
+import RegistrationForm from "../signInLogout/formsSignIn/RegistrationForm";
 import { server } from "../mocks/server";
-import { http } from "msw";
+import { http, HttpResponse } from "msw";
+import { vi } from "vitest";
 
-describe("RegistrationForm", () => {
-    beforeAll(() => server.listen());
-    afterEach(() => server.resetHandlers());
-    afterAll(() => server.close());
+// react-router-dom mocken
+const mockNavigate = vi.fn();
+vi.mock("react-router-dom", async () => {
+    const actual = await vi.importActual("react-router-dom");
+    return {
+        ...actual,
+        useNavigate: () => mockNavigate,
+    };
+});
 
-    test("zeigt Erfolgsmeldung nach erfolgreicher Registrierung", async () => {
-        server.use(
-            http.post("/api/register", () => {
-                return Response.json(
-                    { message: "User registered" },
-                    { status: 201 }
-                );
-            })
-        );
+// redux mocken (damit dispatch(login()) nicht echt Redux benötigt)
+const mockDispatch = vi.fn();
+vi.mock("react-redux", async () => {
+    const actual = await vi.importActual("react-redux");
+    return {
+        ...actual,
+        useDispatch: () => mockDispatch,
+    };
+});
 
-        render(
-            <BrowserRouter>
-                <RegistrationForm />
-            </BrowserRouter>
-        );
+test("erfolgreiche Registrierung navigiert zum FeedingTool", async () => {
+    // 1. Endpoint für diesen Test überschreiben
+    server.use(
+        http.post("/api/registration", async () => {
+            return HttpResponse.json({ success: true }, { status: 200 });
+        })
+    );
 
-        // 1. Benutzer gibt Formular ein
-        fireEvent.change(screen.getByLabelText(/Benutzername/i), {
-            target: { value: "testuser" },
-        });
-        fireEvent.change(screen.getByLabelText(/E-Mail/i), {
-            target: { value: "test@example.com" },
-        });
-        fireEvent.change(screen.getByLabelText(/Passwort/i), {
-            target: { value: "test1234" },
-        });
+    // 2. Komponente rendern
+    render(<RegistrationForm />);
 
-        // 2. Klick auf "Registrieren"
-        fireEvent.click(screen.getByRole("button", { name: /registrieren/i }));
+    // 3. Felder ausfüllen
+    fireEvent.change(screen.getByLabelText(/name/i), {
+        target: { value: "Tierheim Sonnental" },
+    });
+    fireEvent.change(screen.getByLabelText(/emailadresse/i), {
+        target: { value: "test@example.com" },
+    });
+    fireEvent.change(screen.getByLabelText(/passwort/i), {
+        target: { value: "geheim123" },
+    });
 
-        // 3. Warten, bis Erfolgsmeldung erscheint
-        await waitFor(() =>
-            expect(
-                screen.getByText(/erfolgreich registriert/i)
-            ).toBeInTheDocument()
-        );
+    // 4. Abschicken
+    fireEvent.click(screen.getByRole("button", { name: /submit data/i }));
+
+    // 5. Warten, bis navigate ausgelöst wird
+    await waitFor(() => {
+        expect(mockDispatch).toHaveBeenCalled(); // login()
+        expect(mockNavigate).toHaveBeenCalledWith("/feedingTool");
     });
 });

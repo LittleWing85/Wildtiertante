@@ -3,10 +3,15 @@
         "browser": true,
         "commonjs": true,
         "es6": true,
-        "node": true
+        "node": true,
+        "vitest-globals/env": true
     },
-    "plugins": ["react"],
-    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "plugins": ["react", "vitest"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:vitest/recommended"
+    ],
     "parserOptions": {
         "sourceType": "module",
         "ecmaVersion": 2021
@@ -23,10 +28,5 @@
         "react/jsx-uses-react": 0,
         "react/prop-types": 0,
         "react/react-in-jsx-scope": 0
-    },
-    "globals": {
-        "jest": false,
-        "expect": false,
-        "test": false
     }
 }

@@ -14,10 +14,11 @@ export default function RegistrationForm() {
     async function onSubmitRegistrationData(event) {
         event.preventDefault();
 
+        const formData = new FormData(event.target);
         const registrationData = {
-            name: event.target.name.value,
-            email: event.target.email.value,
-            password: event.target.password.value,
+            name: formData.get("name"),
+            email: formData.get("email"),
+            password: formData.get("password"),
         };
 
         try {
