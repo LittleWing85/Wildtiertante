@@ -1,3 +1,5 @@
+// Successful registration is tested by: calling login reducer, navigating to feedingTool
+
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import RegistrationForm from "../signInLogout/formsSignIn/RegistrationForm";
 import { server } from "../mocks/server";
@@ -27,7 +29,7 @@ vi.mock("react-redux", async () => {
 test("erfolgreiche Registrierung navigiert zum FeedingTool", async () => {
     // 1. Endpoint für diesen Test überschreiben
     server.use(
-        http.post("/api/registration", async () => {
+        http.post("/api/registration", () => {
             return HttpResponse.json({ success: true }, { status: 200 });
         })
     );
