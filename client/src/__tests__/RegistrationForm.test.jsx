@@ -1,12 +1,12 @@
-// Successful registration is tested by: calling login reducer, navigating to feedingTool
-
+// five test scenarios: registration successful, server error,
+// application error, application error without message, network error
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import RegistrationForm from "../signInLogout/formsSignIn/RegistrationForm";
 import { server } from "../mocks/server";
 import { http, HttpResponse } from "msw";
 import { vi } from "vitest";
 
-// react-router-dom mocken
+// mocking of useNavigate
 const mockNavigate = vi.fn();
 vi.mock("react-router-dom", async () => {
     const actual = await vi.importActual("react-router-dom");
@@ -16,7 +16,7 @@ vi.mock("react-router-dom", async () => {
     };
 });
 
-// redux mocken (damit dispatch(login()) nicht echt Redux benötigt)
+// mocking of useDispatch
 const mockDispatch = vi.fn();
 vi.mock("react-redux", async () => {
     const actual = await vi.importActual("react-redux");
@@ -26,18 +26,15 @@ vi.mock("react-redux", async () => {
     };
 });
 
-test("erfolgreiche Registrierung navigiert zum FeedingTool", async () => {
-    // 1. Endpoint für diesen Test überschreiben
-    server.use(
-        http.post("/api/registration", () => {
-            return HttpResponse.json({ success: true }, { status: 200 });
-        })
-    );
+// resetting mocks before each test
+beforeEach(() => {
+    mockNavigate.mockReset();
+    mockDispatch.mockReset();
+});
 
-    // 2. Komponente rendern
+// auxiliary function: rendering, filling and sending of registration form
+function testUtil() {
     render(<RegistrationForm />);
-
-    // 3. Felder ausfüllen
     fireEvent.change(screen.getByLabelText(/name/i), {
         target: { value: "Tierheim Sonnental" },
     });
@@ -47,13 +44,82 @@ test("erfolgreiche Registrierung navigiert zum FeedingTool", async () => {
     fireEvent.change(screen.getByLabelText(/passwort/i), {
         target: { value: "geheim123" },
     });
-
-    // 4. Abschicken
     fireEvent.click(screen.getByRole("button", { name: /submit data/i }));
+}
 
-    // 5. Warten, bis navigate ausgelöst wird
+// 1. Registration successful; tested by calling login reducer, navigation to feedingTool
+test("erfolgreiche Registrierung navigiert zum FeedingTool", async () => {
+    server.use(
+        http.post("/api/registration", () =>
+            HttpResponse.json({ success: true }, { status: 200 })
+        )
+    );
+    testUtil();
     await waitFor(() => {
-        expect(mockDispatch).toHaveBeenCalled(); // login()
+        expect(mockDispatch).toHaveBeenCalledTimes(1);
         expect(mockNavigate).toHaveBeenCalledWith("/feedingTool");
     });
+});
+
+// 2. Server error (500)
+test("zeigt Serverfehler an, wenn API 500 zurückgibt", async () => {
+    server.use(
+        http.post("/api/registration", () =>
+            HttpResponse.json({ error: "Server exploded" }, { status: 500 })
+        )
+    );
+    testUtil();
+    const errorText = await screen.findByText(/serverfehler:500/i);
+    expect(errorText).toBeInTheDocument();
+    expect(mockNavigate).not.toHaveBeenCalled();
+});
+
+// 3. Application error (e.g. E-Mail already in use)
+test("zeigt Fehlermeldung an, wenn Backend einen application error sendet", async () => {
+    server.use(
+        http.post("/api/registration", () =>
+            HttpResponse.json(
+                {
+                    error: true,
+                    errorMessage:
+                        "Diese E-Mail-Adresse wird bereits verwendet.",
+                },
+                { status: 200 }
+            )
+        )
+    );
+    testUtil();
+    const msg = await screen.findByText(/wird bereits verwendet/i);
+    expect(msg).toBeInTheDocument();
+    expect(mockDispatch).not.toHaveBeenCalled();
+    expect(mockNavigate).not.toHaveBeenCalled();
+});
+
+// 4. Application error without message
+test("zeigt Standard-Fehlermeldung, wenn error true aber keine errorMessage vorhanden", async () => {
+    server.use(
+        http.post("/api/registration", () =>
+            HttpResponse.json(
+                {
+                    error: true, // no errorMessage
+                },
+                { status: 200 }
+            )
+        )
+    );
+    testUtil();
+    const msg = await screen.findByText(/wird bereits verwendet/i); // fallback text
+    expect(msg).toBeInTheDocument();
+});
+
+// 5. Network error (fetch request throws error)
+test("behandelt MSW-Exceptions als Serverfehler", async () => {
+    server.use(
+        http.post("/api/registration", () => {
+            throw new Error("Network down");
+        })
+    );
+    testUtil();
+    const msg = await screen.findByText(/serverfehler:500/i);
+    expect(msg).toBeInTheDocument();
 });
