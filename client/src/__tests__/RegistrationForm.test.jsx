@@ -61,7 +61,7 @@ test("erfolgreiche Registrierung navigiert zum FeedingTool", async () => {
     });
 });
 
-// 2. Server error (500)
+// 2. Server error (500); tested by expecting text "server error:500", no navigation
 test("zeigt Serverfehler an, wenn API 500 zurückgibt", async () => {
     server.use(
         http.post("/api/registration", () =>
@@ -74,46 +74,49 @@ test("zeigt Serverfehler an, wenn API 500 zurückgibt", async () => {
     expect(mockNavigate).not.toHaveBeenCalled();
 });
 
-// 3. Application error (e.g. E-Mail already in use)
-test("zeigt Fehlermeldung an, wenn Backend einen application error sendet", async () => {
+// 3. Application error (backend provides own error message);
+// tested by expecting text "wird bereits verwendet", dipatch() and navigate() are not called
+test("zeigt Fehlermeldung des Backends an", async () => {
+    const backendMessage = "Diese E-Mail-Adresse wird bereits verwendet.";
     server.use(
         http.post("/api/registration", () =>
             HttpResponse.json(
                 {
                     error: true,
-                    errorMessage:
-                        "Diese E-Mail-Adresse wird bereits verwendet.",
+                    errorMessage: backendMessage,
                 },
                 { status: 200 }
             )
         )
     );
     testUtil();
-    const msg = await screen.findByText(/wird bereits verwendet/i);
+    const msg = await screen.findByText(
+        /Diese E-Mail-Adresse wird bereits verwendet/i
+    );
     expect(msg).toBeInTheDocument();
     expect(mockDispatch).not.toHaveBeenCalled();
     expect(mockNavigate).not.toHaveBeenCalled();
 });
 
-// 4. Application error without message
-test("zeigt Standard-Fehlermeldung, wenn error true aber keine errorMessage vorhanden", async () => {
+// 4. Application error without message -> Frontend fallback text
+test("zeigt Standard-Fehlermeldung, wenn kein errorMessage vorhanden ist", async () => {
     server.use(
         http.post("/api/registration", () =>
             HttpResponse.json(
                 {
-                    error: true, // no errorMessage
+                    error: true, // no errorMessage provided
                 },
                 { status: 200 }
             )
         )
     );
     testUtil();
-    const msg = await screen.findByText(/wird bereits verwendet/i); // fallback text
+    const msg = await screen.findByText(/Diese E-Mail-Adresse.*verwendet/i);
     expect(msg).toBeInTheDocument();
 });
 
 // 5. Network error (fetch request throws error)
-test("behandelt MSW-Exceptions als Serverfehler", async () => {
+test("zeigt Serverfehler an, wenn Fetch-Request komplett fehlschlägt", async () => {
     server.use(
         http.post("/api/registration", () => {
             throw new Error("Network down");
