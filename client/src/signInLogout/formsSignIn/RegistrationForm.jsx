@@ -36,14 +36,6 @@ export default function RegistrationForm() {
                 },
             });
 
-            if (!response.ok) {
-                throw {
-                    type: "server",
-                    code: response.status,
-                    text: `Serverfehler:${response.status}${response.statusText}`,
-                };
-            }
-
             const data = await response.json();
 
             if (data.error) {
@@ -52,6 +44,14 @@ export default function RegistrationForm() {
                     text:
                         data.errorMessage ||
                         "Diese E-Mail-Adresse wird bereits verwendet.",
+                };
+            }
+
+            if (!response.ok) {
+                throw {
+                    type: "server",
+                    code: response.status,
+                    text: `Serverfehler:${response.status}${response.statusText}`,
                 };
             }
 
@@ -116,7 +116,9 @@ export default function RegistrationForm() {
                 </button>
             </form>
             {errorMessage && (
-                <p className="errorMessage">{errorMessage.text}</p>
+                <p className="errorMessage topSpaceSmall">
+                    {errorMessage.text}
+                </p>
             )}
         </div>
     );
