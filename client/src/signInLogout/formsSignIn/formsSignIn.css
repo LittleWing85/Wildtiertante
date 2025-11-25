@@ -1,0 +1,25 @@
+button:disabled {
+    opacity: 0.7;
+    background-color: deeppink;
+    cursor: not-allowed;
+}
+
+.spinner {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border: 3px solid #ffffff;
+    border-top: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
