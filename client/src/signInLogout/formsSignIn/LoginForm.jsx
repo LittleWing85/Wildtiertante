@@ -62,7 +62,7 @@ export default function LoginForm() {
             </form>
 
             {showLoginErrorMessage && (
-                <p className="errorMessage">
+                <p className="errorBanner">
                     Wrong credentials or you haven&apos;t registered yet.
                 </p>
             )}
