@@ -29,12 +29,9 @@ export default function LoginForm() {
                 if (foundUser) {
                     setShowLoginErrorMessage(false);
                     dispatch(login());
-                    return;
+                    navigate("/feedingTool");
                 }
                 setShowLoginErrorMessage(true);
-            })
-            .then(() => {
-                navigate("/feedingTool");
             })
             .catch((error) => console.log(error));
     }
