@@ -17,9 +17,11 @@ export default function SignInLogout() {
     }, [location, message, navigate]);
 
     return (
-        <section className="sectionLoginForm">
-            <div className="divLoginForm">
-                {message && <p className="errorBanner">{message}</p>}
+        <div className="containerLoginForm">
+            <div className="LoginForm">
+                {message && (
+                    <p className="errorBanner topSpaceBig">{message}</p>
+                )}
                 <div className="tabBar">
                     <div className="tabBarElement">
                         <NavLink
@@ -39,6 +41,6 @@ export default function SignInLogout() {
                 </div>
                 <Outlet />
             </div>
-        </section>
+        </div>
     );
 }
