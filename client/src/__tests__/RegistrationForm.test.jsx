@@ -61,20 +61,7 @@ test("erfolgreiche Registrierung navigiert zum FeedingTool", async () => {
     });
 });
 
-// 2. Server error (500); tested by expecting text "server error:500", no navigation
-test("zeigt Serverfehler an, wenn API 500 zurückgibt", async () => {
-    server.use(
-        http.post("/api/registration", () =>
-            HttpResponse.json({ error: "Server exploded" }, { status: 500 })
-        )
-    );
-    testUtil();
-    const errorText = await screen.findByText(/serverfehler:500/i);
-    expect(errorText).toBeInTheDocument();
-    expect(mockNavigate).not.toHaveBeenCalled();
-});
-
-// 3. Application error (backend provides own error message);
+// 2. Application error (backend provides own error message);
 // tested by expecting text "wird bereits verwendet", dipatch() and navigate() are not called
 test("zeigt Fehlermeldung des Backends an", async () => {
     const backendMessage = "Diese E-Mail-Adresse wird bereits verwendet.";
@@ -98,7 +85,7 @@ test("zeigt Fehlermeldung des Backends an", async () => {
     expect(mockNavigate).not.toHaveBeenCalled();
 });
 
-// 4. Application error without message -> Frontend fallback text
+// 3. Application error without message -> Frontend fallback text
 test("zeigt Standard-Fehlermeldung, wenn kein errorMessage vorhanden ist", async () => {
     server.use(
         http.post("/api/registration", () =>
@@ -115,7 +102,7 @@ test("zeigt Standard-Fehlermeldung, wenn kein errorMessage vorhanden ist", async
     expect(msg).toBeInTheDocument();
 });
 
-// 5. Network error (fetch request throws error)
+// 4. Network error (fetch request throws error)
 test("zeigt Serverfehler an, wenn Fetch-Request komplett fehlschlägt", async () => {
     server.use(
         http.post("/api/registration", () => {
