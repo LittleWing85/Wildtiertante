@@ -44,7 +44,7 @@ function testUtil() {
     fireEvent.change(screen.getByLabelText(/passwort/i), {
         target: { value: "geheim123" },
     });
-    fireEvent.click(screen.getByRole("button", { name: /submit data/i }));
+    fireEvent.click(screen.getByRole("button", { name: /absenden/i }));
 }
 
 // 1. Registration successful; tested by calling login reducer, navigation to feedingTool
