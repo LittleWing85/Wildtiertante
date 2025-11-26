@@ -11,29 +11,36 @@ export default function LoginForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    function onSubmitLogin(event) {
+    async function onSubmitLogin(event) {
         event.preventDefault();
+
+        const formData = new FormData(event.target);
         const loginData = {
-            email: event.target.email.value,
-            password: event.target.password.value,
+            email: formData.get("email"),
+            password: formData.get("password"),
         };
-        fetch("/api/login", {
-            method: "POST",
-            body: JSON.stringify(loginData),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then((response) => response.json())
-            .then((foundUser) => {
-                if (foundUser) {
-                    setShowLoginErrorMessage(false);
-                    dispatch(login());
-                    navigate("/feedingTool");
-                }
-                setShowLoginErrorMessage(true);
-            })
-            .catch((error) => console.log(error));
+
+        try {
+            const response = await fetch("/api/login", {
+                method: "POST",
+                body: JSON.stringify(loginData),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            const data = await response.json();
+
+            if (data) {
+                setShowLoginErrorMessage(false);
+                dispatch(login());
+                navigate("/feedingTool");
+            }
+
+            setShowLoginErrorMessage(true);
+        } catch (error) {
+            () => console.log(error);
+        }
     }
 
     return (
