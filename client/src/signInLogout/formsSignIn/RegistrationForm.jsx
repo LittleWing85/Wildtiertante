@@ -101,11 +101,7 @@ export default function RegistrationForm() {
 
                 <button className="topSpace">Submit Data</button>
             </form>
-            {errorMessage && (
-                <p className="errorMessage topSpaceSmall">
-                    {errorMessage.text}
-                </p>
-            )}
+            {errorMessage && <p className="errorBanner">{errorMessage.text}</p>}
         </div>
     );
 }

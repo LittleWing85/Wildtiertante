@@ -19,7 +19,7 @@ export default function SignInLogout() {
     return (
         <section className="sectionLoginForm">
             <div className="divLoginForm">
-                {message && <p className="infoBanner">{message}</p>}
+                {message && <p className="errorBanner">{message}</p>}
                 <div className="tabBar">
                     <div className="tabBarElement">
                         <NavLink
