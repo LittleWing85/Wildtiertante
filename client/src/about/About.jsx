@@ -62,7 +62,7 @@ export default function About() {
             <p className="topSpaceSmall">Eure Wildtiertante</p>
             <img
                 className="imageAbout"
-                src="./media/wildtiertante.jpg"
+                src="/media/wildtiertante.jpg"
                 alt="human and racoon cuddling"
             />
         </section>

@@ -9,7 +9,7 @@ export default function Root() {
                     <NavLink to="/">
                         <img
                             className="logo"
-                            src="./icons/logo.jpg"
+                            src="/icons/logo.jpg"
                             alt="logo with pink paw"
                         />
                     </NavLink>
