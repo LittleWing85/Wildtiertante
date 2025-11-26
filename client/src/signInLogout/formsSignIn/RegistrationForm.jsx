@@ -5,18 +5,14 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { login } from "../loggedinSlice.js";
-import "./formsSignIn.css";
 
 export default function RegistrationForm() {
     const [errorMessage, setErrorMessage] = useState(null);
-    const [isSubmitting, setIsSubmitting] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     async function onSubmitRegistrationData(event) {
         event.preventDefault();
-
-        if (isSubmitting) return;
 
         const formData = new FormData(event.target);
         const registrationData = {
@@ -24,8 +20,6 @@ export default function RegistrationForm() {
             email: formData.get("email"),
             password: formData.get("password"),
         };
-
-        setIsSubmitting(true);
 
         try {
             const response = await fetch("/api/registration", {
@@ -67,8 +61,6 @@ export default function RegistrationForm() {
             } else {
                 setErrorMessage(error);
             }
-        } finally {
-            setIsSubmitting(false);
         }
     }
 
@@ -107,13 +99,7 @@ export default function RegistrationForm() {
                     placeholder="Password"
                 />
 
-                <button className="topSpace" disabled={isSubmitting}>
-                    {isSubmitting ? (
-                        <span className="spinner"></span>
-                    ) : (
-                        "Submit Data"
-                    )}
-                </button>
+                <button className="topSpace">Submit Data</button>
             </form>
             {errorMessage && (
                 <p className="errorMessage topSpaceSmall">
