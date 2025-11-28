@@ -48,7 +48,9 @@ app.post("/api/login", (request, response) => {
                 request.session.user_id = foundUser.user_id;
                 response.json(foundUser);
                 return;
-            }
+            } // note for rework: send back error messages in case of problems.
+            // adjust frontend accordingly, don't just check if response is truthy
+
             response.json(null);
         })
         .catch((error) => {

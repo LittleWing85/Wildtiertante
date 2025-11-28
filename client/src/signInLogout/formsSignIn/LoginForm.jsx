@@ -41,11 +41,12 @@ export default function LoginForm() {
                 setShowLoginErrorMessage(false);
                 dispatch(login());
                 navigate("/feedingTool");
+                return;
             }
 
             setShowLoginErrorMessage(true);
         } catch (error) {
-            () => console.log(error);
+            console.log(error);
         }
     }
 
