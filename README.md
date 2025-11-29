@@ -1,8 +1,6 @@
 # Wildtiertante
 
-To see the code working, run:
-npm run dev
-sudo service postgresql restart
+To see the code working, run npm run dev.
 
 And visit http://localhost:4000/
 
