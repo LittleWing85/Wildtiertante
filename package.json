@@ -1,6 +1,7 @@
 {
     "name": "wildtiertante",
     "version": "1.0.0",
+    "type": "module",
     "description": "Backend für Wildtiertante-Projekt",
     "main": "server/server.js",
     "scripts": {

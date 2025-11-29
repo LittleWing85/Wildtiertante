@@ -1,12 +1,18 @@
-const spicedPg = require("spiced-pg");
-const bcrypt = require("bcryptjs");
+import fs from "fs";
+import path from "path";
+import spicedPg from "spiced-pg";
+import bcrypt from "bcryptjs";
+
+const secretsPath = path.resolve("./server/secrets.json");
+const secretsRaw = fs.readFileSync(secretsPath);
+const secrets = JSON.parse(secretsRaw);
 
 const hash = (password) =>
     bcrypt.genSalt().then((salt) => bcrypt.hash(password, salt));
 
 let db;
 if (!process.env.DATABASE_URL) {
-    const { DATABASE_USER, DATABASE_PASSWORD } = require("./secrets.json");
+    const { DATABASE_USER, DATABASE_PASSWORD } = secrets;
     const DATABASE_NAME = "wildtiertante";
     db = spicedPg(
         `postgres:${DATABASE_USER}:${DATABASE_PASSWORD}@localhost:5432/${DATABASE_NAME}`
@@ -121,7 +127,7 @@ function getAllFeedings(currentUser) {
         .then((result) => result.rows);
 }
 
-function getlitterDataOfSpecificLitter(litter_id) {
+function getLitterDataOfSpecificLitter(litter_id) {
     return db
         .query(
             `SELECT * 
@@ -172,7 +178,7 @@ async function determineDateForFeedingEntry(id_associated_litter, feedingSlot) {
             .slice(0, 1)[0];
         return currentFeedingDate;
     }
-    const litterData = await getlitterDataOfSpecificLitter(
+    const litterData = await getLitterDataOfSpecificLitter(
         id_associated_litter
     );
     const firstFeedingInArray = litterData[0].feedingslots[0];
@@ -201,7 +207,7 @@ async function determineDateForFeedingEntry(id_associated_litter, feedingSlot) {
     }
 }
 
-module.exports = {
+export {
     createUser,
     createLitter,
     createIndividual,

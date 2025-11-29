@@ -1,8 +1,13 @@
-const express = require("express");
+import express from "express";
 const app = express();
-const path = require("path");
-const cookieSession = require("cookie-session");
-const {
+import path from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, "..", "client", "public")));
+app.use(express.json());
+
+import {
     createUser,
     createLitter,
     createIndividual,
@@ -11,15 +16,23 @@ const {
     getAllFeedings,
     getLitters,
     fullJoinLittersAndFeedings,
-} = require("./db");
+} from "./db.js";
+
+import cookieSession from "cookie-session";
 const cookieSessionMiddleware = cookieSession({
     secret: "Hello something",
     maxAge: 1000 * 60 * 60 * 24 * 14,
 });
-
-app.use(express.json());
-app.use(express.static(path.join(__dirname, "..", "client", "public")));
 app.use(cookieSessionMiddleware);
+app.use(
+    cookieSession({
+        secret: "Hello something",
+        maxAge: 1000 * 60 * 60 * 24 * 14,
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+    })
+);
 
 app.post("/api/registration", (request, response) => {
     createUser(request.body)
@@ -34,6 +47,7 @@ app.post("/api/registration", (request, response) => {
                     error: "E-mail already in use.",
                 });
                 return;
+                // note for rework: send back error messages in case of problems.
             }
             response.status(500).json({
                 error: "Something went wrong. Please try again later.",
