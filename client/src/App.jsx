@@ -10,6 +10,8 @@ import { lazy } from "react";
 import Root from "./Root.jsx";
 import LazyLoading from "./LayoutRoute.jsx";
 
+import ProtectedRoute from "./ProtectedRoute.jsx";
+import { UserProvider } from "./UserContext.jsx";
 import SignIn from "./signInLogout/SignInLogout.jsx";
 import RegistrationForm from "./signInLogout/formsSignIn/RegistrationForm.jsx";
 import LoginForm from "./signInLogout/formsSignIn/LoginForm.jsx";
@@ -34,7 +36,14 @@ const router = createBrowserRouter(
             </Route>
             <Route index element={<About />} />
             <Route path="information" element={<Information />} />
-            <Route path="feedingTool" element={<FeedingTool />}>
+            <Route
+                path="feedingTool"
+                element={
+                    <ProtectedRoute>
+                        <FeedingTool />
+                    </ProtectedRoute>
+                }
+            >
                 <Route index element={<WhosNext />} />
                 <Route path="whosNext" element={<WhosNext />} />
                 <Route element={<LazyLoading />}>
@@ -50,5 +59,9 @@ const router = createBrowserRouter(
 );
 
 export default function App() {
-    return <RouterProvider router={router} />;
+    return (
+        <UserProvider>
+            <RouterProvider router={router} />;
+        </UserProvider>
+    );
 }
