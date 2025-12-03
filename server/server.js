@@ -37,7 +37,7 @@ import {
     getLitters,
     fullJoinLittersAndFeedings,
 } from "./db.js";
-import requireLogin from "./requireLogin";
+import requireLogin from "./requireLogin.js";
 
 // helper to wrap async route handlers
 const wrap = (fn) => (request, response, next) => {
