@@ -9,7 +9,16 @@ export default function ProtectedRoute({ children }) {
     }
 
     if (!userId) {
-        return <Navigate to="/signIn/login" replace />;
+        return (
+            <Navigate
+                to="/signIn/login"
+                replace
+                state={{
+                    message:
+                        "Bitte melde dich an, um das Fütterunsgtool zu verwenden.",
+                }}
+            />
+        );
     }
     return children;
 }
