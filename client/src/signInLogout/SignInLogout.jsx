@@ -1,20 +1,12 @@
 // This component renders "tabs" to switch between login form and registration form
 // This component has an outlet to either render login or registration form
 
-import { useEffect } from "react";
-import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import "./signInLogout.css";
 
 export default function SignInLogout() {
     const location = useLocation();
-    const navigate = useNavigate();
     const message = location.state?.message;
-
-    useEffect(() => {
-        if (location.pathname === "/signIn" && message) {
-            navigate("/signIn/login", { state: { message } });
-        }
-    }, [location, message, navigate]);
 
     return (
         <div className="containerLoginForm">
