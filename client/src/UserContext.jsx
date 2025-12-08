@@ -1,21 +1,28 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-const UserContext = createContext();
+const UserContext = createContext({
+    userId: null,
+    setUsedId: () => {},
+    loading: true,
+});
 
 export function UserProvider({ children }) {
     const [userId, setUserId] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("/api/user_id")
-            .then((response) => response.json())
-            .then((data) => {
+        async function fetchUser() {
+            try {
+                const response = await fetch("/api/user_id");
+                data = await response.json();
                 setUserId(data);
+            } catch {
+                setUserId(null);
+            } finally {
                 setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
+            }
+        }
+        fetchUser();
     }, []);
 
     return (
@@ -26,5 +33,9 @@ export function UserProvider({ children }) {
 }
 
 export function useUser() {
-    return useContext(UserContext);
+    const context = useContext(UserContext);
+    if (!context) {
+        throw new Error("useUser must be used inside <UserProvider>");
+    }
+    return context;
 }
