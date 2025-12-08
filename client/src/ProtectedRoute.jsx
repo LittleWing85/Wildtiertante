@@ -9,7 +9,6 @@ export default function ProtectedRoute({ children }) {
     }
 
     if (!userId) {
-        console.log("Log from ProtectedRoute.jsx" + userId);
         return (
             <Navigate
                 to="/signIn/login"
