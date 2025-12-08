@@ -1,45 +1,37 @@
-//This component shows the buttons for login and logout. It also executes the logout
-
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+//This component shows the buttons for login and logout.
+// It also executes the logout.
 import { Link } from "react-router-dom";
 
+import { useUser } from "../UserContext";
 import "./signInLogout.css";
-import { login, logout } from "./loggedinSlice.js";
 
 export default function LoginLogoutButtons() {
-    const dispatch = useDispatch();
-    const logged = useSelector((state) => state.loggedin.value);
+    const { setUserId, userId, loading } = useUser();
 
-    useEffect(() => {
-        fetch("/api/user_id")
-            .then((response) => response.json())
-            .then((data) => {
-                if (data) {
-                    dispatch(login());
-                    return;
-                }
-                dispatch(logout());
+    if (loading) {
+        return null;
+    }
+
+    async function onLogout() {
+        try {
+            await fetch("/api/logout", {
+                method: "POST",
             });
-    }, []);
-
-    function onLogout() {
-        dispatch(logout());
-        fetch("/api/logout", {
-            method: "POST",
-        });
+        } finally {
+            setUserId(null);
+        }
     }
 
     return (
         <div>
-            {!logged && (
+            {!userId && (
                 <div>
                     <Link to="/signIn" className="navEntry">
                         Anmelden
                     </Link>
                 </div>
             )}
-            {logged && (
+            {userId && (
                 <Link to="/" onClick={onLogout} className="navEntry">
                     Logout
                 </Link>

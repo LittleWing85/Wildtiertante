@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { useUser } from "./UserContext";
+import { useUser } from "./UserContext.jsx";
 
 export default function ProtectedRoute({ children }) {
     const { userId, loading } = useUser();
@@ -9,6 +9,7 @@ export default function ProtectedRoute({ children }) {
     }
 
     if (!userId) {
+        console.log("Log from ProtectedRoute.jsx" + userId);
         return (
             <Navigate
                 to="/signIn/login"

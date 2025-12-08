@@ -1,6 +1,7 @@
 // five test scenarios: registration successful, server error,
 // application error, application error without message, network error
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { UserProvider } from "../UserContext";
 import RegistrationForm from "../signInLogout/formsSignIn/RegistrationForm";
 import { server } from "../mocks/server";
 import { http, HttpResponse } from "msw";
@@ -16,25 +17,18 @@ vi.mock("react-router-dom", async () => {
     };
 });
 
-// mocking of useDispatch
-const mockDispatch = vi.fn();
-vi.mock("react-redux", async () => {
-    const actual = await vi.importActual("react-redux");
-    return {
-        ...actual,
-        useDispatch: () => mockDispatch,
-    };
-});
-
-// resetting mocks before each test
+// resetting mock before each test
 beforeEach(() => {
     mockNavigate.mockReset();
-    mockDispatch.mockReset();
 });
 
 // auxiliary function: rendering, filling and sending of registration form
 function testUtil() {
-    render(<RegistrationForm />);
+    render(
+        <UserProvider>
+            <RegistrationForm />
+        </UserProvider>
+    );
     fireEvent.change(screen.getByLabelText(/name/i), {
         target: { value: "Tierheim Sonnental" },
     });
@@ -47,7 +41,7 @@ function testUtil() {
     fireEvent.click(screen.getByRole("button", { name: /absenden/i }));
 }
 
-// 1. Registration successful; tested by calling login reducer, navigation to feedingTool
+// 1. Registration successful; tested by navigation to feedingTool
 test("erfolgreiche Registrierung navigiert zum FeedingTool", async () => {
     server.use(
         http.post("/api/registration", () =>
@@ -56,13 +50,12 @@ test("erfolgreiche Registrierung navigiert zum FeedingTool", async () => {
     );
     testUtil();
     await waitFor(() => {
-        expect(mockDispatch).toHaveBeenCalledTimes(1);
         expect(mockNavigate).toHaveBeenCalledWith("/feedingTool");
     });
 });
 
 // 2. Application error (backend provides own error message);
-// tested by expecting text "wird bereits verwendet", dipatch() and navigate() are not called
+// tested by expecting text "wird bereits verwendet", navigate() is not called
 test("zeigt Fehlermeldung des Backends an", async () => {
     const backendMessage = "Diese E-Mail-Adresse wird bereits verwendet.";
     server.use(
@@ -81,7 +74,6 @@ test("zeigt Fehlermeldung des Backends an", async () => {
         /Diese E-Mail-Adresse wird bereits verwendet/i
     );
     expect(msg).toBeInTheDocument();
-    expect(mockDispatch).not.toHaveBeenCalled();
     expect(mockNavigate).not.toHaveBeenCalled();
 });
 

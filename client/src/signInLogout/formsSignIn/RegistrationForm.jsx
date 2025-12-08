@@ -1,16 +1,15 @@
 //This component renders the form for registration
 
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { login } from "../loggedinSlice.js";
+import { useUser } from "../../UserContext.jsx";
 import "./formsSignIn.css";
 
 export default function RegistrationForm() {
     const [errorMessage, setErrorMessage] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const dispatch = useDispatch();
+    const { setUserId } = useUser();
     const navigate = useNavigate();
 
     async function onSubmitRegistrationData(event) {
@@ -55,7 +54,7 @@ export default function RegistrationForm() {
                 };
             }
 
-            dispatch(login());
+            setUserId(data?.user_id ?? null);
             navigate("/feedingTool");
         } catch (error) {
             console.error("Error during registration:", error);

@@ -1,16 +1,15 @@
 // This component renders the form for login
 
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { login } from "../loggedinSlice.js";
+import { useUser } from "../../UserContext.jsx";
 import "./formsSignIn.css";
 
 export default function LoginForm() {
     const [showLoginErrorMessage, setShowLoginErrorMessage] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const dispatch = useDispatch();
+    const { setUserId } = useUser();
     const navigate = useNavigate();
 
     async function onSubmitLogin(event) {
@@ -39,7 +38,7 @@ export default function LoginForm() {
 
             if (data) {
                 setShowLoginErrorMessage(false);
-                dispatch(login());
+                setUserId(data.user_id);
                 navigate("/feedingTool");
                 return;
             }
