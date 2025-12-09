@@ -7,7 +7,10 @@ import { useUser } from "../../UserContext.jsx";
 import "./formsSignIn.css";
 
 export default function LoginForm() {
-    const [showLoginErrorMessage, setShowLoginErrorMessage] = useState(false);
+    const [inputEmailErrorMessage, setInputEmailErrorMessage] = useState(false);
+    const [inputPasswordErrorMessage, setInputPasswordErrorMessage] =
+        useState(false);
+    const [loginErrorMessage, setLoginErrorMessage] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { setUserId } = useUser();
     const navigate = useNavigate();
@@ -15,7 +18,25 @@ export default function LoginForm() {
     async function onSubmitLogin(event) {
         event.preventDefault();
 
+        setInputEmailErrorMessage(false);
+        setInputPasswordErrorMessage(false);
+        setLoginErrorMessage(false);
+
         if (isSubmitting) return;
+
+        if (!event.target.checkValidity()) {
+            const emailElement = event.target.email;
+            const passwordElement = event.target.password;
+
+            setInputEmailErrorMessage(
+                emailElement.validity.valueMissing ||
+                    emailElement.validity.typeMismatch
+            );
+
+            setInputPasswordErrorMessage(passwordElement.validity.valueMissing);
+
+            return;
+        }
 
         const formData = new FormData(event.target);
         const loginData = {
@@ -37,13 +58,13 @@ export default function LoginForm() {
             const data = await response.json();
 
             if (data) {
-                setShowLoginErrorMessage(false);
+                setLoginErrorMessage(false);
                 setUserId(data.user_id);
                 navigate("/feedingTool");
                 return;
             }
 
-            setShowLoginErrorMessage(true);
+            setLoginErrorMessage(true);
         } catch (error) {
             console.log(error);
         } finally {
@@ -53,7 +74,11 @@ export default function LoginForm() {
 
     return (
         <div className="topSpaceBig">
-            <form className="flexVertically" onSubmit={onSubmitLogin}>
+            <form
+                className="flexVertically"
+                noValidate
+                onSubmit={onSubmitLogin}
+            >
                 <label htmlFor="email">Emailadresse</label>
                 <input
                     id="email"
@@ -62,6 +87,11 @@ export default function LoginForm() {
                     required
                     placeholder="Email"
                 />
+                {inputEmailErrorMessage && (
+                    <p className="inputError">
+                        Bitte gib eine gültige Emailadresse an.
+                    </p>
+                )}
                 <label htmlFor="password" className="topSpaceSmall">
                     Passwort
                 </label>
@@ -72,15 +102,19 @@ export default function LoginForm() {
                     required
                     placeholder="Password"
                 />
+                {inputPasswordErrorMessage && (
+                    <p className="inputError">Bitte gib dein Passwort an.</p>
+                )}
 
                 <button className="topSpace" disabled={isSubmitting}>
                     {isSubmitting ? <span className="spinner"></span> : "Login"}
                 </button>
             </form>
 
-            {showLoginErrorMessage && (
+            {loginErrorMessage && (
                 <p className="errorBanner">
-                    Wrong credentials or you haven&apos;t registered yet.
+                    Wir konnten keinen Benutzer mit der Kombination aus diesen
+                    Zugangsdaten finden.
                 </p>
             )}
         </div>
