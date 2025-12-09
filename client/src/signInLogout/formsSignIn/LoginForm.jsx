@@ -46,6 +46,8 @@ export default function LoginForm() {
             setShowLoginErrorMessage(true);
         } catch (error) {
             console.log(error);
+        } finally {
+            setIsSubmitting(false);
         }
     }
 
