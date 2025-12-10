@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../UserContext.jsx";
+import formCheck from "./formCheck.js";
 import "./formsSignIn.css";
 
 export default function LoginForm() {
@@ -25,17 +26,11 @@ export default function LoginForm() {
         if (isSubmitting) return;
 
         if (!event.target.checkValidity()) {
-            const emailElement = event.target.email;
-            const passwordElement = event.target.password;
-
-            setInputEmailErrorMessage(
-                emailElement.validity.valueMissing ||
-                    emailElement.validity.typeMismatch
+            formCheck(
+                event.target,
+                setInputEmailErrorMessage,
+                setInputPasswordErrorMessage
             );
-
-            setInputPasswordErrorMessage(passwordElement.validity.valueMissing);
-
-            return;
         }
 
         const formData = new FormData(event.target);
