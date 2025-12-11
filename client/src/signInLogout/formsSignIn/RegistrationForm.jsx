@@ -4,10 +4,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../UserContext.jsx";
+import formCheck from "./formCheck.js";
 import "./formsSignIn.css";
 
 export default function RegistrationForm() {
-    const [errorMessage, setErrorMessage] = useState(null);
+    const [inputEmailErrorMessage, setInputEmailErrorMessage] = useState(false);
+    const [inputPasswordErrorMessage, setInputPasswordErrorMessage] =
+        useState(false);
+    const [registrationErrorMessage, setRegistrationErrorMessage] =
+        useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { setUserId } = useUser();
     const navigate = useNavigate();
@@ -15,7 +20,20 @@ export default function RegistrationForm() {
     async function onSubmitRegistrationData(event) {
         event.preventDefault();
 
+        setInputEmailErrorMessage(false);
+        setInputPasswordErrorMessage(false);
+        setRegistrationErrorMessage(false);
+
         if (isSubmitting) return;
+
+        if (!event.target.checkValidity()) {
+            formCheck(
+                event.target,
+                setInputEmailErrorMessage,
+                setInputPasswordErrorMessage
+            );
+            return;
+        }
 
         const formData = new FormData(event.target);
         const registrationData = {
@@ -59,12 +77,12 @@ export default function RegistrationForm() {
         } catch (error) {
             console.error("Error during registration:", error);
             if (!error.type) {
-                setErrorMessage({
+                setRegistrationErrorMessage({
                     type: "network",
                     text: "Ein Netzwerkfehler ist aufgetreten. Bitte überprüfe deine Verbindung zum Internet.",
                 });
             } else {
-                setErrorMessage(error);
+                setRegistrationErrorMessage(error);
             }
         } finally {
             setIsSubmitting(false);
@@ -75,6 +93,7 @@ export default function RegistrationForm() {
         <div className="topSpaceBig">
             <form
                 className="flexVertically"
+                noValidate
                 onSubmit={onSubmitRegistrationData}
             >
                 <label htmlFor="name">Name</label>
@@ -95,6 +114,11 @@ export default function RegistrationForm() {
                     required
                     placeholder="Email"
                 />
+                {inputEmailErrorMessage && (
+                    <p className="inputError">
+                        Bitte gib eine gültige Emailadresse an.
+                    </p>
+                )}
                 <label htmlFor="password" className="topSpaceSmall">
                     Passwort
                 </label>
@@ -105,6 +129,9 @@ export default function RegistrationForm() {
                     required
                     placeholder="Password"
                 />
+                {inputPasswordErrorMessage && (
+                    <p className="inputError">Bitte gib dein Passwort an.</p>
+                )}
 
                 <button className="topSpace" disabled={isSubmitting}>
                     {isSubmitting ? (
@@ -114,7 +141,9 @@ export default function RegistrationForm() {
                     )}
                 </button>
             </form>
-            {errorMessage && <p className="errorBanner">{errorMessage.text}</p>}
+            {registrationErrorMessage && (
+                <p className="errorBanner">{registrationErrorMessage.text}</p>
+            )}
         </div>
     );
 }

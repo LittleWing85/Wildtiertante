@@ -31,6 +31,7 @@ export default function LoginForm() {
                 setInputEmailErrorMessage,
                 setInputPasswordErrorMessage
             );
+            return;
         }
 
         const formData = new FormData(event.target);
