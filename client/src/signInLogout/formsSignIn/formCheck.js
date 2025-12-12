@@ -1,8 +1,10 @@
 export default function formCheck(form) {
     const errorMessages = [];
+
     for (const element of form.elements) {
         if (element.tagName === "INPUT" && !element.checkValidity()) {
             const label = element.labels[0].textContent;
+
             if (element.validity.valueMissing) {
                 const validityResult = {
                     name: element.name,

@@ -27,15 +27,11 @@ export default function LoginForm() {
 
         if (!event.target.checkValidity()) {
             const errorMessages = formCheck(event.target);
-            for (const element of errorMessages) {
-                if (element.name === "email") {
-                    setInputEmailErrorMessage(element.errorMessage);
-                }
-                if (element.name === "password") {
-                    setInputPasswordErrorMessage(element.errorMessage);
-                }
+            for (const { name, errorMessage } of errorMessages) {
+                if (name === "email") setInputEmailErrorMessage(errorMessage);
+                if (name === "password")
+                    setInputPasswordErrorMessage(errorMessage);
             }
-
             return;
         }
 
