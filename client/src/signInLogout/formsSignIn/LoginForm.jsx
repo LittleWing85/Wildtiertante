@@ -26,11 +26,16 @@ export default function LoginForm() {
         if (isSubmitting) return;
 
         if (!event.target.checkValidity()) {
-            formCheck(
-                event.target,
-                setInputEmailErrorMessage,
-                setInputPasswordErrorMessage
-            );
+            const errorMessages = formCheck(event.target);
+            for (const element of errorMessages) {
+                if (element.name === "email") {
+                    setInputEmailErrorMessage(element.errorMessage);
+                }
+                if (element.name === "password") {
+                    setInputPasswordErrorMessage(element.errorMessage);
+                }
+            }
+
             return;
         }
 
@@ -84,9 +89,7 @@ export default function LoginForm() {
                     placeholder="Email"
                 />
                 {inputEmailErrorMessage && (
-                    <p className="inputError">
-                        Bitte gib eine gültige Emailadresse an.
-                    </p>
+                    <p className="inputError">{inputEmailErrorMessage}</p>
                 )}
                 <label htmlFor="password" className="topSpaceSmall">
                     Passwort
@@ -96,10 +99,10 @@ export default function LoginForm() {
                     name="password"
                     type="password"
                     required
-                    placeholder="Password"
+                    placeholder="Passwort"
                 />
                 {inputPasswordErrorMessage && (
-                    <p className="inputError">Bitte gib dein Passwort an.</p>
+                    <p className="inputError">{inputPasswordErrorMessage}</p>
                 )}
 
                 <button className="topSpace" disabled={isSubmitting}>
