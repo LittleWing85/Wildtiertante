@@ -5,10 +5,8 @@ export default function formCheck(form) {
         if (element.tagName === "INPUT" && !element.checkValidity()) {
             if (element.validity.valueMissing) {
                 errorMessages[element.name] = "Dieses Feld ist erforderlich.";
-                console.log(errorMessages);
             } else if (element.validity.typeMismatch) {
                 errorMessages[element.name] = "Bitte prüfe deine Eingabe.";
-                console.log(errorMessages);
             }
         }
     }

@@ -24,7 +24,6 @@ export default function LoginForm() {
 
         if (!event.target.checkValidity()) {
             setErrorMessages(formCheck(event.target));
-            console.log(errorMessages);
             return;
         }
 
