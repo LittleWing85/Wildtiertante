@@ -1,21 +1,15 @@
 export default function formCheck(form) {
-    const errorMessages = [];
+    const errorMessages = {};
 
     for (const element of form.elements) {
         if (element.tagName === "INPUT" && !element.checkValidity()) {
-            const label = element.labels[0].textContent;
-
-            let message = "";
-
             if (element.validity.valueMissing) {
-                message = `Bitte fülle das Feld "${label}" aus.`;
+                errorMessages[element.name] = "Dieses Feld ist erforderlich.";
+                console.log(errorMessages);
             } else if (element.validity.typeMismatch) {
-                message = `Bitte prüfe deine Eingabe im Feld "${label}".`;
+                errorMessages[element.name] = "Bitte prüfe deine Eingabe.";
+                console.log(errorMessages);
             }
-            errorMessages.push({
-                name: element.name,
-                errorMessage: message,
-            });
         }
     }
     return errorMessages;
