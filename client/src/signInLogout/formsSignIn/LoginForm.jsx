@@ -8,9 +8,7 @@ import formCheck from "./formCheck.js";
 import "./formsSignIn.css";
 
 export default function LoginForm() {
-    const [inputEmailErrorMessage, setInputEmailErrorMessage] = useState(false);
-    const [inputPasswordErrorMessage, setInputPasswordErrorMessage] =
-        useState(false);
+    const [errorMessages, setErrorMessages] = useState({});
     const [loginErrorMessage, setLoginErrorMessage] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { setUserId } = useUser();
@@ -19,31 +17,24 @@ export default function LoginForm() {
     async function onSubmitLogin(event) {
         event.preventDefault();
 
-        setInputEmailErrorMessage(false);
-        setInputPasswordErrorMessage(false);
-        setLoginErrorMessage(false);
-
         if (isSubmitting) return;
 
+        setErrorMessages({});
+        setLoginErrorMessage(false);
+
         if (!event.target.checkValidity()) {
-            const errorMessages = formCheck(event.target);
-            for (const { name, errorMessage } of errorMessages) {
-                if (name === "email") setInputEmailErrorMessage(errorMessage);
-                if (name === "password")
-                    setInputPasswordErrorMessage(errorMessage);
-            }
+            setErrorMessages(formCheck(event.target));
             return;
         }
-
-        const formData = new FormData(event.target);
-        const loginData = {
-            email: formData.get("email"),
-            password: formData.get("password"),
-        };
 
         setIsSubmitting(true);
 
         try {
+            const formData = new FormData(event.target);
+            const loginData = {
+                email: formData.get("email"),
+                password: formData.get("password"),
+            };
             const response = await fetch("/api/login", {
                 method: "POST",
                 body: JSON.stringify(loginData),
@@ -54,7 +45,7 @@ export default function LoginForm() {
 
             const data = await response.json();
 
-            if (data) {
+            if (data?.user_id) {
                 setLoginErrorMessage(false);
                 setUserId(data.user_id);
                 navigate("/feedingTool");
@@ -84,9 +75,10 @@ export default function LoginForm() {
                     required
                     placeholder="Email"
                 />
-                {inputEmailErrorMessage && (
-                    <p className="inputError">{inputEmailErrorMessage}</p>
+                {errorMessages.email && (
+                    <p className="inputError">{errorMessages.email}</p>
                 )}
+
                 <label htmlFor="password" className="topSpaceSmall">
                     Passwort
                 </label>
@@ -97,8 +89,8 @@ export default function LoginForm() {
                     required
                     placeholder="Passwort"
                 />
-                {inputPasswordErrorMessage && (
-                    <p className="inputError">{inputPasswordErrorMessage}</p>
+                {errorMessages.password && (
+                    <p className="inputError">{errorMessages.password}</p>
                 )}
 
                 <button className="topSpace" disabled={isSubmitting}>

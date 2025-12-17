@@ -8,9 +8,7 @@ import formCheck from "./formCheck.js";
 import "./formsSignIn.css";
 
 export default function RegistrationForm() {
-    const [inputEmailErrorMessage, setInputEmailErrorMessage] = useState(false);
-    const [inputPasswordErrorMessage, setInputPasswordErrorMessage] =
-        useState(false);
+    const [errorMessages, setErrorMessages] = useState({});
     const [registrationErrorMessage, setRegistrationErrorMessage] =
         useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -21,31 +19,26 @@ export default function RegistrationForm() {
         event.preventDefault();
         console.log("test");
 
-        setInputEmailErrorMessage(false);
-        setInputPasswordErrorMessage(false);
-        setRegistrationErrorMessage(false);
-
         if (isSubmitting) return;
 
+        setErrorMessages({});
+        setRegistrationErrorMessage(false);
+
         if (!event.target.checkValidity()) {
-            formCheck(
-                event.target,
-                setInputEmailErrorMessage,
-                setInputPasswordErrorMessage
-            );
+            setErrorMessages(formCheck(event.target));
             return;
         }
-
-        const formData = new FormData(event.target);
-        const registrationData = {
-            name: formData.get("name"),
-            email: formData.get("email"),
-            password: formData.get("password"),
-        };
 
         setIsSubmitting(true);
 
         try {
+            const formData = new FormData(event.target);
+            const registrationData = {
+                name: formData.get("name"),
+                email: formData.get("email"),
+                password: formData.get("password"),
+            };
+
             const response = await fetch("/api/registration", {
                 method: "POST",
                 body: JSON.stringify(registrationData),
@@ -105,6 +98,10 @@ export default function RegistrationForm() {
                     required
                     placeholder="Name of your shelter"
                 />
+                {errorMessages.name && (
+                    <p className="inputError">{errorMessages.name}</p>
+                )}
+
                 <label htmlFor="email" className="topSpaceSmall">
                     Emailadresse
                 </label>
@@ -115,10 +112,8 @@ export default function RegistrationForm() {
                     required
                     placeholder="Email"
                 />
-                {inputEmailErrorMessage && (
-                    <p className="inputError">
-                        Bitte gib eine gültige Emailadresse an.
-                    </p>
+                {errorMessages.email && (
+                    <p className="inputError">{errorMessages.email}</p>
                 )}
                 <label htmlFor="password" className="topSpaceSmall">
                     Passwort
@@ -130,8 +125,8 @@ export default function RegistrationForm() {
                     required
                     placeholder="Password"
                 />
-                {inputPasswordErrorMessage && (
-                    <p className="inputError">Bitte gib dein Passwort an.</p>
+                {errorMessages.password && (
+                    <p className="inputError">{errorMessages.password}</p>
                 )}
 
                 <button className="topSpace" disabled={isSubmitting}>
