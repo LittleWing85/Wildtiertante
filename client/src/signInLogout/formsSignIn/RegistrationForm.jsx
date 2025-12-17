@@ -19,6 +19,7 @@ export default function RegistrationForm() {
 
     async function onSubmitRegistrationData(event) {
         event.preventDefault();
+        console.log("test");
 
         setInputEmailErrorMessage(false);
         setInputPasswordErrorMessage(false);
