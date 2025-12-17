@@ -17,7 +17,6 @@ export default function RegistrationForm() {
 
     async function onSubmitRegistrationData(event) {
         event.preventDefault();
-        console.log("test3");
 
         if (isSubmitting) return;
 
