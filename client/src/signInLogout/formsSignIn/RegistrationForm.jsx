@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../UserContext.jsx";
-import submitSignIn from "./submitSignIn.js";
-import formCheck from "../../formCheck.js";
+import checkFormErrors from "./checkFormErrors.js";
 import "./formsSignIn.css";
 
 export default function RegistrationForm() {
@@ -19,15 +18,15 @@ export default function RegistrationForm() {
     async function onSubmitRegistrationData(event) {
         event.preventDefault();
 
-        submitSignIn(event.target);
+        const errors = checkFormErrors(event.target);
 
         if (isSubmitting) return;
 
         setErrorMessages({});
         setRegistrationErrorMessage(false);
 
-        if (!event.target.checkValidity()) {
-            setErrorMessages(formCheck(event.target));
+        if (Object.keys(errors).length > 0) {
+            setErrorMessages(errors);
             return;
         }
 
