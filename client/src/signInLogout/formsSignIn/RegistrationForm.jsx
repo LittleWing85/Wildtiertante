@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../UserContext.jsx";
-import checkFormErrors from "./checkFormErrors.js";
+import { checkFormErrors, fetchData } from "./checkFormErrors.js";
 import "./formsSignIn.css";
 
 export default function RegistrationForm() {
