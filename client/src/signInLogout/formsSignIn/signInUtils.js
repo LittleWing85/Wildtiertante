@@ -8,8 +8,8 @@ export function checkFormErrors(form) {
     return {};
 }
 
-export function fetchData() {
-    const response = fetch("/api/registration", {
+export function fetchData(path, registrationData) {
+    const response = fetch(`/api/${path}`, {
         method: "POST",
         body: JSON.stringify(registrationData),
         headers: {

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../UserContext.jsx";
-import { checkFormErrors, fetchData } from "./checkFormErrors.js";
+import { checkFormErrors, fetchData } from "./signInUtils.js";
 import "./formsSignIn.css";
 
 export default function RegistrationForm() {
@@ -40,14 +40,7 @@ export default function RegistrationForm() {
                 password: formData.get("password"),
             };
 
-            const response = await fetch("/api/registration", {
-                method: "POST",
-                body: JSON.stringify(registrationData),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-
+            const response = await fetchData("registration", registrationData);
             const data = await response.json();
 
             if (data.error) {
