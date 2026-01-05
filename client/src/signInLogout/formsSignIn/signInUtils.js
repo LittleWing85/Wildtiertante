@@ -1,3 +1,5 @@
+//This hook provides the utilities that Login and Registration have in common
+
 import formCheck from "../../formCheck.js";
 
 export function checkFormErrors(form) {

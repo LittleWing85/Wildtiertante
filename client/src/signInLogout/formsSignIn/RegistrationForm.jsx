@@ -8,8 +8,8 @@ import { checkFormErrors, fetchData } from "./signInUtils.js";
 import "./formsSignIn.css";
 
 export default function RegistrationForm() {
-    const [errorMessages, setErrorMessages] = useState({});
-    const [registrationErrorMessage, setRegistrationErrorMessage] =
+    const [errorMessagesForm, setErrorMessagesForm] = useState({});
+    const [errorMessageRegistration, setErrorMessageRegistration] =
         useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { setUserId } = useUser();
@@ -22,11 +22,11 @@ export default function RegistrationForm() {
 
         if (isSubmitting) return;
 
-        setErrorMessages({});
-        setRegistrationErrorMessage(false);
+        setErrorMessagesForm({});
+        setErrorMessageRegistration(false);
 
         if (Object.keys(errors).length > 0) {
-            setErrorMessages(errors);
+            setErrorMessagesForm(errors);
             return;
         }
 
@@ -65,12 +65,12 @@ export default function RegistrationForm() {
         } catch (error) {
             console.error("Error during registration:", error);
             if (!error.type) {
-                setRegistrationErrorMessage({
+                setErrorMessageRegistration({
                     type: "network",
                     text: "Ein Netzwerkfehler ist aufgetreten. Bitte überprüfe deine Verbindung zum Internet.",
                 });
             } else {
-                setRegistrationErrorMessage(error);
+                setErrorMessageRegistration(error);
             }
         } finally {
             setIsSubmitting(false);
@@ -92,8 +92,8 @@ export default function RegistrationForm() {
                     required
                     placeholder="Name of your shelter"
                 />
-                {errorMessages.name && (
-                    <p className="inputError">{errorMessages.name}</p>
+                {errorMessagesForm.name && (
+                    <p className="inputError">{errorMessagesForm.name}</p>
                 )}
 
                 <label htmlFor="email" className="topSpaceSmall">
@@ -106,8 +106,8 @@ export default function RegistrationForm() {
                     required
                     placeholder="Email"
                 />
-                {errorMessages.email && (
-                    <p className="inputError">{errorMessages.email}</p>
+                {errorMessagesForm.email && (
+                    <p className="inputError">{errorMessagesForm.email}</p>
                 )}
                 <label htmlFor="password" className="topSpaceSmall">
                     Passwort
@@ -119,8 +119,8 @@ export default function RegistrationForm() {
                     required
                     placeholder="Password"
                 />
-                {errorMessages.password && (
-                    <p className="inputError">{errorMessages.password}</p>
+                {errorMessagesForm.password && (
+                    <p className="inputError">{errorMessagesForm.password}</p>
                 )}
 
                 <button className="topSpace" disabled={isSubmitting}>
@@ -131,8 +131,8 @@ export default function RegistrationForm() {
                     )}
                 </button>
             </form>
-            {registrationErrorMessage && (
-                <p className="errorBanner">{registrationErrorMessage.text}</p>
+            {errorMessageRegistration && (
+                <p className="errorBanner">{errorMessageRegistration.text}</p>
             )}
         </div>
     );

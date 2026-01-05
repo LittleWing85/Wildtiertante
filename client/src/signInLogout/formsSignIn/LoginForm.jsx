@@ -99,10 +99,7 @@ export default function LoginForm() {
             </form>
 
             {loginErrorMessage && (
-                <p className="errorBanner">
-                    Wir konnten keinen Benutzer mit der Kombination aus diesen
-                    Zugangsdaten finden.
-                </p>
+                <p className="errorBanner">Login derzeit nicht möglich</p>
             )}
         </div>
     );
