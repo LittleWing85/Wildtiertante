@@ -18,15 +18,15 @@ export default function RegistrationForm() {
     async function onSubmitRegistrationData(event) {
         event.preventDefault();
 
-        const errors = checkFormErrors(event.target);
+        const errorsForm = checkFormErrors(event.target);
 
         if (isSubmitting) return;
 
         setErrorMessagesForm({});
         setErrorMessageRegistration(false);
 
-        if (Object.keys(errors).length > 0) {
-            setErrorMessagesForm(errors);
+        if (Object.keys(errorsForm).length > 0) {
+            setErrorMessagesForm(errorsForm);
             return;
         }
 
