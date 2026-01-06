@@ -16,9 +16,7 @@ export default function LoginForm() {
 
     async function onSubmitLogin(event) {
         event.preventDefault();
-
         if (isSubmitting) return;
-
         setErrorMessages({});
         setLoginErrorMessage(false);
 

@@ -10,6 +10,15 @@ export function checkFormErrors(form) {
     return {};
 }
 
+export function createRegistrationDataObject(formData) {
+    const registrationData = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        password: formData.get("password"),
+    };
+    console.log(registrationData);
+    return registrationData;
+}
 export function fetchData(path, registrationData) {
     const response = fetch(`/api/${path}`, {
         method: "POST",

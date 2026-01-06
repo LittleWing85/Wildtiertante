@@ -4,7 +4,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../UserContext.jsx";
-import { checkFormErrors, fetchData } from "./signInUtils.js";
+import {
+    checkFormErrors,
+    createRegistrationDataObject,
+    fetchData,
+} from "./signInUtils.js";
 import "./formsSignIn.css";
 
 export default function RegistrationForm() {
@@ -17,14 +21,11 @@ export default function RegistrationForm() {
 
     async function onSubmitRegistrationData(event) {
         event.preventDefault();
-
-        const errorsForm = checkFormErrors(event.target);
-
         if (isSubmitting) return;
-
         setErrorMessagesForm({});
         setErrorMessageRegistration(false);
 
+        const errorsForm = checkFormErrors(event.target);
         if (Object.keys(errorsForm).length > 0) {
             setErrorMessagesForm(errorsForm);
             return;
@@ -34,13 +35,12 @@ export default function RegistrationForm() {
 
         try {
             const formData = new FormData(event.target);
-            const registrationData = {
-                name: formData.get("name"),
-                email: formData.get("email"),
-                password: formData.get("password"),
-            };
-
-            const response = await fetchData("registration", registrationData);
+            const registrationDataObject =
+                createRegistrationDataObject(formData);
+            const response = await fetchData(
+                "registration",
+                registrationDataObject
+            );
             const data = await response.json();
 
             if (data.error) {
