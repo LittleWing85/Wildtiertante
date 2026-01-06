@@ -17,7 +17,7 @@ export function createRegistrationDataObject(formData) {
     return createInputDataObject(formData, REGISTRATION_FIELDS);
 }
 
-export function createInputDataObject(formData, fields) {
+function createInputDataObject(formData, fields) {
     return Object.fromEntries(
         fields.map((field) => [field, formData.get(field)])
     );
