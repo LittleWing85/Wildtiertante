@@ -2,6 +2,9 @@
 
 import formCheck from "../../formCheck.js";
 
+const REGISTRATION_FIELDS = ["name", "email", "password"];
+const LOGIN_FIELDS = ["email", "password"];
+
 export function checkFormErrors(form) {
     if (!form.checkValidity()) {
         const errors = formCheck(form);
@@ -11,14 +14,15 @@ export function checkFormErrors(form) {
 }
 
 export function createRegistrationDataObject(formData) {
-    const registrationData = {
-        name: formData.get("name"),
-        email: formData.get("email"),
-        password: formData.get("password"),
-    };
-    console.log(registrationData);
-    return registrationData;
+    return createInputDataObject(formData, REGISTRATION_FIELDS);
 }
+
+export function createInputDataObject(formData, fields) {
+    return Object.fromEntries(
+        fields.map((field) => [field, formData.get(field)])
+    );
+}
+
 export function fetchData(path, registrationData) {
     const response = fetch(`/api/${path}`, {
         method: "POST",

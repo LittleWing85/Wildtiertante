@@ -35,12 +35,8 @@ export default function RegistrationForm() {
 
         try {
             const formData = new FormData(event.target);
-            const registrationDataObject =
-                createRegistrationDataObject(formData);
-            const response = await fetchData(
-                "registration",
-                registrationDataObject
-            );
+            const inputDataObject = createRegistrationDataObject(formData);
+            const response = await fetchData("registration", inputDataObject);
             const data = await response.json();
 
             if (data.error) {
