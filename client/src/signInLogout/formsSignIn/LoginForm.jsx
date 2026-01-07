@@ -4,12 +4,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../UserContext.jsx";
-import formCheck from "../../formCheck.js";
+import { checkFormErrors, submitLoginData } from "./signInUtils.js";
 import "./formsSignIn.css";
 
 export default function LoginForm() {
-    const [errorMessages, setErrorMessages] = useState({});
-    const [loginErrorMessage, setLoginErrorMessage] = useState(false);
+    const [errorMessagesForm, setErrorMessagesForm] = useState({});
+    const [errorMessageLogin, setErrorMessageLogin] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { setUserId } = useUser();
     const navigate = useNavigate();
@@ -17,11 +17,12 @@ export default function LoginForm() {
     async function onSubmitLogin(event) {
         event.preventDefault();
         if (isSubmitting) return;
-        setErrorMessages({});
-        setLoginErrorMessage(false);
+        setErrorMessagesForm({});
+        setErrorMessageLogin(false);
 
-        if (!event.target.checkValidity()) {
-            setErrorMessages(formCheck(event.target));
+        const errorsForm = checkFormErrors(event.target);
+        if (Object.keys(errorsForm).length > 0) {
+            setErrorMessagesForm(errorsForm);
             return;
         }
 
@@ -29,28 +30,16 @@ export default function LoginForm() {
 
         try {
             const formData = new FormData(event.target);
-            const loginData = {
-                email: formData.get("email"),
-                password: formData.get("password"),
-            };
-            const response = await fetch("/api/login", {
-                method: "POST",
-                body: JSON.stringify(loginData),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-
-            const data = await response.json();
+            const data = await submitLoginData(formData, "login");
 
             if (data?.user_id) {
-                setLoginErrorMessage(false);
-                setUserId(data.user_id);
+                setErrorMessageLogin(false);
+                setUserId(data?.user_id ?? null);
                 navigate("/feedingTool");
                 return;
             }
 
-            setLoginErrorMessage(true);
+            setErrorMessageLogin(true);
         } catch (error) {
             console.log(error);
         } finally {
@@ -73,8 +62,8 @@ export default function LoginForm() {
                     required
                     placeholder="Email"
                 />
-                {errorMessages.email && (
-                    <p className="inputError">{errorMessages.email}</p>
+                {errorMessagesForm.email && (
+                    <p className="inputError">{errorMessagesForm.email}</p>
                 )}
 
                 <label htmlFor="password" className="topSpaceSmall">
@@ -87,8 +76,8 @@ export default function LoginForm() {
                     required
                     placeholder="Passwort"
                 />
-                {errorMessages.password && (
-                    <p className="inputError">{errorMessages.password}</p>
+                {errorMessagesForm.password && (
+                    <p className="inputError">{errorMessagesForm.password}</p>
                 )}
 
                 <button className="topSpace" disabled={isSubmitting}>
@@ -96,7 +85,7 @@ export default function LoginForm() {
                 </button>
             </form>
 
-            {loginErrorMessage && (
+            {errorMessageLogin && (
                 <p className="errorBanner">Login derzeit nicht möglich</p>
             )}
         </div>

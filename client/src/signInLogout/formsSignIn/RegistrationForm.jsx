@@ -46,7 +46,7 @@ export default function RegistrationForm() {
                 throw {
                     type: "server",
                     code: "work in progress",
-                    text: "Serverfehler:work in progres",
+                    text: "Serverfehler:work in progress",
                 };
             }
 
