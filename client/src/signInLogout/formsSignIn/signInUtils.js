@@ -7,29 +7,29 @@ const LOGIN_FIELDS = ["email", "password"];
 
 export function checkFormErrors(form) {
     if (!form.checkValidity()) {
-        const errors = formCheck(form);
-        return errors;
+        return formCheck(form);
     }
     return {};
 }
 
-export function createRegistrationDataObject(formData) {
-    return createInputDataObject(formData, REGISTRATION_FIELDS);
-}
-
-function createInputDataObject(formData, fields) {
-    return Object.fromEntries(
-        fields.map((field) => [field, formData.get(field)])
+async function submitAuthRequest(formData, allowedFields, path) {
+    const formDataObject = Object.fromEntries(
+        allowedFields.map((field) => [field, formData.get(field)])
     );
-}
-
-export function fetchData(path, registrationData) {
-    const response = fetch(`/api/${path}`, {
+    const response = await fetch(`/api/${path}`, {
         method: "POST",
-        body: JSON.stringify(registrationData),
+        body: JSON.stringify(formDataObject),
         headers: {
             "Content-Type": "application/json",
         },
     });
-    return response;
+    return response.json();
+}
+
+export function submitRegistrationData(formData, path) {
+    return submitAuthRequest(formData, REGISTRATION_FIELDS, path);
+}
+
+export function submitLoginData(formData, path) {
+    return submitAuthRequest(formData, LOGIN_FIELDS, path);
 }

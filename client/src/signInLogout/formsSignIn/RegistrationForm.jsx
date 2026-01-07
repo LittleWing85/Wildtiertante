@@ -4,11 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../UserContext.jsx";
-import {
-    checkFormErrors,
-    createRegistrationDataObject,
-    fetchData,
-} from "./signInUtils.js";
+import { checkFormErrors, submitRegistrationData } from "./signInUtils.js";
 import "./formsSignIn.css";
 
 export default function RegistrationForm() {
@@ -35,9 +31,7 @@ export default function RegistrationForm() {
 
         try {
             const formData = new FormData(event.target);
-            const inputDataObject = createRegistrationDataObject(formData);
-            const response = await fetchData("registration", inputDataObject);
-            const data = await response.json();
+            const data = await submitRegistrationData(formData, "registration");
 
             if (data.error) {
                 throw {
@@ -48,11 +42,11 @@ export default function RegistrationForm() {
                 };
             }
 
-            if (!response.ok) {
+            if (!data) {
                 throw {
                     type: "server",
-                    code: response.status,
-                    text: `Serverfehler:${response.status}${response.statusText}`,
+                    code: "work in progress",
+                    text: "Serverfehler:work in progres",
                 };
             }
 
