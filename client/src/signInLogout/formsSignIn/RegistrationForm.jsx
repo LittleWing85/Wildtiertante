@@ -8,22 +8,29 @@ import { checkFormErrors, submitRegistrationData } from "./authService.js";
 import "./formsSignIn.css";
 
 export default function RegistrationForm() {
-    const [errorMessagesForm, setErrorMessagesForm] = useState({});
+    const [errorMessagesInput, setErrorMessagesInput] = useState({});
     const [errorMessageRegistration, setErrorMessageRegistration] =
         useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { setUserId } = useUser();
     const navigate = useNavigate();
 
+    function clearErrorOnChange(event) {
+        const fieldName = event.target.name;
+        setErrorMessagesInput((prev) =>
+            prev[fieldName] ? { ...prev, [fieldName]: null } : prev
+        );
+    }
+
     async function onSubmitRegistrationData(event) {
         event.preventDefault();
         if (isSubmitting) return;
-        setErrorMessagesForm({});
+        setErrorMessagesInput({});
         setErrorMessageRegistration(false);
 
         const errorsForm = checkFormErrors(event.target);
         if (Object.keys(errorsForm).length > 0) {
-            setErrorMessagesForm(errorsForm);
+            setErrorMessagesInput(errorsForm);
             return;
         }
 
@@ -81,9 +88,10 @@ export default function RegistrationForm() {
                     type="text"
                     required
                     placeholder="Name of your shelter"
+                    onChange={clearErrorOnChange}
                 />
-                {errorMessagesForm.name && (
-                    <p className="inputError">{errorMessagesForm.name}</p>
+                {errorMessagesInput.name && (
+                    <p className="inputError">{errorMessagesInput.name}</p>
                 )}
 
                 <label htmlFor="email" className="topSpaceSmall">
@@ -95,9 +103,10 @@ export default function RegistrationForm() {
                     type="email"
                     required
                     placeholder="Email"
+                    onChange={clearErrorOnChange}
                 />
-                {errorMessagesForm.email && (
-                    <p className="inputError">{errorMessagesForm.email}</p>
+                {errorMessagesInput.email && (
+                    <p className="inputError">{errorMessagesInput.email}</p>
                 )}
                 <label htmlFor="password" className="topSpaceSmall">
                     Passwort
@@ -108,9 +117,10 @@ export default function RegistrationForm() {
                     type="password"
                     required
                     placeholder="Password"
+                    onChange={clearErrorOnChange}
                 />
-                {errorMessagesForm.password && (
-                    <p className="inputError">{errorMessagesForm.password}</p>
+                {errorMessagesInput.password && (
+                    <p className="inputError">{errorMessagesInput.password}</p>
                 )}
 
                 <button className="topSpace" disabled={isSubmitting}>
