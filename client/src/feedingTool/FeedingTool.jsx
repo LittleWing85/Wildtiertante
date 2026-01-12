@@ -1,11 +1,16 @@
 //This component renders the second level nav. It also has an Outlet
 // so the content chosen by a user via second level nav will be rendered.
 
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, useLocation } from "react-router-dom";
 
 export default function FeedingTool() {
+    const location = useLocation();
+    const message = location.state?.message;
+    console.log(message);
+
     return (
         <section>
+            {message && <p className="successBanner topSpaceBig">{message}</p>}
             <nav className="nav2">
                 <NavLink className="navEntry" to="/feedingTool/whosNext">
                     Who&apos;s next

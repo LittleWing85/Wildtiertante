@@ -58,7 +58,9 @@ export default function RegistrationForm() {
             }
 
             setUserId(data?.user_id ?? null);
-            navigate("/feedingTool");
+            navigate("/feedingTool", {
+                state: { message: "Registrierung erfolgreich!" },
+            });
         } catch (error) {
             console.error("Error during registration:", error);
             if (!error.type) {
