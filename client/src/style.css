@@ -25,7 +25,8 @@ label,
 button,
 input,
 textarea,
-select {
+select,
+li {
     font-size: 1em;
     color: rgb(68, 68, 68);
 }
