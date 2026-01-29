@@ -1,32 +1,8 @@
 import express from "express";
-const app = express();
 import path from "path";
 import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-app.use(express.json());
-
 import cookieSession from "cookie-session";
-app.use(
-    cookieSession({
-        name: process.env.SESSION_NAME || "wildtiertante_session",
-        secret: process.env.SESSION_SECRET || "Hello something",
-        maxAge: 1000 * 60 * 60 * 24 * 14,
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
-    })
-);
-// refresh session expiry on each request for logged-in users
-app.use((request, response, next) => {
-    if (request.session?.user_id) {
-        request.session._ts = Date.now();
-    }
-    next();
-});
-
-app.use(express.static(path.join(__dirname, "..", "client", "public")));
-
+import { requireLogin, wrap } from "./utils.js";
 import {
     createUser,
     createLitter,
@@ -37,12 +13,31 @@ import {
     getLitters,
     fullJoinLittersAndFeedings,
 } from "./db.js";
-import requireLogin from "./requireLogin.js";
 
-// helper to wrap async route handlers
-const wrap = (fn) => (request, response, next) => {
-    Promise.resolve(fn(request, response, next)).catch(next);
-};
+const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.json());
+app.use(
+    cookieSession({
+        name: process.env.SESSION_NAME || "wildtiertante_session",
+        secret: process.env.SESSION_SECRET || "Hello something",
+        maxAge: 1000 * 60 * 60 * 24 * 14,
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+    }),
+);
+// refresh session expiry on each request for logged-in users
+app.use((request, response, next) => {
+    if (request.session?.user_id) {
+        request.session._ts = Date.now();
+    }
+    next();
+});
+
+app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
 // AUTH ROUTES
 
@@ -121,10 +116,10 @@ app.post(
                     id_associated_litter: newLitterEntry.litter_id,
                 };
                 return createIndividual(data);
-            })
+            }),
         );
         response.json(newLitterEntry);
-    })
+    }),
 );
 
 app.post(
@@ -132,10 +127,10 @@ app.post(
     requireLogin,
     wrap(async (request, response) => {
         const newFeedingEntry = await createFeedingEntry(
-            request.body.feedingData
+            request.body.feedingData,
         );
         response.json(newFeedingEntry);
-    })
+    }),
 );
 
 app.get(
@@ -145,7 +140,7 @@ app.get(
         const currentUser = request.session.user_id;
         const litters = await getLitters(currentUser);
         response.json(litters);
-    })
+    }),
 );
 
 // Gets all newly arrived litters who haven't been fed yet
@@ -159,7 +154,7 @@ app.get(
             return record.feeding_id === null;
         });
         response.json(unfedLitters);
-    })
+    }),
 );
 
 /* Gets litters that have been fed at least once 
@@ -180,7 +175,7 @@ app.get(
                 lastFeedings.push(item);
             } else {
                 const found = lastFeedings.find(
-                    (x) => x.litter_id === item.litter_id
+                    (x) => x.litter_id === item.litter_id,
                 );
                 if (item.feeding_id > found.feeding_id) {
                     const index = lastFeedings
@@ -204,10 +199,10 @@ app.get(
                 //If nextIndex is 0, the next feeding happens on the next day so JS has to add 1 to the day
                 if (nextIndex === 0) {
                     let nextFeedingDateAndTime = new Date(
-                        feeding.feedingdate + "T" + nextFeedingTime + ".000Z"
+                        feeding.feedingdate + "T" + nextFeedingTime + ".000Z",
                     );
                     nextFeedingDateAndTime.setDate(
-                        nextFeedingDateAndTime.getDate() + 1
+                        nextFeedingDateAndTime.getDate() + 1,
                     );
                     return {
                         ...feeding,
@@ -216,7 +211,7 @@ app.get(
                     };
                 }
                 let nextFeedingDateAndTime = new Date(
-                    feeding.feedingdate + "T" + nextFeedingTime + ".000Z"
+                    feeding.feedingdate + "T" + nextFeedingTime + ".000Z",
                 );
                 return {
                     ...feeding,
@@ -232,7 +227,7 @@ app.get(
             });
         // allFeedings is an array that contains an object for each litter; each object includes the data of the last feeding, the litter and the next feeding time
         response.json(nextFeedings);
-    })
+    }),
 );
 
 // FALLBACK
