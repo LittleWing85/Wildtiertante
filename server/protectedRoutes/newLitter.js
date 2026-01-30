@@ -1,3 +1,5 @@
+//creates a new litter
+
 import express from "express";
 import { requireLogin, wrap } from "./protectedRoutesUtils.js";
 import { createLitter, createIndividual } from "./protectedRoutesDb.js";
