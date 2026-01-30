@@ -6,6 +6,7 @@ import { requireLogin, wrap } from "./protectedRoutes/protectedRoutesUtils.js";
 import newLitterRouter from "./protectedRoutes/newLitter.js";
 import litterOverviewRouter from "./protectedRoutes/litterOverview.js";
 import unfedLittersRouter from "./protectedRoutes/unfedLitters.js";
+import routerFeedingData from "./protectedRoutes/feedingData.js";
 import {
     createUser,
     createFeedingEntry,
@@ -100,16 +101,7 @@ app.get("/api/user_id", (request, response) => {
 // PROTECTED ROUTES
 
 app.use("/api/newLitter", newLitterRouter);
-app.post(
-    "/api/feedingData",
-    requireLogin,
-    wrap(async (request, response) => {
-        const newFeedingEntry = await createFeedingEntry(
-            request.body.feedingData,
-        );
-        response.json(newFeedingEntry);
-    }),
-);
+api.use("/api/feedingData", routerFeedingData);
 app.use("/api/litterOverview", litterOverviewRouter);
 app.use("/api/unfedLitters", unfedLittersRouter);
 
