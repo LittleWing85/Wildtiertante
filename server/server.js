@@ -7,7 +7,7 @@ import litterOverviewRouter from "./protectedRoutes/litterOverview.js";
 import unfedLittersRouter from "./protectedRoutes/unfedLitters.js";
 import feedingDataRouter from "./protectedRoutes/feedingData.js";
 import getallFeedingsRouter from "./protectedRoutes/nextFeedings.js";
-import { createUser, login } from "./protectedRoutes/protectedRoutesDb.js";
+import { createUser, login } from "./authDb.js";
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -83,7 +83,6 @@ app.post("/api/logout", (request, response) => {
 });
 
 // PUBLIC ROUTES
-
 app.get("/api/user_id", (request, response) => {
     const currentUser = request.session.user_id;
     if (currentUser) {
@@ -94,21 +93,19 @@ app.get("/api/user_id", (request, response) => {
 });
 
 // PROTECTED ROUTES
-
 app.use("/api/newLitter", newLitterRouter);
 api.use("/api/feedingData", feedingDataRouter);
 app.use("/api/litterOverview", litterOverviewRouter);
 app.use("/api/unfedLitters", unfedLittersRouter);
 app.use("/api/nextFeedings", getallFeedingsRouter);
 
-// FALLBACK
+// OTHER
+// Fallback
 app.get("*", function (request, response) {
     response.sendFile(path.join(__dirname, "..", "client", "index.html"));
 });
 
-// OTHER
-
-// central error handler
+// Central error handler
 app.use((error, request, response, next) => {
     console.error("Server error:", error);
     if (response.headersSent) return next(error);
