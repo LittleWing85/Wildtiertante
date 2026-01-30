@@ -18,7 +18,7 @@ export default function RegistrationForm() {
     function clearErrorOnChange(event) {
         const fieldName = event.target.name;
         setErrorMessagesInput((prev) =>
-            prev[fieldName] ? { ...prev, [fieldName]: null } : prev
+            prev[fieldName] ? { ...prev, [fieldName]: null } : prev,
         );
     }
 
@@ -39,7 +39,6 @@ export default function RegistrationForm() {
         try {
             const formData = new FormData(event.target);
             const data = await submitRegistrationData(formData, "registration");
-
             if (data.error) {
                 throw {
                     type: "application",

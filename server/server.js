@@ -2,7 +2,8 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import cookieSession from "cookie-session";
-import { requireLogin, wrap } from "./utils.js";
+import { requireLogin, wrap } from "./protectedRoutes/protectedRoutesUtils.js";
+import litterOverviewRouter from ("./protectedRoutes/litterOverview.js");
 import {
     createUser,
     createLitter,
@@ -10,13 +11,13 @@ import {
     createFeedingEntry,
     login,
     getAllFeedings,
-    getLitters,
     fullJoinLittersAndFeedings,
 } from "./db.js";
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 
 app.use(express.json());
 app.use(
@@ -133,15 +134,7 @@ app.post(
     }),
 );
 
-app.get(
-    "/api/litterOverview",
-    requireLogin,
-    wrap(async (request, response) => {
-        const currentUser = request.session.user_id;
-        const litters = await getLitters(currentUser);
-        response.json(litters);
-    }),
-);
+app.use("/api/litterOverview", litterOverviewRouter);
 
 // Gets all newly arrived litters who haven't been fed yet
 app.get(
