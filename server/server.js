@@ -3,11 +3,10 @@ import path from "path";
 import { fileURLToPath } from "url";
 import cookieSession from "cookie-session";
 import { requireLogin, wrap } from "./protectedRoutes/protectedRoutesUtils.js";
-import litterOverviewRouter from ("./protectedRoutes/litterOverview.js");
+import litterOverviewRouter from "./protectedRoutes/litterOverview.js";
+import newLitterRouter from "./protectedRoutes/newLitter.js";
 import {
     createUser,
-    createLitter,
-    createIndividual,
     createFeedingEntry,
     login,
     getAllFeedings,
@@ -17,7 +16,6 @@ import {
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 
 app.use(express.json());
 app.use(
@@ -101,27 +99,7 @@ app.get("/api/user_id", (request, response) => {
 
 // PROTECTED ROUTES
 
-app.post(
-    "/api/litter",
-    requireLogin,
-    wrap(async (request, response) => {
-        const litterData = {
-            ...request.body.litterData,
-            id_associated_user: request.session.user_id,
-        };
-        const newLitterEntry = await createLitter(litterData);
-        await Promise.all(
-            (request.body.animals || []).map((individual) => {
-                const data = {
-                    ...individual,
-                    id_associated_litter: newLitterEntry.litter_id,
-                };
-                return createIndividual(data);
-            }),
-        );
-        response.json(newLitterEntry);
-    }),
-);
+app.use("/api/newLitter", newLitterRouter);
 
 app.post(
     "/api/feedingData",

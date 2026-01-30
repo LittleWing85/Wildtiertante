@@ -52,7 +52,7 @@ export default function NewLitter() {
             age: 1,
             ...x,
         }));
-        fetch("/api/litter", {
+        fetch("/api/newLitter", {
             method: "POST",
             body: JSON.stringify({ litterData, animals: animalsWithDefaults }),
             headers: {
