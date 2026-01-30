@@ -11,7 +11,7 @@ import {
     login,
     getAllFeedings,
     fullJoinLittersAndFeedings,
-} from "./db.js";
+} from "./protectedRoutes/protectedRoutesDb.js";
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);

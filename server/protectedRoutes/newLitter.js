@@ -1,6 +1,6 @@
 import express from "express";
 import { requireLogin, wrap } from "./protectedRoutesUtils.js";
-import { createLitter, createIndividual } from "../db.js";
+import { createLitter, createIndividual } from "./protectedRoutesDb.js";
 
 const newLitterRouter = express.Router();
 
