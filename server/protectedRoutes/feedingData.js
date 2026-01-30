@@ -4,9 +4,9 @@ import express from "express";
 import { requireLogin, wrap } from "./protectedRoutesUtils.js";
 import { createFeedingEntry } from "./protectedRoutesDb.js";
 
-const routerFeedingData = express.Router();
+const feedingDataRouter = express.Router();
 
-routerFeedingData.post(
+feedingDataRouter.post(
     "/",
     requireLogin,
     wrap(async (request, response) => {
@@ -17,4 +17,4 @@ routerFeedingData.post(
     }),
 );
 
-export default routerFeedingData;
+export default feedingDataRouter;

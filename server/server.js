@@ -2,11 +2,10 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import cookieSession from "cookie-session";
-import { requireLogin, wrap } from "./protectedRoutes/protectedRoutesUtils.js";
 import newLitterRouter from "./protectedRoutes/newLitter.js";
 import litterOverviewRouter from "./protectedRoutes/litterOverview.js";
 import unfedLittersRouter from "./protectedRoutes/unfedLitters.js";
-import routerFeedingData from "./protectedRoutes/feedingData.js";
+import feedingDataRouter from "./protectedRoutes/feedingData.js";
 import getallFeedingsRouter from "./protectedRoutes/nextFeedings.js";
 import { createUser, login } from "./protectedRoutes/protectedRoutesDb.js";
 
@@ -97,7 +96,7 @@ app.get("/api/user_id", (request, response) => {
 // PROTECTED ROUTES
 
 app.use("/api/newLitter", newLitterRouter);
-api.use("/api/feedingData", routerFeedingData);
+api.use("/api/feedingData", feedingDataRouter);
 app.use("/api/litterOverview", litterOverviewRouter);
 app.use("/api/unfedLitters", unfedLittersRouter);
 app.use("/api/nextFeedings", getallFeedingsRouter);
