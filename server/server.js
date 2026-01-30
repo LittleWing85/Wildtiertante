@@ -3,14 +3,14 @@ import path from "path";
 import { fileURLToPath } from "url";
 import cookieSession from "cookie-session";
 import { requireLogin, wrap } from "./protectedRoutes/protectedRoutesUtils.js";
-import litterOverviewRouter from "./protectedRoutes/litterOverview.js";
 import newLitterRouter from "./protectedRoutes/newLitter.js";
+import litterOverviewRouter from "./protectedRoutes/litterOverview.js";
+import unfedLittersRouter from "./protectedRoutes/unfedLitters.js";
 import {
     createUser,
     createFeedingEntry,
     login,
     getAllFeedings,
-    fullJoinLittersAndFeedings,
 } from "./protectedRoutes/protectedRoutesDb.js";
 
 const app = express();
@@ -100,7 +100,6 @@ app.get("/api/user_id", (request, response) => {
 // PROTECTED ROUTES
 
 app.use("/api/newLitter", newLitterRouter);
-
 app.post(
     "/api/feedingData",
     requireLogin,
@@ -111,22 +110,8 @@ app.post(
         response.json(newFeedingEntry);
     }),
 );
-
 app.use("/api/litterOverview", litterOverviewRouter);
-
-// Gets all newly arrived litters who haven't been fed yet
-app.get(
-    "/api/unfedLitters",
-    requireLogin,
-    wrap(async (request, response) => {
-        const currentUser = request.session.user_id;
-        const fullJoin = await fullJoinLittersAndFeedings(currentUser);
-        const unfedLitters = fullJoin.filter(function (record) {
-            return record.feeding_id === null;
-        });
-        response.json(unfedLitters);
-    }),
-);
+app.use("/api/unfedLitters", unfedLittersRouter);
 
 /* Gets litters that have been fed at least once 
 and maps the time the litters have been feed last to the time when the next feeding should happen */
