@@ -14,7 +14,7 @@ export default function LoginLogoutButtons() {
 
     async function onLogout() {
         try {
-            await fetch("/api/logout", {
+            await fetch("/api/auth/logout", {
                 method: "POST",
             });
         } finally {

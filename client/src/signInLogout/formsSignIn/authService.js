@@ -14,9 +14,9 @@ export function checkFormErrors(form) {
 
 async function submitAuthRequest(formData, allowedFields, path) {
     const formDataObject = Object.fromEntries(
-        allowedFields.map((field) => [field, formData.get(field)])
+        allowedFields.map((field) => [field, formData.get(field)]),
     );
-    const response = await fetch(`/api/${path}`, {
+    const response = await fetch(`/api/auth/${path}`, {
         method: "POST",
         body: JSON.stringify(formDataObject),
         headers: {
