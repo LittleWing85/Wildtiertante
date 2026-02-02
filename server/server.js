@@ -94,7 +94,7 @@ app.get("/api/user_id", (request, response) => {
 
 // PROTECTED ROUTES
 app.use("/api/newLitter", newLitterRouter);
-api.use("/api/feedingData", feedingDataRouter);
+app.use("/api/feedingData", feedingDataRouter);
 app.use("/api/litterOverview", litterOverviewRouter);
 app.use("/api/unfedLitters", unfedLittersRouter);
 app.use("/api/nextFeedings", getallFeedingsRouter);
