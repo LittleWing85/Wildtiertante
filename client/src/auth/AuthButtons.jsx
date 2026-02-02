@@ -3,9 +3,9 @@
 import { Link } from "react-router-dom";
 
 import { useUser } from "../UserContext";
-import "./signInLogout.css";
+import "./auth.css";
 
-export default function LoginLogoutButtons() {
+export default function AuthButtons() {
     const { setUserId, userId, loading } = useUser();
 
     if (loading) {
@@ -26,7 +26,7 @@ export default function LoginLogoutButtons() {
         <div>
             {!userId && (
                 <div>
-                    <Link to="/signIn" className="navEntry">
+                    <Link to="/auth" className="navEntry">
                         Anmelden
                     </Link>
                 </div>

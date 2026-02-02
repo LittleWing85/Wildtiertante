@@ -2,9 +2,9 @@
 // This component has an outlet to either render login or registration form
 
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import "./signInLogout.css";
+import "./auth.css";
 
-export default function SignInLogout() {
+export default function Auth() {
     const location = useLocation();
     const message = location.state?.message;
 
@@ -20,13 +20,13 @@ export default function SignInLogout() {
                             className={({ isActive }) =>
                                 "tabText" + (isActive ? " active" : "")
                             }
-                            to="/signIn/login"
+                            to="/auth/login"
                         >
                             Einloggen
                         </NavLink>
                     </div>
                     <div className="tabBarElement">
-                        <NavLink className="tabText" to="/signIn/registration">
+                        <NavLink className="tabText" to="/auth/registration">
                             Registrieren
                         </NavLink>
                     </div>

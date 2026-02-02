@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../UserContext.jsx";
 import { checkFormErrors, submitLoginData } from "./authService.js";
-import "./formsSignIn.css";
+import "./formsAuth.css";
 
 export default function LoginForm() {
     const [errorMessagesForm, setErrorMessagesForm] = useState({});

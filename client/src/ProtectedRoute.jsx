@@ -11,7 +11,7 @@ export default function ProtectedRoute({ children }) {
     if (!userId) {
         return (
             <Navigate
-                to="/signIn/login"
+                to="/auth/login"
                 replace
                 state={{
                     message:

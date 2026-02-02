@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../UserContext.jsx";
 import { checkFormErrors, submitRegistrationData } from "./authService.js";
-import "./formsSignIn.css";
+import "./formsAuth.css";
 
 export default function RegistrationForm() {
     const [errorMessagesInput, setErrorMessagesInput] = useState({});

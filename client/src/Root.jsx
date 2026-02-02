@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import LoginLogoutButtons from "./signInLogout/LoginLogoutButtons.jsx";
+import AuthButtons from "./auth/AuthButtons.jsx";
 
 export default function Root() {
     return (
@@ -31,7 +31,7 @@ export default function Root() {
                 {/*Use a callback function in nav if more styling logic is needed in the future than CSS allows. 
                 For more info, see ../ImprovementsThatMightBeInterestingInTheFuture.doc*/}
                 <div>
-                    <LoginLogoutButtons />
+                    <AuthButtons />
                 </div>
             </header>
             <div className="content">

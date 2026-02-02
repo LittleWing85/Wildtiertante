@@ -2,7 +2,7 @@
 // application error, application error without message, network error
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { UserProvider } from "../UserContext";
-import RegistrationForm from "../signInLogout/formsSignIn/RegistrationForm";
+import RegistrationForm from "../auth/formsAuth/RegistrationForm";
 import { server } from "../mocks/server";
 import { http, HttpResponse } from "msw";
 import { vi } from "vitest";
@@ -27,7 +27,7 @@ function testUtil() {
     render(
         <UserProvider>
             <RegistrationForm />
-        </UserProvider>
+        </UserProvider>,
     );
     fireEvent.change(screen.getByLabelText(/name/i), {
         target: { value: "Tierheim Sonnental" },
@@ -45,8 +45,8 @@ function testUtil() {
 test("erfolgreiche Registrierung navigiert zum FeedingTool", async () => {
     server.use(
         http.post("/api/registration", () =>
-            HttpResponse.json({ success: true }, { status: 200 })
-        )
+            HttpResponse.json({ success: true }, { status: 200 }),
+        ),
     );
     testUtil();
     await waitFor(() => {
@@ -65,13 +65,13 @@ test("zeigt Fehlermeldung des Backends an", async () => {
                     error: true,
                     errorMessage: backendMessage,
                 },
-                { status: 200 }
-            )
-        )
+                { status: 200 },
+            ),
+        ),
     );
     testUtil();
     const msg = await screen.findByText(
-        /Diese E-Mail-Adresse wird bereits verwendet/i
+        /Diese E-Mail-Adresse wird bereits verwendet/i,
     );
     expect(msg).toBeInTheDocument();
     expect(mockNavigate).not.toHaveBeenCalled();
@@ -85,9 +85,9 @@ test("zeigt Standard-Fehlermeldung, wenn kein errorMessage vorhanden ist", async
                 {
                     error: true, // no errorMessage provided
                 },
-                { status: 200 }
-            )
-        )
+                { status: 200 },
+            ),
+        ),
     );
     testUtil();
     const msg = await screen.findByText(/Diese E-Mail-Adresse.*verwendet/i);
@@ -99,7 +99,7 @@ test("zeigt Serverfehler an, wenn Fetch-Request komplett fehlschlägt", async ()
     server.use(
         http.post("/api/registration", () => {
             throw new Error("Network down");
-        })
+        }),
     );
     testUtil();
     const msg = await screen.findByText(/serverfehler:500/i);

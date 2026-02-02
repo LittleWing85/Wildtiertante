@@ -44,7 +44,7 @@ authRouter.post("/login", (request, response) => {
         });
 });
 
-authRouter.post("/logout", (request, response) => {
+authRouter.post("/auth/logout", (request, response) => {
     request.session = null;
     response.json({ success: true });
 });
