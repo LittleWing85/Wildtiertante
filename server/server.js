@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { sessionMiddleware, refreshSession } from "./middleware/session.js";
 import authRouter from "./authRoutes/auth.js";
+import user_idRouter from "./publicRoutes/user_id.js";
 import newLitterRouter from "./protectedRoutes/newLitter.js";
 import litterOverviewRouter from "./protectedRoutes/litterOverview.js";
 import unfedLittersRouter from "./protectedRoutes/unfedLitters.js";
@@ -24,14 +25,7 @@ app.use(refreshSession);
 app.use("/api/auth", authRouter);
 
 // PUBLIC ROUTES
-app.get("/api/user_id", (request, response) => {
-    const currentUser = request.session.user_id;
-    if (currentUser) {
-        response.json(currentUser);
-        return;
-    }
-    response.json(null);
-});
+app.use("/api/user_id", user_idRouter);
 
 // PROTECTED ROUTES
 app.use("/api/newLitter", newLitterRouter);
