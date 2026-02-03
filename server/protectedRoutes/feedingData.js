@@ -1,7 +1,9 @@
 //Route for documentation of feedings
 
 import express from "express";
-import { requireLogin, wrap } from "./protectedRoutesUtils.js";
+
+import wrap from "../middleware/wrap.js";
+import requireLogin from "./requireLogin.js";
 import { createFeedingEntry } from "./protectedRoutesDb.js";
 
 const feedingDataRouter = express.Router();

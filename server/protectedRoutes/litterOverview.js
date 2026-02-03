@@ -1,7 +1,9 @@
-//gets all litters to offer user an overview
+//gets all litters to provide an overview for user
 
 import express from "express";
-import { requireLogin, wrap } from "./protectedRoutesUtils.js";
+
+import wrap from "../middleware/wrap.js";
+import requireLogin from "./requireLogin.js";
 import { getLitters } from "./protectedRoutesDb.js";
 
 const litterOverviewRouter = express.Router();

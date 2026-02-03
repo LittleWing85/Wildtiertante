@@ -1,7 +1,9 @@
 //creates a new litter
 
 import express from "express";
-import { requireLogin, wrap } from "./protectedRoutesUtils.js";
+
+import wrap from "../middleware/wrap.js";
+import requireLogin from "./requireLogin.js";
 import { createLitter, createIndividual } from "./protectedRoutesDb.js";
 
 const newLitterRouter = express.Router();

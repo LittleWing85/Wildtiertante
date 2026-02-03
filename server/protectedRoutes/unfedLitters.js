@@ -1,7 +1,9 @@
 // Gets all newly arrived litters who haven't been fed yet
 
 import express from "express";
-import { requireLogin, wrap } from "./protectedRoutesUtils.js";
+
+import wrap from "../middleware/wrap.js";
+import requireLogin from "./requireLogin.js";
 import { fullJoinLittersAndFeedings } from "./protectedRoutesDb.js";
 
 const unfedLittersRouter = express.Router();

@@ -2,7 +2,9 @@
 // Maps the time the litters have been feed last to the time when the next feeding should happen
 
 import express from "express";
-import { requireLogin, wrap } from "./protectedRoutesUtils.js";
+
+import wrap from "../middleware/wrap.js";
+import requireLogin from "./requireLogin.js";
 import { getAllFeedings } from "./protectedRoutesDb.js";
 
 const getAllFeedingsRouter = express.Router();
