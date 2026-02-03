@@ -11,6 +11,8 @@ import feedingDataRouter from "./protectedRoutes/feedingData.js";
 import getallFeedingsRouter from "./protectedRoutes/nextFeedings.js";
 import centralErrorHandler from "./middleware/error.js";
 
+//Note for building tests: separate configuration of express app and listening to server
+
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
