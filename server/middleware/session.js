@@ -13,10 +13,10 @@ export function sessionMiddleware() {
 
 // refresh session expiry on each request for logged-in users
 export function refreshSession() {
-    app.use((request, response, next) => {
+    (request, response, next) => {
         if (request.session?.user_id) {
             request.session._ts = Date.now();
         }
         next();
-    });
+    };
 }
