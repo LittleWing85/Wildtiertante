@@ -9,6 +9,7 @@ import litterOverviewRouter from "./protectedRoutes/litterOverview.js";
 import unfedLittersRouter from "./protectedRoutes/unfedLitters.js";
 import feedingDataRouter from "./protectedRoutes/feedingData.js";
 import getallFeedingsRouter from "./protectedRoutes/nextFeedings.js";
+import centralErrorHandler from "./middleware/error.js";
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -41,13 +42,7 @@ app.get("*", function (request, response) {
 });
 
 // Central error handler
-app.use((error, request, response, next) => {
-    console.error("Server error:", error);
-    if (response.headersSent) return next(error);
-    response.status(error.status || 500).json({
-        error: error.message || "Internal Server Error",
-    });
-});
+app.use(centralErrorHandler);
 
 app.listen(process.env.PORT || 4001, function () {
     console.log("I'm listening.");
