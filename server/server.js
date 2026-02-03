@@ -1,6 +1,5 @@
 import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
+import { clientPublicPath, clientIndexPath } from "./config/paths.js";
 import { sessionMiddleware, refreshSession } from "./middleware/session.js";
 import authRouter from "./authRoutes/auth.js";
 import user_idRouter from "./publicRoutes/user_id.js";
@@ -11,14 +10,11 @@ import feedingDataRouter from "./protectedRoutes/feedingData.js";
 import getallFeedingsRouter from "./protectedRoutes/nextFeedings.js";
 import centralErrorHandler from "./middleware/error.js";
 
-//Note for building tests: separate configuration of express app and listening to server
-
 const app = express();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+
+app.use(express.static(clientPublicPath));
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
 // SESSION MIDDLEWARE
 app.use(sessionMiddleware());
@@ -37,13 +33,12 @@ app.use("/api/litterOverview", litterOverviewRouter);
 app.use("/api/unfedLitters", unfedLittersRouter);
 app.use("/api/nextFeedings", getallFeedingsRouter);
 
-// OTHER
-// Fallback
-app.get("*", function (request, response) {
-    response.sendFile(path.join(__dirname, "..", "client", "index.html"));
+// FALLBACK
+app.get("*", (request, response) => {
+    response.sendFile(clientIndexPath);
 });
 
-// Central error handler
+// ERROR HANDLER
 app.use(centralErrorHandler);
 
 app.listen(process.env.PORT || 4001, function () {
