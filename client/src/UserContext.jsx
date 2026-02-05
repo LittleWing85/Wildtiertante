@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const UserContext = createContext({
     userId: null,
-    setUsedId: () => {},
+    setUserId: () => {},
     loading: true,
 });
 
@@ -14,7 +14,7 @@ export function UserProvider({ children }) {
         async function fetchUser() {
             try {
                 const response = await fetch("/api/user_id");
-                data = await response.json();
+                const data = await response.json();
                 setUserId(data);
             } catch {
                 setUserId(null);
@@ -33,9 +33,5 @@ export function UserProvider({ children }) {
 }
 
 export function useUser() {
-    const context = useContext(UserContext);
-    if (!context) {
-        throw new Error("useUser must be used inside <UserProvider>");
-    }
-    return context;
+    return useContext(UserContext);
 }

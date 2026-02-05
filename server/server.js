@@ -12,13 +12,13 @@ import centralErrorHandler from "./middleware/error.js";
 
 const app = express();
 
-app.use(express.static(clientPublicPath));
-
 app.use(express.json());
 
 // SESSION MIDDLEWARE
 app.use(sessionMiddleware());
 app.use(refreshSession);
+
+app.use(express.static(clientPublicPath));
 
 // AUTH ROUTES
 app.use("/api/auth", authRouter);

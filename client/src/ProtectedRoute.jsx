@@ -5,7 +5,7 @@ export default function ProtectedRoute({ children }) {
     const { userId, loading } = useUser();
 
     if (loading) {
-        return null;
+        return <div>Lade...</div>;
     }
 
     if (!userId) {
