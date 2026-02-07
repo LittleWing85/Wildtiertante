@@ -1,5 +1,6 @@
 import express from "express";
 import { clientPublicPath, clientIndexPath } from "./config/paths.js";
+import { port } from "./config/env.js";
 import { sessionMiddleware, refreshSession } from "./middleware/session.js";
 import authRouter from "./authRoutes/auth.js";
 import user_idRouter from "./publicRoutes/user_id.js";
@@ -41,6 +42,6 @@ app.get("*", (request, response) => {
 // ERROR HANDLER
 app.use(centralErrorHandler);
 
-app.listen(process.env.PORT || 4001, function () {
+app.listen(port, () => {
     console.log("I'm listening.");
 });
