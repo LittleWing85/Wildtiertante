@@ -3,7 +3,7 @@
 
 import express from "express";
 
-import wrap from "../middleware/wrap.js";
+import wrap from "../../middleware/wrap.js";
 import requireLogin from "./requireLogin.js";
 import { getAllFeedings } from "./protectedRoutesDb.js";
 

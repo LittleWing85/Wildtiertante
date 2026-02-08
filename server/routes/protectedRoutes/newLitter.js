@@ -2,7 +2,7 @@
 
 import express from "express";
 
-import wrap from "../middleware/wrap.js";
+import wrap from "../../middleware/wrap.js";
 import requireLogin from "./requireLogin.js";
 import { createLitter, createIndividual } from "./protectedRoutesDb.js";
 
