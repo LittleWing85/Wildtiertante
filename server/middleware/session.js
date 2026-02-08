@@ -1,15 +1,8 @@
 import cookieSession from "cookie-session";
-import { isProd } from "../config/env.js";
+import { sessionConfig } from "../config/session.js";
 
 export function sessionMiddleware() {
-    return cookieSession({
-        name: process.env.SESSION_NAME || "wildtiertante_session",
-        secret: process.env.SESSION_SECRET || "Hello something",
-        maxAge: 1000 * 60 * 60 * 24 * 14,
-        httpOnly: true,
-        secure: isProd,
-        sameSite: "lax",
-    });
+    return cookieSession(sessionConfig);
 }
 
 // refresh session expiry on each request for logged-in users
