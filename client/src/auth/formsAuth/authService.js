@@ -1,6 +1,6 @@
 //This hook provides the utilities that Login and Registration have in common
 
-import formCheck from "../../formCheck.js";
+import formCheck from "../../utils/formCheck.js";
 
 const REGISTRATION_FIELDS = ["name", "email", "password"];
 const LOGIN_FIELDS = ["email", "password"];
