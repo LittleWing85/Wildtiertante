@@ -8,23 +8,23 @@ import {
 import { lazy } from "react";
 
 import Root from "./Root.jsx";
-import LazyLoading from "./LayoutRoute.jsx";
-import ProtectedRoute from "./ProtectedRoute.jsx";
-import { UserProvider } from "./UserContext.jsx";
+import LazyLoading from "../LayoutRoute.jsx";
+import ProtectedRoute from "../ProtectedRoute.jsx";
+import { UserProvider } from "../UserContext.jsx";
 
-import Auth from "./auth/Auth.jsx";
-import RegistrationForm from "./auth/formsAuth/RegistrationForm.jsx";
-import LoginForm from "./auth/formsAuth/LoginForm.jsx";
+import Auth from "../auth/Auth.jsx";
+import RegistrationForm from "../auth/formsAuth/RegistrationForm.jsx";
+import LoginForm from "../auth/formsAuth/LoginForm.jsx";
 
-import About from "./about/About.jsx";
-import Information from "./information/Information.jsx";
-import FeedingTool from "./feedingTool/FeedingTool.jsx";
-import WhosNext from "./feedingTool/whosNext/WhosNext.jsx";
+import About from "../about/About.jsx";
+import Information from "../information/Information.jsx";
+import FeedingTool from "../feedingTool/FeedingTool.jsx";
+import WhosNext from "../feedingTool/whosNext/WhosNext.jsx";
 const LitterOverview = lazy(
-    () => import("./feedingTool/litterOverview/LitterOverview.jsx"),
+    () => import("../feedingTool/litterOverview/LitterOverview.jsx"),
 );
-const NewLitter = lazy(() => import("./feedingTool/newLitter/NewLitter.jsx"));
-import WildAnimalFound from "./wildanimalfound/WildAnimalFound.jsx";
+const NewLitter = lazy(() => import("../feedingTool/newLitter/NewLitter.jsx"));
+import WildAnimalFound from "../wildanimalfound/WildAnimalFound.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
