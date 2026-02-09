@@ -28,8 +28,6 @@ export default function Root() {
                         Wildtier gefunden
                     </NavLink>
                 </nav>
-                {/*Use a callback function in nav if more styling logic is needed in the future than CSS allows. 
-                For more info, see ../ImprovementsThatMightBeInterestingInTheFuture.doc*/}
                 <div>
                     <AuthButtons />
                 </div>
