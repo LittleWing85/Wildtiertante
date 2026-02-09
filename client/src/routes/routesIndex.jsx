@@ -49,8 +49,6 @@ export const router = createBrowserRouter(
                     <Route path="litterOverview" element={<LitterOverview />} />
                     <Route path="newLitter" element={<NewLitter />} />
                 </Route>
-                {/* Use wrapper instead of Layout Route if different fallbacks are needed. 
-                See ImprovementsThatMightBeInterestingInTheFuture.doc for more info/*/}
             </Route>
             <Route path="wildAnimalFound" element={<WildAnimalFound />} />
         </Route>,
