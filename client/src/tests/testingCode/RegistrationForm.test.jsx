@@ -2,8 +2,8 @@
 // application error, application error without message, network error
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { UserProvider } from "../UserContext";
-import RegistrationForm from "../auth/formsAuth/RegistrationForm";
-import { server } from "../mocks/server";
+import RegistrationForm from "../../auth/formsAuth/RegistrationForm";
+import { server } from "../../mocks/server";
 import { http, HttpResponse } from "msw";
 import { vi } from "vitest";
 
