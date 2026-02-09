@@ -1,5 +1,5 @@
 import { RouterProvider } from "react-router-dom";
-import { UserProvider } from "../UserContext.jsx";
+import { UserProvider } from "../context/UserContext.jsx";
 import { router } from "../routes/routesIndex.jsx";
 
 export default function App() {

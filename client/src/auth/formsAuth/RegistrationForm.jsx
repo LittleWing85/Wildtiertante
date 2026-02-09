@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useUser } from "../../UserContext.jsx";
+import { useUser } from "../../context/UserContext.jsx";
 import { checkFormErrors, submitRegistrationData } from "./authService.js";
 import "./formsAuth.css";
 

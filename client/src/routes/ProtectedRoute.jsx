@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { useUser } from "../UserContext.jsx";
+import { useUser } from "../context/UserContext.jsx";
 
 export default function ProtectedRoute({ children }) {
     const { userId, loading } = useUser();
