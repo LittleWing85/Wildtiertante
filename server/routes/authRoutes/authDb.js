@@ -1,25 +1,8 @@
-import fs from "fs";
-import path from "path";
-import spicedPg from "spiced-pg";
 import bcrypt from "bcryptjs";
-
-const secretsPath = path.resolve("./server/secrets.json");
-const secretsRaw = fs.readFileSync(secretsPath);
-const secrets = JSON.parse(secretsRaw);
+import db from "../../config/db.js";
 
 const hash = (password) =>
     bcrypt.genSalt().then((salt) => bcrypt.hash(password, salt));
-
-let db;
-if (!process.env.DATABASE_URL) {
-    const { DATABASE_USER, DATABASE_PASSWORD } = secrets;
-    const DATABASE_NAME = "wildtiertante";
-    db = spicedPg(
-        `postgres:${DATABASE_USER}:${DATABASE_PASSWORD}@localhost:5432/${DATABASE_NAME}`,
-    );
-} else {
-    db = spicedPg(process.env.DATABASE_URL);
-}
 
 function createUser({ name, email, password }) {
     return hash(password).then((password_hash) => {

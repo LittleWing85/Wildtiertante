@@ -1,3 +1,5 @@
+import db from "../../config/db.js";
+
 function createLitter({
     id_associated_user,
     species,

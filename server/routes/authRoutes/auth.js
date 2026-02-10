@@ -3,25 +3,24 @@ import { createUser, login } from "./authDb.js";
 
 const authRouter = express.Router();
 
-authRouter.post("/registration", (request, response) => {
-    createUser(request.body)
-        .then((newUser) => {
-            request.session.user_id = newUser.user_id;
-            response.json(newUser);
-        })
-        .catch((error) => {
-            console.log("POST /api/registration", error);
-            if (error.constraint === "users_email_key") {
-                response.status(400).json({
-                    error: "E-mail already in use.",
-                });
-                return;
-                // note for rework: send back error messages in case of problems.
-            }
-            response.status(500).json({
-                error: "Something went wrong. Please try again later.",
+authRouter.post("/registration", async (request, response) => {
+    try {
+        const newUser = await createUser(request.body);
+        request.session.user_id = newUser.user_id;
+        response.json(newUser);
+    } catch (error) {
+        console.log("POST /api/registration", error);
+        if (error.constraint === "users_email_key") {
+            response.status(400).json({
+                error: "E-mail already in use.",
             });
+            return;
+            // note for rework: send back error messages in case of problems.
+        }
+        response.status(500).json({
+            error: "Something went wrong. Please try again later.",
         });
+    }
 });
 
 authRouter.post("/login", (request, response) => {
