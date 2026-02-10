@@ -2,7 +2,7 @@
 // It also executes the logout.
 import { Link } from "react-router-dom";
 
-import { useUser } from "../context/UserContext";
+import { useUser } from "../../context/UserContext";
 import "./auth.css";
 
 export default function AuthButtons() {

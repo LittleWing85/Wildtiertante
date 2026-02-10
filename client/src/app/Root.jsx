@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import AuthButtons from "../auth/AuthButtons.jsx";
+import AuthButtons from "../features/auth/AuthButtons.jsx";
 
 export default function Root() {
     return (
