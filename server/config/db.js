@@ -1,8 +1,8 @@
+import { Pool } from "pg";
 import fs from "fs";
 import path from "path";
-import spicedPg from "spiced-pg";
 
-let db;
+let dbConfig;
 
 if (!process.env.DATABASE_URL) {
     const secretsPath = path.resolve("./server/secrets.json");
@@ -11,11 +11,21 @@ if (!process.env.DATABASE_URL) {
 
     const { DATABASE_USER, DATABASE_PASSWORD } = secrets;
     const DATABASE_NAME = "wildtiertante";
-    db = spicedPg(
-        `postgres:${DATABASE_USER}:${DATABASE_PASSWORD}@localhost:5432/${DATABASE_NAME}`,
-    );
+    dbConfig = {
+        user: DATABASE_USER,
+        password: DATABASE_PASSWORD,
+        host: "localhost",
+        port: 5432,
+        database: DATABASE_NAME,
+    };
 } else {
-    db = spicedPg(process.env.DATABASE_URL);
+    // for deployment (Heroku...)
+    dbConfig = {
+        connectionString: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false },
+    };
 }
 
-export default db;
+const pool = new Pool(dbConfig);
+
+export default pool;

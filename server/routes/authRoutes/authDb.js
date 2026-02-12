@@ -1,5 +1,5 @@
-import bcrypt from "bcryptjs";
 import db from "../../config/db.js";
+import bcrypt from "bcryptjs";
 
 const hash = (password) => bcrypt.hash(password, 12);
 
@@ -11,7 +11,7 @@ async function createUser({ name, email, password }) {
     const result = await db.query(
         `INSERT INTO users (name, email, password_hash) 
                 VALUES ($1, $2, $3)
-                RETURNING name, email`,
+                RETURNING name, email, user_id`,
         [name, email, password_hash],
     );
     return result.rows[0];
