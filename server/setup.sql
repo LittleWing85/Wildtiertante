@@ -40,13 +40,3 @@ CREATE TABLE feedings (
     feedingCreated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 );
-
-INSERT INTO litters (id_associated_user, species, arrival, feedingslots, notes)
-VALUES (1, 'Squirrels', NOW(), ARRAY [TIME '02:00', TIME '06:00', TIME '10:00', TIME '14:00', TIME '18:00', TIME '22:00'], '');
-
-
-INSERT INTO litters (id_associated_user, species, arrival, feedingslots, notes)
-VALUES (1, 'Rabbits', NOW(), ARRAY [TIME '06:00', TIME '12:00', TIME '18:00', TIME '22:00'],'Very shy, handle very carefully!');
-
-INSERT INTO litters (id_associated_user, species, arrival, feedingslots, notes)
-VALUES (1, 'Mice', NOW(), ARRAY [TIME '06:00', TIME '12:00', TIME '18:00', TIME '22:00'], 'The smallest one seems to have a pain in his right leg. Show it to the vet tomorrow.');

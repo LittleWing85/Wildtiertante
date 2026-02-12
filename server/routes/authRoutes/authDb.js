@@ -1,20 +1,20 @@
 import bcrypt from "bcryptjs";
 import db from "../../config/db.js";
 
-const hash = (password) =>
-    bcrypt.genSalt().then((salt) => bcrypt.hash(password, salt));
+const hash = (password) => bcrypt.hash(password, 12);
 
-function createUser({ name, email, password }) {
-    return hash(password).then((password_hash) => {
-        return db
-            .query(
-                `INSERT INTO users (name, email, password_hash) 
+async function createUser({ name, email, password }) {
+    if (!name || !email || !password) {
+        throw new Error("Required user fields missing!");
+    }
+    const password_hash = await hash(password);
+    const result = await db.query(
+        `INSERT INTO users (name, email, password_hash) 
                 VALUES ($1, $2, $3)
-                RETURNING *`,
-                [name, email, password_hash],
-            )
-            .then((result) => result.rows[0]);
-    });
+                RETURNING name, email`,
+        [name, email, password_hash],
+    );
+    return result.rows[0];
 }
 
 function login({ email, password }) {
