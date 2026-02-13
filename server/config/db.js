@@ -5,7 +5,7 @@ import path from "path";
 let dbConfig;
 
 if (!process.env.DATABASE_URL) {
-    const secretsPath = path.resolve("./server/secrets.json");
+    const secretsPath = path.resolve(process.cwd(), "server/secrets.json");
     const secretsRaw = fs.readFileSync(secretsPath);
     const secrets = JSON.parse(secretsRaw);
 
@@ -19,13 +19,17 @@ if (!process.env.DATABASE_URL) {
         database: DATABASE_NAME,
     };
 } else {
-    // for deployment (Heroku...)
     dbConfig = {
         connectionString: process.env.DATABASE_URL,
-        ssl: { rejectUnauthorized: false },
+        ssl: { rejectUnauthorized: false }, // change for deployment
     };
 }
 
-const pool = new Pool(dbConfig);
+const pool = new Pool({
+    ...dbConfig,
+    max: 10,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 2000,
+});
 
 export default pool;
