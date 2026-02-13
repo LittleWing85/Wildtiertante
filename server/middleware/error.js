@@ -5,5 +5,5 @@ const centralErrorHandler = (error, request, response, next) => {
         error: error.message || "Internal Server Error",
     });
 };
-
+//add error handling for database request failed - e.g. because connectionTimeoutMillis has been exceeded
 export default centralErrorHandler;
