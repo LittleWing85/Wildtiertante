@@ -38,5 +38,4 @@ CREATE TABLE feedings (
     feedingSlot TIME,
     feedingDate VARCHAR(255) NOT NULL,
     feedingCreated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-
 );
