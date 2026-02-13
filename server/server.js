@@ -23,5 +23,5 @@ app.get("*", (request, response) => {
 app.use(centralErrorHandler);
 
 app.listen(port, () => {
-    console.log("I'm listening.");
+    console.log(`I'm listening on port ${port}`);
 });
