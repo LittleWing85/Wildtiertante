@@ -5,3 +5,6 @@ client/public/bundle.js
 client/public/bundle.js.LICENSE.txt
 bundle.css
 .env
+localhost-key.pem
+localhost.pem
+.vscode

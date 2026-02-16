@@ -5,7 +5,7 @@ import { router } from "../routes/routesIndex.jsx";
 export default function App() {
     return (
         <UserProvider>
-            <RouterProvider router={router} />;
+            <RouterProvider router={router} />
         </UserProvider>
     );
 }
