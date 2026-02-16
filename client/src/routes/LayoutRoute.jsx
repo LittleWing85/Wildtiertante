@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 
-export default function LazyLoading() {
+export default function LayoutRoute({ fallback = <div>Loading...</div> }) {
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={fallback}>
             <Outlet />
         </Suspense>
     );

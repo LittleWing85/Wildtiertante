@@ -8,7 +8,7 @@ import { lazy } from "react";
 
 import Root from "../app/Root.jsx";
 
-import LazyLoading from "./LayoutRoute.jsx";
+import LayoutRoute from "./LayoutRoute.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx";
 
 import Auth from "../features/auth/Auth.jsx";
@@ -47,7 +47,7 @@ export const router = createBrowserRouter(
             >
                 <Route index element={<WhosNext />} />
                 <Route path="whosNext" element={<WhosNext />} />
-                <Route element={<LazyLoading />}>
+                <Route element={<LayoutRoute />}>
                     <Route path="litterOverview" element={<LitterOverview />} />
                     <Route path="newLitter" element={<NewLitter />} />
                 </Route>
