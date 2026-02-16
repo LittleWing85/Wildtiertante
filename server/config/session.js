@@ -1,3 +1,5 @@
+// Configuration of session
+
 import { isProd } from "./env.js";
 
 if (!process.env.SESSION_SECRET) {

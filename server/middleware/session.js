@@ -1,3 +1,5 @@
+// Session middleware
+
 import cookieSession from "cookie-session";
 import { sessionConfig } from "../config/session.js";
 

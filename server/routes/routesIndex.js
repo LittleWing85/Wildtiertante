@@ -1,3 +1,5 @@
+// This code provides all routes to server.js
+
 import authRouter from "./authRoutes/auth.js";
 import user_idRouter from "./publicRoutes/user_id.js";
 

@@ -1,3 +1,5 @@
+// Central error handling
+
 const centralErrorHandler = (error, request, response, next) => {
     console.error("Server error:", error);
     if (response.headersSent) return next(error);

@@ -1,3 +1,5 @@
+// Configuration of data base
+
 import { Pool } from "pg";
 import {
     DATABASE_USER,
