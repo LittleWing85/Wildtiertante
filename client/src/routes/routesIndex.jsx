@@ -1,3 +1,5 @@
+// Provides routes for App.jsx
+
 import {
     Route,
     createBrowserRouter,

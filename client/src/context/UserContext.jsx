@@ -1,3 +1,5 @@
+// Provides user_id globally
+
 import { createContext, useContext, useEffect, useState } from "react";
 
 const UserContext = createContext({
