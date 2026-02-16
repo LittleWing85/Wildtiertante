@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 app.use(sessionMiddleware());
-app.use(refreshSession);
+app.use("/api", refreshSession);
 
 app.use(express.static(clientPublicPath));
 
