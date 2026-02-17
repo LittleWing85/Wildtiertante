@@ -1,11 +1,12 @@
 import db from "../../config/db.js";
 import bcrypt from "bcryptjs";
+import ValidationError from "../../errors/ValidationError.js";
 
 const hash = (password) => bcrypt.hash(password, 12);
 
 async function createUser({ name, email, password }) {
     if (!name || !email || !password) {
-        throw new Error("Required user fields missing!");
+        throw new ValidationError("Required user fields are missing!");
     }
     const password_hash = await hash(password);
     const result = await db.query(

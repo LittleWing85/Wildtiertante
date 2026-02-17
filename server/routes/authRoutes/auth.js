@@ -1,13 +1,23 @@
 import express from "express";
+import wrap from "./../middleware/wrap.js";
 import { createUser, login } from "./authDb.js";
 
 const authRouter = express.Router();
 
-authRouter.post("/registration", async (request, response) => {
+authRouter.post(
+    "/registration",
+    wrap(async (request, response) => {
+        const newUser = await createUser(request.body);
+        request.session.user_id = newUser.user_id;
+        return response.json(newUser);
+    }),
+);
+
+/*authRouter.post("/registration", async (request, response) => {
     try {
         const newUser = await createUser(request.body);
         request.session.user_id = newUser.user_id;
-        response.json(newUser);
+        return response.json(newUser);
     } catch (error) {
         console.log("POST /api/registration", error);
         if (error.constraint === "users_email_key") {
@@ -21,7 +31,7 @@ authRouter.post("/registration", async (request, response) => {
             error: "Something went wrong. Please try again later.",
         });
     }
-});
+});*/
 
 authRouter.post("/login", (request, response) => {
     login(request.body)
