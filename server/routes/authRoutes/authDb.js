@@ -6,7 +6,7 @@ const hash = (password) => bcrypt.hash(password, 12);
 
 async function createUser({ name, email, password }) {
     if (!name || !email || !password) {
-        throw new ValidationError("Required user fields are missing!");
+        throw new ValidationError("Bitte fülle alle Felder aus!");
     }
     const password_hash = await hash(password);
     const result = await db.query(
