@@ -26,7 +26,7 @@ export default function RegistrationForm() {
         event.preventDefault();
         if (isSubmitting) return;
         setErrorMessagesInput({});
-        setErrorMessageRegistration(false);
+        setErrorMessageRegistration(null);
 
         const errorsForm = checkFormErrors(event.target);
         if (Object.keys(errorsForm).length > 0) {
@@ -44,7 +44,7 @@ export default function RegistrationForm() {
                 state: { message: "Registrierung erfolgreich!" },
             });
         } catch (error) {
-            console.error("Error during registration:", error.message);
+            setErrorMessageRegistration(error.message);
         } finally {
             setIsSubmitting(false);
         }
@@ -108,7 +108,7 @@ export default function RegistrationForm() {
                 </button>
             </form>
             {errorMessageRegistration && (
-                <p className="errorBanner">{errorMessageRegistration.text}</p>
+                <p className="errorBanner">{errorMessageRegistration}</p>
             )}
         </div>
     );
