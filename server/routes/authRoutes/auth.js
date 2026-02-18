@@ -1,5 +1,5 @@
 import express from "express";
-import wrap from "./../middleware/wrap.js";
+import wrap from "../../middleware/wrap.js";
 import { createUser, login } from "./authDb.js";
 
 const authRouter = express.Router();
