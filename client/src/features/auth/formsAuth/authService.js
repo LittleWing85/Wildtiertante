@@ -23,6 +23,12 @@ async function submitAuthRequest(formData, allowedFields, path) {
             "Content-Type": "application/json",
         },
     });
+    if (!response.ok) {
+        const errorData = await response.json();
+        const error = new Error(errorData.error || "Unbekannter Fehler.");
+        error.status = response.status;
+        throw error;
+    }
     return response.json();
 }
 

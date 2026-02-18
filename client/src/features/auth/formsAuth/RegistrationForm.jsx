@@ -39,37 +39,12 @@ export default function RegistrationForm() {
         try {
             const formData = new FormData(event.target);
             const data = await submitRegistrationData(formData, "registration");
-            if (data.error) {
-                throw {
-                    type: "application",
-                    text:
-                        data.errorMessage ||
-                        "Diese E-Mail-Adresse wird bereits verwendet.",
-                };
-            }
-
-            if (!data) {
-                throw {
-                    type: "server",
-                    code: "work in progress",
-                    text: "Serverfehler:work in progress",
-                };
-            }
-
             setUserId(data?.user_id ?? null);
             navigate("/feedingTool", {
                 state: { message: "Registrierung erfolgreich!" },
             });
         } catch (error) {
-            console.error("Error during registration:", error);
-            if (!error.type) {
-                setErrorMessageRegistration({
-                    type: "network",
-                    text: "Ein Netzwerkfehler ist aufgetreten. Bitte überprüfe deine Verbindung zum Internet.",
-                });
-            } else {
-                setErrorMessageRegistration(error);
-            }
+            console.error("Error during registration:", error.message);
         } finally {
             setIsSubmitting(false);
         }
