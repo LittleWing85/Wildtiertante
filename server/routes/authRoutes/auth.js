@@ -13,20 +13,6 @@ authRouter.post(
     }),
 );
 
-/*authRouter.post("/registration", async (request, response) => {
-    try {
-        const newUser = await createUser(request.body);
-        request.session.user_id = newUser.user_id;
-        return response.json(newUser);
-    } catch (error) {
-            // note for rework: send back error messages in case of problems.
-        }
-        response.status(500).json({
-            error: "Something went wrong. Please try again later.",
-        });
-    }
-});*/
-
 authRouter.post("/login", (request, response) => {
     login(request.body)
         .then((foundUser) => {
