@@ -9,13 +9,21 @@ async function createUser({ name, email, password }) {
         throw new ValidationError("Bitte fülle alle Felder aus!");
     }
     const password_hash = await hash(password);
-    const result = await db.query(
-        `INSERT INTO users (name, email, password_hash) 
+    try {
+        const result = await db.query(
+            `INSERT INTO users (name, email, password_hash) 
                 VALUES ($1, $2, $3)
                 RETURNING name, email, user_id`,
-        [name, email, password_hash],
-    );
-    return result.rows[0];
+            [name, email, password_hash],
+        );
+        return result.rows[0];
+    } catch (error) {
+        if (error.code === "23505") {
+            throw new ValidationError(
+                "Ein Nutzer mit dieser Emailadresse existiert bereits.",
+            );
+        }
+    }
 }
 
 function login({ email, password }) {
