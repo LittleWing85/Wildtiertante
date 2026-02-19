@@ -1,8 +1,8 @@
-class ValidationError extends Error {
-    constructor(message = "Required fields are missing!") {
-        super(message);
-        this.name = "ValidationError";
-        this.status = 400;
+import AppError from "./AppError.js";
+
+class ValidationError extends AppError {
+    constructor(message = "Bitte überprüfe deine Eingaben!") {
+        super(message, 400);
     }
 }
 export default ValidationError;

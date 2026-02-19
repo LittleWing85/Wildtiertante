@@ -1,5 +1,6 @@
 import db from "../../config/db.js";
 import bcrypt from "bcryptjs";
+import ValidationError from "../../errors/ValidationError.js";
 import DatabaseError from "../../errors/DatabaseError.js";
 
 const hash = (password) => bcrypt.hash(password, 12);
@@ -23,7 +24,9 @@ async function createUser({ name, email, password }) {
                 "Ein Nutzer mit dieser Emailadresse existiert bereits.",
             );
         }
-        throw new DatabaseError();
+        throw new DatabaseError(
+            "Die Registrierung ist momentan nicht möglich. Bitte versuche es später noch einmal.",
+        );
     }
 }
 

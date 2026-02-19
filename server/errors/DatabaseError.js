@@ -1,10 +1,10 @@
-class DatabaseError extends Error {
+import AppError from "./AppError.js";
+
+class DatabaseError extends AppError {
     constructor(
         message = "Das hat aufgrund eines internen Fehlers nicht geklappt. Bitte versuche es später noch einmal.",
     ) {
-        super(message);
-        this.name = "DatabaseError";
-        this.status = 503;
+        super(message, 503);
     }
 }
 export default DatabaseError;
