@@ -28,6 +28,7 @@ const NewLitter = lazy(
     () => import("../features/feedingTool/newLitter/NewLitter.jsx"),
 );
 import WildAnimalFound from "../features/wildanimalfound/WildAnimalFound.jsx";
+import NotFound from "../features/notFound/NotFound.jsx";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -55,6 +56,7 @@ export const router = createBrowserRouter(
                 </Route>
             </Route>
             <Route path="wildAnimalFound" element={<WildAnimalFound />} />
+            <Route path="*" element={<NotFound />} />
         </Route>,
     ),
 );
