@@ -40,17 +40,17 @@ p a:hover {
 }
 
 .errorBanner {
-    background-color: lab(94.68% 2.89 -1.71);
-    color: deeppink;
-    margin-top: 1em;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
+    background-color: rgb(247, 231, 200);
+    color: orangered;
 }
 
 .successBanner {
-    background-color: rgb(225, 235, 225);
-    color: green;
+    background-color: lab(94.68% 2.89 -1.71);
+    color: deeppink;
+}
+
+.successBanner,
+.errorBanner {
     margin-top: 1em;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
