@@ -16,8 +16,13 @@ app.use(express.static(clientPublicPath));
 
 registerRoutes(app);
 
+app.use("/api", (request, response) => {
+    console.log("404");
+    return response.status(404).json({ error: "Diese Seite existiert nicht" });
+});
+
 app.get("*", (request, response) => {
-    response.sendFile(clientIndexPath);
+    return response.sendFile(clientIndexPath);
 });
 
 app.use(centralErrorHandler);
