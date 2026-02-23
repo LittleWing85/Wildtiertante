@@ -8,10 +8,10 @@ import {
 } from "react-router-dom";
 import { lazy } from "react";
 
-import Root from "../app/Root.jsx";
+import Root from "./Root.jsx";
 
-import LayoutRoute from "./LayoutRoute.jsx";
-import ProtectedRoute from "./ProtectedRoute.jsx";
+import LayoutRoute from "../routes/LayoutRoute.jsx";
+import ProtectedRoute from "../routes/ProtectedRoute.jsx";
 
 import Auth from "../features/auth/Auth.jsx";
 import RegistrationForm from "../features/auth/formsAuth/RegistrationForm.jsx";
