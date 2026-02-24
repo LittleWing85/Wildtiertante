@@ -2,9 +2,9 @@
 
 import express from "express";
 
-import wrap from "../../middleware/wrap.js";
-import requireAuthentication from "../../middleware/requireAuthentication.js";
-import { createFeedingEntry } from "./protectedRoutesDb.js";
+import { wrap } from "../../middleware/wrap.js";
+import { requireAuthentication } from "../authentication/middleware.js";
+import { createFeedingEntry } from "./db.js";
 
 const feedingDataRouter = express.Router();
 
@@ -19,4 +19,4 @@ feedingDataRouter.post(
     }),
 );
 
-export default feedingDataRouter;
+export { feedingDataRouter };

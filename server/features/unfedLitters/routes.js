@@ -2,9 +2,9 @@
 
 import express from "express";
 
-import wrap from "../../middleware/wrap.js";
-import requireAuthentication from "../../middleware/requireAuthentication.js";
-import { fullJoinLittersAndFeedings } from "./protectedRoutesDb.js";
+import { wrap } from "../../middleware/wrap.js";
+import { requireAuthentication } from "../authentication/middleware.js";
+import { fullJoinLittersAndFeedings } from "./db.js";
 
 const unfedLittersRouter = express.Router();
 
@@ -21,4 +21,4 @@ unfedLittersRouter.get(
     }),
 );
 
-export default unfedLittersRouter;
+export { unfedLittersRouter };

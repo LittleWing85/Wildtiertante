@@ -2,9 +2,9 @@
 
 import express from "express";
 
-import wrap from "../../middleware/wrap.js";
-import requireAuthentication from "../../middleware/requireAuthentication.js";
-import { createLitter, createIndividual } from "./protectedRoutesDb.js";
+import { wrap } from "../../middleware/wrap.js";
+import { requireAuthentication } from "../authentication/middleware.js";
+import { createLitter, createIndividual } from "./db.js";
 
 const newLitterRouter = express.Router();
 
@@ -30,4 +30,4 @@ newLitterRouter.post(
     }),
 );
 
-export default newLitterRouter;
+export { newLitterRouter };

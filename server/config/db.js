@@ -38,4 +38,4 @@ else {
 
 const pool = new Pool(dbConfig);
 
-export default pool;
+export { pool };

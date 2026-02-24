@@ -1,9 +1,12 @@
 import express from "express";
 import { clientPublicPath, clientIndexPath } from "./config/paths.js";
 import { port } from "./config/env.js";
-import { sessionMiddleware, refreshSession } from "./middleware/session.js";
-import registerRoutes from "./routes/routesIndex.js";
-import centralErrorHandler from "./middleware/error.js";
+import {
+    sessionMiddleware,
+    refreshSession,
+} from "./middleware/session.middleware.js";
+import { registerRoutes } from "./routesIndex.js";
+import { centralErrorHandler } from "./middleware/error.js";
 
 const app = express();
 

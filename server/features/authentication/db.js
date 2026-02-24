@@ -1,7 +1,7 @@
-import db from "../../config/db.js";
+import { pool } from "../../config/db.js";
 import bcrypt from "bcryptjs";
-import ValidationError from "../../errors/ValidationError.js";
-import DatabaseError from "../../errors/DatabaseError.js";
+import { ValidationError } from "../../errors/ValidationError.js";
+import { DatabaseError } from "../../errors/DatabaseError.js";
 
 const hash = (password) => bcrypt.hash(password, 12);
 
@@ -11,7 +11,7 @@ async function createUser({ name, email, password }) {
     }
     const password_hash = await hash(password);
     try {
-        const result = await db.query(
+        const result = await pool.query(
             `INSERT INTO users (name, email, password_hash) 
                 VALUES ($1, $2, $3)
                 RETURNING name, email, user_id`,
@@ -47,7 +47,7 @@ function login({ email, password }) {
 }
 
 function getUserByEmail(email) {
-    return db
+    return pool
         .query(`SELECT * FROM users WHERE email =$1`, [email])
         .then((result) => result.rows[0]);
 }

@@ -1,4 +1,4 @@
-import AppError from "./AppError.js";
+import { AppError } from "./AppError.js";
 
 class DatabaseError extends AppError {
     constructor(
@@ -7,4 +7,4 @@ class DatabaseError extends AppError {
         super(message, 503);
     }
 }
-export default DatabaseError;
+export { DatabaseError };

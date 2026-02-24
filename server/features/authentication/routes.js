@@ -1,6 +1,6 @@
 import express from "express";
-import wrap from "../../middleware/wrap.js";
-import { createUser, login } from "./authDb.js";
+import { wrap } from "../../middleware/wrap.js";
+import { createUser, login } from "./db.js";
 
 const authRouter = express.Router();
 
@@ -38,4 +38,4 @@ authRouter.post("/logout", (request, response) => {
     response.json({ success: true });
 });
 
-export default authRouter;
+export { authRouter };

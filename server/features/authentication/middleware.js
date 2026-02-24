@@ -3,6 +3,6 @@ const requireAuthentication = (request, response, next) => {
         return response.status(401).json({ error: "Not logged in" });
     }
     next();
-}; // additional checks can be added later in here (admin, blocked users...)
+};
 
-export default requireAuthentication;
+export { requireAuthentication };

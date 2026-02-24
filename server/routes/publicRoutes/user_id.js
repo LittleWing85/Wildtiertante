@@ -11,4 +11,4 @@ user_idRouter.get("/", (request, response) => {
     response.json(null);
 });
 
-export default user_idRouter;
+export { user_idRouter };

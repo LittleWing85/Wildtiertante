@@ -18,4 +18,4 @@ const centralErrorHandler = (error, request, response, next) => {
     }
 };
 
-export default centralErrorHandler;
+export { centralErrorHandler };

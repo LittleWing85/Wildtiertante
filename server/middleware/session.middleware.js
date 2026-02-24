@@ -1,9 +1,9 @@
 // Session middleware
 
 import cookieSession from "cookie-session";
-import { sessionConfig } from "../config/session.js";
+import { sessionConfig } from "../config/session..config.js";
 
-export function sessionMiddleware() {
+function sessionMiddleware() {
     return cookieSession(sessionConfig);
 }
 
@@ -14,3 +14,5 @@ export function refreshSession(request, response, next) {
     }
     next();
 }
+
+export { sessionMiddleware };

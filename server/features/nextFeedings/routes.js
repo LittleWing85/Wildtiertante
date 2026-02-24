@@ -3,9 +3,9 @@
 
 import express from "express";
 
-import wrap from "../../middleware/wrap.js";
-import requireAuthentication from "../../middleware/requireAuthentication.js";
-import { getAllFeedings } from "./protectedRoutesDb.js";
+import { wrap } from "../../middleware/wrap.js";
+import { requireAuthentication } from "../authentication/middleware.js";
+import { getAllFeedings } from "./db.js";
 
 const getAllFeedingsRouter = express.Router();
 
@@ -80,4 +80,4 @@ getAllFeedingsRouter.get(
     }),
 );
 
-export default getAllFeedingsRouter;
+export { getAllFeedingsRouter };
