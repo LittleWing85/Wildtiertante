@@ -3,14 +3,14 @@
 import express from "express";
 
 import wrap from "../../middleware/wrap.js";
-import requireLogin from "./requireLogin.js";
+import requireAuthentication from "../../middleware/requireAuthentication.js";
 import { createLitter, createIndividual } from "./protectedRoutesDb.js";
 
 const newLitterRouter = express.Router();
 
 newLitterRouter.post(
     "/",
-    requireLogin,
+    requireAuthentication,
     wrap(async (request, response) => {
         const litterData = {
             ...request.body.litterData,

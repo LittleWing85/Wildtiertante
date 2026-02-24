@@ -3,14 +3,14 @@
 import express from "express";
 
 import wrap from "../../middleware/wrap.js";
-import requireLogin from "./requireLogin.js";
+import requireAuthentication from "../../middleware/requireAuthentication.js";
 import { createFeedingEntry } from "./protectedRoutesDb.js";
 
 const feedingDataRouter = express.Router();
 
 feedingDataRouter.post(
     "/",
-    requireLogin,
+    requireAuthentication,
     wrap(async (request, response) => {
         const newFeedingEntry = await createFeedingEntry(
             request.body.feedingData,

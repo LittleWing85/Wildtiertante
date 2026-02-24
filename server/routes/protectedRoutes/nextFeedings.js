@@ -4,14 +4,14 @@
 import express from "express";
 
 import wrap from "../../middleware/wrap.js";
-import requireLogin from "./requireLogin.js";
+import requireAuthentication from "../../middleware/requireAuthentication.js";
 import { getAllFeedings } from "./protectedRoutesDb.js";
 
 const getAllFeedingsRouter = express.Router();
 
 getAllFeedingsRouter.get(
     "/",
-    requireLogin,
+    requireAuthentication,
     wrap(async (request, response) => {
         const currentUser = request.session.user_id;
         const allFeedings = await getAllFeedings(currentUser); // all data about feedings that have already happened
