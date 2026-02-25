@@ -52,4 +52,11 @@ function getUserByEmail(email) {
         .then((result) => result.rows[0]);
 }
 
-export { createUser, login };
+async function findUserById(user_id) {
+    const result = await pool.query(`SELECT 1 FROM users WHERE user_id =$1`, [
+        user_id,
+    ]);
+    return result.rowCount > 0;
+}
+
+export { createUser, login, findUserById };
