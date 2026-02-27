@@ -1,3 +1,3 @@
-export default async function apiFetch(api, options) {
-    const response = await fetch("", options);
+export default async function apiFetch(api, options = {}) {
+    const response = await fetch(api, { credentials: "include", ...options });
 }
