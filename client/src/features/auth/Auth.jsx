@@ -6,7 +6,14 @@ import "./auth.css";
 
 export default function Auth() {
     const location = useLocation();
-    const message = location.state?.message;
+    const message =
+        location.state?.message || sessionStorage.getItem("authMEssage");
+
+    useEffect(() => {
+        if (sessionStorage.getItem("authMessage")) {
+            sessionStorage.removeItem("authMessage");
+        }
+    }, []);
 
     return (
         <div className="containerLoginForm">

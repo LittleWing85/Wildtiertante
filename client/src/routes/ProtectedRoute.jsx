@@ -10,7 +10,7 @@ export default function ProtectedRoute({ children }) {
         return <div>Lade...</div>;
     }
 
-    if (!userId) {
+    if (userId === null) {
         return (
             <Navigate
                 to="/auth/login"
