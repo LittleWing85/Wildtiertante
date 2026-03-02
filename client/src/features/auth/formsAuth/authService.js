@@ -16,20 +16,34 @@ async function submitAuthRequest(formData, allowedFields, path) {
     const formDataObject = Object.fromEntries(
         allowedFields.map((field) => [field, formData.get(field)]),
     );
-    const response = await fetch(`/api/auth/${path}`, {
-        method: "POST",
-        body: JSON.stringify(formDataObject),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
-    if (!response.ok) {
-        const errorData = await response.json();
-        const error = new Error(errorData.error || "Unbekannter Fehler.");
-        error.status = response.status;
+
+    try {
+        const response = await fetch(`/api/auth/${path}`, {
+            credentials: "include",
+            method: "POST",
+            body: JSON.stringify(formDataObject),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        const data = await response.json();
+        if (!response.ok) {
+            const error = new Error(
+                data.error ||
+                    "Es ist ein unbekannter Fehler aufgetreten. Bitte versuche es zu einem späteren Zeitpunkt erneut.",
+            );
+            error.status = response.status;
+            throw error;
+        }
+        return data;
+    } catch (error) {
+        if (!error.status) {
+            throw new Error(
+                "Der Server ist derzeit nicht erreichbar. Bitte versuche es zu einem späteren Zeitpunkt erneut.",
+            );
+        }
         throw error;
     }
-    return response.json();
 }
 
 export function submitRegistrationData(formData, path) {
