@@ -22,27 +22,37 @@ export default function RegistrationForm() {
         );
     }
 
+    function validateForm(form) {
+        const errorsForm = checkFormErrors(form);
+        if (Object.keys(errorsForm).length > 0) {
+            setErrorMessagesInput(errorsForm);
+            return false;
+        }
+        return true;
+    }
+
     async function onSubmitRegistrationData(event) {
+        setIsSubmitting(true);
         event.preventDefault();
         if (isSubmitting) return;
         setErrorMessagesInput({});
         setErrorMessageRegistration(null);
 
-        const errorsForm = checkFormErrors(event.target);
-        if (Object.keys(errorsForm).length > 0) {
-            setErrorMessagesInput(errorsForm);
+        if (!validateForm(event.currentTarget)) {
             return;
         }
 
-        setIsSubmitting(true);
-
-        try {
-            const formData = new FormData(event.target);
-            const data = await submitRegistrationData(formData, "registration");
+        async function handleRegistrationSuccess(data) {
             setUserId(data?.user_id ?? null);
             navigate("/feedingTool", {
                 state: { message: "Registrierung erfolgreich!" },
             });
+        }
+
+        try {
+            const formData = new FormData(event.target);
+            const data = await submitRegistrationData(formData, "registration");
+            handleRegistrationSuccess(data);
         } catch (error) {
             setErrorMessageRegistration(error.message);
         } finally {
