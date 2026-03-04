@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../../context/UserContext.jsx";
 import { checkFormErrors, submitRegistrationData } from "./authService.js";
+import createInputFields from "./InputFields";
 import "./formsAuth.css";
 
 export default function RegistrationForm() {
@@ -15,12 +16,8 @@ export default function RegistrationForm() {
     const { setUserId } = useUser();
     const navigate = useNavigate();
 
-    function clearErrorOnChange(event) {
-        const fieldName = event.target.name;
-        setErrorMessagesInput((prev) =>
-            prev[fieldName] ? { ...prev, [fieldName]: null } : prev,
-        );
-    }
+    const NEEDED_INPUT_FIELDS = ["name", "email", "password"];
+    const inputFields = createInputFields(NEEDED_INPUT_FIELDS);
 
     function validateForm(form) {
         const errorsForm = checkFormErrors(form);
@@ -31,10 +28,17 @@ export default function RegistrationForm() {
         return true;
     }
 
+    async function handleRegistrationSuccess(data) {
+        setUserId(data.user_id);
+        navigate("/feedingTool", {
+            state: { message: "Registrierung erfolgreich!" },
+        });
+    }
+
     async function onSubmitRegistrationData(event) {
-        setIsSubmitting(true);
-        event.preventDefault();
         if (isSubmitting) return;
+        event.preventDefault();
+
         setErrorMessagesInput({});
         setErrorMessageRegistration(null);
 
@@ -42,15 +46,10 @@ export default function RegistrationForm() {
             return;
         }
 
-        async function handleRegistrationSuccess(data) {
-            setUserId(data?.user_id ?? null);
-            navigate("/feedingTool", {
-                state: { message: "Registrierung erfolgreich!" },
-            });
-        }
+        setIsSubmitting(true);
 
         try {
-            const formData = new FormData(event.target);
+            const formData = new FormData(event.currentTarget);
             const data = await submitRegistrationData(formData, "registration");
             handleRegistrationSuccess(data);
         } catch (error) {
@@ -60,6 +59,13 @@ export default function RegistrationForm() {
         }
     }
 
+    function onChangeClearError(event) {
+        const fieldName = event.currentTarget.name;
+        setErrorMessagesInput((prev) =>
+            prev[fieldName] ? { ...prev, [fieldName]: null } : prev,
+        );
+    }
+
     return (
         <div className="topSpaceBig">
             <form
@@ -67,17 +73,22 @@ export default function RegistrationForm() {
                 noValidate
                 onSubmit={onSubmitRegistrationData}
             >
-                <label htmlFor="name">Name</label>
+                {inputFields}
+                {/*   <label htmlFor="name">Name</label>
                 <input
                     id="name"
                     name="name"
                     type="text"
                     required
                     placeholder="Name of your shelter"
-                    onChange={clearErrorOnChange}
+                    aria-invalid={!!errorMessagesInput.name}
+                    aria-describedby="name-error"
+                    onChange={onChangeClearError}
                 />
                 {errorMessagesInput.name && (
-                    <p className="inputError">{errorMessagesInput.name}</p>
+                    <p id="name-error" className="inputError" role="alert">
+                        {errorMessagesInput.name}
+                    </p>
                 )}
 
                 <label htmlFor="email" className="topSpaceSmall">
@@ -89,10 +100,14 @@ export default function RegistrationForm() {
                     type="email"
                     required
                     placeholder="Email"
-                    onChange={clearErrorOnChange}
+                    aria-invalid={!!errorMessagesInput.email}
+                    aria-describedby="email-error"
+                    onChange={onChangeClearError}
                 />
                 {errorMessagesInput.email && (
-                    <p className="inputError">{errorMessagesInput.email}</p>
+                    <p id="email-error" className="inputError" role="alert">
+                        {errorMessagesInput.email}
+                    </p>
                 )}
                 <label htmlFor="password" className="topSpaceSmall">
                     Passwort
@@ -103,15 +118,24 @@ export default function RegistrationForm() {
                     type="password"
                     required
                     placeholder="Password"
-                    onChange={clearErrorOnChange}
+                    aria-invalid={!!errorMessagesInput.password}
+                    aria-describedby="password-error"
+                    onChange={onChangeClearError}
                 />
                 {errorMessagesInput.password && (
-                    <p className="inputError">{errorMessagesInput.password}</p>
+                    <p id="password-error" className="inputError" role="alert">
+                        {errorMessagesInput.password}
+                    </p>
                 )}
+                */}
 
-                <button className="topSpace" disabled={isSubmitting}>
+                <button
+                    className="topSpace"
+                    disabled={isSubmitting}
+                    aria-busy={isSubmitting}
+                >
                     {isSubmitting ? (
-                        <span className="spinner"></span>
+                        <span className="spinner" aria-hidden="true"></span>
                     ) : (
                         "Absenden"
                     )}
