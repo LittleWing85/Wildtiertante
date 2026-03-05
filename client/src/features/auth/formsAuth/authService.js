@@ -1,4 +1,4 @@
-//This hook provides the utilities that Login and Registration have in common
+//This file provides the utilities that Login and Registration have in common
 
 import formCheck from "../../featuresUtils/formCheck.js";
 

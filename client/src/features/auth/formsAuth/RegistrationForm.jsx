@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../../context/UserContext.jsx";
 import { checkFormErrors, submitRegistrationData } from "./authService.js";
-import createInputFields from "./InputFields";
+import InputFields from "../../../components/InputFields.jsx";
+import { REGISTRATION_INPUT_FIELDS } from "./authFields.js";
+
 import "./formsAuth.css";
 
 export default function RegistrationForm() {
@@ -15,9 +17,6 @@ export default function RegistrationForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { setUserId } = useUser();
     const navigate = useNavigate();
-
-    const NEEDED_INPUT_FIELDS = ["name", "email", "password"];
-    const inputFields = createInputFields(NEEDED_INPUT_FIELDS);
 
     function validateForm(form) {
         const errorsForm = checkFormErrors(form);
@@ -73,61 +72,11 @@ export default function RegistrationForm() {
                 noValidate
                 onSubmit={onSubmitRegistrationData}
             >
-                {inputFields}
-                {/*   <label htmlFor="name">Name</label>
-                <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    placeholder="Name of your shelter"
-                    aria-invalid={!!errorMessagesInput.name}
-                    aria-describedby="name-error"
+                <InputFields
+                    fields={REGISTRATION_INPUT_FIELDS}
                     onChange={onChangeClearError}
+                    errors={errorMessagesInput}
                 />
-                {errorMessagesInput.name && (
-                    <p id="name-error" className="inputError" role="alert">
-                        {errorMessagesInput.name}
-                    </p>
-                )}
-
-                <label htmlFor="email" className="topSpaceSmall">
-                    Emailadresse
-                </label>
-                <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="Email"
-                    aria-invalid={!!errorMessagesInput.email}
-                    aria-describedby="email-error"
-                    onChange={onChangeClearError}
-                />
-                {errorMessagesInput.email && (
-                    <p id="email-error" className="inputError" role="alert">
-                        {errorMessagesInput.email}
-                    </p>
-                )}
-                <label htmlFor="password" className="topSpaceSmall">
-                    Passwort
-                </label>
-                <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    required
-                    placeholder="Password"
-                    aria-invalid={!!errorMessagesInput.password}
-                    aria-describedby="password-error"
-                    onChange={onChangeClearError}
-                />
-                {errorMessagesInput.password && (
-                    <p id="password-error" className="inputError" role="alert">
-                        {errorMessagesInput.password}
-                    </p>
-                )}
-                */}
 
                 <button
                     className="topSpace"
