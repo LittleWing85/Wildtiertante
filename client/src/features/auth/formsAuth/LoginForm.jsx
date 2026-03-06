@@ -14,22 +14,30 @@ export default function LoginForm() {
     const { setUserId } = useUser();
     const navigate = useNavigate();
 
+    function validateForm(form) {
+        const errorsForm = checkFormErrors(form);
+        if (Object.keys(errorsForm).length > 0) {
+            setErrorMessagesForm(errorsForm);
+            return false;
+        }
+        return true;
+    }
+
     async function onSubmitLogin(event) {
-        event.preventDefault();
         if (isSubmitting) return;
+        event.preventDefault();
+
         setErrorMessagesForm({});
         setErrorMessageLogin(false);
 
-        const errorsForm = checkFormErrors(event.target);
-        if (Object.keys(errorsForm).length > 0) {
-            setErrorMessagesForm(errorsForm);
+        if (!validateForm(event.currentTarget)) {
             return;
         }
 
         setIsSubmitting(true);
 
         try {
-            const formData = new FormData(event.target);
+            const formData = new FormData(event.currentTarget);
             const data = await submitLoginData(formData, "login");
 
             if (data?.user_id) {

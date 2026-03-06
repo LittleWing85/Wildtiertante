@@ -13,25 +13,27 @@ authRouter.post(
     }),
 );
 
-authRouter.post("/login", (request, response) => {
-    login(request.body)
-        .then((foundUser) => {
-            if (foundUser) {
+authRouter.post(
+    "/login",
+    wrap(async (request, response) => {
+        const foundUser = await login(request.body);
+        if (foundUser) {
                 request.session.user_id = foundUser.user_id;
                 response.json(foundUser);
                 return;
-            } // note for rework: send back error messages in case of problems.
-            // adjust frontend accordingly, don't just check if response is truthy
+                } // note for rework: send back error messages in case of problems.
+                // adjust frontend accordingly, don't just check if response is truthy
 
-            response.json(null);
-        })
-        .catch((error) => {
-            console.log("POST /api/login", error);
-            response.status(500).json({
-                error: "Something went wrong. Please try again.",
+                response.json(null);
+           
+            .catch((error) => {
+                console.log("POST /api/login", error);
+                response.status(500).json({
+                    error: "Something went wrong. Please try again.",
+                });
             });
-        });
-});
+    }),
+);
 
 authRouter.post("/logout", (request, response) => {
     request.session = null;
