@@ -2,6 +2,7 @@ import { pool } from "../../config/db.js";
 import bcrypt from "bcryptjs";
 import { ValidationError } from "../../errors/ValidationError.js";
 import { DatabaseError } from "../../errors/DatabaseError.js";
+import { AuthenticationError } from "../../errors/AuthenticationError.js";
 
 const hash = (password) => bcrypt.hash(password, 12);
 
@@ -30,26 +31,27 @@ async function createUser({ name, email, password }) {
     }
 }
 
-function login({ email, password }) {
-    return getUserByEmail(email).then((foundUser) => {
-        if (!foundUser) {
-            return null;
-        }
-        return bcrypt
-            .compare(password, foundUser.password_hash)
-            .then((match) => {
-                if (match) {
-                    return foundUser;
-                }
-                return null;
-            });
-    });
+async function login({ email, password }) {
+    const foundUser = await findUserByEmail(email);
+    if (!foundUser) {
+        throw new AuthenticationError(
+            "Die eingegebenen Login-Daten sind nicht richtig. Bitte überprüfe deine Eingabe und versuche es erneut.",
+        );
+    }
+    const match = await bcrypt.compare(password, foundUser.password_hash);
+    if (!match) {
+        throw new AuthenticationError(
+            "Die eingegebenen Login-Daten sind nicht richtig. Bitte überprüfe deine Eingabe und versuche es erneut.",
+        );
+    }
+    return { user_id: foundUser.user_id };
 }
 
-function getUserByEmail(email) {
-    return pool
-        .query(`SELECT * FROM users WHERE email =$1`, [email])
-        .then((result) => result.rows[0]);
+async function findUserByEmail(email) {
+    const result = await pool.query(`SELECT * FROM users WHERE email =$1`, [
+        email,
+    ]);
+    return result.rows[0];
 }
 
 async function findUserById(user_id) {

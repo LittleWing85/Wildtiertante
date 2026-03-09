@@ -5,11 +5,14 @@ import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../../context/UserContext.jsx";
 import { checkFormErrors, submitLoginData } from "./authService.js";
-import "./formsAuth.css";
+import InputFields from "../../components/InputFields.jsx";
+import { LOGIN_INPUT_FIELDS } from "./authFields.js";
+import clearFieldErrorOnChange from "../../utils/clearFieldErrorOnChange.js";
+import Button from "../../components/Button.jsx";
 
 export default function LoginForm() {
-    const [errorMessagesForm, setErrorMessagesForm] = useState({});
-    const [errorMessageLogin, setErrorMessageLogin] = useState(false);
+    const [errorMessagesForm, setErrorMessagesInput] = useState({});
+    const [errorMessageLogin, setErrorMessageLogin] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { setUserId } = useUser();
     const navigate = useNavigate();
@@ -17,17 +20,26 @@ export default function LoginForm() {
     function validateForm(form) {
         const errorsForm = checkFormErrors(form);
         if (Object.keys(errorsForm).length > 0) {
-            setErrorMessagesForm(errorsForm);
+            setErrorMessagesInput(errorsForm);
             return false;
         }
         return true;
+    }
+
+    async function handleLoginSuccess() {
+        setErrorMessageLogin(false);
+        const response = await fetch("/api/user_id");
+        const data = await response.json();
+        setUserId(data);
+        navigate("/feedingTool");
+        return;
     }
 
     async function onSubmitLogin(event) {
         if (isSubmitting) return;
         event.preventDefault();
 
-        setErrorMessagesForm({});
+        setErrorMessagesInput({});
         setErrorMessageLogin(false);
 
         if (!validateForm(event.currentTarget)) {
@@ -38,18 +50,10 @@ export default function LoginForm() {
 
         try {
             const formData = new FormData(event.currentTarget);
-            const data = await submitLoginData(formData, "login");
-
-            if (data?.user_id) {
-                setErrorMessageLogin(false);
-                setUserId(data?.user_id ?? null);
-                navigate("/feedingTool");
-                return;
-            }
-
-            setErrorMessageLogin(true);
+            await submitLoginData(formData, "login");
+            handleLoginSuccess();
         } catch (error) {
-            console.log(error);
+            setErrorMessageLogin(error.message);
         } finally {
             setIsSubmitting(false);
         }
@@ -62,39 +66,19 @@ export default function LoginForm() {
                 noValidate
                 onSubmit={onSubmitLogin}
             >
-                <label htmlFor="email">Emailadresse</label>
-                <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="Email"
+                <InputFields
+                    fields={LOGIN_INPUT_FIELDS}
+                    onChange={(event) =>
+                        clearFieldErrorOnChange(event, setErrorMessagesInput)
+                    }
+                    errors={errorMessagesForm}
                 />
-                {errorMessagesForm.email && (
-                    <p className="inputError">{errorMessagesForm.email}</p>
-                )}
 
-                <label htmlFor="password" className="topSpaceSmall">
-                    Passwort
-                </label>
-                <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    required
-                    placeholder="Passwort"
-                />
-                {errorMessagesForm.password && (
-                    <p className="inputError">{errorMessagesForm.password}</p>
-                )}
-
-                <button className="topSpace" disabled={isSubmitting}>
-                    {isSubmitting ? <span className="spinner"></span> : "Login"}
-                </button>
+                <Button isSubmitting={isSubmitting}>Einloggen</Button>
             </form>
 
             {errorMessageLogin && (
-                <p className="errorBanner">Login derzeit nicht möglich</p>
+                <p className="errorBanner">{errorMessageLogin}</p>
             )}
         </div>
     );

@@ -11,6 +11,25 @@ const REGISTRATION_INPUT_FIELDS = [
     },
     {
         id: "email",
+        labelText: "Emailadresse",
+        name: "email",
+        type: "email",
+        required: true,
+        placeholder: "Deine Emailadresse",
+    },
+    {
+        id: "password",
+        labelText: "Passwort",
+        name: "password",
+        type: "password",
+        required: true,
+        placeholder: "Dein Passwort",
+    },
+];
+
+const LOGIN_INPUT_FIELDS = [
+    {
+        id: "email",
         labelText: "Email",
         name: "email",
         type: "email",
@@ -27,4 +46,4 @@ const REGISTRATION_INPUT_FIELDS = [
     },
 ];
 
-export { REGISTRATION_INPUT_FIELDS };
+export { REGISTRATION_INPUT_FIELDS, LOGIN_INPUT_FIELDS };

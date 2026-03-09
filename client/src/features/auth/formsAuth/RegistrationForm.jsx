@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../../context/UserContext.jsx";
 import { checkFormErrors, submitRegistrationData } from "./authService.js";
-import InputFields from "../../../components/InputFields.jsx";
+import InputFields from "../../components/InputFields.jsx";
 import { REGISTRATION_INPUT_FIELDS } from "./authFields.js";
-
-import "./formsAuth.css";
+import clearFieldErrorOnChange from "../../utils/clearFieldErrorOnChange.js";
+import Button from "../../components/Button.jsx";
 
 export default function RegistrationForm() {
     const [errorMessagesInput, setErrorMessagesInput] = useState({});
@@ -32,6 +32,7 @@ export default function RegistrationForm() {
         navigate("/feedingTool", {
             state: { message: "Registrierung erfolgreich!" },
         });
+        return;
     }
 
     async function onSubmitRegistrationData(event) {
@@ -58,13 +59,6 @@ export default function RegistrationForm() {
         }
     }
 
-    function onChangeClearError(event) {
-        const fieldName = event.currentTarget.name;
-        setErrorMessagesInput((prev) =>
-            prev[fieldName] ? { ...prev, [fieldName]: null } : prev,
-        );
-    }
-
     return (
         <div className="topSpaceBig">
             <form
@@ -74,21 +68,13 @@ export default function RegistrationForm() {
             >
                 <InputFields
                     fields={REGISTRATION_INPUT_FIELDS}
-                    onChange={onChangeClearError}
+                    onChange={(event) =>
+                        clearFieldErrorOnChange(event, setErrorMessagesInput)
+                    }
                     errors={errorMessagesInput}
                 />
 
-                <button
-                    className="topSpace"
-                    disabled={isSubmitting}
-                    aria-busy={isSubmitting}
-                >
-                    {isSubmitting ? (
-                        <span className="spinner" aria-hidden="true"></span>
-                    ) : (
-                        "Absenden"
-                    )}
-                </button>
+                <Button isSubmitting={isSubmitting}>Registrieren</Button>
             </form>
             {errorMessageRegistration && (
                 <p className="errorBanner">{errorMessageRegistration}</p>

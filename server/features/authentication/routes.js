@@ -16,22 +16,9 @@ authRouter.post(
 authRouter.post(
     "/login",
     wrap(async (request, response) => {
-        const foundUser = await login(request.body);
-        if (foundUser) {
-                request.session.user_id = foundUser.user_id;
-                response.json(foundUser);
-                return;
-                } // note for rework: send back error messages in case of problems.
-                // adjust frontend accordingly, don't just check if response is truthy
-
-                response.json(null);
-           
-            .catch((error) => {
-                console.log("POST /api/login", error);
-                response.status(500).json({
-                    error: "Something went wrong. Please try again.",
-                });
-            });
+        const authenticatedUser = await login(request.body);
+        request.session.user_id = authenticatedUser.user_id;
+        return response.json({ success: true });
     }),
 );
 
