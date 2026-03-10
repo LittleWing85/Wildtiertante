@@ -9,7 +9,7 @@ authRouter.post(
     wrap(async (request, response) => {
         const newUser = await createUser(request.body);
         request.session.user_id = newUser.user_id;
-        return response.json(newUser);
+        return response.json({ user_id: newUser.user_id });
     }),
 );
 
@@ -18,7 +18,7 @@ authRouter.post(
     wrap(async (request, response) => {
         const authenticatedUser = await login(request.body);
         request.session.user_id = authenticatedUser.user_id;
-        return response.json({ success: true });
+        return response.json({ user_id: authenticatedUser.user_id });
     }),
 );
 

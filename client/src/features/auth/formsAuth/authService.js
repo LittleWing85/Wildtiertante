@@ -1,16 +1,11 @@
-//This file provides the utilities that Login and Registration have in common
+//This file provides the utilities needed for authentication
 
-import formCheck from "../../utils/formCheck.js";
+import { REGISTRATION_INPUT_FIELDS, LOGIN_INPUT_FIELDS } from "./authFields.js";
 
-const REGISTRATION_FIELDS = ["name", "email", "password"];
-const LOGIN_FIELDS = ["email", "password"];
-
-export function checkFormErrors(form) {
-    if (!form.checkValidity()) {
-        return formCheck(form);
-    }
-    return {};
-}
+const AUTH_FIELDS = {
+    registration: REGISTRATION_INPUT_FIELDS.map((field) => field.name),
+    login: LOGIN_INPUT_FIELDS.map((field) => field.name),
+};
 
 async function submitAuthRequest(formData, allowedFields, path) {
     const formDataObject = Object.fromEntries(
@@ -46,10 +41,6 @@ async function submitAuthRequest(formData, allowedFields, path) {
     }
 }
 
-export function submitRegistrationData(formData, path) {
-    return submitAuthRequest(formData, REGISTRATION_FIELDS, path);
-}
-
-export function submitLoginData(formData, path) {
-    return submitAuthRequest(formData, LOGIN_FIELDS, path);
+export function submitAuthData(formData, submitType) {
+    return submitAuthRequest(formData, AUTH_FIELDS[submitType], submitType);
 }

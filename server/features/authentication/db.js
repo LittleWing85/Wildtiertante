@@ -21,9 +21,7 @@ async function createUser({ name, email, password }) {
         return result.rows[0];
     } catch (error) {
         if (error.code === "23505") {
-            throw new ValidationError(
-                "Ein Nutzer mit dieser Emailadresse existiert bereits.",
-            );
+            throw new ValidationError("Bitte prüfe deine Eingabe.");
         }
         throw new DatabaseError(
             "Die Registrierung ist momentan nicht möglich. Bitte versuche es später noch einmal.",
