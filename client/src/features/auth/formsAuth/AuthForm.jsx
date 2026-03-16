@@ -1,6 +1,6 @@
 // This is the basis for the forms for login and registration
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../../context/UserContext.jsx";
@@ -19,9 +19,17 @@ export default function AuthForm({
     const [errorMessagesFields, setErrorMessagesFields] = useState({});
     const [errorMessageAuth, setErrorMessageAuth] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const mountedRef = useRef(true);
 
     const { setUserId } = useUser();
     const navigate = useNavigate();
+
+    useEffect(
+        () => () => {
+            mountedRef.current = false;
+        },
+        [],
+    );
 
     function validateForm(form) {
         const errorsForm = formCheck(form);
@@ -65,7 +73,9 @@ export default function AuthForm({
         } catch (error) {
             setErrorMessageAuth(error.message);
         } finally {
-            setIsSubmitting(false);
+            if (mountedRef.current) {
+                setIsSubmitting(false);
+            }
         }
     }
 
