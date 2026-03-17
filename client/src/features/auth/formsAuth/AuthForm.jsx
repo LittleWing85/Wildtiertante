@@ -1,11 +1,9 @@
 // This is the basis for the forms for login and registration
 
-import { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-import { useUser } from "../../../context/UserContext.jsx";
+import useAuth from "./useAuth.js";
 import formCheck from "../../utils/formCheck.js";
-import { submitAuthData } from "./authService.js";
 import InputFields from "../../components/InputFields.jsx";
 import clearFieldErrorOnChange from "../../utils/clearFieldErrorOnChange.js";
 import Button from "../../components/Button.jsx";
@@ -17,18 +15,9 @@ export default function AuthForm({
     successMessage,
 }) {
     const [errorMessagesFields, setErrorMessagesFields] = useState({});
-    const [errorMessageAuth, setErrorMessageAuth] = useState(null);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const mountedRef = useRef(true);
-
-    const { setUserId } = useUser();
-    const navigate = useNavigate();
-
-    useEffect(
-        () => () => {
-            mountedRef.current = false;
-        },
-        [],
+    const { isSubmitting, submit, errorMessageAuth } = useAuth(
+        successMessage,
+        submitType,
     );
 
     function validateForm(form) {
@@ -40,43 +29,17 @@ export default function AuthForm({
         return true;
     }
 
-    async function handleSuccess(result) {
-        setErrorMessageAuth(false);
-        setUserId(result.user_id);
-        navigate(
-            "/feedingTool",
-            successMessage
-                ? {
-                      state: { message: successMessage },
-                  }
-                : undefined,
-        );
-    }
-
-    async function onSubmit(event) {
-        if (isSubmitting) return;
+    function onSubmit(event) {
         event.preventDefault();
-
-        setErrorMessagesFields({});
-        setErrorMessageAuth(false);
 
         if (!validateForm(event.currentTarget)) {
             return;
         }
+        setErrorMessagesFields({});
 
-        setIsSubmitting(true);
+        const formData = new FormData(event.currentTarget);
 
-        try {
-            const formData = new FormData(event.currentTarget);
-            const result = await submitAuthData(formData, submitType);
-            handleSuccess(result);
-        } catch (error) {
-            setErrorMessageAuth(error.message);
-        } finally {
-            if (mountedRef.current) {
-                setIsSubmitting(false);
-            }
-        }
+        submit(formData);
     }
 
     return (
