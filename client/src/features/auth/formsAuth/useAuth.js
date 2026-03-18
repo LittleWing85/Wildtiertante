@@ -1,14 +1,22 @@
+// Provides error messages and variable "isSubmitting" for auth forms
+// Executes submit of form data
+
 import { useState, useRef, useEffect } from "react";
-import { submitAuthData } from "./authService.js";
-import { useUser } from "../../../context/UserContext.jsx";
 import { useNavigate } from "react-router-dom";
 
-export default function useAuth(successMessage, submitType) {
-    const mountedRef = useRef(true);
-    const { setUserId } = useUser();
+import { submitAuthData } from "./authService.js";
+import formCheck from "../../utils/formCheck.js";
+import { useUser } from "../../../context/UserContext.jsx";
+
+export default function useAuth(submitType, successMessage) {
     const navigate = useNavigate();
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const mountedRef = useRef(true);
+
+    const { setUserId } = useUser();
+
+    const [errorMessagesFields, setErrorMessagesFields] = useState({});
     const [errorMessageAuth, setErrorMessageAuth] = useState(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(
         () => () => {
@@ -17,15 +25,23 @@ export default function useAuth(successMessage, submitType) {
         [],
     );
 
-    async function submit(formData) {
+    async function submit(formElement) {
         if (isSubmitting) return;
+        const errorsForm = formCheck(formElement);
 
-        setErrorMessageAuth(false);
+        if (Object.keys(errorsForm).length) {
+            setErrorMessagesFields(errorsForm);
+            return;
+        }
+
+        setErrorMessagesFields({});
+        setErrorMessageAuth(null);
         setIsSubmitting(true);
+
+        const formData = new FormData(formElement);
 
         try {
             const result = await submitAuthData(formData, submitType);
-            setErrorMessageAuth(false);
             setUserId(result.user_id);
             navigate(
                 "/feedingTool",
@@ -44,5 +60,11 @@ export default function useAuth(successMessage, submitType) {
         }
     }
 
-    return { isSubmitting, submit, errorMessageAuth };
+    return {
+        isSubmitting,
+        submit,
+        errorMessageAuth,
+        errorMessagesFields,
+        setErrorMessagesFields,
+    };
 }
