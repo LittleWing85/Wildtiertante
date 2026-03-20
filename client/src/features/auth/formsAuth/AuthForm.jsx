@@ -7,7 +7,7 @@ import Button from "../../components/Button.jsx";
 
 export default function AuthForm({
     inputFields,
-    submitType,
+    submitFunction,
     buttonText,
     successMessage,
 }) {
@@ -17,7 +17,7 @@ export default function AuthForm({
         errorMessageAuth,
         errorMessagesFields,
         setErrorMessagesFields,
-    } = useAuth(submitType, successMessage);
+    } = useAuth(submitFunction, successMessage);
 
     function onSubmit(event) {
         event.preventDefault();

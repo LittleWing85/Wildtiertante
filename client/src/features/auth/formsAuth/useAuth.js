@@ -4,11 +4,10 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { submitAuthData } from "./authService.js";
 import formCheck from "../../utils/formCheck.js";
 import { useUser } from "../../../context/UserContext.jsx";
 
-export default function useAuth(submitType, successMessage) {
+export default function useAuth(submitFunction, successMessage) {
     const navigate = useNavigate();
     const mountedRef = useRef(true);
 
@@ -41,7 +40,7 @@ export default function useAuth(submitType, successMessage) {
         const formData = new FormData(formElement);
 
         try {
-            const result = await submitAuthData(formData, submitType);
+            const result = await submitFunction(formData);
             setUserId(result.user_id);
             navigate(
                 "/feedingTool",

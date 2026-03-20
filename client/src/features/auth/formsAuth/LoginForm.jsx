@@ -2,12 +2,13 @@
 
 import AuthForm from "./AuthForm.jsx";
 import { LOGIN_INPUT_FIELDS } from "./authFields.js";
+import { login } from "./authService.js";
 
 export default function LoginForm() {
     return (
         <AuthForm
             inputFields={LOGIN_INPUT_FIELDS}
-            submitType="login"
+            submitFunction={login}
             buttonText="Einloggen"
         />
     );

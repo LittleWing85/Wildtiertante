@@ -7,21 +7,34 @@ const AUTH_FIELDS = {
     login: LOGIN_INPUT_FIELDS.map((field) => field.name),
 };
 
-async function submitAuthRequest(formData, allowedFields, path) {
-    const formDataObject = Object.fromEntries(
-        allowedFields.map((field) => [field, formData.get(field)]),
+function buildPayload(formData, allowedFields) {
+    return Object.fromEntries(
+        allowedFields.map((field) => {
+            const value = formData.get(field);
+            return [field, value ?? ""];
+        }),
     );
+}
 
+async function sendAuthRequest(url, body) {
     try {
-        const response = await fetch(`/api/auth/${path}`, {
+        const response = await fetch(url, {
             credentials: "include",
             method: "POST",
-            body: JSON.stringify(formDataObject),
+            body: JSON.stringify(body),
             headers: {
                 "Content-Type": "application/json",
             },
         });
-        const data = await response.json();
+
+        let data;
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+            data = await response.json();
+        } else {
+            data = {};
+        }
+
         if (!response.ok) {
             const error = new Error(
                 data.error ||
@@ -30,6 +43,7 @@ async function submitAuthRequest(formData, allowedFields, path) {
             error.status = response.status;
             throw error;
         }
+
         return data;
     } catch (error) {
         if (!error.status) {
@@ -41,6 +55,12 @@ async function submitAuthRequest(formData, allowedFields, path) {
     }
 }
 
-export function submitAuthData(formData, submitType) {
-    return submitAuthRequest(formData, AUTH_FIELDS[submitType], submitType);
+export function registration(formData) {
+    const payload = buildPayload(formData, AUTH_FIELDS.registration);
+    return sendAuthRequest("/api/auth/registration", payload);
+}
+
+export function login(formData) {
+    const payload = buildPayload(formData, AUTH_FIELDS.login);
+    return sendAuthRequest("/api/auth/login", payload);
 }
