@@ -1,11 +1,13 @@
-// Provides user_id globally
+// Provides user_id and logout globally
 
 import { createContext, useContext, useEffect, useState } from "react";
+import { logoutRequest } from "../features/auth/logout.js";
 
 const UserContext = createContext({
     userId: null,
     setUserId: () => {},
     loading: true,
+    logout: async () => {},
 });
 
 export function UserProvider({ children }) {
@@ -27,8 +29,16 @@ export function UserProvider({ children }) {
         fetchUser();
     }, []);
 
+    async function logout() {
+        try {
+            await logoutRequest();
+        } finally {
+            setUserId(null);
+        }
+    }
+
     return (
-        <UserContext.Provider value={{ userId, setUserId, loading }}>
+        <UserContext.Provider value={{ userId, setUserId, loading, logout }}>
             {children}
         </UserContext.Provider>
     );

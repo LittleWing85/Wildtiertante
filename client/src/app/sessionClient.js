@@ -11,7 +11,7 @@ export default async function apiFetch(path, options = {}) {
         }
         throw new Error(
             data.error ||
-                "Ein Fehler ist aufgetreten. Bitte versuche es zu einem späteren Zeitpunkt noch einmal.",
+                "Ein unbekannter Fehler ist aufgetreten. Bitte versuche es zu einem späteren Zeitpunkt noch einmal.",
         );
     }
     return data;
