@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function WhosNext() {
-    const [currentLitters, setCurrentLitters] = useState(null);
+    const [currentLitters, setCurrentLitters] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -17,13 +17,9 @@ export default function WhosNext() {
             });
     }, [navigate]);
 
-    if (!currentLitters) {
-        return <p>Lade Daten...</p>;
-    }
-
     return (
         <div>
-            {currentLitters.length === 0 ? (
+            {!currentLitters.length ? (
                 <p>
                     Momentan ist niemand eingetragen, der Milch oder Medikamente
                     bekommt. <Link to="/feedingTool/newLitter">Hier</Link>{" "}
