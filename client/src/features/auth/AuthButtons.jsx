@@ -1,7 +1,7 @@
-//This component shows the buttons for login and logout.
-// It also executes the logout.
-import { Link } from "react-router-dom";
+// This component shows the buttons for login and logout
+// It also executes the logout
 
+import { Link } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import "./auth.css";
 
