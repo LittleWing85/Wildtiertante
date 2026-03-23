@@ -13,9 +13,9 @@ import Root from "./Root.jsx";
 import LayoutRoute from "../routes/LayoutRoute.jsx";
 import ProtectedRoute from "../routes/ProtectedRoute.jsx";
 
-import Auth from "../features/auth/Auth.jsx";
-import RegistrationForm from "../features/auth/formsAuth/RegistrationForm.jsx";
-import LoginForm from "../features/auth/formsAuth/LoginForm.jsx";
+import Auth from "../features/auth/api/Auth.jsx";
+import RegistrationForm from "../features/auth/api/formsAuth/RegistrationForm.jsx";
+import LoginForm from "../features/auth/api/formsAuth/LoginForm.jsx";
 
 import About from "../features/about/About.jsx";
 import Information from "../features/information/Information.jsx";

@@ -1,7 +1,7 @@
 // Provides user_id and logout globally
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { logoutRequest } from "../features/auth/logout.js";
+import { logoutRequest } from "../features/auth/api/logout.js";
 
 const UserContext = createContext({
     userId: null,

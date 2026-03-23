@@ -1,9 +1,9 @@
 // This component shows the buttons for authentication
 
-import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../../context/UserContext.jsx";
 
-import Button from "../../components/Button.jsx";
+import Button from "../../../components/Button.jsx";
 import "./auth.css";
 
 export default function AuthButtons() {
