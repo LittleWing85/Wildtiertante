@@ -13,6 +13,7 @@ const UserContext = createContext({
 export function UserProvider({ children }) {
     const [userId, setUserId] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isLoggingOut, setIsLoggingOut] = useState(false);
 
     useEffect(() => {
         async function fetchUser() {
@@ -30,15 +31,22 @@ export function UserProvider({ children }) {
     }, []);
 
     async function logout() {
+        if (isLoggingOut) {
+            return;
+        }
         try {
+            setIsLoggingOut(true);
             await logoutRequest();
         } finally {
             setUserId(null);
+            setIsLoggingOut(false);
         }
     }
 
     return (
-        <UserContext.Provider value={{ userId, setUserId, loading, logout }}>
+        <UserContext.Provider
+            value={{ userId, setUserId, loading, logout, isLoggingOut }}
+        >
             {children}
         </UserContext.Provider>
     );

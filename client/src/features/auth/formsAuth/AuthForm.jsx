@@ -1,9 +1,9 @@
 // Basis for rendering auth forms
 
 import useAuth from "./useAuth.js";
-import InputFields from "../../components/InputFields.jsx";
+import InputFields from "../../../components/InputFields.jsx";
 import clearFieldErrorOnChange from "../../utils/clearFieldErrorOnChange.js";
-import Button from "../../components/Button.jsx";
+import Button from "../../../components/Button.jsx";
 
 export default function AuthForm({
     inputFields,
@@ -35,7 +35,9 @@ export default function AuthForm({
                     errors={errorMessagesFields}
                 />
 
-                <Button isSubmitting={isSubmitting}>{buttonText}</Button>
+                <Button isLoading={isSubmitting} type="submit">
+                    {buttonText}
+                </Button>
             </form>
 
             {errorMessageAuth && (

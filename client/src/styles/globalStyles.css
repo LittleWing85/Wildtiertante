@@ -140,6 +140,7 @@ nav {
     border-radius: 20px;
     border: solid rgb(255, 255, 255) 1px;
     color: deeppink;
+    background-color: white;
     font-weight: bold;
     height: 2.5em;
 }
