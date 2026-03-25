@@ -1,7 +1,7 @@
 //This file provides the utilities needed for authentication
 
 import { REGISTRATION_INPUT_FIELDS, LOGIN_INPUT_FIELDS } from "./authFields.js";
-import { ERROR_MESSAGES } from "../../../../constants/errorMessages.js";
+import apiClient from "../../../../utils/apiClient.js";
 
 const AUTH_FIELDS = {
     registration: REGISTRATION_INPUT_FIELDS.map((field) => field.name),
@@ -18,39 +18,14 @@ function buildPayload(formData, allowedFields) {
 }
 
 async function sendAuthRequest(url, body) {
-    try {
-        const response = await fetch(url, {
-            credentials: "include",
-            method: "POST",
-            body: JSON.stringify(body),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
-        let data;
-        const contentType = response.headers.get("content-type");
-        if (contentType && contentType.includes("application/json")) {
-            data = await response.json();
-        } else {
-            data = {};
-        }
-
-        if (!response.ok) {
-            const error = new Error(data.error || ERROR_MESSAGES.LOGOUT);
-            error.status = response.status;
-            throw error;
-        }
-
-        return data;
-    } catch (error) {
-        if (!error.status) {
-            throw new Error(
-                "Der Server ist derzeit nicht erreichbar. Bitte versuche es zu einem späteren Zeitpunkt erneut.",
-            );
-        }
-        throw error;
-    }
+    return apiClient(url, {
+        credentials: "include",
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
 }
 
 export function registration(formData) {

@@ -8,7 +8,7 @@ import "./auth.css";
 export default function Auth() {
     const location = useLocation();
     const message =
-        location.state?.message || sessionStorage.getItem("authMEssage");
+        location.state?.message || sessionStorage.getItem("authMessage");
 
     useEffect(() => {
         if (sessionStorage.getItem("authMessage")) {

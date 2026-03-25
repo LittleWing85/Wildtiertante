@@ -24,7 +24,7 @@ authRouter.post(
 
 authRouter.post("/logout", (request, response) => {
     request.session = null;
-    response.status(500).json({ error: "Logout failed" });
+    response.json({ success: true });
 });
 
 export { authRouter };

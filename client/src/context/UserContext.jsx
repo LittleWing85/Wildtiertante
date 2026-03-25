@@ -1,7 +1,9 @@
 // Provides user_id and logout globally
 
 import { createContext, useContext, useEffect, useState } from "react";
+import apiClient from "../utils/apiClient.js";
 import { logoutRequest } from "../features/auth/api/logout.js";
+
 import { ERROR_MESSAGES } from "../constants/errorMessages.js";
 
 const UserContext = createContext({
@@ -20,8 +22,7 @@ export function UserProvider({ children }) {
     useEffect(() => {
         async function fetchUser() {
             try {
-                const response = await fetch("/api/user_id");
-                const data = await response.json();
+                const data = await apiClient("/api/user_id");
                 setUserId(data);
             } catch {
                 setUserId(null);

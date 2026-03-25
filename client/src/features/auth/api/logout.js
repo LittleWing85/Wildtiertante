@@ -1,8 +1,5 @@
+import apiClient from "../../../utils/apiClient.js";
+
 export async function logoutRequest() {
-    await fetch("/api/auth/logout", {
-        method: "POST",
-    });
-    if (!response.ok) {
-        throw new Error("Logout failed");
-    }
+    return await apiClient("/api/auth/logout", { method: "POST" });
 }

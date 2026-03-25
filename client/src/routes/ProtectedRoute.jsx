@@ -2,6 +2,7 @@
 
 import { Navigate } from "react-router-dom";
 import { useUser } from "../context/UserContext.jsx";
+import { ERROR_MESSAGES } from "../constants/errorMessages.js";
 
 export default function ProtectedRoute({ children }) {
     const { userId, loading } = useUser();
@@ -16,8 +17,7 @@ export default function ProtectedRoute({ children }) {
                 to="/auth/login"
                 replace
                 state={{
-                    message:
-                        "Bitte melde dich an, um das Fütterunsgtool zu verwenden.",
+                    message: ERROR_MESSAGES.AUTH_REQUIRED,
                 }}
             />
         );

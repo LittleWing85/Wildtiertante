@@ -3,7 +3,7 @@
 import useAuth from "./useAuth.js";
 import InputFields from "../../../../components/InputFields.jsx";
 import Button from "../../../../components/Button.jsx";
-import clearFieldErrorOnChange from "../../../utils/clearFieldErrorOnChange.js";
+import clearFieldErrorOnChange from "../../../../utils/clearFieldErrorOnChange.js";
 
 export default function AuthForm({
     inputFields,
