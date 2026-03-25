@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import AuthButtons from "../features/auth/api/AuthButtons.jsx";
+import ErrorMessageLogout from "../components/ErrorMessageLogout.jsx";
 
 export default function Root() {
     return (
@@ -35,6 +36,7 @@ export default function Root() {
             <div className="content">
                 <div className="left"></div>
                 <div className="center">
+                    <ErrorMessageLogout />
                     <Outlet />
                 </div>
 

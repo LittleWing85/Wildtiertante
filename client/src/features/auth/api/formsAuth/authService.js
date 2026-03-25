@@ -1,6 +1,7 @@
 //This file provides the utilities needed for authentication
 
 import { REGISTRATION_INPUT_FIELDS, LOGIN_INPUT_FIELDS } from "./authFields.js";
+import { ERROR_MESSAGES } from "../../../../constants/errorMessages.js";
 
 const AUTH_FIELDS = {
     registration: REGISTRATION_INPUT_FIELDS.map((field) => field.name),
@@ -36,10 +37,7 @@ async function sendAuthRequest(url, body) {
         }
 
         if (!response.ok) {
-            const error = new Error(
-                data.error ||
-                    "Es ist ein unbekannter Fehler aufgetreten. Bitte versuche es zu einem späteren Zeitpunkt erneut.",
-            );
+            const error = new Error(data.error || ERROR_MESSAGES.LOGOUT);
             error.status = response.status;
             throw error;
         }

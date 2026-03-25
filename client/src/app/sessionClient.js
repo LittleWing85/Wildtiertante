@@ -1,3 +1,5 @@
+import { ERROR_MESSAGES } from "../constants/errorMessages.js";
+
 export default async function apiFetch(path, options = {}) {
     const response = await fetch(path, { credentials: "include", ...options });
     const data = await response.json();
@@ -9,10 +11,7 @@ export default async function apiFetch(path, options = {}) {
             );
             window.location.href = "/auth/login";
         }
-        throw new Error(
-            data.error ||
-                "Ein unbekannter Fehler ist aufgetreten. Bitte versuche es zu einem späteren Zeitpunkt noch einmal.",
-        );
+        throw new Error(data.error || ERROR_MESSAGES.UNKNOWN);
     }
     return data;
 }
