@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from "/../constants/errorMessages.js";
+import { ERROR_MESSAGES } from "../constants/errorMessages.js";
 
 export default async function apiClient(url, options = {}) {
     const response = await fetch(url, { credentials: "include", ...options });
