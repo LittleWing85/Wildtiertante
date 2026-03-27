@@ -1,3 +1,6 @@
+// service for executing fetches
+// checks response from backend and throws errors
+
 import { ERROR_MESSAGES } from "../constants/errorMessages.js";
 
 export default async function apiClient(url, options = {}) {
