@@ -23,8 +23,13 @@ authRouter.post(
 );
 
 authRouter.post("/logout", (request, response) => {
-    request.session = null;
-    response.json({ success: true });
+    if (request.session.user_id) {
+        request.session = null;
+        return response.json({ success: true });
+    }
+    return response
+        .status(401)
+        .json({ error: "Derzeit ist niemand eingeloggt." });
 });
 
 export { authRouter };

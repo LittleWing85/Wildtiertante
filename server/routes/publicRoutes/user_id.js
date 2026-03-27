@@ -5,10 +5,9 @@ const user_idRouter = express.Router();
 user_idRouter.get("/", (request, response) => {
     const currentUser = request.session.user_id;
     if (currentUser) {
-        response.json(currentUser);
-        return;
+        return response.json(currentUser);
     }
-    response.json(null);
+    return response.status(204).end();
 });
 
 export { user_idRouter };
