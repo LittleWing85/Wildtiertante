@@ -8,9 +8,7 @@ export default function AuthWatcher() {
     const { userId, setUserId } = useUser();
 
     useEffect(() => {
-        if (userId === null) {
-            return;
-        }
+        if (!userId) return;
 
         const protectedPrefixes = ["/feedingTool"];
         const isProtected = protectedPrefixes.some((prefix) =>
