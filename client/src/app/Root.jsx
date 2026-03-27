@@ -1,10 +1,13 @@
 import { NavLink, Outlet } from "react-router-dom";
+
+import AuthWatcher from "../components/AuthWatcher.jsx";
 import AuthButtons from "../features/auth/api/AuthButtons.jsx";
 import ErrorMessageLogout from "../components/ErrorMessageLogout.jsx";
 
 export default function Root() {
     return (
         <div className="mainContainer">
+            <AuthWatcher />
             <header>
                 <div className="containerLogo">
                     <NavLink to="/">
