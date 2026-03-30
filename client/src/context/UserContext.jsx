@@ -14,7 +14,7 @@ const UserContext = createContext({
 });
 
 export function UserProvider({ children }) {
-    const [userId, setUserId] = useState(null);
+    const [userId, setUserId] = useState(undefined); //undefined -> loading; null -> logged out
     const [loading, setLoading] = useState(true);
     const [isLoggingOut, setIsLoggingOut] = useState(false);
     const [errorMessageLogout, setErrorMessageLogout] = useState(null);

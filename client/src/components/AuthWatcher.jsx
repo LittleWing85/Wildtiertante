@@ -1,3 +1,5 @@
+// Checks in backend if user is still logged in if user navigates to path that needs authentication
+
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useUser } from "../context/UserContext.jsx";
@@ -8,7 +10,7 @@ export default function AuthWatcher() {
     const { userId, setUserId } = useUser();
 
     useEffect(() => {
-        if (!userId) return;
+        if (userId == null) return;
 
         const protectedPrefixes = ["/feedingTool"];
         const isProtected = protectedPrefixes.some((prefix) =>

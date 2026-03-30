@@ -5,13 +5,13 @@ import { useUser } from "../context/UserContext.jsx";
 import { ERROR_MESSAGES } from "../constants/errorMessages.js";
 
 export default function ProtectedRoute({ children }) {
-    const { userId, loading } = useUser();
+    const { userId } = useUser();
 
-    if (loading) {
+    if (userId === undefined) {
         return <div>Lade...</div>;
     }
 
-    if (!userId) {
+    if (userId === null) {
         return (
             <Navigate
                 to="/auth/login"
