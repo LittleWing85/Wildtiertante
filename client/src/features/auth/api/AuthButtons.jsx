@@ -7,10 +7,10 @@ import Button from "../../../components/Button.jsx";
 import "./auth.css";
 
 export default function AuthButtons() {
-    const { loading, userId, logout, isLoggingOut } = useUser();
+    const { userId, logout, isLoggingOut } = useUser();
     const navigate = useNavigate();
 
-    if (loading) {
+    if (userId === undefined) {
         return null;
     }
 
@@ -25,12 +25,12 @@ export default function AuthButtons() {
 
     return (
         <div>
-            {!userId && (
+            {userId === null && (
                 <Button onClick={handleSignIn} className="navEntry">
                     Anmelden
                 </Button>
             )}
-            {userId && (
+            {userId != null && (
                 <Button
                     isLoading={isLoggingOut}
                     onClick={handleLogout}

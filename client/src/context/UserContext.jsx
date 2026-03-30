@@ -9,13 +9,11 @@ import { ERROR_MESSAGES } from "../constants/errorMessages.js";
 const UserContext = createContext({
     userId: null,
     setUserId: () => {},
-    loading: true,
     logout: async () => {},
 });
 
 export function UserProvider({ children }) {
     const [userId, setUserId] = useState(undefined); //undefined -> loading; null -> logged out
-    const [loading, setLoading] = useState(true);
     const [isLoggingOut, setIsLoggingOut] = useState(false);
     const [errorMessageLogout, setErrorMessageLogout] = useState(null);
 
@@ -26,8 +24,6 @@ export function UserProvider({ children }) {
                 setUserId(data);
             } catch {
                 setUserId(null);
-            } finally {
-                setLoading(false);
             }
         }
         fetchUser();
@@ -55,7 +51,6 @@ export function UserProvider({ children }) {
             value={{
                 userId,
                 setUserId,
-                loading,
                 logout,
                 isLoggingOut,
                 errorMessageLogout,
