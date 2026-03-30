@@ -22,7 +22,7 @@ export default function AuthWatcher() {
             }
         }
         checkUser();
-    }, [location.pathname, setUserId]);
+    }, [location.pathname, setUserId, userId]);
 
     return null;
 }
