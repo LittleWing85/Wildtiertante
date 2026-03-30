@@ -11,19 +11,14 @@ export default function AuthWatcher() {
 
     useEffect(() => {
         if (userId == null) return;
-
-        const protectedPrefixes = ["/feedingTool"];
-        const isProtected = protectedPrefixes.some((prefix) =>
-            location.pathname.startsWith(prefix),
-        );
-        if (!isProtected) return;
+        if (!location.pathname.startsWith("/feedingTool")) return;
 
         async function checkUser() {
             try {
                 const data = await apiClient("/api/user_id");
                 setUserId((prev) => (prev !== data ? data : prev));
             } catch {
-                setUserId((prev) => (prev !== data ? null : prev));
+                setUserId((prev) => (prev !== null ? null : prev));
             }
         }
         checkUser();
