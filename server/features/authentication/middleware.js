@@ -1,3 +1,5 @@
+// Checks if user is logged in for routes that require authentication
+
 import { wrap } from "../../middleware/wrap.js";
 import { findUserById } from "./db.js";
 import { AuthenticationError } from "../../errors/AuthenticationError.js";
