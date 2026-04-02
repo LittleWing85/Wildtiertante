@@ -4,8 +4,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 import apiClient from "../utils/apiClient.js";
 import { logoutRequest } from "../features/auth/api/logout.js";
 
-import { ERROR_MESSAGES } from "../constants/errorMessages.js";
-
 const UserContext = createContext({
     userId: null,
     setUserId: () => {},
@@ -15,7 +13,6 @@ const UserContext = createContext({
 export function UserProvider({ children }) {
     const [userId, setUserId] = useState(undefined); //undefined -> loading; null -> logged out
     const [isLoggingOut, setIsLoggingOut] = useState(false);
-    const [errorMessageLogout, setErrorMessageLogout] = useState(null);
 
     useEffect(() => {
         async function fetchUser() {
@@ -33,13 +30,12 @@ export function UserProvider({ children }) {
         if (isLoggingOut) {
             return;
         }
-        setErrorMessageLogout(null);
         setIsLoggingOut(true);
         try {
             await logoutRequest();
             setUserId(null);
         } catch (error) {
-            setErrorMessageLogout(ERROR_MESSAGES.LOGOUT);
+            setUserId(null);
             throw error;
         } finally {
             setIsLoggingOut(false);
@@ -53,7 +49,6 @@ export function UserProvider({ children }) {
                 setUserId,
                 logout,
                 isLoggingOut,
-                errorMessageLogout,
             }}
         >
             {children}
