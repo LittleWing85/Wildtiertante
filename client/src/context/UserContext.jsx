@@ -17,8 +17,8 @@ export function UserProvider({ children }) {
     useEffect(() => {
         async function fetchUser() {
             try {
-                const data = await apiClient("/api/user_id");
-                setUserId(data);
+                const data = await apiClient("/api/me");
+                setUserId(data.user.id);
             } catch {
                 setUserId(null);
             }

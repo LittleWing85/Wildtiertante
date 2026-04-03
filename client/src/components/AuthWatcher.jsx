@@ -15,8 +15,10 @@ export default function AuthWatcher() {
 
         async function checkUser() {
             try {
-                const data = await apiClient("/api/user_id");
-                setUserId((prev) => (prev !== data ? data : prev));
+                const data = await apiClient("/api/me");
+                setUserId((prev) =>
+                    prev !== data.user.id ? data.user.id : prev,
+                );
             } catch {
                 setUserId((prev) => (prev !== null ? null : prev));
             }
