@@ -1,8 +1,9 @@
 // Provides user_id and logout globally
 
 import { createContext, useContext, useEffect, useState } from "react";
-import apiClient from "../utils/apiClient.js";
-import { logoutRequest } from "../features/auth/api/logout.js";
+
+import { apiClient, invalidateCsrfToken } from "../utils/apiClient.js";
+import { logoutRequest } from "../features/auth/api/logoutRequest.js";
 
 const UserContext = createContext({
     userId: null,
@@ -33,6 +34,7 @@ export function UserProvider({ children }) {
         setIsLoggingOut(true);
         try {
             await logoutRequest();
+            invalidateCsrfToken();
             setUserId(null);
         } catch (error) {
             setUserId(null);

@@ -1,7 +1,7 @@
 //This file provides the utilities needed for authentication
 
 import { REGISTRATION_INPUT_FIELDS, LOGIN_INPUT_FIELDS } from "./authFields.js";
-import apiClient from "../../../../utils/apiClient.js";
+import { apiClient } from "../../../../utils/apiClient.js";
 
 const AUTH_FIELDS = {
     registration: REGISTRATION_INPUT_FIELDS.map((field) => field.name),

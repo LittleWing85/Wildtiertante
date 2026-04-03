@@ -3,6 +3,8 @@
 import { authRouter } from "./features/authentication/routes.js";
 import { meRouter } from "./features/authentication/me.js";
 
+import { csrfRouter } from "./features/authentication/csrf.js";
+
 import { newLitterRouter } from "./features/newLitter/routes.js";
 import { litterOverviewRouter } from "./features/litterOverview/routes.js";
 import { unfedLittersRouter } from "./features/unfedLitters/routes.js";
@@ -13,6 +15,9 @@ function registerRoutes(app) {
     // AUTH ROUTES
     app.use("/api/auth", authRouter);
     app.use("/api/me", meRouter);
+
+    // PUBLIC / UTILITY ROUTES
+    app.use("/api/csrf-token", csrfRouter);
 
     // PROTECTED ROUTES
     app.use("/api/newLitter", newLitterRouter);

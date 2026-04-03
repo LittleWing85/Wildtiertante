@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useUser } from "../context/UserContext.jsx";
-import apiClient from "../utils/apiClient.js";
+import { apiClient } from "../utils/apiClient.js";
 
 export default function AuthWatcher() {
     const location = useLocation();

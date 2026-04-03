@@ -3,7 +3,7 @@
 import cookieSession from "cookie-session";
 import { sessionConfig } from "../config/session..config.js";
 
-function sessionMiddleware() {
+export function sessionMiddleware() {
     return cookieSession(sessionConfig);
 }
 
@@ -14,5 +14,3 @@ export function refreshSession(request, response, next) {
     }
     next();
 }
-
-export { sessionMiddleware };
