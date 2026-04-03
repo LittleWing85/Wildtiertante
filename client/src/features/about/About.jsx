@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import "./about.css";
 
-export default function About() {
+export function About() {
     return (
         <section>
             <p>Liebe Wildtierfreunde,</p>

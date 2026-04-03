@@ -1,7 +1,7 @@
 // Check for all kinds of forms
 // Function formCheck expects an HTMLFormElement
 
-export default function formCheck(form) {
+export function formCheck(form) {
     const errorMessages = {};
 
     for (const element of form.elements) {

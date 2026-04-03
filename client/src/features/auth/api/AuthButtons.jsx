@@ -3,10 +3,10 @@
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../context/UserContext.jsx";
 
-import Button from "../../../components/Button.jsx";
+import { Button } from "../../../components/Button.jsx";
 import "./auth.css";
 
-export default function AuthButtons() {
+export function AuthButtons() {
     const { userId, logout, isLoggingOut } = useUser();
     const navigate = useNavigate();
 

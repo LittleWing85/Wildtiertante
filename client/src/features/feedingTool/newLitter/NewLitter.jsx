@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import IndividualInfo from "./IndividualInfo.js";
 import FeedingTimes from "./FeedingTimes.js";
 
-export default function NewLitter() {
+export function NewLitter() {
     const now = new Date().toISOString().slice(0, 10);
     const history = useNavigate();
     const [date, setDate] = useState(now);

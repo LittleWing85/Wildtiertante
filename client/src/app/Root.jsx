@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 
-import AuthWatcher from "../components/AuthWatcher.jsx";
-import AuthButtons from "../features/auth/api/AuthButtons.jsx";
+import { AuthWatcher } from "../components/AuthWatcher.jsx";
+import { AuthButtons } from "../features/auth/api/AuthButtons.jsx";
 
 export default function Root() {
     return (

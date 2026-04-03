@@ -5,7 +5,7 @@ If a user clicks on a litter, a form is display where he can enter date of the f
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function WhosNext() {
+export function WhosNext() {
     const [currentLitters, setCurrentLitters] = useState([]);
     const navigate = useNavigate();
 
@@ -49,7 +49,7 @@ function formatTime2(time) {
     return formattedTime;
 }
 
-export default function WhosNext() {
+export function WhosNext() {
     const [unfedLitters, setUnfedLitters] = useState([]);
     const [feedAgainLitters, setfeedAgainLitters] = useState([]);
     const [noCurrentLitters, setNoCurrentLitters] = useState(true);

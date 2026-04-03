@@ -3,7 +3,7 @@
 
 import { Outlet, NavLink, useLocation } from "react-router-dom";
 
-export default function FeedingTool() {
+export function FeedingTool() {
     const location = useLocation();
     const message = location.state?.message;
 

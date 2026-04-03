@@ -1,10 +1,10 @@
 // This component renders the form for login
 
-import AuthForm from "./AuthForm.jsx";
-import { LOGIN_INPUT_FIELDS } from "./authFields.js";
+import { AuthForm } from "./AuthForm.jsx";
 import { login } from "./authService.js";
+import { LOGIN_INPUT_FIELDS } from "./authFields.js";
 
-export default function LoginForm() {
+export function LoginForm() {
     return (
         <AuthForm
             inputFields={LOGIN_INPUT_FIELDS}

@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import { useUser } from "../context/UserContext.jsx";
 import { apiClient } from "../utils/apiClient.js";
 
-export default function AuthWatcher() {
+export function AuthWatcher() {
     const location = useLocation();
     const { userId, setUserId } = useUser();
 

@@ -1,4 +1,4 @@
-export default function WildAnimalFound() {
+export function WildAnimalFound() {
     return (
         <section>
             <h1>Wildtier gefunden, was tun? </h1>

@@ -15,7 +15,7 @@ function formatTime(time) {
     return formattedTime + " ";
 }
 
-export default function LitterOverview() {
+export function LitterOverview() {
     const [currentLitters, setCurrentLitters] = useState([]);
     const [showMessage, setShowMessage] = useState(false);
     const history = useNavigate();

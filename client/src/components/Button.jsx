@@ -1,6 +1,6 @@
 import "./button.css";
 
-export default function Button({
+export function Button({
     isLoading = false,
     onClick,
     type = "button",

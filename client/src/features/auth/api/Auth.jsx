@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import "./auth.css";
 
-export default function Auth() {
+export function Auth() {
     const location = useLocation();
     const message =
         location.state?.message || sessionStorage.getItem("authMessage");

@@ -1,4 +1,4 @@
-export default function Information() {
+export function Information() {
     return (
         <section>
             <p>

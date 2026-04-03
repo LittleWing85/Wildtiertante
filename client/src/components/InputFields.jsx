@@ -1,6 +1,6 @@
 //This component renders input fields for forms according to provided information about input fields
 
-export default function InputFields({ fields, onChange, errors }) {
+export function InputFields({ fields, onChange, errors }) {
     return fields.map((field) => {
         const error = errors[field.id];
         return (

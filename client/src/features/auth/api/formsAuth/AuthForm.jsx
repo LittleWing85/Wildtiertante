@@ -1,11 +1,11 @@
 // Basis for rendering auth forms
 
-import useAuth from "./useAuth.js";
-import InputFields from "../../../../components/InputFields.jsx";
-import Button from "../../../../components/Button.jsx";
-import clearFieldErrorOnChange from "../../../../utils/clearFieldErrorOnChange.js";
+import { useAuth } from "./useAuth.js";
+import { InputFields } from "../../../../components/InputFields.jsx";
+import { Button } from "../../../../components/Button.jsx";
+import { clearFieldErrorOnChange } from "../../../../utils/clearFieldErrorOnChange.js";
 
-export default function AuthForm({
+export function AuthForm({
     inputFields,
     submitFunction,
     buttonText,

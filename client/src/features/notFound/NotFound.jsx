@@ -1,6 +1,6 @@
 // Component for catch all route (unexisting files)
 
-export default function NotFound() {
+export function NotFound() {
     return (
         <section>
             <p>

@@ -4,10 +4,10 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import formCheck from "../../../../utils/formCheck.js";
+import { formCheck } from "../../../../utils/formCheck.js";
 import { useUser } from "../../../../context/UserContext.jsx";
 
-export default function useAuth(submitFunction, successMessage) {
+export function useAuth(submitFunction, successMessage) {
     const navigate = useNavigate();
     const mountedRef = useRef(true);
 

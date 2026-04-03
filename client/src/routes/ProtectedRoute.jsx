@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import { useUser } from "../context/UserContext.jsx";
 import { ERROR_MESSAGES } from "../constants/errorMessages.js";
 
-export default function ProtectedRoute({ children }) {
+export function ProtectedRoute({ children }) {
     const { userId } = useUser();
 
     if (userId === undefined) {
