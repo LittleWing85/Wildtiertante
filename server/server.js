@@ -2,10 +2,7 @@ import express from "express";
 
 import { clientPublicPath, clientIndexPath } from "./config/paths.js";
 import { port } from "./config/env.js";
-import {
-    sessionMiddleware,
-    refreshSession,
-} from "./middleware/session.middleware.js";
+import { sessionMiddleware, refreshSession } from "./middleware/session.js";
 import { csrfProtection } from "./middleware/csrf.js";
 import { registerRoutes } from "./routesIndex.js";
 import { centralErrorHandler } from "./middleware/error.js";
