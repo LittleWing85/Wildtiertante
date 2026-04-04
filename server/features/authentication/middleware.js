@@ -12,8 +12,8 @@ const requireAuthentication = wrap(async (request, response, next) => {
             "Du bist nicht eingeloggt. Bitte melde dich an.",
         );
     }
-    const userExists = await findUserById(request.session.user_id);
-    if (!userExists) {
+    const user = await findUserById(userId);
+    if (!user) {
         request.session = null;
         throw new AuthenticationError("Ungültige Session.");
     }
