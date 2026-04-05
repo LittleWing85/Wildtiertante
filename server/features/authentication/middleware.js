@@ -5,7 +5,7 @@ import { findUserById } from "./db.js";
 import { AuthenticationError } from "../../errors/AuthenticationError.js";
 
 const requireAuthentication = wrap(async (request, response, next) => {
-    const userId = request.session.user_id;
+    const userId = request.session?.user_id;
 
     if (!userId) {
         throw new AuthenticationError(
