@@ -5,7 +5,7 @@ import { ERROR_MESSAGES } from "../constants/errorMessages.js";
 
 let cachedCsrfToken = null;
 
-async function fetchCsrfToken() {
+export async function fetchCsrfToken() {
     if (cachedCsrfToken) return cachedCsrfToken;
 
     const response = await fetch("/api/csrf-token", { credentials: "include" });

@@ -32,7 +32,7 @@ authRouter.post(
                 .status(401)
                 .json({ error: "Derzeit ist niemand eingeloggt." });
         }
-        request.session = null;
+        request.session.user_id = null;
         return response.json({ success: true });
     }),
 );
