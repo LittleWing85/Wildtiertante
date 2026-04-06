@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { apiClient, invalidateCsrfToken } from "../utils/apiClient.js";
+import { apiClient } from "../utils/apiClient.js";
 import { logoutRequest } from "../features/auth/api/logoutRequest.js";
 
 const UserContext = createContext({
@@ -34,7 +34,6 @@ export function UserProvider({ children }) {
         setIsLoggingOut(true);
         try {
             await logoutRequest();
-            invalidateCsrfToken();
             setUserId(null);
         } catch (error) {
             setUserId(null);

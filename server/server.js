@@ -3,8 +3,6 @@ import express from "express";
 import { clientPublicPath, clientIndexPath } from "./config/paths.js";
 import { port } from "./config/env.js";
 import { sessionMiddleware, refreshSession } from "./middleware/session.js";
-import { csrfRouter } from "./features/authentication/csrf.js";
-import { csrfProtection } from "./middleware/csrf.js";
 import { registerRoutes } from "./routesIndex.js";
 import { centralErrorHandler } from "./middleware/error.js";
 
@@ -14,9 +12,6 @@ app.use(express.json({ limit: "1mb" }));
 
 app.use(sessionMiddleware());
 app.use("/api", refreshSession);
-
-app.use("/api/csrf-token", csrfRouter);
-app.use(csrfProtection);
 
 app.use(express.static(clientPublicPath));
 

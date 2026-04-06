@@ -9,8 +9,9 @@ authRouter.post(
     wrap(async (request, response) => {
         const newUser = await createUser(request.body);
         request.session = null;
-        request.session = { user_id: newUser.user_id };
-        return response.json({ user_id: newUser.user_id });
+        const userId = newUser.user_id;
+        request.session = { user_id: userId };
+        return response.json({ user: { id: userId } });
     }),
 );
 
@@ -19,8 +20,9 @@ authRouter.post(
     wrap(async (request, response) => {
         const authenticatedUser = await login(request.body);
         request.session = null;
-        request.session = { user_id: authenticatedUser.user_id };
-        return response.json({ user_id: authenticatedUser.user_id });
+        const userId = authenticatedUser.user_id;
+        request.session = { user_id: userId };
+        return response.json({ user: { id: userId } });
     }),
 );
 
@@ -32,7 +34,7 @@ authRouter.post(
                 .status(401)
                 .json({ error: "Derzeit ist niemand eingeloggt." });
         }
-        request.session.user_id = null;
+        request.session = null;
         return response.json({ success: true });
     }),
 );
