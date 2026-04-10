@@ -10,15 +10,17 @@ const UserContext = createContext({
     setUserId: () => {},
     logout: async () => {},
     isLoggingOut: false,
+    logoutFailed: false,
 });
 
 export function UserProvider({ children }) {
     const [userId, setUserId] = useState(undefined); //undefined -> loading; null -> logged out
     const [isLoggingOut, setIsLoggingOut] = useState(false); // for good UX after logout button is clicked
+    const [logoutFailed, setLogoutFailed] = useState(false);
 
     const authRequestIdRef = useRef(0); // to prevent race condition between outdated and current auth requests
     const logoutInFlightRef = useRef(false); // to prevent double requests for logout
-    const isComponentActiveRef = useRef(true); // to prevent code vom crashing when user refreshes browser while request is being sent
+    const isComponentActiveRef = useRef(true); // to prevent state updates after unmount while an async request is still in flight
 
     useEffect(() => {
         return () => {
@@ -33,10 +35,12 @@ export function UserProvider({ children }) {
             if (!isComponentActiveRef.current) return;
             if (requestId !== authRequestIdRef.current) return;
             setUserId(data.user.id);
+            return { userId: data.user.id };
         } catch {
             if (!isComponentActiveRef.current) return;
             if (requestId !== authRequestIdRef.current) return;
             setUserId(null);
+            setLogoutFailed(false);
         }
     }
 
@@ -48,12 +52,18 @@ export function UserProvider({ children }) {
         if (logoutInFlightRef.current) return;
         logoutInFlightRef.current = true;
         setIsLoggingOut(true);
-        authRequestIdRef.current += 1;
+        authRequestIdRef.current += 1; // invalidates older auth requests
         try {
             await logoutRequest();
-
             if (!isComponentActiveRef.current) return;
+            setLogoutFailed(false);
             setUserId(null);
+        } catch {
+            const result = await refreshUser();
+            if (!result || result.userId === null) {
+                return;
+            }
+            setLogoutFailed(true);
         } finally {
             logoutInFlightRef.current = false;
             if (isComponentActiveRef.current) {
@@ -69,6 +79,7 @@ export function UserProvider({ children }) {
                 setUserId,
                 logout,
                 isLoggingOut,
+                logoutFailed,
             }}
         >
             {children}
