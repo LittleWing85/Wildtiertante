@@ -9,7 +9,8 @@ import { useUser } from "../../../../context/UserContext.jsx";
 
 export function useAuth(submitFunction, successMessage) {
     const navigate = useNavigate();
-    const mountedRef = useRef(true);
+    const isComponentActiveRef = useRef(true);
+    const submittingRef = useRef(false);
 
     const { setUserId } = useUser();
 
@@ -19,13 +20,16 @@ export function useAuth(submitFunction, successMessage) {
 
     useEffect(
         () => () => {
-            mountedRef.current = false;
+            isComponentActiveRef.current = false;
         },
         [],
     );
 
     async function submit(formElement) {
-        if (isSubmitting) return;
+        if (submittingRef.current) {
+            return;
+        }
+
         const errorsForm = formCheck(formElement);
 
         if (Object.keys(errorsForm).length) {
@@ -33,6 +37,7 @@ export function useAuth(submitFunction, successMessage) {
             return;
         }
 
+        submittingRef.current = true;
         setErrorMessagesFields({});
         setErrorMessageAuth(null);
         setIsSubmitting(true);
@@ -41,21 +46,26 @@ export function useAuth(submitFunction, successMessage) {
 
         try {
             const result = await submitFunction(formData);
-            setUserId(result.user.id);
-            navigate(
-                "/feedingTool",
-                successMessage
-                    ? {
-                          state: { message: successMessage },
-                      }
-                    : undefined,
-            );
+            if (isComponentActiveRef.current) {
+                setUserId(result.user.id);
+                navigate(
+                    "/feedingTool",
+                    successMessage
+                        ? {
+                              state: { message: successMessage },
+                          }
+                        : undefined,
+                );
+            }
         } catch (error) {
-            setErrorMessageAuth(error.message);
+            if (isComponentActiveRef.current) {
+                setErrorMessageAuth(error.message);
+            }
         } finally {
-            if (mountedRef.current) {
+            if (isComponentActiveRef.current) {
                 setIsSubmitting(false);
             }
+            submittingRef.current = false;
         }
     }
 
