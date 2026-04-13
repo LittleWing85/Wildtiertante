@@ -25,9 +25,7 @@ export function useAuth(submitFunction, successMessage) {
     }, []);
 
     async function submit(formElement) {
-        if (submittingRef.current) {
-            return;
-        }
+        if (submittingRef.current) return;
 
         const errorsForm = formCheck(formElement);
 
@@ -45,26 +43,23 @@ export function useAuth(submitFunction, successMessage) {
 
         try {
             const result = await submitFunction(formData);
-            if (isComponentActiveRef.current) {
-                setUserId(result.user.id);
-                navigate(
-                    "/feedingTool",
-                    successMessage
-                        ? {
-                              state: { message: successMessage },
-                          }
-                        : undefined,
-                );
-            }
+            if (!isComponentActiveRef.current) return;
+            setUserId(result.user.id);
+            navigate(
+                "/feedingTool",
+                successMessage
+                    ? {
+                          state: { message: successMessage },
+                      }
+                    : undefined,
+            );
         } catch (error) {
-            if (isComponentActiveRef.current) {
-                setErrorMessageAuth(error.message);
-            }
+            if (!isComponentActiveRef.current) return;
+            setErrorMessageAuth(error.message);
         } finally {
-            if (isComponentActiveRef.current) {
-                setIsSubmitting(false);
-            }
             submittingRef.current = false;
+            if (!isComponentActiveRef.current) return;
+            setIsSubmitting(false);
         }
     }
 
