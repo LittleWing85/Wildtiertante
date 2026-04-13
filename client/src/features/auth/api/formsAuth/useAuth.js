@@ -18,12 +18,11 @@ export function useAuth(submitFunction, successMessage) {
     const [errorMessageAuth, setErrorMessageAuth] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    useEffect(
-        () => () => {
+    useEffect(() => {
+        return () => {
             isComponentActiveRef.current = false;
-        },
-        [],
-    );
+        };
+    }, []);
 
     async function submit(formElement) {
         if (submittingRef.current) {
