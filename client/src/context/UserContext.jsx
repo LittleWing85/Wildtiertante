@@ -34,6 +34,10 @@ export function UserProvider({ children }) {
             const data = await apiClient("/api/me");
             if (!isComponentActiveRef.current) return;
             if (requestId !== authRequestIdRef.current) return;
+            if (!data.user) {
+                setUserId(null);
+                return { userId: null };
+            }
             setUserId(data.user.id);
             return { userId: data.user.id };
         } catch {

@@ -4,15 +4,21 @@
 import express from "express";
 
 import { wrap } from "../../middleware/wrap.js";
-import { requireAuthentication } from "./middleware.js";
+import { findUserById } from "./db.js";
 
 const meRouter = express.Router();
 
 meRouter.get(
     "/",
-    requireAuthentication,
-    wrap((request, response) => {
-        return response.json({ user: { id: request.user.id } });
+    wrap(async (request, response) => {
+        const userId = request.session?.user_id;
+        if (!userId) return response.json({ user: null });
+        const user = await findUserById(userId);
+        if (!user) {
+            request.session = null;
+            return response.json({ user: null });
+        }
+        return response.json({ user: { id: userId } });
     }),
 );
 
