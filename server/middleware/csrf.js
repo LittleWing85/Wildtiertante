@@ -71,6 +71,7 @@ function setCsrfCookie(response, token) {
         path: "/",
         sameSite: "strict",
         secure: useHostPrefix,
+        httpOnly: true,
     });
 }
 
