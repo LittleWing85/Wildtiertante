@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { formCheck } from "../../../../utils/formCheck.js";
 import { useUser } from "../../../../context/UserContext.jsx";
+import { clearCachedCsrfToken } from "../../../../utils/apiClient.js";
 
 export function useAuth(submitFunction, successMessage) {
     const navigate = useNavigate();
@@ -44,6 +45,7 @@ export function useAuth(submitFunction, successMessage) {
         try {
             const result = await submitFunction(formData);
             if (!isComponentActiveRef.current) return;
+            clearCachedCsrfToken();
             setUserId(result.user.id);
             navigate(
                 "/feedingTool",

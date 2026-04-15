@@ -5,6 +5,7 @@ import { port } from "./config/env.js";
 import { sessionMiddleware, refreshSession } from "./middleware/session.js";
 import { registerRoutes } from "./routesIndex.js";
 import { centralErrorHandler } from "./middleware/error.js";
+import { requireCsrf } from "./middleware/csrf.js";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json({ limit: "1mb" }));
 
 app.use(sessionMiddleware());
 app.use("/api", refreshSession);
+app.use("/api", requireCsrf);
 
 app.use(express.static(clientPublicPath));
 
