@@ -1,3 +1,6 @@
+// Provides CSRF protection by generating tokens, setting a cookie,
+// and validating requests via cookie + header comparison and HMAC verification
+
 import crypto from "crypto";
 
 import { isProd } from "../config/env.js";
