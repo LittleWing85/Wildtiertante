@@ -1,5 +1,7 @@
 import crypto from "crypto";
+
 import { isProd } from "../config/env.js";
+import { CsrfError } from "../errors/CsrfError.js";
 
 const useHostPrefix = isProd;
 
@@ -96,21 +98,15 @@ function requireCsrf(request, response, next) {
     const headerToken = request.get(CSRF_HEADER_NAME);
 
     if (!cookieToken || !headerToken) {
-        return response.status(403).json({
-            error: "CSRF check failed.",
-        });
+        throw new CsrfError();
     }
 
     if (cookieToken !== headerToken) {
-        return response.status(403).json({
-            error: "CSRF check failed.",
-        });
+        throw new CsrfError();
     }
 
     if (!verifyCsrfToken(request, headerToken)) {
-        return response.status(403).json({
-            error: "CSRF check failed.",
-        });
+        throw new CsrfError();
     }
 
     next();
