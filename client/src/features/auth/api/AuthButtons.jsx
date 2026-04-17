@@ -1,14 +1,16 @@
 // This component shows the buttons for authentication
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "../../../context/UserContext.jsx";
 
 import { Button } from "../../../components/Button.jsx";
+import { PROTECTED_ROUTES } from "../../../constants/PROTECTED_ROUTES.js";
 import "./auth.css";
 
 export function AuthButtons() {
     const { userId, logout, isLoggingOut } = useUser();
     const navigate = useNavigate();
+    const location = useLocation();
 
     if (userId === undefined) {
         return null;
@@ -16,7 +18,12 @@ export function AuthButtons() {
 
     async function handleLogout() {
         await logout();
-        navigate("/");
+        const currentPathIsProtectedRoute = PROTECTED_ROUTES.some((route) =>
+            location.pathname.startsWith(route),
+        );
+        if (currentPathIsProtectedRoute) {
+            navigate("/");
+        }
     }
 
     function handleSignIn() {
