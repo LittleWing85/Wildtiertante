@@ -5,8 +5,8 @@ import {
     RATE_LIMIT_LOGIN_MAX,
     RATE_LIMIT_REGISTRATION_MAX,
     RATE_LIMIT_LOGOUT_MAX,
-    isProd,
 } from "../config/env.js";
+import { TooManyRequestsError } from "../errors/TooManyRequestsError.js";
 
 function createLimiter({ max, message }) {
     return rateLimit({
@@ -17,6 +17,9 @@ function createLimiter({ max, message }) {
         message: { error: message },
         skipSuccessfulRequests: false,
         validate: { xForwardedForHeader: false },
+        handler: (request, response, next) => {
+            next(new TooManyRequestsError(message));
+        },
     });
 }
 
