@@ -1,3 +1,6 @@
+// Applies configurable rate limiting to sensitive routes (e.g. authentication)
+// Forwards violations to the central error handler, with support for pluggable storage backends.
+
 import { rateLimit } from "express-rate-limit";
 
 import {
