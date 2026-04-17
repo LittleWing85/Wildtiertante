@@ -41,13 +41,12 @@ const TRUST_PROXY =
 
 const RATE_LIMIT_WINDOW_MS =
     Number(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000;
-
 const RATE_LIMIT_LOGIN_MAX = Number(process.env.RATE_LIMIT_LOGIN_MAX) || 5;
-
 const RATE_LIMIT_REGISTRATION_MAX =
     Number(process.env.RATE_LIMIT_REGISTRATION_MAX) || 10;
-
 const RATE_LIMIT_LOGOUT_MAX = Number(process.env.RATE_LIMIT_LOGOUT_MAX) || 30;
+const RATE_LIMIT_STORE = process.env.RATE_LIMIT_STORE || "memory";
+const REDIS_URL = process.env.REDIS_URL || "";
 
 export {
     NODE_ENV,

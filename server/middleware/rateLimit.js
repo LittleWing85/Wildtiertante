@@ -5,8 +5,17 @@ import {
     RATE_LIMIT_LOGIN_MAX,
     RATE_LIMIT_REGISTRATION_MAX,
     RATE_LIMIT_LOGOUT_MAX,
+    RATE_LIMIT_STORE,
 } from "../config/env.js";
 import { TooManyRequestsError } from "../errors/TooManyRequestsError.js";
+
+function createRateLimitStore() {
+    if (RATE_LIMIT_STORE === "memory") {
+        return undefined;
+    }
+
+    throw new Error(`Unsupported RATE_LIMIT_STORE: ${RATE_LIMIT_STORE}`);
+}
 
 function createLimiter({ max, message }) {
     return rateLimit({
