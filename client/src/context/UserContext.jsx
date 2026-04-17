@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, useRef } from "react";
 
-import { clearCachedCsrfToken, apiClient } from "../utils/apiClient.js";
+import { apiClient, clearCachedCsrfToken } from "../utils/apiClient.js";
 import { logoutRequest } from "../features/auth/api/logoutRequest.js";
 
 const UserContext = createContext({

@@ -12,7 +12,7 @@
         "test": "jest"
     },
     "engines": {
-        "node": "14"
+        "node": ">=18 <23"
     },
     "dependencies": {
         "aws-sdk": "^2.815.0",
