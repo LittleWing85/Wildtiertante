@@ -30,6 +30,25 @@ if (!DATABASE_PASSWORD && !DATABASE_URL) {
     throw new Error("DATABASE_PASSWORD must be defined in your environment");
 }
 
+const TRUST_PROXY =
+    process.env.TRUST_PROXY === "true"
+        ? true
+        : process.env.TRUST_PROXY === "false"
+          ? false
+          : Number.isNaN(Number(process.env.TRUST_PROXY))
+            ? process.env.TRUST_PROXY
+            : Number(process.env.TRUST_PROXY);
+
+const RATE_LIMIT_WINDOW_MS =
+    Number(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000;
+
+const RATE_LIMIT_LOGIN_MAX = Number(process.env.RATE_LIMIT_LOGIN_MAX) || 5;
+
+const RATE_LIMIT_REGISTRATION_MAX =
+    Number(process.env.RATE_LIMIT_REGISTRATION_MAX) || 10;
+
+const RATE_LIMIT_LOGOUT_MAX = Number(process.env.RATE_LIMIT_LOGOUT_MAX) || 30;
+
 export {
     NODE_ENV,
     isProd,
@@ -41,4 +60,9 @@ export {
     DATABASE_PASSWORD,
     DATABASE_NAME,
     DATABASE_URL,
+    TRUST_PROXY,
+    RATE_LIMIT_WINDOW_MS,
+    RATE_LIMIT_LOGIN_MAX,
+    RATE_LIMIT_REGISTRATION_MAX,
+    RATE_LIMIT_LOGOUT_MAX,
 };

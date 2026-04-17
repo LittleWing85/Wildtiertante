@@ -1,13 +1,17 @@
 import express from "express";
 
 import { clientPublicPath, clientIndexPath } from "./config/paths.js";
-import { port } from "./config/env.js";
+import { port, TRUST_PROXY } from "./config/env.js";
 import { sessionMiddleware, refreshSession } from "./middleware/session.js";
 import { registerRoutes } from "./routesIndex.js";
 import { centralErrorHandler } from "./middleware/error.js";
 import { requireCsrf } from "./middleware/csrf.js";
 
 const app = express();
+
+if (TRUST_PROXY !== false) {
+    app.set("trust proxy", TRUST_PROXY);
+}
 
 app.use(express.json({ limit: "1mb" }));
 
