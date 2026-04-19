@@ -8,6 +8,7 @@ const REGISTRATION_INPUT_FIELDS = [
         type: "text",
         required: true,
         placeholder: "Name deiner Tierschutzeinrichtung",
+        autoComplete: "organization",
     },
     {
         id: "email",
@@ -16,6 +17,7 @@ const REGISTRATION_INPUT_FIELDS = [
         type: "email",
         required: true,
         placeholder: "Deine Emailadresse",
+        autoComplete: "username",
     },
     {
         id: "password",
@@ -24,6 +26,7 @@ const REGISTRATION_INPUT_FIELDS = [
         type: "password",
         required: true,
         placeholder: "Dein Passwort",
+        autoComplete: "new-password",
     },
 ];
 
@@ -35,6 +38,7 @@ const LOGIN_INPUT_FIELDS = [
         type: "email",
         required: true,
         placeholder: "Deine Emailadresse",
+        autoComplete: "username",
     },
     {
         id: "password",
@@ -43,6 +47,7 @@ const LOGIN_INPUT_FIELDS = [
         type: "password",
         required: true,
         placeholder: "Dein Passwort",
+        autoComplete: "current-password",
     },
 ];
 

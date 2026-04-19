@@ -12,6 +12,7 @@ export function InputFields({ fields, onChange, errors }) {
                     id={field.id}
                     name={field.name}
                     type={field.type}
+                    autoComplete={field.autoComplete}
                     required={field.required}
                     placeholder={field.placeholder}
                     aria-invalid={!!errors[field.id]}
