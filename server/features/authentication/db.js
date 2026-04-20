@@ -6,10 +6,24 @@ import { AuthenticationError } from "../../errors/AuthenticationError.js";
 
 const hash = (password) => bcrypt.hash(password, 12);
 
-async function createUser({ name, email, password }) {
+function standardizeRegistrationInput({ name, email, password }) {
+    return {
+        name: typeof name === "string" ? name.trim() : "",
+        email: typeof email === "string" ? email.trim() : "",
+        password: typeof password === "string" ? password : "",
+    };
+}
+async function createUser(input) {
+    const { name, email, password } = standardizeRegistrationInput(input);
     if (!name || !email || !password) {
         throw new ValidationError("Bitte fülle alle Felder aus!");
     }
+    if (password.length < 12) {
+        throw new ValidationError(
+            "Das Passwort muss mindestens 12 Zeichen lang sein.",
+        );
+    }
+
     const password_hash = await hash(password);
     try {
         const result = await pool.query(
