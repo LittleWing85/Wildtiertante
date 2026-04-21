@@ -6,7 +6,6 @@ export function formCheck(form) {
 
     for (const element of form.elements) {
         if (element.name === "password" && element.value.length < 12) {
-            console.log("Formcheck.js");
             errorMessages[element.id] =
                 "Das Passwort muss mindestens 12 Zeichen lang sein.";
         }
