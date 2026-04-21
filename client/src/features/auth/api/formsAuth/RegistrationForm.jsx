@@ -10,7 +10,8 @@ export function RegistrationForm() {
             inputFields={REGISTRATION_INPUT_FIELDS}
             submitFunction={registration}
             buttonText="Registrieren"
-            successMessage="Registrierung erfolgreich!"
+            successMessage="Registrierung
+            erfolgreich!"
         />
     );
 }

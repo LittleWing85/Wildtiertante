@@ -1,4 +1,5 @@
 //This component renders input fields for forms according to provided information about input fields
+import "./inputFields.css";
 
 export function InputFields({ fields, onChange, errors }) {
     return fields.map((field) => {
@@ -21,6 +22,8 @@ export function InputFields({ fields, onChange, errors }) {
                     }
                     onChange={onChange}
                 />
+                {field.hint && !error && <p className="hint">{field.hint}</p>}
+
                 {error && (
                     <p
                         id={`${field.id}-error`}
