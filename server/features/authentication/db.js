@@ -9,7 +9,7 @@ const hash = (password) => bcrypt.hash(password, 12);
 function standardizeRegistrationInput({ name, email, password }) {
     return {
         name: typeof name === "string" ? name.trim() : "",
-        email: typeof email === "string" ? email.trim() : "",
+        email: typeof email === "string" ? email.trim().toLowerCase() : "",
         password: typeof password === "string" ? password : "",
     };
 }
