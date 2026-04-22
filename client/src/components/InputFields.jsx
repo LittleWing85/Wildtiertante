@@ -15,6 +15,7 @@ export function InputFields({ fields, onChange, errors }) {
                     type={field.type}
                     autoComplete={field.autoComplete}
                     required={field.required}
+                    minLength={field.minLength}
                     placeholder={field.placeholder}
                     aria-invalid={!!errors[field.id]}
                     aria-describedby={

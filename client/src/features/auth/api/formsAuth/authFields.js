@@ -28,6 +28,7 @@ const REGISTRATION_INPUT_FIELDS = [
         placeholder: "Dein Passwort",
         autoComplete: "new-password",
         hint: "Das Passwort muss mindestens 12 Zeichen lang sein.",
+        minLength: 12,
     },
 ];
 
