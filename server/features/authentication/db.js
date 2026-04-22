@@ -13,6 +13,22 @@ function standardizeRegistrationInput({ name, email, password }) {
         password: typeof password === "string" ? password : "",
     };
 }
+
+async function findUserByEmail(email) {
+    const result = await pool.query(
+        `SELECT user_id, password_hash FROM users WHERE email =$1`,
+        [email],
+    );
+    return result.rows[0];
+}
+
+async function findUserById(user_id) {
+    const result = await pool.query(`SELECT 1 FROM users WHERE user_id =$1`, [
+        user_id,
+    ]);
+    return result.rowCount > 0;
+}
+
 async function createUser(input) {
     const { name, email, password } = standardizeRegistrationInput(input);
     if (!name || !email || !password) {
@@ -59,20 +75,6 @@ async function login({ email, password }) {
         );
     }
     return { user_id: foundUser.user_id };
-}
-
-async function findUserByEmail(email) {
-    const result = await pool.query(`SELECT * FROM users WHERE email =$1`, [
-        email,
-    ]);
-    return result.rows[0];
-}
-
-async function findUserById(user_id) {
-    const result = await pool.query(`SELECT 1 FROM users WHERE user_id =$1`, [
-        user_id,
-    ]);
-    return result.rowCount > 0;
 }
 
 export { createUser, login, findUserById };
